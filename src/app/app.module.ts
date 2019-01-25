@@ -7,16 +7,19 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { RouterModule, Routes } from '@angular/router';
+import { ArchiveComponent } from './archive/archive.component';
 
 const appRoutes: Routes = [
-  { path: 'first-page', component: DashboardComponent }
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'archive', component: ArchiveComponent }
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
     SidenavComponent,
-    DashboardComponent
+    DashboardComponent,
+    ArchiveComponent
   ],
   imports: [
     BrowserModule,
@@ -31,8 +34,7 @@ const appRoutes: Routes = [
     MatToolbarModule,
     MatListModule,
     RouterModule,
-    RouterModule.forRoot(appRoutes),
-
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
