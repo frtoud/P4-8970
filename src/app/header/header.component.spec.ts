@@ -5,7 +5,6 @@ import {
   MatButtonModule,
   MatIconModule,
   MatListModule,
-  MatSidenavModule,
   MatToolbarModule,
 } from '@angular/material';
 
@@ -24,7 +23,6 @@ describe('HeaderComponent', () => {
         MatButtonModule,
         MatIconModule,
         MatListModule,
-        MatHeaderModule,
         MatToolbarModule,
       ]
     }).compileComponents();
