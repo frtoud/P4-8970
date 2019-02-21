@@ -1,0 +1,21 @@
+<form>
+  <mat-toolbar color="white">
+    <mat-toolbar-row>
+      <span><img src="assets/img/logo-poly-blanc.PNG"></span> <span>DEMANDE D'ACHAT</span>
+      <span><mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+  </span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-grid-list cols="1" rowHeight="2:1">
+    <mat-grid-tile [rowspan]="1">
+      <span>COMMANDE</span>
+      <mat-checkbox>Standard</mat-checkbox>
+      <mat-checkbox>Entente</mat-checkbox>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>
+
