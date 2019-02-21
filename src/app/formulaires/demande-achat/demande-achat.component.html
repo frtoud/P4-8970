@@ -11,52 +11,64 @@
        </span>
     </mat-toolbar-row>
   </mat-toolbar>
-  <mat-grid-list cols="1" rowHeight="2:1">
     <mat-grid-tile [rowspan]="1">
       <span>COMMANDE</span>
       <mat-checkbox>Standard</mat-checkbox>
       <mat-checkbox>Entente</mat-checkbox>
     </mat-grid-tile>
     <!--Demandeur-->
-    <mat-grid-tile>
-      <mat-form-field>
-        <input matInput placeholder="Nom du demandeur">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Département">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Téléphone">
-      </mat-form-field>
-    </mat-grid-tile>
+    <div class="demandeur">
+      <h6>Demandeur</h6>
+      <mat-grid-list cols="1" rowHeight="4em">
+        <mat-grid-tile>
+          <mat-form-field>
+            <input matInput placeholder="Nom du demandeur">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Département">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Téléphone">
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
     <!--Fournisseur suggéré-->
-    <mat-grid-tile>
-      <mat-form-field>
-        <input matInput placeholder="Nom">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="No">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Adresse">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="No">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Ville">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Province/État">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Code postal">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Pays">
-      </mat-form-field>
-    </mat-grid-tile>
+    <div class="demandeur">
+      <h6>Fournisseur suggéré</h6>
+      <mat-grid-list cols="1" rowHeight="4em">
+      <mat-grid-tile>
+        <mat-form-field>
+          <input matInput placeholder="Nom">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="No">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Adresse">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="No">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Ville">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Province/État">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Code postal">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Pays">
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+    </div>
     <!--Contact-->
+    <div class="demandeur">
+      <h6>Contact</h6>
+      <mat-grid-list cols="1" rowHeight="4em">
     <mat-grid-tile>
       <mat-form-field>
         <input matInput placeholder="Nom">
@@ -71,7 +83,12 @@
         <input matInput placeholder="Fax">
       </mat-form-field>
     </mat-grid-tile>
+    </mat-grid-list>
+    </div>
     <!--Soumission-->
+    <div class="demandeur">
+      <h6>Soumission</h6>
+      <mat-grid-list cols="1" rowHeight="4em">
     <mat-grid-tile>
       <span>SOUMISSION:</span>
       <span>NO:</span>
@@ -82,7 +99,12 @@
         <input matInput placeholder="Échéance">
       </mat-form-field>
     </mat-grid-tile>
+    </mat-grid-list>
+    </div>
     <!--Livraison-->
+  <div class="demandeur">
+    <h6>Livraison</h6>
+    <mat-grid-list cols="1" rowHeight="4em">
   <mat-grid-tile>
     <span>LIVRAISON:</span>
     <span>DATE CONVENUE:</span>
@@ -98,7 +120,12 @@
       <input matInput placeholder="Incoterms">
     </mat-form-field>
   </mat-grid-tile>
+    </mat-grid-list>
+  </div>
     <!--Termes de paiement-->
+  <div class="demandeur">
+      <h6>Termes de paiement</h6>
+    <mat-grid-list cols="1" rowHeight="4em">
     <mat-grid-tile>
     <span>TERMES DE PAIEMENT: </span>
     <span>CONDITIONS </span>
@@ -114,7 +141,12 @@
       <input matInput placeholder="Incoterms">
     </mat-form-field>
     </mat-grid-tile>
-    <!--Termes de paiement-->
+    </mat-grid-list>
+  </div>
+    <!--Description des items-->
+  <div class="demandeur">
+    <h6>Description des items</h6>
+    <mat-grid-list cols="1" rowHeight="4em">
   <mat-grid-tile>
     <span>1</span>
     <mat-form-field><input matInput placeholder="Incoterms"></mat-form-field><mat-form-field><input matInput placeholder="Incoterms"></mat-form-field><mat-form-field><input matInput placeholder="Incoterms"></mat-form-field><mat-form-field><input matInput placeholder="Incoterms"></mat-form-field>
@@ -135,6 +167,7 @@
     <span>5</span>
     <mat-form-field><input matInput placeholder="Incoterms"></mat-form-field><mat-form-field><input matInput placeholder="Incoterms"></mat-form-field><mat-form-field><input matInput placeholder="Incoterms"></mat-form-field><mat-form-field><input matInput placeholder="Incoterms"></mat-form-field>
     </mat-grid-tile>
-  </mat-grid-list>
+    </mat-grid-list>
+  </div>
 </form>
 
