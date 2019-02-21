@@ -62,11 +62,26 @@
   <div class="section">
     <h6>DÉTAIL DE L'AIDE FINANCIÈRE</h6>
     <p>Les versements sont faits aux quize jours, selon le cycle de la paie.</p>
-    <mat-form-field>
-        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
+    <a>PÉRIODE D'ENGAGEMENT:</a>
+        <mat-grid-list cols="3" rowHeight="3em">
+          <mat-grid-tile>
+            <mat-form-field>
+              <input matInput [matDatepicker]="debut" placeholder="Date de début">
+              <mat-datepicker-toggle matSuffix [for]="debut"></mat-datepicker-toggle>
+              <mat-datepicker #debut></mat-datepicker>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field>
+              <input matInput [matDatepicker]="fin" placeholder="Date de fin">
+              <mat-datepicker-toggle matSuffix [for]="fin"></mat-datepicker-toggle>
+              <mat-datepicker #fin></mat-datepicker>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile colspan=3>
+            
+          </mat-grid-tile>
+        </mat-grid-list>
   </div>
 
 
