@@ -1,0 +1,13 @@
+  div {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  mat-form-field {
+    margin: 3em;
+    width: 100%;
+  }
+
+  .enabled {
+      background-color: #ae3503;
+  }

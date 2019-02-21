@@ -1,0 +1,64 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<div>
+  <p>DEMANDEUR</p>
+  <mat-grid-list cols="3" rowHeight="4em">
+    <mat-grid-tile colspan="2">
+      <mat-form-field hideRequiredMarker=true floatLabel="auto">
+        <input matInput placeholder="Nom" required>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-form-field
+            hideRequiredMarker=true
+            floatLabel="auto">
+          <input matInput placeholder="Téléphone" required>
+        </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+        <mat-form-field hideRequiredMarker=true floatLabel="auto">
+          <input matInput placeholder="Centre, Département, Institut ou Service" required>
+        </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-form-field
+            hideRequiredMarker=true
+            floatLabel="auto">
+          <input matInput placeholder="Unité Administrative" required>
+        </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+
+<div>
+    <p>BÉNÉFICIAIRE</p>
+    <mat-grid-list cols="2" rowHeight="4em">
+      <mat-grid-tile>
+        <mat-form-field hideRequiredMarker=true floatLabel="auto" >
+          <input matInput placeholder="Nom" required disabled class="enabled">
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+          <mat-form-field
+              hideRequiredMarker=true
+              floatLabel="auto">
+            <input matInput placeholder="Prénom" required>
+          </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+          <mat-form-field hideRequiredMarker=true floatLabel="auto">
+            <input matInput placeholder="Matricule" required>
+          </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+          <mat-form-field
+              hideRequiredMarker=true
+              floatLabel="auto">
+            <input matInput placeholder="Unité Administrative" required>
+          </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+
+
+
