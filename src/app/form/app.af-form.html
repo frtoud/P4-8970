@@ -1,17 +1,15 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
-<div>
-  <p>DEMANDEUR</p>
-  <mat-grid-list cols="3" rowHeight="4em">
+<div class="section">
+  <h6>DEMANDEUR</h6>
+  <mat-grid-list cols="3" rowHeight="3em">
     <mat-grid-tile colspan="2">
       <mat-form-field hideRequiredMarker=true floatLabel="auto">
         <input matInput placeholder="Nom" required>
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile>
-        <mat-form-field
-            hideRequiredMarker=true
-            floatLabel="auto">
+        <mat-form-field hideRequiredMarker=true floatLabel="auto">
           <input matInput placeholder="Téléphone" required>
         </mat-form-field>
     </mat-grid-tile>
@@ -21,27 +19,23 @@
         </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile>
-        <mat-form-field
-            hideRequiredMarker=true
-            floatLabel="auto">
+        <mat-form-field hideRequiredMarker=true floatLabel="auto">
           <input matInput placeholder="Unité Administrative" required>
         </mat-form-field>
     </mat-grid-tile>
   </mat-grid-list>
 </div>
 
-<div>
-    <p>BÉNÉFICIAIRE</p>
-    <mat-grid-list cols="2" rowHeight="4em">
+<div class="section">
+  <h6>BÉNÉFICIAIRE</h6>
+    <mat-grid-list cols="2" rowHeight="3em">
       <mat-grid-tile>
         <mat-form-field hideRequiredMarker=true floatLabel="auto" >
-          <input matInput placeholder="Nom" required disabled class="enabled">
+          <input matInput placeholder="Nom" required class="enabled">
         </mat-form-field>
       </mat-grid-tile>
       <mat-grid-tile>
-          <mat-form-field
-              hideRequiredMarker=true
-              floatLabel="auto">
+          <mat-form-field hideRequiredMarker=true floatLabel="auto">
             <input matInput placeholder="Prénom" required>
           </mat-form-field>
       </mat-grid-tile>
@@ -51,13 +45,28 @@
           </mat-form-field>
       </mat-grid-tile>
       <mat-grid-tile>
-          <mat-form-field
-              hideRequiredMarker=true
-              floatLabel="auto">
+          <mat-form-field hideRequiredMarker=true floatLabel="auto">
             <input matInput placeholder="Unité Administrative" required>
           </mat-form-field>
       </mat-grid-tile>
     </mat-grid-list>
+  </div>
+  <div class="section">
+    <h6>CYCLE DE L'ÉTUDIANT</h6>
+
+  </div>
+  <div class="section">
+    <h6>MODE DE PAIEMENT</h6>
+    <p>Veuillez joindre un spécimen de chèque pour les nouvelles demandes ou pour changement au mode de paiement.</p>
+  </div>
+  <div class="section">
+    <h6>DÉTAIL DE L'AIDE FINANCIÈRE</h6>
+    <p>Les versements sont faits aux quize jours, selon le cycle de la paie.</p>
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
   </div>
 
 
