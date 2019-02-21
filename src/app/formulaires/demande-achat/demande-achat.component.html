@@ -1,13 +1,14 @@
 <form>
   <mat-toolbar color="white">
     <mat-toolbar-row>
-      <span><img src="assets/img/logo-poly-blanc.PNG"></span> <span>DEMANDE D'ACHAT</span>
-      <span><mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-  </span>
+      <span><img src="assets/img/logo-poly-blanc.PNG"></span><span>DEMANDE D'ACHAT</span>
+      <span>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+       </span>
     </mat-toolbar-row>
   </mat-toolbar>
   <mat-grid-list cols="1" rowHeight="2:1">
@@ -15,6 +16,44 @@
       <span>COMMANDE</span>
       <mat-checkbox>Standard</mat-checkbox>
       <mat-checkbox>Entente</mat-checkbox>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field>
+        <input matInput placeholder="Nom du demandeur">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Département">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Téléphone">
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-form-field>
+        <input matInput placeholder="Nom">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="No">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Adresse">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="No">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Ville">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Province/État">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Code postal">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Pays">
+      </mat-form-field>
     </mat-grid-tile>
   </mat-grid-list>
 </form>
