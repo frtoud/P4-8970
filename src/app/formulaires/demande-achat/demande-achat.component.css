@@ -11,8 +11,19 @@ div {
   border: 2px solid black;
 }
 
-.demandeur mat-form-field {
+.section-rectangle mat-form-field {
   margin: 1em;
   width: 100%;
   height: 100%
+}
+
+#signature-demandeur {
+  border: 2px solid black;
+  width: max-content;
+  margin-bottom: 5px;
+  padding: 5px 10px;
+}
+
+#signature-demandeur button {
+  margin-left: 60px;
 }
