@@ -9,10 +9,6 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 
 export class DemandeAchatComponent implements OnInit {
   options: FormGroup;
-  checked: any;
-  indeterminate: any;
-  labelPosition: any;
-  disabled: any;
   constructor(fb: FormBuilder) {
     this.options = fb.group({
       hideRequired: false,
