@@ -1,0 +1,54 @@
+#form-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 20px;
+}
+
+#entite-externe, 
+#beneficiaire,  
+#demandeur,
+#nouveau-fournisseur, 
+#description-facture,
+#ventilation-budgetaire,
+#signatures,
+#references
+{
+    border: 2px solid black;
+    padding-top: 5px;
+    padding-left: 5px;
+    margin: 5px;
+}
+
+h6 {
+    margin:0;
+    padding-bottom: 5px;
+    font-size: 0.9em;
+    max-width: max-content;
+}
+
+div {
+    font-size: 13px;
+}
+
+#entite-externe mat-grid-list mat-form-field {
+    margin: 1em;
+    width: 100%;
+    height: 100%;
+}
+
+#description-facture, #ventilation-budgetaire {
+    width: max-content;
+}
+
+#signature-demandeur {
+    border: 2px solid black;
+    width: max-content;
+    margin-bottom: 5px;
+    padding: 5px 10px;
+}
+
+#signature-demandeur button {
+    margin-left: 60px;
+}
