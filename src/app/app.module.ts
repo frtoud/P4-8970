@@ -2,14 +2,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 import {MatGridListModule, MatCardModule, MatMenuModule, 
         MatIconModule, MatButtonModule, MatToolbarModule, 
         MatListModule, MatFormFieldControl, MatInputModule, 
         MatNativeDateModule } from '@angular/material';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatTableModule} from '@angular/material/table';
 
 import { AppComponent } from './app.component';
 import { AFFormComponent } from './form/app.af-form';
@@ -38,6 +41,8 @@ import { RouterModule, Routes } from '@angular/router';
     MatRadioModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatCheckboxModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

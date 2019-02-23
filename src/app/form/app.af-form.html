@@ -1,7 +1,8 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
-<div class="section">
+<div class="sectionheader">
   <h6>DEMANDEUR</h6>
+  <div class="section">
   <mat-grid-list cols="3" rowHeight="3em">
     <mat-grid-tile colspan="2">
       <mat-form-field hideRequiredMarker=true floatLabel="auto">
@@ -24,10 +25,12 @@
         </mat-form-field>
     </mat-grid-tile>
   </mat-grid-list>
+  </div>
 </div>
 
-<div class="section">
+<div class="sectionheader">
   <h6>BÉNÉFICIAIRE</h6>
+  <div class="section">
     <mat-grid-list cols="2" rowHeight="3em">
       <mat-grid-tile>
         <mat-form-field hideRequiredMarker=true floatLabel="auto" >
@@ -51,19 +54,27 @@
       </mat-grid-tile>
     </mat-grid-list>
   </div>
-  <div class="section">
+  </div>
+  <div class="sectionheader">
     <h6>CYCLE DE L'ÉTUDIANT</h6>
+    <div class="section">
+    </div>
+  </div>
 
-  </div>
-  <div class="section">
+  <div class="sectionheader">
     <h6>MODE DE PAIEMENT</h6>
+    <div class="section">
     <p>Veuillez joindre un spécimen de chèque pour les nouvelles demandes ou pour changement au mode de paiement.</p>
+    </div>
   </div>
-  <div class="section">
+  <div class="sectionheader">
     <h6>DÉTAIL DE L'AIDE FINANCIÈRE</h6>
+    <div class="section">
     <p>Les versements sont faits aux quize jours, selon le cycle de la paie.</p>
-    <a>PÉRIODE D'ENGAGEMENT:</a>
-        <mat-grid-list cols="3" rowHeight="3em">
+        <mat-grid-list cols="4" rowHeight="3em">
+          <mat-grid-tile>
+            <p>PÉRIODE D'ENGAGEMENT:</p>
+          </mat-grid-tile>
           <mat-grid-tile>
             <mat-form-field>
               <input matInput [matDatepicker]="debut" placeholder="Date de début">
@@ -78,11 +89,83 @@
               <mat-datepicker #fin></mat-datepicker>
             </mat-form-field>
           </mat-grid-tile>
-          <mat-grid-tile colspan=3>
-            
+          <mat-grid-tile>
+            <!--SPACING-->
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-checkbox [(ngModel)]="unique">Versement unique</mat-checkbox>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-checkbox [(ngModel)]="nouveau">Nouveau versement</mat-checkbox>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-checkbox [(ngModel)]="changement">Changement</mat-checkbox>
+          </mat-grid-tile>
+          <mat-grid-tile>
+              <mat-form-field hideRequiredMarker=true floatLabel="auto">
+                <input matInput placeholder="Numéro de référence" required>
+              </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field hideRequiredMarker=true floatLabel="auto">
+              <mat-label>Montant de l'aide financière</mat-label>
+              <input class="monetaire" matInput required
+              [ngModel]="montant | currency" (ngModelChange)="montant=$event">
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="2">
+            <mat-form-field hideRequiredMarker=true floatLabel="auto">
+              <input matInput placeholder="Organisme subventionnaire" required>
+            </mat-form-field>
           </mat-grid-tile>
         </mat-grid-list>
+      </div>
   </div>
+
+<div class="sectionheader">
+  <h6>VENTILATION BUDGETAIRE</h6>
+  <div class="section">
+    <mat-form-field hideRequiredMarker=true floatLabel="always" class="tablestepper">
+    <input [(ngModel)]="displayedRows" matInput placeholder="Lignes:"
+    type="number" step="1">
+    </mat-form-field>
+    <table mat-table [dataSource]="ventilation">  
+      <ng-container matColumnDef="ubr">
+          <th mat-header-cell *matHeaderCellDef> UBR. </th>
+          <td mat-cell *matCellDef="let element">
+                <input [(ngModel)]="element.ubr">
+          </td>
+      </ng-container>
+      <ng-container matColumnDef="compte">
+          <th mat-header-cell *matHeaderCellDef> Compte </th>
+          <td mat-cell *matCellDef="let element">
+              <input [(ngModel)]="element.compte">
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="unite">
+          <th mat-header-cell *matHeaderCellDef> Unité administrative </th>
+          <td mat-cell *matCellDef="let element">
+              <input [(ngModel)]="element.unite">
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="percent">
+          <th mat-header-cell *matHeaderCellDef> % </th>
+          <td mat-cell *matCellDef="let element">
+              <input [(ngModel)]="element.percent">
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="montant">
+          <th mat-header-cell *matHeaderCellDef> Montant </th>
+          <td mat-cell *matCellDef="let element">
+              <input [(ngModel)]="element.montant">
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>
 
 
 

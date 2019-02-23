@@ -1,7 +1,7 @@
   div {
     display: flex;
   }
-  div.section {
+  div.sectionheader {
     flex-direction: column;
     align-content: flex-start;
     justify-content: flex-start;
@@ -10,6 +10,12 @@
     font-size: 13px;
     margin-bottom: 5px;
     padding: 5px;
+  }
+  div.section {
+    background-color: #ffffff;
+    flex-direction: inherit;
+    align-content: inherit;
+    justify-content: inherit;
   }
 
   div.fieldgroup {
@@ -29,11 +35,34 @@
   }
   
   mat-form-field {
-    margin: 1em;
-    width: 100%;
+    margin: 0px;
+    width: 95%;
     height: 100%;
   }
 
   .enabled {
       background-color: #ae3803;
+  }
+
+  input {
+    margin: 0px;
+    width: 95%;
+    height: 100%;
+    border: 0.25px;
+  }
+  
+  .tablestepper {
+    margin: 3px;
+    width: 5em;
+    height: 100%;
+    border: 1px;
+    border-color: #ffffff;
+  }
+
+  .monetaire {
+      text-align: right;
+  }
+
+  tr.mat-row {
+    height: 3em;
   }
