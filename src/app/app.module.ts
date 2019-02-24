@@ -8,6 +8,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { HeaderComponent } from './header/header.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ArchiveComponent } from './archive/archive.component';
+import { AvanceVoyageComponent } from './avance-voyage/avance-voyage.component';
 
 const appRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -19,7 +20,8 @@ const appRoutes: Routes = [
     AppComponent,
     HeaderComponent,
     DashboardComponent,
-    ArchiveComponent
+    ArchiveComponent,
+    AvanceVoyageComponent
   ],
   imports: [
     BrowserModule,
