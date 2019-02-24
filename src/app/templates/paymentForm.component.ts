@@ -1,12 +1,4 @@
 import { Component } from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { MatFormFieldModule, 
-         MatInputModule,
-         MatDatepickerModule,
-         MatNativeDateModule,
-         MatButtonModule,
-         MatCheckboxModule,
-         MatSelectModule } from '@angular/material';
 
 @Component({
   selector: 'payment-form',
