@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {MatFormFieldModule, MatGridListModule} from '@angular/material';
-import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-af-form',
@@ -10,13 +10,21 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 export class AFFormComponent {
   montant :number = 0;
   ventilation = [
-  {ubr:"1", compte:"1", unite:"1", percent:1, montant:1, },
-  {ubr:"1", compte:"1", unite:"1", percent:1, montant:1, },
-  {ubr:"1", compte:"1", unite:"1", percent:1, montant:1, },
+    {ubr:"", compte:"", unite:"", percent:0, montant:0, },
+    {ubr:"", compte:"", unite:"", percent:0, montant:0, },
+    {ubr:"", compte:"", unite:"", percent:0, montant:0, },
   ];
   displayedColumns: string[] = ['ubr', 'compte', 'unite', 'percent', 'montant'];
-  displayerRows: number = 4;
-  /*emailFormControl = new FormControl('', [
-    Validators.required,
-  ]);*/
+  displayedRows: number = 3;
+  onChangeRows(value){
+    this.displayedRows = Math.max(1, Math.min(value, 30));
+    while (this.ventilation.length < this.displayedRows)
+    {
+      this.ventilation.push({ubr:"", compte:"", unite:"", percent:0, montant:0, },);
+    }
+    while (this.ventilation.length > this.displayedRows)
+    {
+      this.ventilation.pop();
+    }
+  }
 }
