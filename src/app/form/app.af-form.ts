@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {MatFormFieldModule, MatGridListModule} from '@angular/material';
+import {MatFormFieldModule, MatGridListModule, MatTableDataSource} from '@angular/material';
 import { FormsModule, ReactiveFormsModule, FormControl, Validators} from '@angular/forms';
 
 @Component({
@@ -16,21 +16,28 @@ export class AFFormComponent {
   }
 
   ventilation = [
-    {ubr:"", compte:"", unite:"", percent:0, montant:0, },
-    {ubr:"", compte:"", unite:"", percent:0, montant:0, },
-    {ubr:"", compte:"", unite:"", percent:0, montant:0, },
+    {id:0, ubr:"", compte:"", unite:"", percent:0, montant:0, },
+    {id:1, ubr:"", compte:"", unite:"", percent:0, montant:0, },
+    {id:2, ubr:"", compte:"", unite:"", percent:0, montant:0, },
   ];
-  displayedColumns: string[] = ['ubr', 'compte', 'unite', 'percent', 'montant'];
-  displayedRows: number = 3;
-  onChangeRows(value){
-    this.displayedRows = Math.max(1, Math.min(value, 30));
-    while (this.ventilation.length < this.displayedRows)
-    {
-      this.ventilation.push({ubr:"", compte:"", unite:"", percent:0, montant:0, },);
+  dSventilation = new MatTableDataSource(this.ventilation);
+  displayedColumns: string[] = ['ubr', 'compte', 'unite', 'percent', 'montant', 'action'];
+  rowID: number = 2;
+  onCreate()
+  {
+    this.ventilation.push(
+      {id:this.rowID, ubr:"", compte:"", unite:"", percent:0, montant:0, }
+    );
+    this.rowID++;
+    this.dSventilation._updateChangeSubscription();
+  }
+  onDelete(value)
+  {
+    for (let i = 0; i < this.ventilation.length; i++) {
+      if (this.ventilation[i].id === value) {
+          this.ventilation.splice(i, 1);
+      }
     }
-    while (this.ventilation.length > this.displayedRows)
-    {
-      this.ventilation.pop();
-    }
+    this.dSventilation._updateChangeSubscription();
   }
 }
