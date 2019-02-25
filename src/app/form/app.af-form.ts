@@ -9,6 +9,12 @@ import { FormsModule, ReactiveFormsModule, FormControl, Validators} from '@angul
 })
 export class AFFormComponent {
   montant :number = 0;
+  statutVersement : number = 0;
+  onChangeStatus(value)
+  {
+    this.statutVersement = value;
+  }
+
   ventilation = [
     {ubr:"", compte:"", unite:"", percent:0, montant:0, },
     {ubr:"", compte:"", unite:"", percent:0, montant:0, },

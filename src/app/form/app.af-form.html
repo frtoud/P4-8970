@@ -92,18 +92,17 @@
           <mat-grid-tile>
             <!--SPACING-->
           </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-checkbox [(ngModel)]="unique">Versement unique</mat-checkbox>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-checkbox [(ngModel)]="nouveau">Nouveau versement</mat-checkbox>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-checkbox [(ngModel)]="changement">Changement</mat-checkbox>
+          <mat-grid-tile colspan="3">
+            <mat-radio-group [ngModel]="statutVersement" (ngModelChange)="onChangeStatus($event)">
+              <mat-radio-button [value]="1">Versement unique</mat-radio-button>
+              <mat-radio-button [value]="2">Nouveau versement</mat-radio-button>
+              <mat-radio-button [value]="3">Changement</mat-radio-button>
+            </mat-radio-group>
           </mat-grid-tile>
           <mat-grid-tile>
               <mat-form-field hideRequiredMarker=true floatLabel="auto">
-                <input matInput placeholder="Numéro de référence" required>
+                <input matInput placeholder="Numéro de référence" required
+                [disabled]="statutVersement != 3">
               </mat-form-field>
           </mat-grid-tile>
           <mat-grid-tile>

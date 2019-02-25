@@ -66,3 +66,9 @@
   tr.mat-row {
     height: 3em;
   }
+
+  mat-radio-group {
+    display: flex;
+    width: 95%;
+    justify-content: space-around;
+  }
