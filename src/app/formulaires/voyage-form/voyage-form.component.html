@@ -69,48 +69,55 @@
   </mat-form-field>
 </div>
 
+
 <div id="endroit-deplacement">
-  <table width="100%">
-    <thead>
+    <table width="100%">
+        <thead>
+                <tr>
+                    <th colspan="3"></th>
+                    <th colspan="2"></th>
+                </tr>
+                <tr>
+                    <th align="left">ENDROIT DU DÉPLACEMENT</th>
+                    <th>DURÉE DU DÉPLACEMENT</th>
+                    <th>NOMBRE<br>DE JOURS</th>
+                </tr>
+        </thead>
+        <tbody>
             <tr>
-                <th colspan="3"></th>
-                <th colspan="2"></th>
+                <td>
+                    <mat-form-field>
+                        <input matInput type="text">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field>
+                        <input #DateDu matInput [matDatepicker]="pickerDU" placeholder="DU" (click)="pickerDU.open()" [ngModel]="du" (ngModelChange)="duChange($event)">
+                        <mat-datepicker-toggle matSuffix [for]="pickerDU"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerDU></mat-datepicker>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field>
+                        <input #DateAu matInput [matDatepicker]="pickerAU" placeholder="AU" (click)="pickerAU.open()" [ngModel]="au" (ngModelChange)="auChange($event)">
+                        <mat-datepicker-toggle matSuffix [for]="pickerAU"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerAU></mat-datepicker>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <p *ngIf="bothFilled">{{ dureeDeplacement }}</p>
+                </td>
             </tr>
-            <tr>
-                <th align="left">ENDROIT DU DÉPLACEMENT</th>
-                <th>DURÉE DU DÉPLACEMENT</th>
-                <th>NOMBRE<br>DE JOURS</th>
-            </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-                <mat-form-field>
-                    <input matInput type="text">
-                </mat-form-field>
-            </td>
-            <td>
-                <mat-form-field>
-                    <input matInput [matDatepicker]="pickerDU" placeholder="DU" (click)="pickerDU.open()">
-                    <mat-datepicker-toggle matSuffix [for]="pickerDU"></mat-datepicker-toggle>
-                    <mat-datepicker #pickerDU></mat-datepicker>
-                </mat-form-field>
-            </td>
-            <td>
-                <mat-form-field>
-                    <input matInput [matDatepicker]="pickerAU" placeholder="AU" (click)="pickerAU.open()">
-                    <mat-datepicker-toggle matSuffix [for]="pickerAU"></mat-datepicker-toggle>
-                    <mat-datepicker #pickerAU></mat-datepicker>
-                </mat-form-field>
-            </td>
-        </tr>
-    </tbody>
-  </table>
+        </tbody>
+    </table>
 </div>
+
 
 <div id="but-deplacement">
   <h6>BUT DU DÉPLACEMENT</h6>
-  <textarea></textarea>
+  <mat-form-field>
+        <input matInput type="text">
+  </mat-form-field>
 
 </div>
 
