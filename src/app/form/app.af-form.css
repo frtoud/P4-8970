@@ -66,6 +66,7 @@
       text-align: right;
   }
 
+  th, 
   tr.mat-row {
     height: 3em;
   }
@@ -85,4 +86,16 @@
 
   #signature-demandeur button {
     margin-left: 60px;
+  }
+
+  .mat-footer-cell {
+    text-align: right;
+  }
+
+  .percentile {
+    width: 10%;
+  }
+
+  #cycles {
+    flex-direction: row;
   }

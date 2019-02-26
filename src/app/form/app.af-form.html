@@ -58,6 +58,11 @@
   <div class="sectionheader">
     <h6>CYCLE DE L'ÉTUDIANT</h6>
     <div class="section">
+      <p>Identifier le cycle de l'étudiant(e):</p>
+      <div>
+        <mat-grid-list cols="4" rowHeight="3em">
+        </mat-grid-list>
+      </div>
     </div>
   </div>
 
@@ -145,27 +150,28 @@
       </ng-container>
       <ng-container matColumnDef="percent">
           <th mat-header-cell *matHeaderCellDef> % </th>
-          <td mat-cell *matCellDef="let element">
-              <input [(ngModel)]="element.percent">
+          <td mat-cell *matCellDef="let element"
+              class="percentile">
+              <input [(ngModel)]="element.percent" type="number">
         </td>
       </ng-container>
       <ng-container matColumnDef="montant">
           <th mat-header-cell *matHeaderCellDef> Montant </th>
           <td mat-cell *matCellDef="let element">
-              <input [(ngModel)]="element.montant">
+              <input [(ngModel)]="element.montant" >
         </td>
       </ng-container>
       <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <th mat-header-cell *matHeaderCellDef></th>
           <td mat-cell *matCellDef="let element">
-              <button mat-raised-button
-              (click)="onDelete(element.id)">Supprimer</button>
+              <button mat-icon-button color="warn"
+              (click)="onDelete(element.id)">x</button>
           </td>
       </ng-container>
       <ng-container matColumnDef="addRow">
         <td mat-footer-cell *matFooterCellDef colspan="6">
-            <button mat-raised-button color="primary"
-            (click)="onCreate()">Nouvelle Ligne</button>
+            <button mat-mini-fab color="primary"
+            (click)="onCreate()">+</button>
         </td>
       </ng-container>
 
