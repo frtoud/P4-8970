@@ -99,3 +99,13 @@
   #cycles {
     flex-direction: row;
   }
+
+  .check-category {
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  .check-category-label {
+    justify-content: flex-start;
+    padding-left: 1em;
+    width: 100%;
+  }

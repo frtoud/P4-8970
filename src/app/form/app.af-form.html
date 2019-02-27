@@ -59,10 +59,68 @@
     <h6>CYCLE DE L'ÉTUDIANT</h6>
     <div class="section">
       <p>Identifier le cycle de l'étudiant(e):</p>
-      <div>
-        <mat-grid-list cols="4" rowHeight="3em">
+        <mat-grid-list cols="5" rowHeight="2em">
+          <mat-grid-tile>
+              <div class="check-category-label">
+              <p>BACCALAURÉAT:</p>
+              </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <div class="check-category">
+                <mat-checkbox
+                  [(ngModel)]="bac">
+                  Obtenu
+                </mat-checkbox>
+                <mat-checkbox
+                  [(ngModel)]="bacec">
+                  En cours
+                </mat-checkbox>
+              </div>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="3">
+            <!--SPACING-->
+          </mat-grid-tile>
+          <mat-grid-tile>
+              <div class="check-category-label">
+              <p>MAITRISE:</p>
+              </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <div class="check-category">
+                <mat-checkbox
+                  [(ngModel)]="mai">
+                  Obtenu
+                </mat-checkbox>
+                <mat-checkbox
+                  [(ngModel)]="maiec">
+                  En cours
+                </mat-checkbox>
+              </div>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="3">
+            <!--SPACING-->
+          </mat-grid-tile>
+          <mat-grid-tile>
+              <div class="check-category-label">
+              <p>DOCTORAT:</p>
+              </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <div class="check-category">
+                <mat-checkbox
+                  [(ngModel)]="doc">
+                  Obtenu
+                </mat-checkbox>
+                <mat-checkbox
+                  [(ngModel)]="docec">
+                  En cours
+                </mat-checkbox>
+              </div>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="3">
+            <!--SPACING-->
+          </mat-grid-tile>
         </mat-grid-list>
-      </div>
     </div>
   </div>
 
