@@ -141,28 +141,26 @@
             <tr>
                 <td>
                     <mat-form-field>
-                        <input matInput type="text">
+                        <input matInput type="number" [ngModel]="fraisInscription" (ngModelChange)="updateFraisInscription($event)">
                     </mat-form-field>
                 </td>
                 <td>
                     <mat-form-field>
-                        <input matInput type="text">
+                        <input matInput type="number" [ngModel]="transport" (ngModelChange)="updateTransport($event)">
                     </mat-form-field>
                 </td>
                 <td>
                     <mat-form-field>
-                        <input matInput type="text">
+                        <input matInput type="number" [ngModel]="sejour" (ngModelChange)="updateSejour($event)">
                     </mat-form-field>
                 </td>
                 <td>
                     <mat-form-field>
-                        <input matInput type="text">
+                        <input matInput type="number" [ngModel]="autres" (ngModelChange)="updateAutres($event)">
                     </mat-form-field>
                 </td>
                 <td>
-                    <mat-form-field>
-                        <input matInput type="text">
-                    </mat-form-field>
+                    <p>{{ estimationTotal | currency }}</p>
                 </td>
             </tr>
         </tbody>
