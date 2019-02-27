@@ -20,6 +20,15 @@ export class AFFormComponent {
     {id:1, ubr:"", compte:"", unite:"", percent:0, montant:0, },
     {id:2, ubr:"", compte:"", unite:"", percent:0, montant:0, },
   ];
+  ventilationTotal :number = 0;
+  updateTotal()
+  {
+    this.ventilationTotal = 0;
+    this.ventilation.forEach(element => {
+      this.ventilationTotal += element.montant;
+    });
+  }
+
   dSventilation = new MatTableDataSource(this.ventilation);
   displayedColumns: string[] = ['ubr', 'compte', 'unite', 'percent', 'montant', 'action'];
   rowID: number = 2;
@@ -30,6 +39,7 @@ export class AFFormComponent {
     );
     this.rowID++;
     this.dSventilation._updateChangeSubscription();
+    this.updateTotal();
   }
   onDelete(value)
   {
@@ -39,5 +49,6 @@ export class AFFormComponent {
       }
     }
     this.dSventilation._updateChangeSubscription();
+    this.updateTotal();
   }
 }

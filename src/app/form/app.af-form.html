@@ -65,7 +65,7 @@
               <p>BACCALAURÉAT:</p>
               </div>
           </mat-grid-tile>
-          <mat-grid-tile>
+          <mat-grid-tile colspan="2">
             <div class="check-category">
                 <mat-checkbox
                   [(ngModel)]="bac">
@@ -77,7 +77,7 @@
                 </mat-checkbox>
               </div>
           </mat-grid-tile>
-          <mat-grid-tile colspan="3">
+          <mat-grid-tile colspan="2">
             <!--SPACING-->
           </mat-grid-tile>
           <mat-grid-tile>
@@ -85,7 +85,7 @@
               <p>MAITRISE:</p>
               </div>
           </mat-grid-tile>
-          <mat-grid-tile>
+          <mat-grid-tile colspan="2">
             <div class="check-category">
                 <mat-checkbox
                   [(ngModel)]="mai">
@@ -97,7 +97,7 @@
                 </mat-checkbox>
               </div>
           </mat-grid-tile>
-          <mat-grid-tile colspan="3">
+          <mat-grid-tile colspan="2">
             <!--SPACING-->
           </mat-grid-tile>
           <mat-grid-tile>
@@ -105,7 +105,7 @@
               <p>DOCTORAT:</p>
               </div>
           </mat-grid-tile>
-          <mat-grid-tile>
+          <mat-grid-tile colspan="2">
             <div class="check-category">
                 <mat-checkbox
                   [(ngModel)]="doc">
@@ -117,7 +117,7 @@
                 </mat-checkbox>
               </div>
           </mat-grid-tile>
-          <mat-grid-tile colspan="3">
+          <mat-grid-tile colspan="2">
             <!--SPACING-->
           </mat-grid-tile>
         </mat-grid-list>
@@ -216,7 +216,8 @@
       <ng-container matColumnDef="montant">
           <th mat-header-cell *matHeaderCellDef> Montant </th>
           <td mat-cell *matCellDef="let element">
-              <input [(ngModel)]="element.montant" >
+              <input [(ngModel)]="element.montant" (ngModelChange)="updateTotal()"
+              type="number">
         </td>
       </ng-container>
       <ng-container matColumnDef="action">
@@ -226,8 +227,13 @@
               (click)="onDelete(element.id)">x</button>
           </td>
       </ng-container>
+      <ng-container matColumnDef="total">
+        <td mat-footer-cell *matFooterCellDef colspan="5">
+            <p>TOTAL: {{ ventilationTotal | currency}}</p>
+        </td>
+      </ng-container>
       <ng-container matColumnDef="addRow">
-        <td mat-footer-cell *matFooterCellDef colspan="6">
+        <td mat-footer-cell *matFooterCellDef colspan="1">
             <button mat-mini-fab color="primary"
             (click)="onCreate()">+</button>
         </td>
@@ -235,7 +241,7 @@
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      <tr mat-footer-row *matFooterRowDef="['addRow']"></tr>
+      <tr mat-footer-row *matFooterRowDef="['total','addRow']"></tr>
     </table>
   </div>
 </div>
