@@ -98,14 +98,13 @@ mat-form-field {
     background-color: #CCD4DF;
 }
 
-#description-facture th,
-#ventilation-budgetaire tr:first-child th {
+#description-facture th, {
     padding: 10px 0px 0px 5px;
 }
 
 #endroit-deplacement thead,
 #estimation-depenses thead,
-#ventilation-budgetaire thead,
+#ventilation-budgetaire th,
 #description-facture thead {
     background-color: #CCD4DF;
 }

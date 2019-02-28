@@ -73,15 +73,11 @@
 <div id="endroit-deplacement">
     <table width="100%">
         <thead>
-                <tr>
-                    <th colspan="3"></th>
-                    <th colspan="2"></th>
-                </tr>
-                <tr>
-                    <th align="left">ENDROIT DU DÉPLACEMENT</th>
-                    <th>DURÉE DU DÉPLACEMENT</th>
-                    <th>NOMBRE<br>DE JOURS</th>
-                </tr>
+            <tr>
+                <th align="left">ENDROIT DU DÉPLACEMENT</th>
+                <th>DURÉE DU DÉPLACEMENT</th>
+                <th>NOMBRE<br>DE JOURS</th>
+            </tr>
         </thead>
         <tbody>
             <tr>
@@ -125,17 +121,13 @@
   <h6>ESTIMATION DES DÉPENSES (EN DOLLARS CANADIENS)</h6>
   <table width="100%">
         <thead>
-                <tr>
-                    <th colspan="3"></th>
-                    <th colspan="2"></th>
-                </tr>
-                <tr>
-                    <th>FRAIS D'INSCRIPTION</th>
-                    <th>TRANSPORT</th>
-                    <th>SÉJOUR</th>
-                    <th>AUTRES</th>
-                    <th>TOTAL</th>
-                </tr>
+            <tr>
+                <th>FRAIS D'INSCRIPTION</th>
+                <th>TRANSPORT</th>
+                <th>SÉJOUR</th>
+                <th>AUTRES</th>
+                <th>TOTAL</th>
+            </tr>
         </thead>
         <tbody>
             <tr>
@@ -222,29 +214,60 @@
 
 <div id="avances-demandees">
   <h6>AVANCES DEMANDÉES</h6>
-    <mat-form-field>
-        <input matInput type="text" placeholder="ADRESSE DE L'EMPLOYÉ ou DU FOURNISSEUR">
-    </mat-form-field>
-  
-    <mat-form-field>
-        <input matInput type="text" placeholder="TÉLÉPHONE">
-    </mat-form-field>
-  
-    <mat-form-field>
-        <input matInput type="text" placeholder="FAX">
-    </mat-form-field>
-    <br>
-    <mat-form-field>
-        <input matInput type="text" placeholder="VILLE">
-    </mat-form-field>
-  
-    <mat-form-field>
-        <input matInput type="text" placeholder="PROVINCE">
-    </mat-form-field>
-  
-    <mat-form-field>
-        <input matInput type="text" placeholder="CODE POSTAL">
-    </mat-form-field>
+  <table width="100%">
+        <tbody>
+            <tr>
+                <td>
+                    <h6>1ère AVANCE</h6>
+                </td>
+                <td>
+                    <mat-form-field>
+                        <input matInput type="number" [(ngModel)]="avance1" (ngModelChange)="updateAvanceTotal()">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <h6>POUR</h6>
+                </td>
+                <td>
+                    <mat-form-field>
+                        <input #DateDu matInput [matDatepicker]="pickerPour1" placeholder="POUR" (click)="pickerPour1.open()">
+                        <mat-datepicker-toggle matSuffix [for]="pickerPour1"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerPour1></mat-datepicker>
+                    </mat-form-field>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <h6>2ième AVANCE</h6>
+                </td>
+                <td>
+                    <mat-form-field>
+                        <input matInput type="number" [(ngModel)]="avance2" (ngModelChange)="updateAvanceTotal()">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <h6>POUR</h6>
+                </td>
+                <td>
+                    <mat-form-field>
+                        <input #DateAu matInput [matDatepicker]="pickerPour2" placeholder="POUR" (click)="pickerPour1.open()">
+                        <mat-datepicker-toggle matSuffix [for]="pickerPour2"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerPour2></mat-datepicker>
+                    </mat-form-field>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <h6>TOTAL</h6>
+                </td>
+                <td>
+                    <p>{{ avanceTotal | currency }}</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
   </div>
 
 <div id="signatures">

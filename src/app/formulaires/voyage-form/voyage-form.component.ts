@@ -18,11 +18,19 @@ export class VoyageFormComponent implements OnInit {
   private au: any = null;
   private dureeDeplacement: number = 0;
 
+  private avance1: number = 0;
+  private avance2: number = 0;
+  private avanceTotal: number = 0;
+
   private fraisInscription: number = 0;
   private transport: number = 0;
   private sejour: number = 0;
   private autres: number = 0;
   private estimationTotal: number = 0;
+
+  montant :number = 0;
+  ventilationTotal :number = 0;
+  rowID: number = 2;
 
   currency = ["CAN", "US", "EURO", "GBP", "CHF", "BRL"];
   ventilation = [
@@ -30,12 +38,13 @@ export class VoyageFormComponent implements OnInit {
     {id:1, ubr:"", compte:"", unite:"", montant:0 },
     {id:2, ubr:"", compte:"", unite:"", montant:0 },
   ];
-  
-  montant :number = 0;
-  ventilationTotal :number = 0;
-  dSventilation = new MatTableDataSource(this.ventilation);
   displayedColumns: string[] = ['ubr', 'compte', 'unite', 'montant', 'action'];
-  rowID: number = 2;
+
+  dSventilation = new MatTableDataSource(this.ventilation);
+
+  updateAvanceTotal() {
+    this.avanceTotal = this.avance1 + this.avance2;
+  }
 
   updateTotal()
   {
@@ -92,17 +101,6 @@ export class VoyageFormComponent implements OnInit {
     }
   }
 
-  
-
-
-
-
-
-
-
-
-
-
   private updateFraisInscription(frais: number): void {
     this.fraisInscription = frais;
     this.updateEstimationTotal();
@@ -126,7 +124,4 @@ export class VoyageFormComponent implements OnInit {
   private updateEstimationTotal(): void {
     this.estimationTotal = this.fraisInscription + this.transport + this.sejour + this.autres;
   }
-
-  
-
 }
