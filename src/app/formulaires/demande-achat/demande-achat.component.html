@@ -146,74 +146,123 @@
     <!--Description des items-->
   <div class="section-rectangle">
     <h6>DESCRIPTION DES ITEMS</h6>
-    <mat-grid-list cols="1" rowHeight="4em">
-  <mat-grid-tile>
-    <span>1</span>
-    <mat-form-field><input matInput placeholder="Numéro de référence"></mat-form-field><mat-form-field><input matInput placeholder="DESCRIPTION"></mat-form-field><mat-form-field><input matInput placeholder="QUANTITÉ"></mat-form-field><mat-form-field><input matInput placeholder="PRIX UNITAIRE"></mat-form-field><mat-form-field><input matInput placeholder="TOTAL"></mat-form-field>
-  </mat-grid-tile>
-      <mat-grid-tile>
-        <span>2</span>
-        <mat-form-field><input matInput placeholder="Numéro de référence"></mat-form-field><mat-form-field><input matInput placeholder="DESCRIPTION"></mat-form-field><mat-form-field><input matInput placeholder="QUANTITÉ"></mat-form-field><mat-form-field><input matInput placeholder="PRIX UNITAIRE"></mat-form-field><mat-form-field><input matInput placeholder="TOTAL"></mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <span>3</span>
-        <mat-form-field><input matInput placeholder="Numéro de référence"></mat-form-field><mat-form-field><input matInput placeholder="DESCRIPTION"></mat-form-field><mat-form-field><input matInput placeholder="QUANTITÉ"></mat-form-field><mat-form-field><input matInput placeholder="PRIX UNITAIRE"></mat-form-field><mat-form-field><input matInput placeholder="TOTAL"></mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <span>4</span>
-        <mat-form-field><input matInput placeholder="Numéro de référence"></mat-form-field><mat-form-field><input matInput placeholder="DESCRIPTION"></mat-form-field><mat-form-field><input matInput placeholder="QUANTITÉ"></mat-form-field><mat-form-field><input matInput placeholder="PRIX UNITAIRE"></mat-form-field><mat-form-field><input matInput placeholder="TOTAL"></mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <span>5</span>
-        <mat-form-field><input matInput placeholder="Numéro de référence"></mat-form-field><mat-form-field><input matInput placeholder="DESCRIPTION"></mat-form-field><mat-form-field><input matInput placeholder="QUANTITÉ"></mat-form-field><mat-form-field><input matInput placeholder="PRIX UNITAIRE"></mat-form-field><mat-form-field><input matInput placeholder="TOTAL"></mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <span>6</span>
-        <mat-form-field><input matInput placeholder="Numéro de référence"></mat-form-field><mat-form-field><input matInput placeholder="DESCRIPTION"></mat-form-field><mat-form-field><input matInput placeholder="QUANTITÉ"></mat-form-field><mat-form-field><input matInput placeholder="PRIX UNITAIRE"></mat-form-field><mat-form-field><input matInput placeholder="TOTAL"></mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <span>7</span>
-        <mat-form-field><input matInput placeholder="Numéro de référence"></mat-form-field><mat-form-field><input matInput placeholder="DESCRIPTION"></mat-form-field><mat-form-field><input matInput placeholder="QUANTITÉ"></mat-form-field><mat-form-field><input matInput placeholder="PRIX UNITAIRE"></mat-form-field><mat-form-field><input matInput placeholder="TOTAL"></mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <span>8</span>
-        <mat-form-field><input matInput placeholder="Numéro de référence"></mat-form-field><mat-form-field><input matInput placeholder="DESCRIPTION"></mat-form-field><mat-form-field><input matInput placeholder="QUANTITÉ"></mat-form-field><mat-form-field><input matInput placeholder="PRIX UNITAIRE"></mat-form-field><mat-form-field><input matInput placeholder="TOTAL"></mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <span>9</span>
-        <mat-form-field><input matInput placeholder="Numéro de référence"></mat-form-field><mat-form-field><input matInput placeholder="DESCRIPTION"></mat-form-field><mat-form-field><input matInput placeholder="QUANTITÉ"></mat-form-field><mat-form-field><input matInput placeholder="PRIX UNITAIRE"></mat-form-field><mat-form-field><input matInput placeholder="TOTAL"></mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <span>10</span>
-        <mat-form-field><input matInput placeholder="Numéro de référence"></mat-form-field><mat-form-field><input matInput placeholder="DESCRIPTION"></mat-form-field><mat-form-field><input matInput placeholder="QUANTITÉ"></mat-form-field><mat-form-field><input matInput placeholder="PRIX UNITAIRE"></mat-form-field><mat-form-field><input matInput placeholder="TOTAL"></mat-form-field>
-      </mat-grid-tile>
-    </mat-grid-list>
+    <div class="section">
+      <table mat-table [dataSource]="dSventilation">
+        <ng-container matColumnDef="ubr">
+          <th mat-header-cell *matHeaderCellDef> # réf. </th>
+          <td mat-cell *matCellDef="let element">
+            <input [(ngModel)]="element.ubr" [ngModelOptions]="{standalone: true}">
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="compte">
+          <th mat-header-cell *matHeaderCellDef> Description </th>
+          <td mat-cell *matCellDef="let element">
+            <input [(ngModel)]="element.compte"  [ngModelOptions]="{standalone: true}">
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="unite">
+          <th mat-header-cell *matHeaderCellDef> Quantité </th>
+          <td mat-cell *matCellDef="let element">
+            <input [(ngModel)]="element.unite"  [ngModelOptions]="{standalone: true}">
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="percent">
+          <th mat-header-cell *matHeaderCellDef> Prix unitaire </th>
+          <td mat-cell *matCellDef="let element"
+              class="percentile">
+            <input [(ngModel)]="element.percent" type="number"  [ngModelOptions]="{standalone: true}">
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="montant">
+          <th mat-header-cell *matHeaderCellDef> Total </th>
+          <td mat-cell *matCellDef="let element">
+            <input [(ngModel)]="element.montant" (ngModelChange)="updateTotal() "
+                   type="number"  [ngModelOptions]="{standalone: true}">
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button color="warn"
+                    (click)="onDelete(element.id)">x</button>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="total">
+          <td mat-footer-cell *matFooterCellDef colspan="5">
+            <p>TOTAL: {{ ventilationTotal | currency}}</p>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="addRow">
+          <td mat-footer-cell *matFooterCellDef colspan="1">
+            <button mat-mini-fab color="primary"
+                    (click)="onCreate()">+</button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-footer-row *matFooterRowDef="['total','addRow']"></tr>
+      </table>
+    </div>
   </div>
   <div class="section-rectangle">
-    <h6>VENTILATION BUDGÉTAIRE</h6>
-    <mat-grid-list cols="1" rowHeight="4em">
-      <mat-grid-tile>
-        <span>1</span>
-        <mat-form-field><input matInput placeholder="UBR"></mat-form-field><mat-form-field><input matInput placeholder="COMPTE"></mat-form-field><mat-form-field><input matInput placeholder="UNITÉ ADM."></mat-form-field><mat-form-field><input matInput placeholder="%"></mat-form-field><mat-form-field><input matInput placeholder="MONTANT (AVEC TAXES)"></mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <span>2</span>
-        <mat-form-field><input matInput placeholder="UBR"></mat-form-field><mat-form-field><input matInput placeholder="COMPTE"></mat-form-field><mat-form-field><input matInput placeholder="UNITÉ ADM."></mat-form-field><mat-form-field><input matInput placeholder="%"></mat-form-field><mat-form-field><input matInput placeholder="MONTANT (AVEC TAXES)"></mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <span>3</span>
-        <mat-form-field><input matInput placeholder="UBR"></mat-form-field><mat-form-field><input matInput placeholder="COMPTE"></mat-form-field><mat-form-field><input matInput placeholder="UNITÉ ADM."></mat-form-field><mat-form-field><input matInput placeholder="%"></mat-form-field><mat-form-field><input matInput placeholder="MONTANT (AVEC TAXES)"></mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <span>4</span>
-        <mat-form-field><input matInput placeholder="UBR"></mat-form-field><mat-form-field><input matInput placeholder="COMPTE"></mat-form-field><mat-form-field><input matInput placeholder="UNITÉ ADM."></mat-form-field><mat-form-field><input matInput placeholder="%"></mat-form-field><mat-form-field><input matInput placeholder="MONTANT (AVEC TAXES)"></mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <span>5</span>
-        <mat-form-field><input matInput placeholder="UBR"></mat-form-field><mat-form-field><input matInput placeholder="COMPTE"></mat-form-field><mat-form-field><input matInput placeholder="UNITÉ ADM."></mat-form-field><mat-form-field><input matInput placeholder="%"></mat-form-field><mat-form-field><input matInput placeholder="MONTANT (AVEC TAXES)"></mat-form-field>
-      </mat-grid-tile>
-    </mat-grid-list>
-  </div>
+      <h6>VENTILATION BUDGETAIRE</h6>
+      <div class="section">
+        <table mat-table [dataSource]="dSventilation">
+          <ng-container matColumnDef="ubr">
+            <th mat-header-cell *matHeaderCellDef> UBR. </th>
+            <td mat-cell *matCellDef="let element">
+              <input [(ngModel)]="element.ubr" [ngModelOptions]="{standalone: true}">
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="compte">
+            <th mat-header-cell *matHeaderCellDef> Compte </th>
+            <td mat-cell *matCellDef="let element">
+              <input [(ngModel)]="element.compte"  [ngModelOptions]="{standalone: true}">
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="unite">
+            <th mat-header-cell *matHeaderCellDef> Unité administrative </th>
+            <td mat-cell *matCellDef="let element">
+              <input [(ngModel)]="element.unite"  [ngModelOptions]="{standalone: true}">
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="percent">
+            <th mat-header-cell *matHeaderCellDef> % </th>
+            <td mat-cell *matCellDef="let element"
+                class="percentile">
+              <input [(ngModel)]="element.percent" type="number"  [ngModelOptions]="{standalone: true}">
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="montant">
+            <th mat-header-cell *matHeaderCellDef> Montant </th>
+            <td mat-cell *matCellDef="let element">
+              <input [(ngModel)]="element.montant" (ngModelChange)="updateTotal() "
+                     type="number"  [ngModelOptions]="{standalone: true}">
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button color="warn"
+                      (click)="onDelete(element.id)">x</button>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="total">
+            <td mat-footer-cell *matFooterCellDef colspan="5">
+              <p>TOTAL: {{ ventilationTotal | currency}}</p>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="addRow">
+            <td mat-footer-cell *matFooterCellDef colspan="1">
+              <button mat-mini-fab color="primary"
+                      (click)="onCreate()">+</button>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          <tr mat-footer-row *matFooterRowDef="['total','addRow']"></tr>
+        </table>
+    </div>
   <div class="section-rectangle">
     <h6>COMMENTAIRES ET PRÉCISIONS</h6>
     <mat-grid-list cols="1" rowHeight="4em">
@@ -268,6 +317,7 @@
       </mat-grid-tile>
     </mat-grid-list>
     </div>
+  </div>
   <div class="section-rectangle">
     <input type="file" multiple>
   </div>

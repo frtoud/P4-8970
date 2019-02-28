@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {MatGridListModule, MatCardModule, MatMenuModule, MatIconModule,
   MatButtonModule, MatToolbarModule, MatListModule, MatFormFieldModule,
-  MatNativeDateModule,  MatInputModule, MatCheckboxModule} from '@angular/material';
+  MatNativeDateModule,  MatInputModule, MatCheckboxModule, MatTableModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -47,6 +47,7 @@ const appRoutes: Routes = [
     MatCheckboxModule,
     FormsModule,
     ReactiveFormsModule,
+    MatTableModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],
