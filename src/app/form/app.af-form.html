@@ -1,189 +1,115 @@
-<!--The content below is only a placeholder and can be replaced.-->
+
+<!--Ajouter logo-->
 
 <div class="sectionheader">
   <h6>DEMANDEUR</h6>
-  <div class="section">
-  <mat-grid-list cols="3" rowHeight="3em">
-    <mat-grid-tile colspan="2">
-      <mat-form-field hideRequiredMarker=true floatLabel="auto">
-        <input matInput placeholder="Nom" required>
-      </mat-form-field>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <mat-form-field hideRequiredMarker=true floatLabel="auto">
-          <input matInput placeholder="Téléphone" required>
-        </mat-form-field>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="2">
-        <mat-form-field hideRequiredMarker=true floatLabel="auto">
-          <input matInput placeholder="Centre, Département, Institut ou Service" required>
-        </mat-form-field>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <mat-form-field hideRequiredMarker=true floatLabel="auto">
-          <input matInput placeholder="Unité Administrative" required>
-        </mat-form-field>
-    </mat-grid-tile>
-  </mat-grid-list>
+  <div class="section section-row">
+    <mat-form-field floatLabel="auto" class="large">
+      <input matInput placeholder="Nom">
+    </mat-form-field>
+    <mat-form-field floatLabel="auto" class="short">
+      <input matInput placeholder="Téléphone">
+    </mat-form-field>
+    <mat-form-field floatLabel="auto" class="large">
+      <input matInput placeholder="Centre, Département, Institut ou Service">
+    </mat-form-field>
+    <mat-form-field floatLabel="auto" class="short">
+      <input matInput placeholder="Unité Administrative">
+    </mat-form-field>
   </div>
 </div>
 
 <div class="sectionheader">
   <h6>BÉNÉFICIAIRE</h6>
-  <div class="section">
-    <mat-grid-list cols="2" rowHeight="3em">
-      <mat-grid-tile>
-        <mat-form-field hideRequiredMarker=true floatLabel="auto" >
-          <input matInput placeholder="Nom" required class="enabled">
-        </mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile>
-          <mat-form-field hideRequiredMarker=true floatLabel="auto">
-            <input matInput placeholder="Prénom" required>
-          </mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile>
-          <mat-form-field hideRequiredMarker=true floatLabel="auto">
-            <input matInput placeholder="Matricule" required>
-          </mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile>
-          <mat-form-field hideRequiredMarker=true floatLabel="auto">
-            <input matInput placeholder="Unité Administrative" required>
-          </mat-form-field>
-      </mat-grid-tile>
-    </mat-grid-list>
+  <div class="section section-row">
+    <mat-form-field floatLabel="auto" class="medium">
+      <input matInput placeholder="Nom">
+    </mat-form-field>
+    <mat-form-field floatLabel="auto" class="medium">
+      <input matInput placeholder="Prénom">
+    </mat-form-field>
+    <mat-form-field floatLabel="auto" class="short">
+      <input matInput placeholder="Matricule">
+    </mat-form-field>
+    <mat-form-field floatLabel="auto" class="short">
+      <input matInput placeholder="Matricule">
+    </mat-form-field>
   </div>
-  </div>
-  <div class="sectionheader">
-    <h6>CYCLE DE L'ÉTUDIANT</h6>
-    <div class="section">
-      <p>Identifier le cycle de l'étudiant(e):</p>
-        <mat-grid-list cols="5" rowHeight="2em">
-          <mat-grid-tile>
-              <div class="check-category-label">
-              <p>BACCALAURÉAT:</p>
-              </div>
-          </mat-grid-tile>
-          <mat-grid-tile colspan="2">
-            <div class="check-category">
-                <mat-checkbox
-                  [(ngModel)]="bac">
-                  Obtenu
-                </mat-checkbox>
-                <mat-checkbox
-                  [(ngModel)]="bacec">
-                  En cours
-                </mat-checkbox>
-              </div>
-          </mat-grid-tile>
-          <mat-grid-tile colspan="2">
-            <!--SPACING-->
-          </mat-grid-tile>
-          <mat-grid-tile>
-              <div class="check-category-label">
-              <p>MAITRISE:</p>
-              </div>
-          </mat-grid-tile>
-          <mat-grid-tile colspan="2">
-            <div class="check-category">
-                <mat-checkbox
-                  [(ngModel)]="mai">
-                  Obtenu
-                </mat-checkbox>
-                <mat-checkbox
-                  [(ngModel)]="maiec">
-                  En cours
-                </mat-checkbox>
-              </div>
-          </mat-grid-tile>
-          <mat-grid-tile colspan="2">
-            <!--SPACING-->
-          </mat-grid-tile>
-          <mat-grid-tile>
-              <div class="check-category-label">
-              <p>DOCTORAT:</p>
-              </div>
-          </mat-grid-tile>
-          <mat-grid-tile colspan="2">
-            <div class="check-category">
-                <mat-checkbox
-                  [(ngModel)]="doc">
-                  Obtenu
-                </mat-checkbox>
-                <mat-checkbox
-                  [(ngModel)]="docec">
-                  En cours
-                </mat-checkbox>
-              </div>
-          </mat-grid-tile>
-          <mat-grid-tile colspan="2">
-            <!--SPACING-->
-          </mat-grid-tile>
-        </mat-grid-list>
+</div>
+<div class="sectionheader">
+  <h6>CYCLE DE L'ÉTUDIANT</h6>
+  <div class="section section-column">
+    <p>Identifier le cycle de l'étudiant(e):</p>
+    <div class="section-row">
+      <p class="checkbox-label">BACCALAURÉAT:</p>
+      <mat-checkbox [(ngModel)]="bac" class="checkbox-field">
+        Obtenu
+      </mat-checkbox>
+      <mat-checkbox [(ngModel)]="bacec" class="checkbox-field">
+        En cours
+      </mat-checkbox>
+    </div>
+    <div class="section-row">
+      <p class="checkbox-label">MAITRISE:</p>
+      <mat-checkbox [(ngModel)]="mai" class="checkbox-field">
+        Obtenu
+      </mat-checkbox>
+      <mat-checkbox [(ngModel)]="maiec" class="checkbox-field">
+        En cours
+      </mat-checkbox>
+    </div>
+    <div class="section-row">
+      <p class="checkbox-label">DOCTORAT:</p>
+      <mat-checkbox [(ngModel)]="doc" class="checkbox-field">
+        Obtenu
+      </mat-checkbox>
+      <mat-checkbox [(ngModel)]="docec" class="checkbox-field">
+        En cours
+      </mat-checkbox>
     </div>
   </div>
+</div>
 
-  <div class="sectionheader">
-    <h6>MODE DE PAIEMENT</h6>
-    <div class="section">
-    <p>Veuillez joindre un spécimen de chèque pour les nouvelles demandes ou pour changement au mode de paiement.</p>
-    </div>
+<div class="sectionheader">
+  <h6>MODE DE PAIEMENT</h6>
+  <div class="section">
+  <p>Veuillez joindre un spécimen de chèque pour les nouvelles demandes ou pour changement au mode de paiement.</p>
   </div>
-  <div class="sectionheader">
-    <h6>DÉTAIL DE L'AIDE FINANCIÈRE</h6>
-    <div class="section">
-    <p>Les versements sont faits aux quize jours, selon le cycle de la paie.</p>
-        <mat-grid-list cols="4" rowHeight="3em">
-          <mat-grid-tile>
-            <p>PÉRIODE D'ENGAGEMENT:</p>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-form-field>
-              <input matInput [matDatepicker]="debut" placeholder="Date de début">
-              <mat-datepicker-toggle matSuffix [for]="debut"></mat-datepicker-toggle>
-              <mat-datepicker #debut></mat-datepicker>
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-form-field>
-              <input matInput [matDatepicker]="fin" placeholder="Date de fin">
-              <mat-datepicker-toggle matSuffix [for]="fin"></mat-datepicker-toggle>
-              <mat-datepicker #fin></mat-datepicker>
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <!--SPACING-->
-          </mat-grid-tile>
-          <mat-grid-tile colspan="3">
-            <mat-radio-group [(ngModel)]="statutVersement">
-              <mat-radio-button [value]="1">Versement unique</mat-radio-button>
-              <mat-radio-button [value]="2">Nouveau versement</mat-radio-button>
-              <mat-radio-button [value]="3">Changement</mat-radio-button>
-            </mat-radio-group>
-          </mat-grid-tile>
-          <mat-grid-tile>
-              <mat-form-field hideRequiredMarker=true floatLabel="auto">
-                <input matInput placeholder="Numéro de référence" required
-                [disabled]="statutVersement != 3">
-              </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-form-field hideRequiredMarker=true floatLabel="auto">
-              <mat-label>Montant de l'aide financière</mat-label>
-              <input class="monetaire" matInput required
-              [ngModel]="montant" (ngModelChange)="montant=$event" type=number
-              min="0" step="0.01" data-number-to-fixed="2"/>
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile colspan="2">
-            <mat-form-field hideRequiredMarker=true floatLabel="auto">
-              <input matInput placeholder="Organisme subventionnaire" required>
-            </mat-form-field>
-          </mat-grid-tile>
-        </mat-grid-list>
-      </div>
+</div>
+<div class="sectionheader">
+  <h6>DÉTAIL DE L'AIDE FINANCIÈRE</h6>
+  <div class="section">
+  <p>Les versements sont faits aux quize jours, selon le cycle de la paie.</p>
+  <p>PÉRIODE D'ENGAGEMENT:</p>
+    <mat-form-field class="short">
+      <input matInput [matDatepicker]="debut" placeholder="Date de début">
+      <mat-datepicker-toggle matSuffix [for]="debut"></mat-datepicker-toggle>
+      <mat-datepicker #debut></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="short">
+      <input matInput [matDatepicker]="fin" placeholder="Date de fin">
+      <mat-datepicker-toggle matSuffix [for]="fin"></mat-datepicker-toggle>
+      <mat-datepicker #fin></mat-datepicker>
+    </mat-form-field>
+    <mat-radio-group [(ngModel)]="statutVersement">
+      <mat-radio-button [value]="1">Versement unique</mat-radio-button>
+      <mat-radio-button [value]="2">Nouveau versement</mat-radio-button>
+      <mat-radio-button [value]="3">Changement</mat-radio-button>
+    </mat-radio-group>
+      <mat-form-field hideRequiredMarker=true floatLabel="auto" class="short">
+        <input matInput placeholder="Numéro de référence" required
+        [disabled]="statutVersement != 3">
+      </mat-form-field>
+    <mat-form-field floatLabel="auto" class="short">
+      <mat-label>Montant de l'aide financière</mat-label>
+      <input class="monetaire" matInput
+      [ngModel]="montant" (ngModelChange)="montant=$event" type=number/>
+    </mat-form-field>
+    <mat-form-field floatLabel="auto" class="medium">
+      <input matInput placeholder="Organisme subventionnaire" required>
+    </mat-form-field>
   </div>
+</div>
 
 <div class="sectionheader">
   <h6>VENTILATION BUDGETAIRE</h6>
