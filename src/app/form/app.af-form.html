@@ -172,7 +172,8 @@
             <mat-form-field hideRequiredMarker=true floatLabel="auto">
               <mat-label>Montant de l'aide financière</mat-label>
               <input class="monetaire" matInput required
-              [ngModel]="montant | currency" (ngModelChange)="montant=$event">
+              [ngModel]="montant" (ngModelChange)="montant=$event" type=number
+              min="0" step="0.01" data-number-to-fixed="2"/>
             </mat-form-field>
           </mat-grid-tile>
           <mat-grid-tile colspan="2">
@@ -191,33 +192,42 @@
       <ng-container matColumnDef="ubr">
           <th mat-header-cell *matHeaderCellDef> UBR. </th>
           <td mat-cell *matCellDef="let element">
-                <input [(ngModel)]="element.ubr">
+            <mat-form-field hideRequiredMarker=true floatLabel="auto">
+                <input matInput [(ngModel)]="element.ubr">
+              </mat-form-field>
           </td>
       </ng-container>
       <ng-container matColumnDef="compte">
           <th mat-header-cell *matHeaderCellDef> Compte </th>
           <td mat-cell *matCellDef="let element">
-              <input [(ngModel)]="element.compte">
+            <mat-form-field hideRequiredMarker=true floatLabel="auto">
+              <input matInput [(ngModel)]="element.compte">
+            </mat-form-field>
         </td>
       </ng-container>
       <ng-container matColumnDef="unite">
           <th mat-header-cell *matHeaderCellDef> Unité administrative </th>
           <td mat-cell *matCellDef="let element">
-              <input [(ngModel)]="element.unite">
+            <mat-form-field hideRequiredMarker=true floatLabel="auto">
+              <input matInput [(ngModel)]="element.unite">
+            </mat-form-field>
         </td>
       </ng-container>
       <ng-container matColumnDef="percent">
           <th mat-header-cell *matHeaderCellDef> % </th>
-          <td mat-cell *matCellDef="let element"
-              class="percentile">
-              <input [(ngModel)]="element.percent" type="number">
+          <td mat-cell *matCellDef="let element">
+              <mat-form-field hideRequiredMarker=true floatLabel="auto">
+              <input matInput [(ngModel)]="element.percent" type="number">
+              </mat-form-field>
         </td>
       </ng-container>
       <ng-container matColumnDef="montant">
           <th mat-header-cell *matHeaderCellDef> Montant </th>
           <td mat-cell *matCellDef="let element">
-              <input [(ngModel)]="element.montant" (ngModelChange)="updateTotal()"
-              type="number">
+              <mat-form-field hideRequiredMarker=true floatLabel="auto">
+                  <input matInput [(ngModel)]="element.montant" (ngModelChange)="updateTotal()"
+                  type="number">
+                </mat-form-field>
         </td>
       </ng-container>
       <ng-container matColumnDef="action">
