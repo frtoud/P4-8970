@@ -152,7 +152,7 @@
                     </mat-form-field>
                 </td>
                 <td>
-                    <p>{{ estimationTotal | currency }}</p>
+                    <p id="redTotal">{{ estimationTotal | currency }}</p>
                 </td>
             </tr>
         </tbody>
@@ -196,7 +196,7 @@
         </ng-container>
         <ng-container matColumnDef="total">
           <td mat-footer-cell *matFooterCellDef colspan="5">
-              <p>TOTAL: {{ ventilationTotal | currency}}</p>
+              <p id="redTotal">TOTAL: {{ ventilationTotal | currency}}</p>
           </td>
         </ng-container>
         <ng-container matColumnDef="addRow">
@@ -263,7 +263,7 @@
                     <h6>TOTAL</h6>
                 </td>
                 <td>
-                    <p>{{ avanceTotal | currency }}</p>
+                    <p id="redTotal">{{ avanceTotal | currency }}</p>
                 </td>
             </tr>
         </tbody>

@@ -123,12 +123,6 @@ mat-form-field {
     width: 90%;
 }
 
-#ventilation-budgetaire
-tr td:first-child {
-    vertical-align: bottom;
-    width: 50%;
-}
-
 #ventilation-budgetaire tr td:nth-of-type(2) mat-form-field {
     width: 100%;
 }
@@ -150,6 +144,10 @@ tr td:last-child {
 
 input {
     text-align: center;
+}
+
+#redTotal {
+    color: red;
 }
 
 #references {
