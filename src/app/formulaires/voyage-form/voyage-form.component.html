@@ -169,8 +169,57 @@
 
 <div id="ventilation-budgetaire">
   <h6>VENTILATION BUDGÉTAIRE</h6>
-  <table width="100%">
-      <thead>
+  <table mat-table [dataSource]="dSventilation">  
+        <ng-container matColumnDef="ubr">
+            <th mat-header-cell *matHeaderCellDef> UBR. </th>
+            <td mat-cell *matCellDef="let element">
+                  <input [(ngModel)]="element.ubr">
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="compte">
+            <th mat-header-cell *matHeaderCellDef> Compte </th>
+            <td mat-cell *matCellDef="let element">
+                <input [(ngModel)]="element.compte">
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="unite">
+            <th mat-header-cell *matHeaderCellDef> Unité administrative </th>
+            <td mat-cell *matCellDef="let element">
+                <input [(ngModel)]="element.unite">
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="montant">
+            <th mat-header-cell *matHeaderCellDef> Montant </th>
+            <td mat-cell *matCellDef="let element">
+                <input [(ngModel)]="element.montant" (ngModelChange)="updateTotal()"
+                type="number">
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button color="warn"
+                (click)="onDelete(element.id)">x</button>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="total">
+          <td mat-footer-cell *matFooterCellDef colspan="5">
+              <p>TOTAL: {{ ventilationTotal | currency}}</p>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="addRow">
+          <td mat-footer-cell *matFooterCellDef colspan="1">
+              <button mat-mini-fab color="primary"
+              (click)="onCreate()">+</button>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-footer-row *matFooterRowDef="['total','addRow']"></tr>
+    </table>
+  <!-- <table width="100%" mat-table [dataSource]="dSventilation"> -->
+      <!-- <thead>
           <tr>
               <th colspan="3"></th>
               <th colspan="2"></th>
@@ -181,149 +230,71 @@
               <th>UNITÉ <br> ADM.</th>
               <th>MONTANT</th>
           </tr>
-      </thead>
-      <tbody>
-          <tr>
-              <td>
-                  <mat-form-field>
-                      <input matInput type="text">
-                  </mat-form-field>
-              </td>
-              <td>
-                  <mat-form-field>
-                      <input matInput type="text">
-                  </mat-form-field>
-              </td>
-              <td>
-                  <mat-form-field>
-                      <input matInput type="text">
-                  </mat-form-field>
-              </td>
-              
-              <td>
-                  <mat-form-field>
-                      <input matInput type="text">
-                  </mat-form-field>
-              </td>
-          </tr>
-          <tr>
-              <td>
-                  <mat-form-field>
-                      <input matInput type="text">
-                  </mat-form-field>
-              </td>
-              <td>
-                  <mat-form-field>
-                      <input matInput type="text">
-                  </mat-form-field>
-              </td>
-              <td>
-                  <mat-form-field>
-                      <input matInput type="text">
-                  </mat-form-field>
-              </td>
+      </thead> -->
+      <!-- <tbody> -->
+                    <!-- <th mat-header-cell *matHeaderCellDef> UBR </th>
+                    <td mat-cell *matCellDef="let element">
+                          <input [(ngModel)]="element.ubr">
+                    </td>
+                    <th mat-header-cell *matHeaderCellDef> COMPTE </th>
+                    <td mat-cell *matCellDef="let element">
+                        <input [(ngModel)]="element.compte">
+                  </td>
+                    <th mat-header-cell *matHeaderCellDef> UNITÉ ADM. </th>
+                    <td mat-cell *matCellDef="let element">
+                        <input [(ngModel)]="element.unite">
+                  </td>
+                    <th mat-header-cell *matHeaderCellDef> MONTANT </th>
+                    <td mat-cell *matCellDef="let element">
+                        <input [(ngModel)]="element.montant" (ngModelChange)="updateTotal()"
+                        type="number">
+                  </td>
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-icon-button color="warn"
+                        (click)="onDelete(element.id)">x</button>
+                    </td>
+                  <td mat-footer-cell *matFooterCellDef colspan="5">
+                      <p>TOTAL: {{ ventilationTotal | currency}}</p>
+                  </td>
+                  <td mat-footer-cell *matFooterCellDef colspan="1">
+                      <button mat-mini-fab color="primary"
+                      (click)="onCreate()">+</button>
+                  </td>
 
-              <td>
-                  <mat-form-field>
-                      <input matInput type="text">
-                  </mat-form-field>
-              </td>
-          </tr>
-          <tr>
-              <td>
-                  <mat-form-field>
-                      <input matInput type="text">
-                  </mat-form-field>
-              </td>
-              <td>
-                  <mat-form-field>
-                      <input matInput type="text">
-                  </mat-form-field>
-              </td>
-              <td>
-                  <mat-form-field>
-                      <input matInput type="text">
-                  </mat-form-field>
-              </td>
-
-              <td>
-                  <mat-form-field>
-                      <input matInput type="text">
-                  </mat-form-field>
-              </td>
-          </tr>
-          <tr>
-              <td>
-                  <mat-form-field>
-                      <input matInput type="text">
-                  </mat-form-field>
-              </td>
-              <td>
-                  <mat-form-field>
-                      <input matInput type="text">
-                  </mat-form-field>
-              </td>
-              <td>
-                  <mat-form-field>
-                      <input matInput type="text">
-                  </mat-form-field>
-              </td>
-
-              <td>
-                  <mat-form-field>
-                      <input matInput type="text">
-                  </mat-form-field>
-              </td>
-          </tr>
-          <tr>
-              <td>
-                  <mat-form-field>
-                      <input matInput type="text">
-                  </mat-form-field>
-              </td>
-              <td>
-                  <mat-form-field>
-                      <input matInput type="text">
-                  </mat-form-field>
-              </td>
-              <td>
-                  <mat-form-field>
-                      <input matInput type="text">
-                  </mat-form-field>
-              </td>
-
-              <td>
-                  <mat-form-field>
-                      <input matInput type="text">
-                  </mat-form-field>
-              </td>
-          </tr>
-          <tr>
-              <td>
-                  <mat-form-field>
-                      <input matInput type="text">
-                  </mat-form-field>
-              </td>
-              <td>
-                  <mat-form-field>
-                      <input matInput type="text">
-                  </mat-form-field>
-              </td>
-              <td>
-                  <mat-form-field>
-                      <input matInput type="text">
-                  </mat-form-field>
-              </td>
-
-              <td>
-                  <mat-form-field>
-                      <input matInput type="text">
-                  </mat-form-field>
-              </td>
-          </tr>
-      </tbody>
-  </table>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-footer-row *matFooterRowDef="['total','addRow']"></tr> -->
+        <!-- </tbody> -->
+  <!-- </table> -->
 </div>
+
+<div id="avances-demandees">
+  <h6>AVANCES DEMANDÉES</h6>
+    <mat-form-field>
+        <input matInput type="text" placeholder="ADRESSE DE L'EMPLOYÉ ou DU FOURNISSEUR">
+    </mat-form-field>
+  
+    <mat-form-field>
+        <input matInput type="text" placeholder="TÉLÉPHONE">
+    </mat-form-field>
+  
+    <mat-form-field>
+        <input matInput type="text" placeholder="FAX">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <input matInput type="text" placeholder="VILLE">
+    </mat-form-field>
+  
+    <mat-form-field>
+        <input matInput type="text" placeholder="PROVINCE">
+    </mat-form-field>
+  
+    <mat-form-field>
+        <input matInput type="text" placeholder="CODE POSTAL">
+    </mat-form-field>
+  </div>
 
 <div id="signatures">
   <div id="signature-demandeur" class="signature">
@@ -391,6 +362,7 @@
       <button mat-raised-button>SIGNER</button>
   </div>
 </div>
+
 <div id="references">
   <p>
       <strong>*</strong> Joindre les pièces justificatives

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material';
+import { MatTableModule } from '@angular/material/table';
+import { DataSource } from '@angular/cdk/table';
 
 @Component({
   selector: 'voyage-form',
@@ -20,6 +23,49 @@ export class VoyageFormComponent implements OnInit {
   private sejour: number = 0;
   private autres: number = 0;
   private estimationTotal: number = 0;
+
+  currency = ["CAN", "US", "EURO", "GBP", "CHF", "BRL"];
+  ventilation = [
+    {id:0, ubr:"", compte:"", unite:"", montant:0 },
+    {id:1, ubr:"", compte:"", unite:"", montant:0 },
+    {id:2, ubr:"", compte:"", unite:"", montant:0 },
+  ];
+  
+  montant :number = 0;
+  ventilationTotal :number = 0;
+  dSventilation = new MatTableDataSource(this.ventilation);
+  displayedColumns: string[] = ['ubr', 'compte', 'unite', 'montant', 'action'];
+  rowID: number = 2;
+
+  updateTotal()
+  {
+    this.ventilationTotal = 0;
+    this.ventilation.forEach(element => {
+      this.ventilationTotal += element.montant;
+    });
+  }
+
+  onCreate()
+  {
+    this.ventilation.push(
+      {id:this.rowID, ubr:"", compte:"", unite:"", montant:0 }
+    );
+    this.rowID++;
+    this.dSventilation._updateChangeSubscription();
+    this.updateTotal();
+  }
+
+  onDelete(value)
+  {
+    for (let i = 0; i < this.ventilation.length; i++) {
+      if (this.ventilation[i].id === value) {
+          this.ventilation.splice(i, 1);
+      }
+    }
+    this.dSventilation._updateChangeSubscription();
+    this.updateTotal();
+  }
+
 
   constructor() { }
 
@@ -46,6 +92,17 @@ export class VoyageFormComponent implements OnInit {
     }
   }
 
+  
+
+
+
+
+
+
+
+
+
+
   private updateFraisInscription(frais: number): void {
     this.fraisInscription = frais;
     this.updateEstimationTotal();
@@ -70,6 +127,6 @@ export class VoyageFormComponent implements OnInit {
     this.estimationTotal = this.fraisInscription + this.transport + this.sejour + this.autres;
   }
 
-  currency = ["CAN", "US", "EURO", "GBP", "CHF", "BRL"];
+  
 
 }
