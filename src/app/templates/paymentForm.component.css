@@ -126,7 +126,6 @@ input {
 }
 
 #description-facture table {
-    padding-top: 5px;
     width: 100%;
 }
 
@@ -176,18 +175,13 @@ td.mat-cell:last-of-type {
     width: 10px;
 }
 
-td.mat-footer-cell {
-    background: #CCD4DF;
-}
-
 td.mat-footer-cell:last-of-type {
     padding-right: 5px;
     text-align: right;
 }
 
 td.mat-footer-cell:first-of-type {
-    text-align: center;
-    background: #CCD4DF;
+    text-align: right;
 }
 
 #ventilation-budgetaire table {
@@ -197,11 +191,6 @@ td.mat-footer-cell:first-of-type {
 
 #ventilation-budgetaire th {
     text-align: center;
-    width: max-content;
-}
-
-#ventilation-budgetaire td {
-    width: max-content;
 }
 
 #ventilation-budgetaire mat-form-field {
@@ -209,5 +198,9 @@ td.mat-footer-cell:first-of-type {
 }
 
 .code, .t4a {
+    background: #CCD4DF;
+}
+
+th {
     background: #CCD4DF;
 }

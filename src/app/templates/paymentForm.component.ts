@@ -20,6 +20,10 @@ export class PaymentFormComponent {
     total: number = 0;
     totalVentilation: number = 0;
 
+    nomDemandeur: string = "";
+    demandeurChecked: boolean = false;
+    signatureAdded: boolean = false;
+
     addDescriptionRow() {
         this.factures.push({ id: "", description: "", reference: "", total: 0, totalCAD: 0 });
         this.dsFactures._updateChangeSubscription();
@@ -38,6 +42,17 @@ export class PaymentFormComponent {
 
     updateVentilationTotal() {
         this.ventilation.map(v => this.total += v.montant);
+    }
+
+    addSignature() {
+        this.signatureAdded = !this.signatureAdded;
+    }
+
+    removeSignature() {
+        this.signatureAdded = !this.signatureAdded;
+        //TODO: 
+        this.demandeurChecked = false;
+        this.nomDemandeur = "";
     }
 }
 
