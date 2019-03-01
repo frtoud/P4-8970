@@ -9,12 +9,14 @@ import { ExchangeRateService } from '../services/exchangeRate.service';
 })
 
 export class PaymentFormComponent {
-    currency = [{display: "CAN", value: "CAD"}, 
-    {display: "US", value: "USD"}, 
-    {display: "EURO", value: ""}, 
-    {display: "GBP", value: ""}, 
-    {display: "CHF", value: ""}, 
-    {display: "BRL", value: ""}];
+    //TODO: change to CAD and USD => change objects to single value
+    currency = [{ display: "CAN", value: "CAD" }, 
+                { display: "US", value: "USD" }, 
+                { display: "EURO", value: "EUR" }, 
+                { display: "GBP", value: "GBP" }, 
+                { display: "CHF", value: "CHF" }, 
+                { display: "BRL", value: "BRL" }];
+
     factures: Bill[] = [{ id: "", description: "", reference: "", total: 0, totalCAD: 0 }];
     ventilation = [{ ubr: "", compte: "", unite: "", code: "", t4a: "", reference: "", montant: 0}];
 
@@ -33,6 +35,7 @@ export class PaymentFormComponent {
     signatureAdded: boolean = false;
 
     factureTotal: number = 0;
+    factureTotalCAD: number = 0;
 
     constructor(private exchangeRateService: ExchangeRateService) {}
 
@@ -67,21 +70,24 @@ export class PaymentFormComponent {
         this.nomDemandeur = "";
     }
 
-    getRate(from: string, to: string, start: string, end: string): number {
+    getRate(from: string, to: string, start: string, end: string) : Promise<number> {
         let sum: number = 0;
         let avg: number = 0;
         let seriesNames: string = "FX" + from + to;
-        this.exchangeRateService.getRates(from, to, start, end)
+        return this.exchangeRateService.getRates(from, to, start, end)
         .then(rates => {
             rates.observations.map(obs => sum += obs[seriesNames].v);
-            console.log(sum/rates.observations.length);
             avg = sum/rates.observations.length;
+            return avg;
         });
-        return avg;
     }
 
     calculateAmount() {
-        return this.factureTotal * this.getRate(this.selectedCurrency, "CAD", "2019-02-28", "2019-02-28");
+        this.getRate(this.selectedCurrency, "CAD", "2019-02-28", "2019-02-28")
+        .then(avg => {
+            this.factureTotalCAD = this.factureTotal * avg;
+            this.total += this.factureTotalCAD;
+        });
     }
 }
 
