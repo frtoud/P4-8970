@@ -43,11 +43,18 @@ export class AFFormComponent {
   }
   onDelete(value)
   {
+    /*
     for (let i = 0; i < this.ventilation.length; i++) {
-      if (this.ventilation[i].id === value) {
+      if (this.ventilation[i].id === value.id) {
           this.ventilation.splice(i, 1);
       }
+    }*/
+    let index : number = this.ventilation.findIndex((el:any) => el.id === value.id);
+    if (index >= 0)
+    {
+      this.ventilation.splice(index, 1);
     }
+
     this.dSventilation._updateChangeSubscription();
     this.updateTotal();
   }
