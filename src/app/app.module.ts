@@ -14,7 +14,8 @@ import { MatGridListModule,
          MatDatepickerModule,
          MatNativeDateModule,
          MatCheckboxModule,
-         MatSelectModule } from '@angular/material';
+         MatSelectModule} from '@angular/material';
+import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -55,6 +56,7 @@ const appRoutes: Routes = [
     MatNativeDateModule,
     MatCheckboxModule,
     MatSelectModule,
+    MatTableModule,
     RouterModule,
     RouterModule.forRoot(appRoutes)
   ],

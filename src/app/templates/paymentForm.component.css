@@ -95,44 +95,18 @@ mat-form-field {
     background-color: #CCD4DF;
 }
 
-#description-facture th,
-#ventilation-budgetaire tr:first-child th {
-    padding: 10px 0px 0px 5px;
+mat-select{
+    width: 60px;
 }
 
-#ventilation-budgetaire tr:nth-child(2) th {
-    vertical-align: bottom;
-}
+.totalFactureDevise {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+} 
 
-#ventilation-budgetaire tbody td:nth-child(4),
-#ventilation-budgetaire tbody td:nth-child(5),
-#ventilation-budgetaire thead,
-#description-facture thead {
-    background-color: #CCD4DF;
-}
-
-#description-facture 
-tr td:first-child {
-    width: 20%;
-}
-
-#description-facture tr td:nth-of-type(2) mat-form-field {
-    width: 100%;
-}
-
-#description-facture 
-tr td:nth-of-type(2) {
-    width: 40%;
-}
-
-#description-facture 
-tr td:nth-of-type(3){
-    width: 10%;
-}
-
-#description-facture 
-tr td:last-child {
-    width: 10%;
+th {
+    color: black;
 }
 
 #description-facture {
@@ -143,19 +117,17 @@ input {
     text-align: center;
 }
 
-#ventilation-budgetaire table {
-    /* TODO: change layout (print to pdf) */
-    table-layout: fixed;
+#description-facture h6 {
+    text-align: left;
+}
+
+#description-facture th {
     text-align: center;
-    border-collapse: collapse;
 }
 
-#ventilation-budgetaire table thead {
-    border-bottom: 2px solid white;
-}
-
-#ventilation-budgetaire table mat-form-field{
-    width: 90%;
+#description-facture table {
+    padding-top: 5px;
+    width: 100%;
 }
 
 #references {
@@ -171,4 +143,71 @@ input {
 
 #references div {
     background-color: #CCD4DF;
+}
+
+.descField, 
+.descField input {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.nbFacture,
+.nbFacture mat-form-field,
+.total,
+.total mat-form-field {
+    width: 100px;
+}
+
+.refFact,
+.refFact mat-form-field {
+    width: 50px;
+}
+
+.desc {
+    width: 70%;
+}
+
+th.mat-header-cell:first-of-type,
+td.mat-cell:first-of-type,
+th.mat-header-cell:last-of-type,
+td.mat-cell:last-of-type {
+    padding: 0px 5px;
+    width: 10px;
+}
+
+td.mat-footer-cell {
+    background: #CCD4DF;
+}
+
+td.mat-footer-cell:last-of-type {
+    padding-right: 5px;
+    text-align: right;
+}
+
+td.mat-footer-cell:first-of-type {
+    text-align: center;
+    background: #CCD4DF;
+}
+
+#ventilation-budgetaire table {
+    text-align: center;
+    width: 100%;
+}
+
+#ventilation-budgetaire th {
+    text-align: center;
+    width: max-content;
+}
+
+#ventilation-budgetaire td {
+    width: max-content;
+}
+
+#ventilation-budgetaire mat-form-field {
+    width: 80px;
+}
+
+.code, .t4a {
+    background: #CCD4DF;
 }
