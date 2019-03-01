@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatGridListModule, 
          MatCardModule, 
          MatMenuModule, 
@@ -23,6 +23,8 @@ import { HeaderComponent } from './header/header.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ArchiveComponent } from './archive/archive.component';
 import { PaymentFormComponent } from './templates/paymentForm.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ExchangeRateService } from './services/exchangeRate.service';
 
 
 const appRoutes: Routes = [
@@ -58,9 +60,12 @@ const appRoutes: Routes = [
     MatSelectModule,
     MatTableModule,
     RouterModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [
+    ExchangeRateService
+  ],
   bootstrap: [AppComponent]
 })
 

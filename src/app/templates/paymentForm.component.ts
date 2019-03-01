@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
+import { ExchangeRateService } from '../services/exchangeRate.service';
 
 @Component({
   selector: 'payment-form',
@@ -8,7 +9,12 @@ import { MatTableDataSource } from '@angular/material';
 })
 
 export class PaymentFormComponent {
-    currency = ["CAN", "US", "EURO", "GBP", "CHF", "BRL"];
+    currency = [{display: "CAN", value: "CAD"}, 
+    {display: "US", value: "USD"}, 
+    {display: "EURO", value: ""}, 
+    {display: "GBP", value: ""}, 
+    {display: "CHF", value: ""}, 
+    {display: "BRL", value: ""}];
     factures: Bill[] = [{ id: "", description: "", reference: "", total: 0, totalCAD: 0 }];
     ventilation = [{ ubr: "", compte: "", unite: "", code: "", t4a: "", reference: "", montant: 0}];
 
@@ -17,12 +23,18 @@ export class PaymentFormComponent {
     displayedColumns: string[] = ['numFacture', 'descFacture', 'refFacture', 'totalFacture', 'totalFactureCAD'];
     displayedColumnsV: string[] = ['ubr', 'compte', 'unite', 'code', 't4a', 'reference', 'montant'];
 
+    selectedCurrency: string = "CAD";
+    
     total: number = 0;
     totalVentilation: number = 0;
 
     nomDemandeur: string = "";
     demandeurChecked: boolean = false;
     signatureAdded: boolean = false;
+
+    factureTotal: number = 0;
+
+    constructor(private exchangeRateService: ExchangeRateService) {}
 
     addDescriptionRow() {
         this.factures.push({ id: "", description: "", reference: "", total: 0, totalCAD: 0 });
@@ -53,6 +65,23 @@ export class PaymentFormComponent {
         //TODO: 
         this.demandeurChecked = false;
         this.nomDemandeur = "";
+    }
+
+    getRate(from: string, to: string, start: string, end: string): number {
+        let sum: number = 0;
+        let avg: number = 0;
+        let seriesNames: string = "FX" + from + to;
+        this.exchangeRateService.getRates(from, to, start, end)
+        .then(rates => {
+            rates.observations.map(obs => sum += obs[seriesNames].v);
+            console.log(sum/rates.observations.length);
+            avg = sum/rates.observations.length;
+        });
+        return avg;
+    }
+
+    calculateAmount() {
+        return this.factureTotal * this.getRate(this.selectedCurrency, "CAD", "2019-02-28", "2019-02-28");
     }
 }
 
