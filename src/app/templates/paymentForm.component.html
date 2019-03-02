@@ -105,13 +105,13 @@
               <td mat-cell *matCellDef="let facture" class="total">
                   <div class ="totalFactureDevise">
                     <mat-form-field>
-                        <!-- TODO:  -->
+                        <!-- TODO: change data binding -->
                         <input matInput type="number" [(ngModel)]="factureTotal">
                     </mat-form-field>
 
                     <mat-select placeholder="Devise" [(ngModel)]="selectedCurrency" (selectionChange)="calculateAmount()">
-                        <mat-option *ngFor="let c of currency" [value]="c.value">
-                        {{ c.display }}
+                        <mat-option *ngFor="let c of currency" [value]="c">
+                        {{ c }}
                         </mat-option>
                     </mat-select>
                   </div>

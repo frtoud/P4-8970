@@ -9,13 +9,7 @@ import { ExchangeRateService } from '../services/exchangeRate.service';
 })
 
 export class PaymentFormComponent {
-    //TODO: change to CAD and USD => change objects to single value
-    currency = [{ display: "CAN", value: "CAD" }, 
-                { display: "US", value: "USD" }, 
-                { display: "EURO", value: "EUR" }, 
-                { display: "GBP", value: "GBP" }, 
-                { display: "CHF", value: "CHF" }, 
-                { display: "BRL", value: "BRL" }];
+    currency = ["CAD", "USD", "EUR", "GBP", "CHF", "BRL"];
 
     factures: Bill[] = [{ id: "", description: "", reference: "", total: 0, totalCAD: 0 }];
     ventilation = [{ ubr: "", compte: "", unite: "", code: "", t4a: "", reference: "", montant: 0}];
@@ -65,29 +59,36 @@ export class PaymentFormComponent {
 
     removeSignature() {
         this.signatureAdded = !this.signatureAdded;
-        //TODO: 
+        //TODO: a changer (selon la personne assignee pour chaque bloc de signature)
         this.demandeurChecked = false;
         this.nomDemandeur = "";
     }
 
     getRate(from: string, to: string, start: string, end: string) : Promise<number> {
         let sum: number = 0;
-        let avg: number = 0;
         let seriesNames: string = "FX" + from + to;
+
         return this.exchangeRateService.getRates(from, to, start, end)
         .then(rates => {
             rates.observations.map(obs => sum += obs[seriesNames].v);
-            avg = sum/rates.observations.length;
-            return avg;
+            return sum/rates.observations.length;
         });
     }
 
     calculateAmount() {
-        this.getRate(this.selectedCurrency, "CAD", "2019-02-28", "2019-02-28")
-        .then(avg => {
-            this.factureTotalCAD = this.factureTotal * avg;
+        //TODO: a confirmer 
+        //(si on ajoute des champs de date dans le form ou juste prendre current date)
+        if(this.selectedCurrency != "CAD") {
+            this.getRate(this.selectedCurrency, "CAD", "2019-02-28", "2019-02-28")
+            .then(avg => {
+                this.factureTotalCAD = Math.round((this.factureTotal * avg) * 100) / 100;
+                this.total += this.factureTotalCAD;
+            });
+        }
+        else {
+            this.factureTotalCAD = Math.round(this.factureTotal * 100) / 100;
             this.total += this.factureTotalCAD;
-        });
+        }
     }
 }
 
