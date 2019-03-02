@@ -98,8 +98,21 @@ mat-form-field {
     background-color: #CCD4DF;
 }
 
-#description-facture th, {
+#description-facture th {
     padding: 10px 0px 0px 5px;
+}
+
+#tableau-estimation-depenses,
+#tableau-avances-demandees {
+    border-collapse: collapse; 
+    border:1px solid black;
+}
+
+#tableau-estimation-depenses th,
+#tableau-estimation-depenses td,
+#tableau-avances-demandees th,
+#tableau-avances-demandees td {
+    border:1px solid black;
 }
 
 #endroit-deplacement thead,
