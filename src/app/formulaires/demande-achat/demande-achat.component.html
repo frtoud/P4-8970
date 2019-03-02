@@ -1,4 +1,5 @@
 <form>
+  <div id="titre-demande-achat">
   <mat-toolbar color="white">
     <mat-toolbar-row>
       <span><img src="assets/img/logo-poly-blanc.PNG"></span><span>DEMANDE D'ACHAT</span>
@@ -11,30 +12,34 @@
        </span>
     </mat-toolbar-row>
   </mat-toolbar>
+  </div>
     <mat-grid-tile [rowspan]="1">
       <span>COMMANDE</span>
       <mat-checkbox>Standard</mat-checkbox>
       <mat-checkbox>Entente</mat-checkbox>
     </mat-grid-tile>
-    <!--section-rectangle-->
-    <div class="section-rectangle">
+  <!--Demandeur-->
+  <div class="section-rectangle">
       <h6>DEMANDEUR</h6>
       <mat-grid-list cols="1" rowHeight="4em">
         <mat-grid-tile>
           <mat-form-field>
-            <input matInput placeholder="Nom du section-rectangle">
+            <input matInput placeholder="Nom du demandeur">
           </mat-form-field>
+          <br>
           <mat-form-field>
             <input matInput placeholder="Département">
           </mat-form-field>
+          <br>
           <mat-form-field>
             <input matInput placeholder="Téléphone">
           </mat-form-field>
+          <br>
         </mat-grid-tile>
       </mat-grid-list>
     </div>
-    <!--Fournisseur suggéré-->
-    <div class="section-rectangle">
+  <!--Fournisseur suggéré-->
+  <div class="section-rectangle">
       <h6>FOURNISSEUR SUGGÉRÉ</h6>
       <mat-grid-list cols="1" rowHeight="4em">
       <mat-grid-tile>
@@ -65,8 +70,8 @@
       </mat-grid-tile>
     </mat-grid-list>
     </div>
-    <!--Contact-->
-    <div class="section-rectangle">
+  <!--Contact-->
+  <div class="section-rectangle">
       <h6>CONTACT</h6>
       <mat-grid-list cols="1" rowHeight="4em">
     <mat-grid-tile>
@@ -85,13 +90,11 @@
     </mat-grid-tile>
     </mat-grid-list>
     </div>
-    <!--Soumission-->
-    <div class="section-rectangle">
+  <!--Soumission-->
+  <div class="section-rectangle">
       <h6>SOUMISSION</h6>
       <mat-grid-list cols="1" rowHeight="4em">
     <mat-grid-tile>
-      <span>SOUMISSION:</span>
-      <span>NO:</span>
       <mat-form-field>
         <input matInput placeholder="No">
       </mat-form-field>
@@ -101,79 +104,71 @@
     </mat-grid-tile>
     </mat-grid-list>
     </div>
-    <!--Livraison-->
+  <!--Livraison-->
   <div class="section-rectangle">
     <h6>LIVRAISON</h6>
     <mat-grid-list cols="1" rowHeight="4em">
   <mat-grid-tile>
-    <span>LIVRAISON:</span>
-    <span>DATE CONVENUE:</span>
     <mat-form-field>
       <input matInput placeholder="Date convenue">
     </mat-form-field>
-    <span>LIEU CONVENU:</span>
     <mat-form-field>
       <input matInput placeholder="Lieu convenu">
     </mat-form-field>
-    <span>INCOTERMS:</span>
     <mat-form-field>
       <input matInput placeholder="Incoterms">
     </mat-form-field>
   </mat-grid-tile>
     </mat-grid-list>
   </div>
-    <!--Termes de paiement-->
+  <!--Termes de paiement-->
   <div class="section-rectangle">
       <h6>TERMES DE PAIEMENT</h6>
     <mat-grid-list cols="1" rowHeight="4em">
     <mat-grid-tile>
-    <span>TERMES DE PAIEMENT: </span>
-    <span>CONDITIONS </span>
     <mat-form-field>
       <input matInput placeholder="Conditions">
     </mat-form-field>
-    <span>MOYENS </span>
     <mat-form-field>
       <input matInput placeholder="Moyens">
     </mat-form-field>
-    <span>PRÉCISIONS </span>
     <mat-form-field>
       <input matInput placeholder="Précisions">
     </mat-form-field>
     </mat-grid-tile>
     </mat-grid-list>
   </div>
-    <!--Description des items-->
+  <!--Description des items-->
   <div class="section-rectangle">
     <h6>DESCRIPTION DES ITEMS</h6>
     <div class="section">
-      <table mat-table [dataSource]="dSventilation">
-        <ng-container matColumnDef="ubr">
+      <table mat-table [dataSource]="dSitems">
+        <ng-container matColumnDef="ref">
           <th mat-header-cell *matHeaderCellDef> # réf. </th>
           <td mat-cell *matCellDef="let element">
             <input [(ngModel)]="element.ubr" [ngModelOptions]="{standalone: true}">
           </td>
         </ng-container>
-        <ng-container matColumnDef="compte">
+        <ng-container matColumnDef="descr">
           <th mat-header-cell *matHeaderCellDef> Description </th>
           <td mat-cell *matCellDef="let element">
             <input [(ngModel)]="element.compte"  [ngModelOptions]="{standalone: true}">
           </td>
         </ng-container>
-        <ng-container matColumnDef="unite">
+        <ng-container matColumnDef="quant">
           <th mat-header-cell *matHeaderCellDef> Quantité </th>
           <td mat-cell *matCellDef="let element">
             <input [(ngModel)]="element.unite"  [ngModelOptions]="{standalone: true}">
           </td>
         </ng-container>
-        <ng-container matColumnDef="percent">
+        <ng-container matColumnDef="prixUnit">
           <th mat-header-cell *matHeaderCellDef> Prix unitaire </th>
           <td mat-cell *matCellDef="let element"
               class="percentile">
             <input [(ngModel)]="element.percent" type="number"  [ngModelOptions]="{standalone: true}">
           </td>
         </ng-container>
-        <ng-container matColumnDef="montant">
+        <ng-container matColumnDef="totalItems">
           <th mat-header-cell *matHeaderCellDef> Total </th>
           <td mat-cell *matCellDef="let element">
             <input [(ngModel)]="element.montant" (ngModelChange)="updateTotal() "
@@ -198,12 +193,13 @@
                     (click)="onCreate()">+</button>
           </td>
         </ng-container>
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsItems"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsItems;"></tr>
         <tr mat-footer-row *matFooterRowDef="['total','addRow']"></tr>
       </table>
     </div>
   </div>
+  <!--Ventilation budgétaire-->
   <div class="section-rectangle">
       <h6>VENTILATION BUDGETAIRE</h6>
       <div class="section">
@@ -258,8 +254,8 @@
                       (click)="onCreate()">+</button>
             </td>
           </ng-container>
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsVentilation"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsVentilation;"></tr>
           <tr mat-footer-row *matFooterRowDef="['total','addRow']"></tr>
         </table>
     </div>
@@ -318,7 +314,9 @@
     </mat-grid-list>
     </div>
   </div>
+  <!--Ajout pièces jointes-->
   <div class="section-rectangle">
+    <h6>Ajouter des pièces jointes</h6>
     <input type="file" multiple>
   </div>
 </form>
