@@ -1,3 +1,9 @@
+<mat-selection-list #formulaires>
+  <mat-list-option *ngFor="let form of typesOfForms">
+    {{form}}
+  </mat-list-option>
+</mat-selection-list>
+
 <p>
-  nouveau-formulaire works!
+  Options selected: {{formulaires.selectedOptions.selected.length}}
 </p>

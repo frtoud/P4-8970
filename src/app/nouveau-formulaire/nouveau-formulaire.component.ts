@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nouveau-formulaire.component.css']
 })
 export class NouveauFormulaireComponent implements OnInit {
+  typesOfForms: string[] = ['Demande d’achat', 'Demande de paiement', 'Aide financière', 'Rapport de déplacement', 'Avance de voyage '];
 
   constructor() { }
 
