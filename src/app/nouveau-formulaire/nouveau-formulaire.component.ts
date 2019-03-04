@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-export interface PeriodicElement {
+export interface FormData {
   name: string;
 }
 
-const FORMS_DATA: PeriodicElement[] = [
+const FORMS_DATA: FormData[] = [
   {name: 'Demande d’achat'},
   {name: 'Demande de paiement'},
   {name: 'Aide financière'},

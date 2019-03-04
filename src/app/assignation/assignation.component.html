@@ -1,3 +1,29 @@
-<p>
-  assignation works!
-</p>
+<div>
+  <h6>Participants</h6>
+  <div>
+    <table mat-table [dataSource]="dSparticipant">
+      <ng-container matColumnDef="participants">
+        <th mat-header-cell *matHeaderCellDef> Participants </th>
+        <td mat-cell *matCellDef="let element">
+          <input [(ngModel)]="element.id" [ngModelOptions]="{standalone: true}">
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="total">
+        <td mat-footer-cell *matFooterCellDef colspan="5">
+          <p>Ajouter</p>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="addRow">
+        <td mat-footer-cell *matFooterCellDef colspan="1">
+          <button mat-mini-fab color="primary"
+                  (click)="onCreate()">+</button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsVentilation"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsVentilation;"></tr>
+      <tr mat-footer-row *matFooterRowDef="['total','addRow']"></tr>
+    </table>
+  </div>
+</div>
