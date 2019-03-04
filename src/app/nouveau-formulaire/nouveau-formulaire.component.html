@@ -1,9 +1,10 @@
-<mat-selection-list #formulaires>
-  <mat-list-option *ngFor="let form of typesOfForms">
-    {{form}}
-  </mat-list-option>
-</mat-selection-list>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-<p>
-  Options selected: {{formulaires.selectedOptions.selected.length}}
-</p>
+  <ng-container matColumnDef="Formulaires">
+    <th mat-header-cell *matHeaderCellDef> Formulaires </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
