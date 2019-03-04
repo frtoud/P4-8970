@@ -18,7 +18,6 @@ const FORMS_DATA: PeriodicElement[] = [
   styleUrls: ['./nouveau-formulaire.component.css']
 })
 export class NouveauFormulaireComponent implements OnInit {
-  displayedColumns: string[] = ['Formulaires'];
   dataSource = FORMS_DATA;
   constructor() { }
 
