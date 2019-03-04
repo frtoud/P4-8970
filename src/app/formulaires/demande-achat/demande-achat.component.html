@@ -1,21 +1,18 @@
 <form>
-  <div>
-  <mat-toolbar color="white">
-    <mat-toolbar-row>
-      <span>
-        <img style="height:100%; width: 100%; object-fit: contain" src="assets/img/logo-poly-blanc.PNG"></span>
-      <span>DEMANDE D'ACHAT</span>
-      <span>
-        <mat-form-field>
-          <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-       </span>
-    </mat-toolbar-row>
-  </mat-toolbar>
+
+  <div id="form-header">
+    <img src="assets/img/logo-poly-blanc.PNG" width=180 height=80>
+    <h4>DEMANDE D'ACHAT</h4>
+    <div id="form-date">
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="DATE" (click)="picker.open()">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
   </div>
-    <mat-grid-tile [rowspan]="1">
+
+  <mat-grid-tile [rowspan]="1">
       <span>COMMANDE</span>
       <mat-checkbox>Standard</mat-checkbox>
       <mat-checkbox>Entente</mat-checkbox>

@@ -12,6 +12,10 @@ div {
   border: 2px solid black;
 }
 
+.titre{
+  height: 100px;
+}
+
 .section-rectangle mat-form-field {
   margin: 1em;
   width: 100%;
@@ -29,4 +33,15 @@ div {
   margin-left: 60px;
 }
 
+.logo-poly{
+  display: inline-block;
+}
 
+#form-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 30px;
+  padding: 5px;
+}
