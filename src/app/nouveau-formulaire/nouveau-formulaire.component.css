@@ -1,6 +1,7 @@
 table {
-  width: 50%;
-  height: 50%;
+  top:32%;
+  position: absolute;
+
 }
 
 td:hover{
