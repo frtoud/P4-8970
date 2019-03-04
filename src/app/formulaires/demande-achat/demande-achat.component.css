@@ -1,7 +1,8 @@
 h6 {
   margin:0;
-  padding-bottom: 5px;
+  padding: 2px 5px;
   font-size: 0.9em;
+  background-color: #CCD4DF;
 }
 
 div {
@@ -27,3 +28,5 @@ div {
 #signature-demandeur button {
   margin-left: 60px;
 }
+
+
