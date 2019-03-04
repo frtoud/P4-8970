@@ -2,3 +2,7 @@ table {
   width: 50%;
   height: 50%;
 }
+
+td:hover{
+  background-color: #aedd94;
+}
