@@ -8,10 +8,43 @@ td:hover{
   background-color: #aedd94;
 }
 
-td:hover:after {
+td.dem-ach:hover:after {
   content: url(../../assets/img/logo-poly-blanc.PNG);
   display: block;
   position: absolute;
-  left: 50%;
-  top: 50%;
+  left: 75%;
+  top: 60%;
 }
+
+td.dem-pai:hover:after {
+  content: url(../../assets/img/logo-poly-blanc.PNG);
+  display: block;
+  position: absolute;
+  left: 75%;
+  top: 60%;
+}
+
+td.aide-fin:hover:after {
+  content: url(../../assets/img/logo-poly-blanc.PNG);
+  display: block;
+  position: absolute;
+  left: 75%;
+  top: 60%;
+}
+
+td.rap-dep:hover:after {
+  content: url(../../assets/img/logo-poly-blanc.PNG);
+  display: block;
+  position: absolute;
+  left: 75%;
+  top: 60%;
+}
+
+td.av-voy:hover:after {
+  content: url(../../assets/img/logo-poly-blanc.PNG);
+  display: block;
+  position: absolute;
+  left: 75%;
+  top: 60%;
+}
+
