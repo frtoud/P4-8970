@@ -1,5 +1,4 @@
 <div class="participants">
-  <h6>Participants</h6>
   <div>
     <table mat-table [dataSource]="dSparticipant">
       <ng-container matColumnDef="participants">
@@ -27,3 +26,16 @@
     </table>
   </div>
 </div>
+<ol>
+  <li>
+    <mat-form-field>
+      <input matInput [(ngModel)]="name" placeholder="What's your name?">
+    </mat-form-field>
+  </li>
+  <li>
+    <button mat-raised-button (click)="openDialog()">Pick one</button>
+  </li>
+  <li *ngIf="animal">
+    You chose: <i>{{animal}}</i>
+  </li>
+</ol>

@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import {MatGridListModule, MatCardModule, MatMenuModule, MatIconModule,
+import {
+  MatGridListModule, MatCardModule, MatMenuModule, MatIconModule,
   MatButtonModule, MatToolbarModule, MatListModule, MatFormFieldModule,
-  MatNativeDateModule,  MatInputModule, MatCheckboxModule, MatTableModule} from '@angular/material';
+  MatNativeDateModule, MatInputModule, MatCheckboxModule, MatTableModule, MatDialogModule
+} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -14,7 +16,7 @@ import { DemandeAchatComponent } from './formulaires/demande-achat/demande-achat
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NouveauFormulaireComponent } from './nouveau-formulaire/nouveau-formulaire.component';
-import { AssignationComponent } from './assignation/assignation.component';
+import {AssignationComponent, DialogOverviewExampleDialog} from './assignation/assignation.component';
 
 const appRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -29,7 +31,9 @@ const appRoutes: Routes = [
     ArchiveComponent,
     DemandeAchatComponent,
     NouveauFormulaireComponent,
-    AssignationComponent
+    AssignationComponent,
+    DialogOverviewExampleDialog
+
   ],
   imports: [
     BrowserModule,
@@ -49,10 +53,14 @@ const appRoutes: Routes = [
     MatInputModule,
     MatGridListModule,
     MatCheckboxModule,
+    MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
     MatTableModule,
     RouterModule.forRoot(appRoutes)
+  ],
+  entryComponents: [
+     DialogOverviewExampleDialog
   ],
   providers: [],
   bootstrap: [AppComponent]
