@@ -1,11 +1,12 @@
-<h1 mat-dialog-title>Ajouter un participant</h1>
-<div mat-dialog-content>
-  <p>Entrer un nom</p>
-  <mat-form-field>
-    <input matInput [(ngModel)]="data.participant[0].name">
-  </mat-form-field>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Annuler</button>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ajouter</button>
-</div>
+<form [formGroup]="form" (ngSubmit)="submit(form)">
+  <h1 mat-dialog-title>Add file</h1>
+  <mat-dialog-content>
+    <mat-form-field>
+      <input matInput formControlName="name" placeholder="Enter name">
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button type="submit">Add</button>
+    <button mat-button type="button" mat-dialog-close>Cancel</button>
+  </mat-dialog-actions>
+</form>

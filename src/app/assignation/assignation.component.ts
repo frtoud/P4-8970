@@ -1,10 +1,8 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {MatDialogRef, MatTableDataSource, MAT_DIALOG_DATA} from '@angular/material';
-import {MatDialog} from '@angular/material';
+import {Component, OnInit} from '@angular/core';
+import {MatDialogRef, MatDialog} from '@angular/material';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import { filter } from 'rxjs/operators';
 
-export interface DialogData {
-  participants: string[];
-}
 @Component({
   selector: 'app-assignation',
   templateUrl: './assignation.component.html',
@@ -12,40 +10,43 @@ export interface DialogData {
 })
 
 export class AssignationComponent implements OnInit {
-  participant = [{name: ''}];
-  dSparticipant = new MatTableDataSource(this.participant);
-  rowIDParticipants = 2;
-  displayedColumnParticipants: string[] = ['participants'];
+  participants = [{name: 'bram'}, {name: 'johanne'}];
 
   constructor(public dialog: MatDialog) {
   }
   ngOnInit() {
   }
   openDialog(): void {
-    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+    const dialogRef = this.dialog.open(ParticipantsDialog, {
       width: '250px',
-      data: {participants: this.participant}
+      hasBackdrop: false
     });
-    dialogRef.afterClosed().subscribe(result => {
-      this.participant.push(
-        {name: result}
-      );
-      this.rowIDParticipants++;
-      this.dSparticipant._updateChangeSubscription();
-    });
+    dialogRef.afterClosed().pipe(filter(name => name))
+      .subscribe(name => {
+        this.participants.push({name: name});
+      });
   }
 }
 
 @Component({
-  selector: 'dialog-overview-example-dialog',
+  selector: 'participants-dialog',
   templateUrl: 'participants-dialog.html',
 })
 
-export class DialogOverviewExampleDialog {
+export class ParticipantsDialog {
+  form: FormGroup;
   constructor(
-    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
-  onNoClick(): void {
-    this.dialogRef.close();
+    private formBuilder: FormBuilder,
+    private dialogRef: MatDialogRef<ParticipantsDialog>
+  ) {}
+
+  ngOnInit() {
+    this.form = this.formBuilder.group({
+      name: ''
+    });
+  }
+
+  submit(form) {
+    this.dialogRef.close(`${form.value.name}`);
   }
 }

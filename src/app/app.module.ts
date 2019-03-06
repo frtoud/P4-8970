@@ -16,7 +16,7 @@ import { DemandeAchatComponent } from './formulaires/demande-achat/demande-achat
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NouveauFormulaireComponent } from './nouveau-formulaire/nouveau-formulaire.component';
-import {AssignationComponent, DialogOverviewExampleDialog} from './assignation/assignation.component';
+import {AssignationComponent, ParticipantsDialog} from './assignation/assignation.component';
 
 const appRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -32,8 +32,7 @@ const appRoutes: Routes = [
     DemandeAchatComponent,
     NouveauFormulaireComponent,
     AssignationComponent,
-    DialogOverviewExampleDialog
-
+    ParticipantsDialog
   ],
   imports: [
     BrowserModule,
@@ -60,7 +59,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   entryComponents: [
-     DialogOverviewExampleDialog
+     ParticipantsDialog
   ],
   providers: [],
   bootstrap: [AppComponent]
