@@ -108,6 +108,10 @@ mat-form-field {
     border:1px solid black;
 }
 
+#tableau-avances-demandees {
+    width: 75%;
+}
+
 #tableau-estimation-depenses th,
 #tableau-estimation-depenses td,
 #tableau-avances-demandees th,
@@ -115,44 +119,38 @@ mat-form-field {
     border:1px solid black;
 }
 
+#avances-demandees mat-form-field {
+    text-align: center;
+    width: 90%;
+}
+
 #endroit-deplacement thead,
-#estimation-depenses thead,
-#ventilation-budgetaire th,
-#description-facture thead {
+#estimation-depenses thead {
     background-color: #CCD4DF;
 }
 
 #ventilation-budgetaire table {
-    /* TODO: change layout (print to pdf) */
     text-align: center;
-    border-collapse: collapse;
-}
-
-#ventilation-budgetaire table thead {
-    border-bottom: 2px solid white;
-}
-
-#ventilation-budgetaire table mat-form-field{
-    width: 90%;
-}
-
-#ventilation-budgetaire tr td:nth-of-type(2) mat-form-field {
     width: 100%;
 }
 
-#ventilation-budgetaire 
-tr td:nth-of-type(2) {
-    width: 10%;
+#ventilation-budgetaire th,
+#avance-1,
+#avance-2,
+#pour-1,
+#pour-2,
+#avances-total {
+    background-color: #CCD4DF;
+    text-align: center;
 }
 
-#ventilation-budgetaire 
-tr td:nth-of-type(3){
-    width: 10%;
+#ventilation-budgetaire mat-form-field {
+    width: 80px;
 }
 
-#ventilation-budgetaire 
-tr td:last-child {
-    width: 40%;
+#montant-colonne,
+#montant-cell {
+    padding-left: 200px;
 }
 
 input {
@@ -161,6 +159,16 @@ input {
 
 #redTotal {
     color: red;
+}
+
+#avances-total-cell {
+    padding: 18px 0px 18px 0px;
+    text-align: center;
+}
+
+#avances-total-value {
+    color: red;
+    text-align: center;
 }
 
 #references {
@@ -176,4 +184,9 @@ input {
 
 #references div {
     background-color: #CCD4DF;
+}
+
+th {
+    background: #CCD4DF;
+    color: black;
 }
