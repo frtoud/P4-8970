@@ -4,7 +4,8 @@ import { AppComponent } from './app.component';
 import {
   MatGridListModule, MatCardModule, MatMenuModule, MatIconModule,
   MatButtonModule, MatToolbarModule, MatListModule, MatFormFieldModule,
-  MatNativeDateModule, MatInputModule, MatCheckboxModule, MatTableModule, MatDialogModule
+  MatNativeDateModule, MatInputModule, MatCheckboxModule, MatTableModule, MatDialogModule,
+  MatChipsModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -56,6 +57,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     MatTableModule,
+    MatChipsModule,
     RouterModule.forRoot(appRoutes)
   ],
   entryComponents: [

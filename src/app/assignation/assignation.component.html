@@ -1,5 +1,9 @@
 <div class="participants">
-  <li *ngFor="let part of participants">{{part.name}}</li>
+  <mat-chip-list class="mat-chip-list-stacked">
+    <mat-chip *ngFor="let participant of participants">
+      {{participant.name}}
+    </mat-chip>
+  </mat-chip-list>
   <button mat-mini-fab color="primary"
           (click)="openDialog()">+</button>
 </div>

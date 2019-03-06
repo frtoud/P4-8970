@@ -1,7 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {MatDialogRef, MatDialog} from '@angular/material';
+import {MatDialogRef, MatDialog, ThemePalette} from '@angular/material';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import { filter } from 'rxjs/operators';
+
+export interface ParticipantColor {
+  name: string;
+  color: ThemePalette;
+}
+
 
 @Component({
   selector: 'app-assignation',
@@ -10,6 +16,7 @@ import { filter } from 'rxjs/operators';
 })
 
 export class AssignationComponent implements OnInit {
+
   participants = [{name: 'bram'}, {name: 'johanne'}];
 
   constructor(public dialog: MatDialog) {
