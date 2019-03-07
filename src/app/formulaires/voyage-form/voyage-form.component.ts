@@ -11,9 +11,6 @@ import { DataSource } from '@angular/cdk/table';
 
 export class VoyageFormComponent implements OnInit {
 
-  private duFilled: boolean = false;
-  private auFilled: boolean = false;
-  private bothFilled: boolean = true;
   private du: any = null;
   private au: any = null;
   private dureeDeplacement: number = 0;
@@ -87,13 +84,11 @@ export class VoyageFormComponent implements OnInit {
 
   private duChange(str: any): void {
     this.du = str;
-    this.duFilled = true;
     this.updateDuree();
   }
 
   private auChange(str: any): void {
     this.au = str;
-    this.auFilled = true;
     this.updateDuree();
   }
 
