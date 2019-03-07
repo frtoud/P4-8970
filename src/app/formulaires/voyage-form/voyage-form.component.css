@@ -102,6 +102,32 @@ mat-form-field {
     padding: 10px 0px 0px 5px;
 }
 
+#endroit-deplacement table {
+    border-collapse: collapse;
+}
+
+#endroit {
+    width: 61%;
+}
+
+#endroit mat-form-field {
+    width: 95%;
+}
+
+#du, au {
+    width: 13%;
+}
+
+#duree {
+    text-align: center;
+    width: 13%;
+}
+
+#but-deplacement mat-form-field {
+    text-align: center;
+    width: 95%;
+}
+
 #tableau-estimation-depenses {
     border-collapse: collapse; 
     border: 1px solid black;
@@ -111,12 +137,10 @@ mat-form-field {
     table-layout: fixed;
     width: 90%;
 }
+
 #tableau-avances-demandees {
     border-collapse: collapse; 
     border:1px solid black;
-}
-
-#tableau-avances-demandees {
     width: 75%;
 }
 

@@ -13,7 +13,7 @@ export class VoyageFormComponent implements OnInit {
 
   private duFilled = false;
   private auFilled = false;
-  private bothFilled = false;
+  private bothFilled = true;
   private du: any = null;
   private au: any = null;
   private dureeDeplacement: number = 0;
@@ -94,11 +94,8 @@ export class VoyageFormComponent implements OnInit {
   }
 
   private updateDuree(): void {
-    this.bothFilled = this.duFilled && this.auFilled;
-    if (this.bothFilled) {
-      this.dureeDeplacement = this.au - this.du;
-      this.dureeDeplacement = (((this.dureeDeplacement/60)/60)/24)/1000;
-    }
+    this.dureeDeplacement = this.au - this.du;
+    this.dureeDeplacement = (((this.dureeDeplacement/60)/60)/24)/1000;
   }
 
   private updateFraisInscription(frais: number): void {

@@ -81,26 +81,26 @@
         </thead>
         <tbody>
             <tr>
-                <td>
+                <td id="endroit">
                     <mat-form-field>
                         <input matInput type="text">
                     </mat-form-field>
                 </td>
-                <td>
+                <td id="du">
                     <mat-form-field>
                         <input #DateDu matInput [matDatepicker]="pickerDU" placeholder="DU" (click)="pickerDU.open()" [ngModel]="du" (ngModelChange)="duChange($event)">
                         <mat-datepicker-toggle matSuffix [for]="pickerDU"></mat-datepicker-toggle>
                         <mat-datepicker #pickerDU></mat-datepicker>
                     </mat-form-field>
                 </td>
-                <td>
+                <td id="au">
                     <mat-form-field>
                         <input #DateAu matInput [matDatepicker]="pickerAU" placeholder="AU" (click)="pickerAU.open()" [ngModel]="au" (ngModelChange)="auChange($event)">
                         <mat-datepicker-toggle matSuffix [for]="pickerAU"></mat-datepicker-toggle>
                         <mat-datepicker #pickerAU></mat-datepicker>
                     </mat-form-field>
                 </td>
-                <td>
+                <td id="duree">
                     <p *ngIf="bothFilled">{{ dureeDeplacement }}</p>
                 </td>
             </tr>
