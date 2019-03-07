@@ -152,7 +152,7 @@
                     </mat-form-field>
                 </td>
                 <td>
-                    <p id="redTotal">{{ estimationTotal | currency }}</p>
+                    <p id="estimation-total">{{ estimationTotal | currency }}</p>
                 </td>
             </tr>
         </tbody>
@@ -171,17 +171,17 @@
             </td>
         </ng-container>
         <ng-container matColumnDef="compte">
-            <th mat-header-cell *matHeaderCellDef> COMPTE </th>
+            <th mat-header-cell *matHeaderCellDef id="compte-colonne"> COMPTE </th>
             <td mat-cell *matCellDef="let element">
-                <mat-form-field>
+                <mat-form-field id="compte-cell">
                     <input matInput type="text" [(ngModel)]="element.compte">
                 </mat-form-field>
             </td>
         </ng-container>
         <ng-container matColumnDef="unite">
-            <th mat-header-cell *matHeaderCellDef> UNITÉ <br> ADM. </th>
+            <th mat-header-cell *matHeaderCellDef id="unite-colonne"> UNITÉ <br> ADM. </th>
             <td mat-cell *matCellDef="let element">
-                <mat-form-field>
+                <mat-form-field id="unite-cell">
                     <input matInput type="text" [(ngModel)]="element.unite">
                 </mat-form-field>
             </td>
@@ -204,8 +204,8 @@
         </ng-container>
 
         <ng-container matColumnDef="total">
-            <td mat-footer-cell *matFooterCellDef colspan="4">
-                <strong id="redTotal">TOTAL: {{ ventilationTotal | currency}}</strong>
+            <td mat-footer-cell *matFooterCellDef colspan="4" id="ventilation-total-cell">
+                <strong id="ventilation-total">TOTAL: {{ ventilationTotal | currency}}</strong>
             </td>
         </ng-container>
         

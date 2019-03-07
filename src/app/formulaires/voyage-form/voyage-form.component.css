@@ -128,7 +128,7 @@ mat-form-field {
     background-color: #CCD4DF;
 }
 
-#ventilation-budgetaire table {
+#ventilation-table {
     text-align: center;
     width: 100%;
 }
@@ -143,8 +143,14 @@ mat-form-field {
     text-align: center;
 }
 
-#ventilation-budgetaire mat-form-field {
-    width: 80px;
+#unite-colonne,
+#unite-cell {
+    width: 40%;
+}
+
+#compte-colonne,
+#compte-cell {
+    width: 80%;
 }
 
 #montant-colonne,
@@ -156,7 +162,12 @@ input {
     text-align: center;
 }
 
-#redTotal {
+#ventilation-total-cell {
+    padding-right: 60px;
+    text-align: right;
+}
+
+#ventilation-total {
     color: red;
 }
 
