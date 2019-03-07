@@ -11,9 +11,9 @@ import { DataSource } from '@angular/cdk/table';
 
 export class VoyageFormComponent implements OnInit {
 
-  private duFilled = false;
-  private auFilled = false;
-  private bothFilled = true;
+  private duFilled: boolean = false;
+  private auFilled: boolean = false;
+  private bothFilled: boolean = true;
   private du: any = null;
   private au: any = null;
   private dureeDeplacement: number = 0;
@@ -31,6 +31,10 @@ export class VoyageFormComponent implements OnInit {
   montant :number = 0;
   ventilationTotal :number = 0;
   rowID: number = 2;
+
+  nomDemandeur: string = "";
+  demandeurChecked: boolean = false;
+  signatureAdded: boolean = false;
 
   currency = ["CAN", "US", "EURO", "GBP", "CHF", "BRL"];
   ventilation = [
@@ -116,6 +120,17 @@ export class VoyageFormComponent implements OnInit {
   private updateAutres(frais: number): void {
     this.autres = frais;
     this.updateEstimationTotal();
+  }
+
+  addSignature() {
+    this.signatureAdded = !this.signatureAdded;
+  }
+
+  removeSignature() {
+      this.signatureAdded = !this.signatureAdded;
+      //TODO: a changer (selon la personne assignee pour chaque bloc de signature)
+      this.demandeurChecked = false;
+      this.nomDemandeur = "";
   }
 
   private updateEstimationTotal(): void {

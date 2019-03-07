@@ -280,71 +280,92 @@
     </table>
   </div>
 
-<div id="signatures">
-  <div id="signature-demandeur" class="signature">
-      <mat-form-field>
-          <input matInput type="text" placeholder="SIGNATURE DU DEMANDEUR">
-      </mat-form-field>
-      
-      <mat-checkbox
-        class="checkbox-demandeur"
-        [(ngModel)]="checked-demandeur"
-        [(indeterminate)]="indeterminate"
-        [labelPosition]="labelPosition"
-        [disabled]="disabled">
-        Je confirme et j'accepte la véracité des informations ci-dessus.
-      </mat-checkbox>
-      <br>
-      <button mat-raised-button>SIGNER</button>
-  </div>
-  <div id="signature-ubr" class="signature">
-      <mat-form-field>
-          <input matInput type="text" placeholder="SIGNATURE(S) DU OU DES RESPONSABLE(S) DE L'UBR">
-      </mat-form-field>
-      
-      <mat-checkbox
-          class="checkbox-ubr"
-          [(ngModel)]="checked-ubr"
+  <div id="signatures">
+    <div id="signature-demandeur" class="signature">
+        <mat-form-field>
+            <input matInput type="text" placeholder="SIGNATURE DU DEMANDEUR" [(ngModel)]="nomDemandeur">
+            <mat-hint *ngIf="nomDemandeur.length == 0">
+            Le nom et le prénom du demandeur sont obligatoires!
+            </mat-hint>
+        </mat-form-field>
+        
+        <mat-checkbox
+          class="example-margin"
+          [(ngModel)]="demandeurChecked"
           [(indeterminate)]="indeterminate"
           [labelPosition]="labelPosition"
-          [disabled]="disabled">
+          [disabled]="disabled"
+          color="primary">
           Je confirme et j'accepte la véracité des informations ci-dessus.
-      </mat-checkbox>
-      <br>
-      <button mat-raised-button>SIGNER</button>
-  </div>
-  <div id="signature-sup" class="signature">
-      <mat-form-field>
-          <input matInput type="text" placeholder="SIGNATURE DU SUPÉRIEUR IMMÉDIAT">
-      </mat-form-field>
-      
-      <mat-checkbox
-          class="checkbox-sup"
-          [(ngModel)]="checked-sup"
-          [(indeterminate)]="indeterminate"
-          [labelPosition]="labelPosition"
-          [disabled]="disabled">
-          Je confirme et j'accepte la véracité des informations ci-dessus.
-      </mat-checkbox>
-      <br>
-      <button mat-raised-button>SIGNER</button>
-  </div>
-  <div id="signature-finance" class="signature">
-      <mat-form-field>
-          <input matInput type="text" placeholder="SERVICE DES FINANCES">
-      </mat-form-field>
-      
-      <mat-checkbox
-          class="checkbox-finance"
-          [(ngModel)]="checked-finance"
-          [(indeterminate)]="indeterminate"
-          [labelPosition]="labelPosition"
-          [disabled]="disabled">
-          Je confirme et j'accepte la véracité des informations ci-dessus.
-      </mat-checkbox>
-      <br>
-      <button mat-raised-button>SIGNER</button>
-  </div>
+        </mat-checkbox>
+        <br>
+        <button mat-raised-button *ngIf="!signatureAdded" 
+          [disabled]="nomDemandeur.length == 0 || !demandeurChecked" 
+          (click)="addSignature()">SIGNER</button>
+
+        <button mat-raised-button *ngIf="signatureAdded" 
+          (click)="removeSignature()">ANNULER</button>
+    </div>
+    <div id="signature-ubr" class="signature">
+        <mat-form-field>
+            <input matInput type="text" placeholder="SIGNATURE(S) DU OU DES RESPONSABLE(S) DE L'UBR">
+            <mat-hint *ngIf="nomDemandeur.length == 0">
+            Le(s) nom(s) et le(s) prénom(s) du ou des responsable(s) sont obligatoires!
+            </mat-hint>
+        </mat-form-field>
+        
+        <mat-checkbox
+            class="example-margin"
+            [(ngModel)]="ubrChecked"
+            [(indeterminate)]="indeterminate"
+            [labelPosition]="labelPosition"
+            [disabled]="disabled"
+            color="primary">
+            Je confirme et j'accepte la véracité des informations ci-dessus.
+        </mat-checkbox>
+        <br>
+        <button mat-raised-button disabled>SIGNER</button>
+    </div>
+    <div id="signature-sup" class="signature">
+        <mat-form-field>
+            <input matInput type="text" placeholder="SIGNATURE DU SUPÉRIEUR IMMÉDIAT">
+            <mat-hint *ngIf="nomDemandeur.length == 0">
+            Le nom et le prénom du supérieur immédiat sont obligatoires!
+            </mat-hint>
+        </mat-form-field>
+        
+        <mat-checkbox
+            class="example-margin"
+            [(ngModel)]="supChecked"
+            [(indeterminate)]="indeterminate"
+            [labelPosition]="labelPosition"
+            [disabled]="disabled"
+            color="primary">
+            Je confirme et j'accepte la véracité des informations ci-dessus.
+        </mat-checkbox>
+        <br>
+        <button mat-raised-button disabled>SIGNER</button>
+    </div>
+    <div id="signature-finance" class="signature">
+        <mat-form-field>
+            <input matInput type="text" placeholder="SERVICE DES FINANCES">
+            <mat-hint *ngIf="nomDemandeur.length == 0">
+            Nom obligatoire!
+            </mat-hint>
+        </mat-form-field>
+        
+        <mat-checkbox
+            class="example-margin"
+            [(ngModel)]="financeChecked"
+            [(indeterminate)]="indeterminate"
+            [labelPosition]="labelPosition"
+            [disabled]="disabled"
+            color="primary">
+            Je confirme et j'accepte la véracité des informations ci-dessus.
+        </mat-checkbox>
+        <br>
+        <button mat-raised-button disabled>SIGNER</button>
+    </div>
 </div>
 
 <div id="references">
