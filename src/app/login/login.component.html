@@ -4,7 +4,7 @@
         <img src="assets/img/logo-POLY-forms.png" alt="Logo POLY" width=155 height=74>
         <h1>SERVEUR <br> D'AUTHENTIFICATION POLYFORMS</h1>
     </div>
-    <p>
+    <p id="message">
         Le site Web auquel vous voulez accéder requiert une authentification. Veuillez entrer votre identifiant unique (code usager) et votre mot de passe pour continuer.
     </p>
     <form id="login-form" (submit)="login($event)">
@@ -23,6 +23,7 @@
               Mot de passe <strong>obligatoire</strong>
             </mat-error>
         </mat-form-field>
+        <div id="loginError" *ngIf="loginError">{{ loginError }}</div>
         <button mat-stroked-button type="submit">CONNEXION</button>
     </form>
   </div>

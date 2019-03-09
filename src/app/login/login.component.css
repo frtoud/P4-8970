@@ -4,7 +4,7 @@ h1 {
     text-align: right;
 }
 
-p {
+#message {
     background: #999;
     text-align: justify;
     color: white;
@@ -53,4 +53,11 @@ mat-form-field {
 button {
     width: max-content;
     align-self: center;
+}
+
+#loginError {
+    color: red;
+    text-align: center;
+    padding-bottom: 3px;
+    font-size: 14px;
 }

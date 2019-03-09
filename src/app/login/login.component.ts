@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { LoginService } from '../services/login.service';
 
@@ -7,10 +7,10 @@ import { LoginService } from '../services/login.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
-  email: string = "";
-  password: string = "";
+  loginError: string;
+  isAuthenticated: boolean = false;
 
   emailFormControl = new FormControl('', [
     Validators.required,
@@ -23,14 +23,20 @@ export class LoginComponent implements OnInit {
 
   constructor(private loginService: LoginService) {}
 
-  ngOnInit() {
-  }
-
   login(event) {
     event.preventDefault;
     this.loginService.authenticateUser(this.emailFormControl.value, this.passwordFormControl.value)
-    .then(authUser => console.log(authUser))
-    .catch(err => console.log(err));
+    .then(authUser => {
+      console.log(authUser);
+      this.isAuthenticated = true;
+      this.loginError = undefined;
+      //TODO: Save JWT
+      //TODO: Navigate to dashboard
+    })
+    .catch(err => {
+      this.isAuthenticated = false;
+      this.loginError = err.error;
+    });
   }
 
 }
