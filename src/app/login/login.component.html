@@ -1,0 +1,29 @@
+<div id="login-container">
+  <div id="login-box">
+    <div id="login-header">
+        <img src="assets/img/logo-POLY-forms.png" alt="Logo POLY" width=155 height=74>
+        <h1>SERVEUR <br> D'AUTHENTIFICATION POLYFORMS</h1>
+    </div>
+    <p>
+        Le site Web auquel vous voulez accéder requiert une authentification. Veuillez entrer votre identifiant unique (code usager) et votre mot de passe pour continuer.
+    </p>
+    <form id="login-form" (submit)="login($event)">
+        <mat-form-field>
+            <input matInput placeholder="ADRESSE E-MAIL" [formControl]="emailFormControl">
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                Entrez une adresse e-mail valide
+            </mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+              Adresse e-mail <strong>obligatoire</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="password" placeholder="MOT DE PASSE" [formControl]="passwordFormControl">
+            <mat-error *ngIf="passwordFormControl.hasError('required')">
+              Mot de passe <strong>obligatoire</strong>
+            </mat-error>
+        </mat-form-field>
+        <button mat-stroked-button type="submit">CONNEXION</button>
+    </form>
+  </div>
+</div>
