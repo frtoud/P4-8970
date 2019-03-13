@@ -1,0 +1,266 @@
+
+<!--Ajouter logo-->
+
+<div class="sectionheader">
+  <h6>DEMANDEUR</h6>
+  <div class="section section-row">
+    <mat-form-field floatLabel="auto" class="large">
+      <input matInput placeholder="Nom">
+    </mat-form-field>
+    <mat-form-field floatLabel="auto" class="short">
+      <input matInput placeholder="Téléphone">
+    </mat-form-field>
+    <mat-form-field floatLabel="auto" class="large">
+      <input matInput placeholder="Centre, Département, Institut ou Service">
+    </mat-form-field>
+    <mat-form-field floatLabel="auto" class="short">
+      <input matInput placeholder="Unité Administrative">
+    </mat-form-field>
+  </div>
+</div>
+
+<div class="sectionheader">
+  <h6>BÉNÉFICIAIRE</h6>
+  <div class="section section-row">
+    <mat-form-field floatLabel="auto" class="medium">
+      <input matInput placeholder="Nom">
+    </mat-form-field>
+    <mat-form-field floatLabel="auto" class="medium">
+      <input matInput placeholder="Prénom">
+    </mat-form-field>
+    <mat-form-field floatLabel="auto" class="short">
+      <input matInput placeholder="Matricule">
+    </mat-form-field>
+    <mat-form-field floatLabel="auto" class="short">
+      <input matInput placeholder="Matricule">
+    </mat-form-field>
+  </div>
+</div>
+<div class="sectionheader">
+  <h6>CYCLE DE L'ÉTUDIANT</h6>
+  <div class="section section-column">
+    <p>Identifier le cycle de l'étudiant(e):</p>
+    <div class="section-row">
+      <p class="checkbox-label">BACCALAURÉAT:</p>
+      <mat-checkbox [(ngModel)]="bac" class="checkbox-field">
+        Obtenu
+      </mat-checkbox>
+      <mat-checkbox [(ngModel)]="bacec" class="checkbox-field">
+        En cours
+      </mat-checkbox>
+    </div>
+    <div class="section-row">
+      <p class="checkbox-label">MAITRISE:</p>
+      <mat-checkbox [(ngModel)]="mai" class="checkbox-field">
+        Obtenu
+      </mat-checkbox>
+      <mat-checkbox [(ngModel)]="maiec" class="checkbox-field">
+        En cours
+      </mat-checkbox>
+    </div>
+    <div class="section-row">
+      <p class="checkbox-label">DOCTORAT:</p>
+      <mat-checkbox [(ngModel)]="doc" class="checkbox-field">
+        Obtenu
+      </mat-checkbox>
+      <mat-checkbox [(ngModel)]="docec" class="checkbox-field">
+        En cours
+      </mat-checkbox>
+    </div>
+  </div>
+</div>
+
+<div class="sectionheader">
+  <h6>MODE DE PAIEMENT</h6>
+  <div class="section">
+  <p>Veuillez joindre un spécimen de chèque pour les nouvelles demandes ou pour changement au mode de paiement.</p>
+  </div>
+</div>
+<div class="sectionheader">
+  <h6>DÉTAIL DE L'AIDE FINANCIÈRE</h6>
+  <div class="section section-row">
+    <p>Les versements sont faits aux quize jours, selon le cycle de la paie.</p>
+    <p>PÉRIODE D'ENGAGEMENT:</p>
+    <mat-form-field class="short">
+      <input matInput [matDatepicker]="debut" placeholder="Date de début">
+      <mat-datepicker-toggle matSuffix [for]="debut"></mat-datepicker-toggle>
+      <mat-datepicker #debut></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="short">
+      <input matInput [matDatepicker]="fin" placeholder="Date de fin">
+      <mat-datepicker-toggle matSuffix [for]="fin"></mat-datepicker-toggle>
+      <mat-datepicker #fin></mat-datepicker>
+    </mat-form-field>
+    <div class="end full">
+      <mat-radio-group [(ngModel)]="statutVersement" class="large">
+        <mat-radio-button [value]="1">Versement unique</mat-radio-button>
+        <mat-radio-button [value]="2">Nouveau versement</mat-radio-button>
+        <mat-radio-button [value]="3">Changement</mat-radio-button>
+      </mat-radio-group>
+    <mat-form-field floatLabel="auto" class="short">
+      <input matInput placeholder="Numéro de référence"
+      [disabled]="statutVersement != 3">
+    </mat-form-field></div>
+    <mat-form-field floatLabel="auto" class="short">
+      <mat-label>Montant de l'aide financière</mat-label>
+      <input class="monetaire" matInput
+      [ngModel]="montant" (ngModelChange)="montant=$event" type=number/>
+    </mat-form-field>
+    <mat-form-field floatLabel="auto" class="medium">
+      <input matInput placeholder="Organisme subventionnaire" required>
+    </mat-form-field>
+  </div>
+</div>
+
+<div class="sectionheader">
+  <h6>VENTILATION BUDGETAIRE</h6>
+  <div class="section">
+    <table mat-table [dataSource]="dSventilation">  
+      <ng-container matColumnDef="ubr">
+          <th mat-header-cell *matHeaderCellDef> UBR. </th>
+          <td mat-cell *matCellDef="let element">
+            <mat-form-field hideRequiredMarker=true floatLabel="auto">
+              <input matInput [(ngModel)]="element.ubr">
+            </mat-form-field>
+          </td>
+      </ng-container>
+      <ng-container matColumnDef="compte">
+          <th mat-header-cell *matHeaderCellDef> Compte </th>
+          <td mat-cell *matCellDef="let element">
+            <mat-form-field hideRequiredMarker=true floatLabel="auto">
+              <input matInput [(ngModel)]="element.compte">
+            </mat-form-field>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="unite">
+          <th mat-header-cell *matHeaderCellDef> Unité administrative </th>
+          <td mat-cell *matCellDef="let element">
+            <mat-form-field hideRequiredMarker=true floatLabel="auto">
+              <input matInput [(ngModel)]="element.unite">
+            </mat-form-field>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="percent">
+          <th mat-header-cell *matHeaderCellDef> % </th>
+          <td mat-cell *matCellDef="let element" class="mat-column-percent">
+              <mat-form-field hideRequiredMarker=true floatLabel="auto">
+              <input matInput [(ngModel)]="element.percent" type="number">
+              </mat-form-field>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="montant">
+          <th mat-header-cell *matHeaderCellDef> Montant </th>
+          <td mat-cell *matCellDef="let element">
+              <mat-form-field hideRequiredMarker=true floatLabel="auto">
+                  <input matInput [(ngModel)]="element.montant" (ngModelChange)="updateTotal()"
+                  type="number">
+                </mat-form-field>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+              <button mat-icon-button color="warn"
+              (click)="onDelete(element)">x</button>
+          </td>
+      </ng-container>
+      <ng-container matColumnDef="total">
+        <td mat-footer-cell *matFooterCellDef colspan="5">
+            <p>TOTAL: {{ ventilationTotal | currency}}</p>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="addRow">
+        <td mat-footer-cell *matFooterCellDef colspan="1">
+            <button mat-mini-fab color="primary"
+            (click)="onCreate()">+</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr mat-footer-row *matFooterRowDef="['total','addRow']"></tr>
+    </table>
+  </div>
+</div>
+
+<div class="sectionheader">
+  <h6>ATTESTATION DU BOURSIER ET DU (DES) TITULAIRE(S) DE SUBVENTION</h6>
+  <div class="section">
+    <p>
+      Par la présente, le boursier ET le(s) titulaire(s) de subvention déclarent et attestent que le boursier est inscrit comme étudiant à l'École Polytechnique de Montréal, que le travail du boursier s'inscrit dans son programme d'études ou de perfectionnement et que le montant octroyé constitue une bourse d'études ou de perfectionnement (aide financière) au sens des définitions ci-dessous.
+    </p><p>
+      Le boursier ET le(s) titulaire(s) de subvention reconnaissent aussi qu'il n'y a pas de relation employeur/employé, que le montant octroyé à titre de bourse d'études ou de perfectionnement (aide financière) n'est pas un gain admissible au régime de rentes du Québec, au régime d'assurance emploi, à la CSST, que le boursier n'a droit à aucun avantage social et qu'aucun impôt n'est tenu d'être prélevé à la source (bulletin d'interprétation IT-75R4) par l'École Polytechnique de Montréal.
+    </p>
+    <h6 id="definition">
+      Définitions selon le bulletin d'interprétation  IT-75R4, Loi de l'impôt sur le revenu
+    </h6><p>
+        Les bourses d'études sont des sommes ou des avantages accordés à des étudiants pour leur permettre de poursuivre leurs études.  Ces bourses visent habituellement à permettre à l'étudiant de poursuivre des études de niveau postsecondaire ou supérieur, habituellement dans une université, un collège, un institut technique ou un établissement d'enseignement semblable (...).  Les bourses d'études aident habituellement l'étudiant à poursuivre ses études dans le but d'obtenir un grade universitaire, un diplôme ou un certificat (...).  Habituellement, un étudiant n'a pas à faire de travaux particuliers pour le payeur en échange d'une bourse.
+    </p><p>
+      Les bourses de perfectionnement sont semblables à des bourses  d'études, en ce sens qu'il s'agit de sommes ou d'avantages accordés à des personnes pour leur permettre de poursuivre leur études.  Toutefois, le récipiendaire est habituellement un étudiant diplômé, et le payeur, une université, un organisme de bien-faisance ou un organisme semblable.  En général, les bourses de perfectionnement sont décernées pour des études doctorales ou pour du travail de niveau postdoctoral.
+    </p>
+    <div id="signatures">
+    <div class="signature">
+        <mat-form-field>
+          <input matInput type="text" placeholder="SIGNATURE DU BOURSIER">
+        </mat-form-field>
+        <mat-checkbox
+          class="large"
+          [(ngModel)]="checked"
+          [(indeterminate)]="indeterminate"
+          [labelPosition]="labelPosition"
+          [disabled]="disabled">
+          Je confirme et j'accepte la véracité des informations ci-dessus.
+        </mat-checkbox>
+        <br>
+        <button mat-raised-button>SIGNER</button>
+    </div>
+    <div class="signature">
+        <mat-form-field>
+          <input matInput type="text" placeholder="SIGNATURE DU (DES) TITULAIRES(S) DE SUBVENTION">
+        </mat-form-field>
+        <mat-checkbox
+          class="large"
+          [(ngModel)]="checked"
+          [(indeterminate)]="indeterminate"
+          [labelPosition]="labelPosition"
+          [disabled]="disabled">
+          Je confirme et j'accepte la véracité des informations ci-dessus.
+        </mat-checkbox>
+        <br>
+        <button mat-raised-button>SIGNER</button>
+    </div>
+    <div class="signature">
+        <mat-form-field>
+          <input matInput type="text" placeholder="SIGNATURE(S) AUTORISÉE(S)">
+        </mat-form-field>
+        <mat-checkbox
+          class="large"
+          [(ngModel)]="checked"
+          [(indeterminate)]="indeterminate"
+          [labelPosition]="labelPosition"
+          [disabled]="disabled">
+          Je confirme et j'accepte la véracité des informations ci-dessus.
+        </mat-checkbox>
+        <br>
+        <button mat-raised-button>SIGNER</button>
+    </div>
+    <div class="signature">
+        <mat-form-field>
+          <input matInput type="text" placeholder="SERVICE DES FINANCES">
+        </mat-form-field>
+        <mat-checkbox
+          class="large"
+          [(ngModel)]="checked"
+          [(indeterminate)]="indeterminate"
+          [labelPosition]="labelPosition"
+          [disabled]="disabled">
+          Je confirme et j'accepte la véracité des informations ci-dessus.
+        </mat-checkbox>
+        <br>
+        <button mat-raised-button>SIGNER</button>
+    </div>
+  </div>
+  </div>
+</div>
+
+
