@@ -13,7 +13,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTableModule} from '@angular/material/table';
 
-import { AFFormComponent } from './form/app.af-form';
+import { AFFormComponent } from './templates/aide-financiere-form/app.af-form';
 import {
   MatGridListModule, MatCardModule, MatMenuModule, MatIconModule,
   MatButtonModule, MatToolbarModule, MatListModule,
@@ -24,11 +24,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { HeaderComponent } from './header/header.component';
 import { ArchiveComponent } from './archive/archive.component';
-import { VoyageFormComponent } from './formulaires/voyage-form/voyage-form.component';
-import { DemandeAchatComponent } from './formulaires/demande-achat/demande-achat.component';
+import { VoyageFormComponent } from './templates/voyage-form/voyage-form.component';
+import { DemandeAchatComponent } from './templates/demande-achat/demande-achat.component';
 import { NouveauFormulaireComponent } from './nouveau-formulaire/nouveau-formulaire.component';
 import {AssignationComponent, ParticipantsDialog} from './assignation/assignation.component';
-import { PaymentFormComponent } from './templates/paymentForm.component';
+import { PaymentFormComponent } from './templates/payment-form/paymentForm.component';
 import { ExchangeRateService } from './services/exchangeRate.service';
 
 
@@ -44,8 +44,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     DashboardComponent,
     ArchiveComponent,
-    VoyageFormComponent
-    LoginComponent
+    VoyageFormComponent,
+    LoginComponent,
     DemandeAchatComponent,
     NouveauFormulaireComponent,
     AssignationComponent,

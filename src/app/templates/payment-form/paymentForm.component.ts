@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
-import { ExchangeRateService } from '../services/exchangeRate.service';
+import { ExchangeRateService } from '../../services/exchangeRate.service';
 
 @Component({
   selector: 'payment-form',
