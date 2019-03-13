@@ -24,6 +24,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { HeaderComponent } from './header/header.component';
 import { ArchiveComponent } from './archive/archive.component';
+import { VoyageFormComponent } from './formulaires/voyage-form/voyage-form.component';
 import { DemandeAchatComponent } from './formulaires/demande-achat/demande-achat.component';
 import { NouveauFormulaireComponent } from './nouveau-formulaire/nouveau-formulaire.component';
 import {AssignationComponent, ParticipantsDialog} from './assignation/assignation.component';
@@ -43,6 +44,7 @@ const appRoutes: Routes = [
     HeaderComponent,
     DashboardComponent,
     ArchiveComponent,
+    VoyageFormComponent
     LoginComponent
     DemandeAchatComponent,
     NouveauFormulaireComponent,
@@ -65,7 +67,6 @@ const appRoutes: Routes = [
     LayoutModule,
     MatToolbarModule,
     MatListModule,
-
     FormsModule, ReactiveFormsModule,
     MatFormFieldModule,
     MatDatepickerModule,
