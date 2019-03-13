@@ -5,10 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginService } from './services/login.service';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
-import {MatGridListModule, MatCardModule, MatMenuModule, 
-        MatIconModule, MatButtonModule, MatToolbarModule, 
-        MatListModule, MatFormFieldControl, MatNativeDateModule } from '@angular/material';
-import { MatInputModule } from '@angular/material/input';
 import { AppComponent } from './app.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { RouterModule, Routes } from '@angular/router';
@@ -18,10 +14,22 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTableModule} from '@angular/material/table';
 
 import { AFFormComponent } from './form/app.af-form';
+import {
+  MatGridListModule, MatCardModule, MatMenuModule, MatIconModule,
+  MatButtonModule, MatToolbarModule, MatListModule,
+  MatNativeDateModule, MatInputModule, MatFormFieldControl, MatDialogModule,
+  MatChipsModule, MatSelectModule
+} from '@angular/material';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { HeaderComponent } from './header/header.component';
 import { ArchiveComponent } from './archive/archive.component';
+import { DemandeAchatComponent } from './formulaires/demande-achat/demande-achat.component';
+import { NouveauFormulaireComponent } from './nouveau-formulaire/nouveau-formulaire.component';
+import {AssignationComponent, ParticipantsDialog} from './assignation/assignation.component';
+import { PaymentFormComponent } from './templates/paymentForm.component';
+import { ExchangeRateService } from './services/exchangeRate.service';
+
 
 const appRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -36,6 +44,11 @@ const appRoutes: Routes = [
     DashboardComponent,
     ArchiveComponent,
     LoginComponent
+    DemandeAchatComponent,
+    NouveauFormulaireComponent,
+    AssignationComponent,
+    ParticipantsDialog,
+    PaymentFormComponent
   ],
   imports: [
     BrowserModule,
@@ -46,27 +59,35 @@ const appRoutes: Routes = [
     MatIconModule,
     MatButtonModule,
     MatRadioModule,
-    MatDatepickerModule,
     MatNativeDateModule,
     MatCheckboxModule,
     MatTableModule,
     LayoutModule,
     MatToolbarModule,
     MatListModule,
-    FormsModule,
-    ReactiveFormsModule,
+
+    FormsModule, ReactiveFormsModule,
     MatFormFieldModule,
+    MatDatepickerModule,
     MatInputModule,
+    MatSelectModule,
     RouterModule,
+    MatDialogModule,
+    MatChipsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [
-    LoginService
+  entryComponents: [
+     ParticipantsDialog
   ],
+  providers: [
+    ExchangeRateService,
+    LoginService
+    ],
   bootstrap: [AppComponent]
 })
 
 
 
 export class AppModule { }
+
