@@ -1,0 +1,137 @@
+  div
+  {
+    font-family: Roboto,'Helvetica Neue', sans-serif;
+  } /*KETE: déplacer sur stylesheet global*/
+  
+  div {
+    font-size: 13px;
+  }
+
+  div.sectionheader {
+    display: flex;
+    align-content: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: flex-start;
+    border: 2px solid #000000;
+    background-color: #ccd4df;
+    margin: 5px;
+    padding: 0px;
+  }
+  div.section {
+    display: flex;
+    align-content: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    background-color: #ffffff;
+    align-content: inherit;
+    
+    width: 100%;
+  }
+  div.section-column {
+    display: flex;
+    align-content: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    display: block;
+  }
+  div.section-row {
+    display: flex;
+    align-content: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: unset;
+  }
+
+  h6 {
+      padding: 3px 5px;
+      margin: 0px;
+      font-size: 0.9em;
+  }
+  p {
+      width: 100%;
+      padding: 3px 5px;
+      margin: 0;
+  }
+
+  mat-form-field {
+    margin: 0px 0.5%;
+    width: 96%;
+  }
+
+  .checkbox-label {
+    flex: 0 0 150px;
+  }
+  .checkbox-field {
+    flex: 0 0 80px;
+  }
+
+  .mat-footer-cell {
+    text-align: right;
+    padding-right: 10%;
+  }
+
+  .enabled {
+      background-color: #ae3803;
+  }
+
+  input {
+    margin: 0px;
+    height: 100%;
+    border: 0.25px;
+    text-align: center;
+  }
+  .monetaire {
+      text-align: right;
+  }
+
+  mat-radio-group {
+    display: flex;
+    justify-content: space-around;
+    align-content: flex-end;
+  }
+
+  .end {
+    display: flex;
+    align-items: baseline;
+  }
+
+#signatures {
+    margin: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 2;
+    justify-content: space-between;
+}
+.signature {
+  border: 2px solid black;
+  margin-bottom: 5px;
+  padding: 5px 10px;
+  text-align: center;
+  flex-direction: row;
+  width:100%;
+}
+
+.signature mat-form-field {
+  width: 100%;
+}
+
+  .short {
+    width: 24%;
+  }
+  .medium {
+    width: 48%;
+  }
+  .large {
+    width: 72%;
+  }
+  .full {
+    width: 96%;
+  }
+
+  .mat-column-percent {
+    width: 100px;
+  }
