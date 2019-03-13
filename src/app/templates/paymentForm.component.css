@@ -1,0 +1,206 @@
+#form-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 30px;
+    padding: 5px;
+}
+
+#entite-externe, 
+#beneficiaire,  
+#demandeur,
+#nouveau-fournisseur, 
+#description-facture,
+#ventilation-budgetaire,
+#references {
+    border: 2px solid black;
+    margin: 5px;
+}
+
+#signatures {
+    margin: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 2;
+    justify-content: space-between;
+}
+
+h6 {
+    margin:0;
+    padding: 2px 5px;
+    font-size: 0.9em;
+    background-color: #CCD4DF;
+}
+
+div {
+    font-size: 13px;
+}
+
+.signature {
+    border: 2px solid black;
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    text-align: center;
+    width: 480px;
+}
+
+.signature mat-form-field {
+    width: 100%;
+}
+
+#entite-externe {
+    width: max-content;
+}
+
+mat-form-field {
+    padding: 0px 5px;
+}
+
+#entite-externe mat-form-field {
+    width: 150px;
+}
+
+#entite-externe mat-form-field:last-child {
+    width: 90px;
+    margin: 0px 20px;
+}
+
+#beneficiaire-demandeur {
+    display: flex;
+}
+
+#beneficiaire-demandeur > div {
+    flex: 1 1;
+}
+
+#beneficiaire mat-form-field {
+    width: 90%;
+}
+
+#demandeur mat-form-field {
+    width: 45%;
+}
+
+#nouveau-fournisseur mat-form-field:first-of-type {
+    width: 30%;
+    margin-right: 30%;
+}
+
+#nouveau-fournisseur mat-form-field:last-child {
+    width: 10%; 
+}
+
+#form-date {
+    background-color: #CCD4DF;
+}
+
+mat-select{
+    width: 60px;
+}
+
+.totalFactureDevise {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+} 
+
+th {
+    color: black;
+}
+
+#description-facture {
+    text-align: center;
+}
+
+input {
+    text-align: center;
+}
+
+#description-facture h6 {
+    text-align: left;
+}
+
+#description-facture th {
+    text-align: center;
+}
+
+#description-facture table {
+    width: 100%;
+}
+
+#references {
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#references strong:nth-of-type(2) {
+    margin: 5px;
+}
+
+#references div {
+    background-color: #CCD4DF;
+}
+
+.descField, 
+.descField input {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.nbFacture,
+.nbFacture mat-form-field,
+.total,
+.total mat-form-field {
+    width: 100px;
+}
+
+.refFact,
+.refFact mat-form-field {
+    width: 50px;
+}
+
+.desc {
+    width: 70%;
+}
+
+th.mat-header-cell:first-of-type,
+td.mat-cell:first-of-type,
+th.mat-header-cell:last-of-type,
+td.mat-cell:last-of-type {
+    padding: 0px 5px;
+    width: 10px;
+}
+
+td.mat-footer-cell:last-of-type {
+    padding-right: 5px;
+    text-align: right;
+}
+
+td.mat-footer-cell:first-of-type {
+    text-align: right;
+}
+
+#ventilation-budgetaire table {
+    text-align: center;
+    width: 100%;
+}
+
+#ventilation-budgetaire th {
+    text-align: center;
+}
+
+#ventilation-budgetaire mat-form-field {
+    width: 80px;
+}
+
+.code, .t4a {
+    background: #CCD4DF;
+}
+
+th {
+    background: #CCD4DF;
+}

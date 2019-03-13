@@ -1,0 +1,47 @@
+h6 {
+  margin:0;
+  padding: 2px 5px;
+  font-size: 0.9em;
+  background-color: #CCD4DF;
+}
+
+div {
+  padding-top: 5px;
+  padding-left: 5px;
+  font-size: 13px;
+  border: 2px solid black;
+}
+
+.titre{
+  height: 100px;
+}
+
+.section-rectangle mat-form-field {
+  margin: 1em;
+  width: 100%;
+  height: 100%
+}
+
+#signature-demandeur {
+  border: 2px solid black;
+  width: max-content;
+  margin-bottom: 5px;
+  padding: 5px 10px;
+}
+
+#signature-demandeur button {
+  margin-left: 60px;
+}
+
+.logo-poly{
+  display: inline-block;
+}
+
+#form-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 30px;
+  padding: 5px;
+}
