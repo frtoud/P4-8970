@@ -1,28 +1,36 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatTableModule } from '@angular/material/table';
-import { MatGridListModule, 
-         MatCardModule, 
-         MatMenuModule, 
-         MatIconModule, 
-         MatButtonModule, 
-         MatToolbarModule, 
-         MatListModule,
-         MatFormFieldModule, 
-         MatInputModule,
-         MatDatepickerModule,
-         MatNativeDateModule,
-         MatCheckboxModule,
-         MatSelectModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginService } from './services/login.service';
+import { LoginComponent } from './login/login.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AppComponent } from './app.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { RouterModule, Routes } from '@angular/router';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatTableModule} from '@angular/material/table';
+
+import { AFFormComponent } from './form/app.af-form';
+import {
+  MatGridListModule, MatCardModule, MatMenuModule, MatIconModule,
+  MatButtonModule, MatToolbarModule, MatListModule,
+  MatNativeDateModule, MatInputModule, MatFormFieldControl, MatDialogModule,
+  MatChipsModule, MatSelectModule
+} from '@angular/material';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { HeaderComponent } from './header/header.component';
-import { RouterModule, Routes } from '@angular/router';
 import { ArchiveComponent } from './archive/archive.component';
 import { VoyageFormComponent } from './formulaires/voyage-form/voyage-form.component';
+import { DemandeAchatComponent } from './formulaires/demande-achat/demande-achat.component';
+import { NouveauFormulaireComponent } from './nouveau-formulaire/nouveau-formulaire.component';
+import {AssignationComponent, ParticipantsDialog} from './assignation/assignation.component';
+import { PaymentFormComponent } from './templates/paymentForm.component';
+import { ExchangeRateService } from './services/exchangeRate.service';
+
 
 const appRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -32,10 +40,17 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
+    AFFormComponent,
     HeaderComponent,
     DashboardComponent,
     ArchiveComponent,
     VoyageFormComponent
+    LoginComponent
+    DemandeAchatComponent,
+    NouveauFormulaireComponent,
+    AssignationComponent,
+    ParticipantsDialog,
+    PaymentFormComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +60,10 @@ const appRoutes: Routes = [
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
+    MatRadioModule,
+    MatNativeDateModule,
+    MatCheckboxModule,
+    MatTableModule,
     LayoutModule,
     MatToolbarModule,
     MatListModule,
@@ -52,17 +71,24 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     MatDatepickerModule,
     MatInputModule,
-    MatNativeDateModule,
-    MatCheckboxModule,
     MatSelectModule,
-    MatTableModule,
     RouterModule,
+    MatDialogModule,
+    MatChipsModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  entryComponents: [
+     ParticipantsDialog
+  ],
+  providers: [
+    ExchangeRateService,
+    LoginService
+    ],
   bootstrap: [AppComponent]
 })
 
 
 
 export class AppModule { }
+
