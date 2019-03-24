@@ -7,7 +7,7 @@ cd ./client/node_modules/
 sudo npm uninstall *
 
 # Uninstall Node.js.
-sudo yum remove nodejs
+sudo yum -y remove nodejs
 
 # Uninstall MongoDB.
 sudo service mongod stop
