@@ -3,7 +3,7 @@
 # Uninstall node modules.
 cd ./server/node_modules/
 sudo npm uninstall *
-cd ../../client/node_modules/
+cd ./client/node_modules/
 sudo npm uninstall *
 
 # Uninstall Node.js.
@@ -11,7 +11,7 @@ sudo yum remove nodejs
 
 # Uninstall MongoDB.
 sudo service mongod stop
-sudo yum erase $(rpm -qa | grep mongodb-org)
+sudo yum -y erase $(rpm -qa | grep mongodb-org)
 sudo rm -r /var/log/mongodb
 sudo rm -r /var/lib/mongo
 

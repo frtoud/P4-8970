@@ -3,4 +3,4 @@ cd ./server
 sudo npm start &
 cd ../
 cd ./client
-sudo ng serve
+sudo ng serve &

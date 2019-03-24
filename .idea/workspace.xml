@@ -2,85 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="749868aa-1f55-45f1-9afa-1878e0f3a3a5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/uninstall.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/deploy.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deploy.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e/protractor.conf.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e/src/app.e2e-spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e/src/app.po.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e/tsconfig.e2e.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/git" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/archive/archive.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/archive/archive.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/archive/archive.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/archive/archive.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/assignation/assignation.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/assignation/assignation.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/assignation/assignation.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/assignation/assignation.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/assignation/participants-dialog.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/config.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/dashboard/dashboard.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/dashboard/dashboard.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/dashboard/dashboard.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/dashboard/dashboard.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/header/header.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/header/header.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/header/header.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/header/header.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/login/login.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/login/login.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/login/login.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/login/login.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/nouveau-formulaire/nouveau-formulaire.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/nouveau-formulaire/nouveau-formulaire.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/nouveau-formulaire/nouveau-formulaire.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/nouveau-formulaire/nouveau-formulaire.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/services/exchangeRate.service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/services/login.service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/templates/aide-financiere-form/app.af-form.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/templates/aide-financiere-form/app.af-form.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/templates/aide-financiere-form/app.af-form.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/templates/demande-achat/demande-achat.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/templates/demande-achat/demande-achat.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/templates/demande-achat/demande-achat.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/templates/demande-achat/demande-achat.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/templates/payment-form/paymentForm.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/templates/payment-form/paymentForm.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/templates/payment-form/paymentForm.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/templates/voyage-form/voyage-form.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/templates/voyage-form/voyage-form.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/templates/voyage-form/voyage-form.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/img/logo-POLY-forms.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/img/logo-poly-blanc.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/img/logo-poly.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/browserslist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/environments/environment.prod.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/environments/environment.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/karma.conf.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polyfills.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tsconfig.app.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tsconfig.spec.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tslint.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tslint.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uninstall.sh" beforeDir="false" afterPath="$PROJECT_DIR$/uninstall.sh" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -96,8 +19,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/install.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="589">
-              <caret line="35" selection-start-line="35" selection-end-line="35" />
+            <state relative-caret-position="884">
+              <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/deploy.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
             </state>
           </provider>
         </entry>
@@ -105,8 +37,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/uninstall.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+            <state relative-caret-position="85">
+              <caret line="5" column="3" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -123,7 +55,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>formul</find>
       <find>uploader</find>
       <find>choose</find>
       <find>formulai</find>
@@ -153,6 +84,7 @@
       <find>page-layon</find>
       <find>scripts</find>
       <find>yum</find>
+      <find>../../cli</find>
     </findStrings>
     <replaceStrings>
       <replace>dashboard</replace>
@@ -365,18 +297,18 @@
       <workItem from="1553223055280" duration="973000" />
       <workItem from="1553273104458" duration="2832000" />
       <workItem from="1553361002579" duration="281000" />
-      <workItem from="1553361314006" duration="5555000" />
+      <workItem from="1553361314006" duration="6420000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="198064000" />
+    <option name="totallyTimeSpent" value="198929000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="694" height="735" extended-state="0" />
+    <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.4054878" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19880418" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -391,7 +323,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32973805" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.29583976" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -603,6 +535,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/install.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="884">
+          <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/deploy.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -610,17 +549,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/install.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="35" selection-start-line="35" selection-end-line="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/uninstall.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+        <state relative-caret-position="85">
+          <caret line="5" column="3" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
         </state>
       </provider>
     </entry>
