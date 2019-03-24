@@ -16,4 +16,4 @@ EOF
 pwd
 sudo npm start &
 cd ../../client
-sudo ng serve &
+sudo ng serve --host 0.0.0.0 --port 80 --disable-host-check &
