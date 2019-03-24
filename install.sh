@@ -2,7 +2,7 @@
 
 #Install Git
 #sudo yum -y install git
-
+#sudo su
 #Install Node
 #-- Step 1 - Add Node.js Yum Repository (Stable) --
 sudo yum -y install -y gcc-c++ make
@@ -13,17 +13,16 @@ sudo yum -y install nodejs
 
 #Install Angular CLI
 
-npm install -g @angular/cli
+sudo npm install -g @angular/cli
 
 #Install Angular Packages
-sudo su
 sudo npm install
 
 # npm audit fix/npm audit fix --force
 #Create keys.js
 cd lib
-touch keys.js
-cat <<EOF > ./keys.js
+sudo touch keys.js
+sudo cat <<EOF > ./keys.js
 const KEYS = {
     mongo: {},
     mailer: {
@@ -37,8 +36,8 @@ EOF
 #Install MongoDB
 cd /
 cd etc/yum -y.repos.d/
-touch mongodb-org-4.0.repo
-cat <<EOF > ./mongodb-org-4.0.repo.js
+sudo touch mongodb-org-4.0.repo
+sudo cat <<EOF > ./mongodb-org-4.0.repo.js
 [mongodb-org-4.0]
 name=MongoDB Repository
 baseurl=https://repo.mongodb.org/yum -y/redhat/$releasever/mongodb-org/4.0/x86_64/
@@ -51,7 +50,12 @@ sudo service mongod start
 # Enable mongod daemon on boot.
 sudo systemctl enable mongod
 
-#Reboot the system.
-sudo reboot
+echo "System reboot is required to complete installation. Do you want to continue?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) sudo reboot;
+    esac
+done
+
 
 

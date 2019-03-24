@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
 
 # Uninstall node modules.
-cd ./server/node_modules/
+cd node_modules
 sudo npm uninstall *
-cd ./client/node_modules/
-sudo npm uninstall *
-
 # Uninstall Node.js.
 sudo yum -y remove nodejs
 
