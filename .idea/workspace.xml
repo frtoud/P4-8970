@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="749868aa-1f55-45f1-9afa-1878e0f3a3a5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/uninstall.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deploy.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/e2e/protractor.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/e2e/src/app.e2e-spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/e2e/src/app.po.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/e2e/tsconfig.e2e.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/git" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/archive/archive.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/archive/archive.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/archive/archive.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/archive/archive.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/assignation/assignation.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/assignation/assignation.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/assignation/assignation.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/assignation/assignation.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/assignation/participants-dialog.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/config.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/dashboard/dashboard.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/dashboard/dashboard.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/dashboard/dashboard.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/dashboard/dashboard.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/header/header.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/header/header.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/header/header.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/header/header.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/login/login.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/login/login.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/login/login.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/login/login.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/nouveau-formulaire/nouveau-formulaire.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/nouveau-formulaire/nouveau-formulaire.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/nouveau-formulaire/nouveau-formulaire.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/nouveau-formulaire/nouveau-formulaire.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/services/exchangeRate.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/services/login.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/templates/aide-financiere-form/app.af-form.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/templates/aide-financiere-form/app.af-form.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/templates/aide-financiere-form/app.af-form.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/templates/demande-achat/demande-achat.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/templates/demande-achat/demande-achat.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/templates/demande-achat/demande-achat.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/templates/demande-achat/demande-achat.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/templates/payment-form/paymentForm.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/templates/payment-form/paymentForm.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/templates/payment-form/paymentForm.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/templates/voyage-form/voyage-form.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/templates/voyage-form/voyage-form.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/templates/voyage-form/voyage-form.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/logo-POLY-forms.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/logo-poly-blanc.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/logo-poly.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/browserslist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/environments/environment.prod.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/environments/environment.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/karma.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/polyfills.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tsconfig.app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tsconfig.spec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tslint.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tslint.json" beforeDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/install.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="589">
+              <caret line="35" selection-start-line="35" selection-end-line="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/uninstall.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>formul</find>
+      <find>uploader</find>
+      <find>choose</find>
+      <find>formulai</find>
+      <find>input.files</find>
+      <find>ngOnIni</find>
+      <find>forms.service</find>
+      <find>h6</find>
+      <find>perc</find>
+      <find>class</find>
+      <find>.length</find>
+      <find>.t4a</find>
+      <find>entite-externe</find>
+      <find>getColo</find>
+      <find>description-facture</find>
+      <find>mat-table</find>
+      <find>e</find>
+      <find>refFact</find>
+      <find>mat-grid-tile</find>
+      <find>ventilation-budgetaire</find>
+      <find>demandeur</find>
+      <find>commande</find>
+      <find>assigner</find>
+      <find>ventilation-bud</find>
+      <find>select</find>
+      <find>perfect</find>
+      <find>perfe</find>
+      <find>page-layon</find>
+      <find>scripts</find>
+      <find>yum</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>dashboard</replace>
+      <replace>new-form</replace>
+      <replace>Header</replace>
+      <replace>section-rectangle</replace>
+      <replace>getColor($event)</replace>
+      <replace>this.files</replace>
+      <replace>description-items</replace>
+      <replace>demandeur</replace>
+      <replace>quant</replace>
+      <replace>yum -y</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/app/archive/archive.component.html" />
+        <option value="$PROJECT_DIR$/src/app/sidenav/sidenav.component.html" />
+        <option value="$PROJECT_DIR$/src/app/header/sidenav.component.html" />
+        <option value="$PROJECT_DIR$/src/app/header/header.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/header/header.component.spec.ts" />
+        <option value="$PROJECT_DIR$/src/app/header/header.component.css" />
+        <option value="$PROJECT_DIR$/src/app/dashboard/dashboard.component.html" />
+        <option value="$PROJECT_DIR$/src/app/header/header.component.html" />
+        <option value="$PROJECT_DIR$/.travis.yml" />
+        <option value="$PROJECT_DIR$/src/app/nouveau-formulaire/nouveau-formulaire.component.html" />
+        <option value="$PROJECT_DIR$/src/app/nouveau-formulaire/nouveau-formulaire.component.css" />
+        <option value="$PROJECT_DIR$/src/app/assignation/dialog-content-example.html" />
+        <option value="$PROJECT_DIR$/src/app/assignation/dialog-overview-example-dialog.html" />
+        <option value="$PROJECT_DIR$/src/styles.css" />
+        <option value="$PROJECT_DIR$/src/app/formulaires/demande-achat/DemandeAchat.ts" />
+        <option value="$PROJECT_DIR$/src/app/formulaires/demande-achat/Section.ts" />
+        <option value="$PROJECT_DIR$/src/app/formulaires/demande-achat/SectionHandler.ts" />
+        <option value="$PROJECT_DIR$/src/app/assignation/participants-dialog.html" />
+        <option value="$PROJECT_DIR$/src/app/assignation/FileUploader.ts" />
+        <option value="$PROJECT_DIR$/src/app/nouveau-formulaire/nouveau-formulaire.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/formulaires/demande-achat/demande-achat.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/templates/paymentForm.component.css" />
+        <option value="$PROJECT_DIR$/src/app/formulaires/demande-achat/demande-achat.component.css" />
+        <option value="$PROJECT_DIR$/src/app/formulaires/demande-achat/demande-achat.component.html" />
+        <option value="$PROJECT_DIR$/src/app/assignation/assignation.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/assignation/assignation.component.html" />
+        <option value="$PROJECT_DIR$/src/app/assignation/assignation.component.css" />
+        <option value="$PROJECT_DIR$/src/app/app.module.ts" />
+        <option value="$PROJECT_DIR$/src/app/doc/doc.component.html" />
+        <option value="$PROJECT_DIR$/src/app/app.component.html" />
+        <option value="$PROJECT_DIR$/src/index.html" />
+        <option value="$PROJECT_DIR$/angular.json" />
+        <option value="$PROJECT_DIR$/doc/index.rst" />
+        <option value="$PROJECT_DIR$/deploy.sh" />
+        <option value="$PROJECT_DIR$/uninstall.sh" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-7" />
+    <option name="width" value="694" />
+    <option name="height" value="735" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="projet4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projet4" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="editor.config.ad.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../projet4-serveur" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.tslint" value="C:\Users\Joel\Documents\repos\joelljpoulin\projet4\node_modules\tslint" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
+    <property name="ts.external.directory.path" value="C:\Users\Joel\Documents\repos\joelljpoulin\projet4\node_modules\typescript\lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Joel\Documents\repos\joelljpoulin\projet4\src\app\formulaires" />
+      <recent name="C:\Users\Joel\Documents\repos\joelljpoulin\projet4\src\assets\img" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="npm.Angular CLI Server">
+    <configuration name="Tests" type="JavaScriptTestRunnerKarma">
+      <config-file value="$PROJECT_DIR$/src/karma.conf.js" />
+      <working-directory value="$PROJECT_DIR$" />
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="E2E Tests" type="JavaScriptTestRunnerProtractor">
+      <config-file value="$PROJECT_DIR$/e2e/protractor.conf.js" />
+      <node-interpreter value="project" />
+      <protractor-options value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Angular Application" type="JavascriptDebugType" uri="http://localhost:4200">
+      <method v="2" />
+    </configuration>
+    <configuration name="Angular CLI Server" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="749868aa-1f55-45f1-9afa-1878e0f3a3a5" name="Default Changelist" comment="" />
+      <created>1548383006904</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1548383006904</updated>
+      <workItem from="1548383008848" duration="6232000" />
+      <workItem from="1548445564035" duration="4702000" />
+      <workItem from="1548961457613" duration="298000" />
+      <workItem from="1548961999199" duration="6993000" />
+      <workItem from="1549048934255" duration="71000" />
+      <workItem from="1549066056590" duration="545000" />
+      <workItem from="1549391956723" duration="5000" />
+      <workItem from="1549926742373" duration="803000" />
+      <workItem from="1550693348813" duration="4196000" />
+      <workItem from="1550758381233" duration="15979000" />
+      <workItem from="1550846381677" duration="7278000" />
+      <workItem from="1551292163291" duration="314000" />
+      <workItem from="1551292635879" duration="1794000" />
+      <workItem from="1551369241555" duration="6474000" />
+      <workItem from="1551463639162" duration="695000" />
+      <workItem from="1551467547967" duration="6018000" />
+      <workItem from="1551711229679" duration="8374000" />
+      <workItem from="1551723577757" duration="9709000" />
+      <workItem from="1551741471299" duration="578000" />
+      <workItem from="1551786890782" duration="10604000" />
+      <workItem from="1551831121653" duration="595000" />
+      <workItem from="1551832482508" duration="927000" />
+      <workItem from="1551836593292" duration="596000" />
+      <workItem from="1551878048529" duration="5746000" />
+      <workItem from="1552508055066" duration="598000" />
+      <workItem from="1552564019761" duration="2056000" />
+      <workItem from="1552652949349" duration="14840000" />
+      <workItem from="1552693158066" duration="810000" />
+      <workItem from="1552694001681" duration="1019000" />
+      <workItem from="1552697026772" duration="598000" />
+      <workItem from="1552754781121" duration="22247000" />
+      <workItem from="1552824969446" duration="18114000" />
+      <workItem from="1552844720091" duration="174000" />
+      <workItem from="1552845273681" duration="5000" />
+      <workItem from="1552845855730" duration="5000" />
+      <workItem from="1552848450526" duration="593000" />
+      <workItem from="1552852964073" duration="595000" />
+      <workItem from="1552854158371" duration="32000" />
+      <workItem from="1552855533644" duration="596000" />
+      <workItem from="1552859938122" duration="597000" />
+      <workItem from="1552891785503" duration="594000" />
+      <workItem from="1552902397520" duration="595000" />
+      <workItem from="1552905252005" duration="597000" />
+      <workItem from="1552912199417" duration="598000" />
+      <workItem from="1552918273402" duration="254000" />
+      <workItem from="1552927214970" duration="597000" />
+      <workItem from="1552930482857" duration="596000" />
+      <workItem from="1552933203981" duration="369000" />
+      <workItem from="1553119400817" duration="4316000" />
+      <workItem from="1553140300379" duration="1180000" />
+      <workItem from="1553173183372" duration="10290000" />
+      <workItem from="1553207424019" duration="2796000" />
+      <workItem from="1553219763974" duration="3236000" />
+      <workItem from="1553223055280" duration="973000" />
+      <workItem from="1553273104458" duration="2832000" />
+      <workItem from="1553361002579" duration="281000" />
+      <workItem from="1553361314006" duration="5555000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="198064000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="0" width="694" height="735" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.4054878" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32973805" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2835131" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.48690292" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32973805" />
+      <window_info anchor="bottom" id="TypeScript" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/app/header/header.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/archive/archive.component.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/header/header.component.spec.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dashboard/dashboard.component.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/app.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/services/exchangeRate.service.ts" />
+    <entry file="file://$PROJECT_DIR$/src/assets/img/logo-poly-blanc.PNG">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.travis.yml" />
+    <entry file="file://$PROJECT_DIR$/src/test.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dashboard/dashboard.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/app.component.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/app.component.spec.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/archive/archive.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/assignation/dialog-content-example.css" />
+    <entry file="file://$PROJECT_DIR$/src/app/nouveau-formulaire/nouveau-formulaire.component.spec.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#73#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/templates/paymentForm.component.ts" />
+    <entry file="file://$PROJECT_DIR$/src/app/templates/paymentForm.component.html" />
+    <entry file="file://$PROJECT_DIR$/src/styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/header/header.component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/header/header.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/formulaires/demande-achat/DemandeAchat.ts" />
+    <entry file="file://$PROJECT_DIR$/src/app/formulaires/demande-achat/Section.ts" />
+    <entry file="file://$PROJECT_DIR$/src/app/formulaires/demande-achat/SectionHandler.ts" />
+    <entry file="file://$PROJECT_DIR$/src/app/nouveau-formulaire/nouveau-formulaire.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="6" lean-forward="true" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/assignation/participants-dialog.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/nouveau-formulaire/nouveau-formulaire.component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="88" column="19" selection-start-line="88" selection-start-column="19" selection-end-line="88" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/assignation/FileUploader.ts" />
+    <entry file="file://$PROJECT_DIR$/src/app/nouveau-formulaire/nouveau-formulaire.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/formulaires/demande-achat/demande-achat.component.spec.ts" />
+    <entry file="file://$PROJECT_DIR$/src/app/templates/paymentForm.component.css" />
+    <entry file="file://$PROJECT_DIR$/src/app/assignation/assignation.component.spec.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#73#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/formulaires/demande-achat/demande-achat.component.ts" />
+    <entry file="file://$PROJECT_DIR$/src/app/formulaires/demande-achat/demande-achat.component.css" />
+    <entry file="file://$PROJECT_DIR$/src/app/formulaires/demande-achat/demande-achat.component.html" />
+    <entry file="file://$PROJECT_DIR$/src/app/doc/doc.component.html" />
+    <entry file="file://$PROJECT_DIR$/src/app/app.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/assignation/assignation.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/index.rst" />
+    <entry file="file://$PROJECT_DIR$/doc/conf.py" />
+    <entry file="file://$PROJECT_DIR$/doc/make.bat" />
+    <entry file="file://$PROJECT_DIR$/doc/Makefile" />
+    <entry file="file://$PROJECT_DIR$/doc/_build/html/index.html" />
+    <entry file="file://$PROJECT_DIR$/doc/_build/html/_sources/index.rst.txt" />
+    <entry file="file://$PROJECT_DIR$/src/app/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="77" column="20" selection-start-line="77" selection-start-column="20" selection-end-line="77" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/assignation/assignation.component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/assignation/assignation.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deploy.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/install.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="589">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/uninstall.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

@@ -4,4 +4,3 @@ sudo npm start &
 cd ../
 cd ./client
 sudo ng serve
-
