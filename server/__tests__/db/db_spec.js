@@ -3,82 +3,86 @@ let connection;
 let db;
 let newInstanceIVentilationAF = [
     {
-        "id": number;
-        "ubr": string;
-        "compte": string;
-        "unite": string;
-        "percent": number;
-        "montant": number;
+        "id": 0;
+        "ubr": "ubr";
+        "compte": "compte";
+        "unite": "unite;
+        "percent": 1;
+        "montant": 2;
     },
     {
-        "id": number;
-        "ubr": string;
-        "compte": string;
-        "unite": string;
-        "percent": number;
-        "montant": number;
+        "id": 3;
+        "ubr": "ubr";
+        "compte": "compte";
+        "unite": "unite";
+        "percent": 4;
+        "montant": 5;
     }
                                 ]
+let date_1 = new Date();
+let date_2 = new Date();
 
 let newInstanceISignatures = [
     {
-       "id": string;
-        "name": string;
-        "assigneA": string;
-        "value": string;
-        "date": Date;
+       "id": "id";
+        "name": "name";
+        "assigneA": "assigneA";
+        "value": "value";
+        "date": date_1;
     },
     {
-        "id": string;
-        "name": string;
-        "assigneA": string;
-        "value": string;
-        "date": Date;
+        "id": "id";
+        "name": "name";
+        "assigneA": "assigneA";
+        "value": "value";
+        "date": date_2;
     }
                              ]
+let dateDebut = new Date();
+let dateFin = new Date();
 
 let newInstanceData = {
     "demandeur": {
-        "id": string;
-        "assigneA": string;
-        "nom": string;
-        "telephone": string;
-        "centre": string;
-        "admin": string;
+        "id": "id";
+        "assigneA": "assigneA";
+        "nom": "nom";
+        "telephone": "telephone";
+        "centre": "centre";
+        "admin": "admin";
     }
 
     "beneficiaire": {
-        "id": string;
-        "assigneA": string;
-        "nom" : string;
-        "prenom" : string;
-        "mat_etudiant" : string;
-        "mat_enseignant" : string;
+        "id": "id";
+        "assigneA": "assigneA";
+        "nom" : "nom";
+        "prenom" : "prenom";
+        "mat_etudiant" : "mat_etudiant";
+        "mat_enseignant" : "mat_enseignant";
     }
     "cycle": {
-        "id": string;
-        "assigneA": string;
-        "bac": boolean;
-        "bacec": boolean;
-        "mai": boolean;
-        "maiec": boolean;
-        "doc": boolean;
-        "docec": boolean;
+        "id": "id";
+        "assigneA": "assigneA";
+        "bac": true;
+        "bacec": true;
+        "mai": true;
+        "maiec": true;
+        "doc": true;
+        "docec": true;
     }
     "details": {
-        "id": string;
-        "assigneA": string;
-        "date_debut": Date;
-        "date_fin": Date;
-        "statutVersement": string;
-        "num_ref": string;
-        "montant": number;
-        "subventionnaire": string;
+        "id": "id";
+        "assigneA": "assigneA";
+        "date_debut": dateDebut;
+        "date_fin": dateFin;
+        "statutVersement": "statutVersement";
+        "num_ref": "num_ref";
+        "montant": 6;
+        "subventionnaire": "subventionnaire";
     }
     "ventilation": {
-        "id": string;
-        "assigneA": string;
-        "tableau": IVentilationAF[];
+        "id": "id";
+        "assigneA": "assigneA";
+        "tableau": newInstanceIVentilationAF;
     }
     signatures: newInstanceISignatures;
 }
