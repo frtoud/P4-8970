@@ -9,7 +9,7 @@ const KEYS = {
     mailer: {
         from: "gigl-projet-a@polymtl.ca"
     },
-    host: "http://localhost:8000"
+    host: "http://localhost:443"
 };
 module.exports = KEYS; 
 EOF
