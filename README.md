@@ -9,7 +9,7 @@ sudo bash ./install.sh
 ```
 
 ## Deploy PolyForms
-To deploy the PolyForms application on the local machine, run : 
+To deploy statusthe PolyForms application on the local machine, run : 
 
 ```
 sudo bash ./deploy.sh

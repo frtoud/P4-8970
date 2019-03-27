@@ -5,6 +5,7 @@ const router = express.Router();
 router.use('/users', require('./users'));
 router.use('/admin', require('./admin'));
 router.use('/forms', require('./forms'));
+router.use('/files', require('./uploads'));
 
 router.get('/', (req, res) => {
     res.status(204).send();

@@ -20,7 +20,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'uploads')));
 
 // Initialize the session
 app.use(session({
@@ -63,4 +63,4 @@ app.use((err, req, res) => {
   res.render("error");
 });
 
-app.listen(443, '0.0.0.0', () => console.log('Le serveur est disponible au port 443.'));
+app.listen(8000, () => console.log('Server running on http://localhost:8000/'));

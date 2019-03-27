@@ -41,8 +41,19 @@ FormsSchema.methods.setStatus = function(status) {
     return this;
 }
 
+FormsSchema.methods.setIdForm = function() {
+    this.idForm = this.idForm + "-" + this._id;
+    return this;
+}
+
+FormsSchema.methods.updateForm = function(data) {
+    Object.assign(this.data, data);
+    return this;
+}
+
 FormsSchema.methods.toObj = function() {
     return {
+        _id: this._id,
         idForm: this.idForm,
         auteur: this.auteur,
         nomFormulaire: this.nomFormulaire,

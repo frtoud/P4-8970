@@ -18,10 +18,9 @@ class FormsManager {
     createForm(form) {
         const deferred = Q.defer();
         let formToCreate = new Form(form);
-
         this.canCreateForm(formToCreate.auteur.idAuteur, formToCreate.collaborateurs)
         .then(() => {
-            formToCreate.setStatus("IN_PROGRESS").setCreatedAt().setUpdatedAt()
+            formToCreate.setStatus("IN_PROGRESS").setCreatedAt().setUpdatedAt().setIdForm()
             .save().then(result => {
                 //Get first collaborator
                 let collaborator = result.collaborateurs[0].email;
@@ -32,7 +31,8 @@ class FormsManager {
                     'text',
                     '<p>' + result.auteur.nom + ' vous invite à remplir/signer le formulaire ' +
                     result.nomFormulaire + '</p><br>' + 
-                    '<button type="button">Accéder au formulaire!</button></p>')
+                    '<a href="' + CONFIG.host + '/edit/' + result._id + 
+                    '"><button type="button">Accéder au formulaire!</button></a></p>')
                     .then(()=> deferred.resolve(result))
                     .catch(error => deferred.reject({ err: true, status: 400, message: error }));
             });
@@ -65,13 +65,77 @@ class FormsManager {
         }
     }
 
-    editForm(formId, userId) {
-        //collaborator access <- "COMPLETED"
-        //call notifyNextCollaborator()
+    editForm(formId, userId, data) {
+        const deferred = Q.defer();
+        this.canEditForm(formId, userId).then(() => {
+            Form.findOne({ "_id": formId }).then(form => {
+                if (form) {
+                    form.updateForm(data).setUpdatedAt();
+                    const collabIndex = form.collaborateurs.findIndex(c => c.idCollaborateur === userId);
+                    console.log(collabIndex);
+                    if (collabIndex === form.collaborateurs.length - 1) {
+                        console.log("DERNIER COLLABORATEUR");
+                        form.setStatus("COMPLETED");
+                        //Notify author by email
+                        form.save().then(updatedForm => 
+                            deferred.resolve({ err: false, data: updatedForm })
+                        )
+                        .catch(err => deferred.reject({ err: true, status: 400, message: err}));
+                    }
+                    else if (collabIndex != -1 && collabIndex < form.collaborateurs.length - 1){
+                        console.log("COLLABORATEUR");
+                        form.collaborateurs[collabIndex].acces = "COMPLETED";
+                        const nextCollaborator = form.collaborateurs[collabIndex + 1];
+                        form.collaborateurs[collabIndex + 1].acces = "EDITION";
+                        form.save().then(updatedForm => {
+                            deferred.resolve({ err: false, data: updatedForm });
+                            this.notifyCollaborator(updatedForm, nextCollaborator.email);
+                        })
+                        .catch(err => deferred.reject({ err: true, status: 400, message: err}));
+                    }
+                    else if (collabIndex === -1) {
+                        console.log("AUTEUR");
+                        form.save().then(updatedForm => 
+                            deferred.resolve({ err: false, data: updatedForm })
+                        )
+                        .catch(err => deferred.reject({ err: true, status: 400, message: err}));
+                    }
+                    else {
+                        deferred.reject({ err: true, status: 400, message: "Erreur."})
+                    }
+                }
+            })
+            .catch(err => deferred.reject({ err: true, status: 400, message: err}));
+        })
+        .catch(err => deferred.reject({ err: true, status: 403, message: err}));
+        return deferred.promise;
     }
 
-    notifyNextCollaborator(formId, collaborator) {
-        //notify by email
+    canEditForm(formId, userId) {
+        return Form.findOne({ "_id": formId }).then(form => {
+            if (form && 
+                (form.collaborateurs.find(c => c.idCollaborateur === userId) || userId === form.auteur.idAuteur)) {
+                return Promise.resolve();
+            }
+            else {
+                return Promise.reject("Opération non permise.");
+            }
+        })
+        .catch(err => Promise.reject(err));
+    }
+
+    notifyCollaborator(form, email) {
+        console.log("NOTIFY COLLABORATOR");
+        return this.mailer.sendMail(CONFIG.mailer.from,
+            email,
+            'Invitation pour remplir/signer un formulaire',
+            'text',
+            '<p>' + form.auteur.nom + ' vous invite à remplir/signer le formulaire ' +
+            form.nomFormulaire + '</p><br>' + 
+            '<a href="' + CONFIG.host + '/edit/' + form._id + 
+            '"><button type="button">Accéder au formulaire!</button></a></p>')
+            .then(()=> Promise.resolve(form))
+            .catch(error => Promise.reject({ status: 400, message: error }));
     }
 
     getFormById(id) {
@@ -122,12 +186,26 @@ class FormsManager {
         return deferred.promise;
     }
 
-    userCanAccessForm(userId, formId) {
-        //if user is author or of type admin
-        //grant "EDITION" access 
-        //else if user is in collaborateurs
-        //check collaborator access field and return 
-        //{ canAccess: boolean, accessMode: "" }
+    archiveForm(formId) {
+        const deferred = Q.defer();
+        Form.findOne({ "_id": formId }).then(form => {
+            if (!form) {
+                deferred.reject({ err: true, status: 404, message: "Le formulaire demandé n'existe pas."});
+            }
+            else {
+                if (form.statut === "IN_PROGRESS") {
+                    deferred.resolve({ err: true, status: 400, message: "[Formulaire en cours] Opération non permise!" });
+                }
+                else {
+                    form.collaborateurs.map(collaborateur => collaborateur.acces = "PREVIEW");
+                    form.setStatus("ARCHIVED").setUpdatedAt().save()
+                    .then(archivedForm => 
+                        deferred.resolve({ err: false, data: archivedForm }))
+                    .catch(err => deferred.resolve({ err: true, status: 400, message: err }));
+                }
+            }
+        });
+        return deferred.promise;
     }
 
 }

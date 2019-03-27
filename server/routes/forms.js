@@ -45,4 +45,24 @@ router.get('/user/:id', (req, res) => {
     .catch(err => res.status(err.status).json(err.message));
 });
 
+/**
+ * EDIT FORM
+ * TODO: Protect route
+ */
+router.patch('/:id', (req, res) => {
+    formsManager.editForm(req.params.id, req.body.userId, req.body.data)
+    .then(result => res.status(200).json(result.data))
+    .catch(err => res.status(err.status).json(err.message));
+});
+
+/**
+ * ARCHIVE FORM
+ * TODO: Protect route
+ */
+router.patch('/:id/archive', (req, res) => {
+    formsManager.archiveForm(req.params.id)
+    .then(result => res.status(200).json(result.data))
+    .catch(err => res.status(err.status).json(err.message));
+});
+
 module.exports = router;
