@@ -1,63 +1,86 @@
 const {MongoClient} = require('mongodb');
 let connection;
 let db;
+let newInstanceIVentilationAF = [
+    {
+        "id": number;
+        "ubr": string;
+        "compte": string;
+        "unite": string;
+        "percent": number;
+        "montant": number;
+    },
+    {
+        "id": number;
+        "ubr": string;
+        "compte": string;
+        "unite": string;
+        "percent": number;
+        "montant": number;
+    }
+                                ]
+
+let newInstanceISignatures = [
+    {
+       "id": string;
+        "name": string;
+        "assigneA": string;
+        "value": string;
+        "date": Date;
+    },
+    {
+        "id": string;
+        "name": string;
+        "assigneA": string;
+        "value": string;
+        "date": Date;
+    }
+                             ]
 
 let newInstanceData = {
-    //DEMANDEUR
-    demandeur: {
-        id: string;
-assigneA: string;
-nom: string;
-telephone: string;
-centre: string;
-admin: string;
-}
+    "demandeur": {
+        "id": string;
+        "assigneA": string;
+        "nom": string;
+        "telephone": string;
+        "centre": string;
+        "admin": string;
+    }
 
-//BENEFICIAIRE
-beneficiaire: {
-    id: string;
-    assigneA: string;
-
-    nom : string;
-    prenom : string;
-    mat_etudiant : string;
-    mat_enseignant : string;
-}
-
-//CYCLE DE L'ETUDIANT
-cycle: {
-    id: string;
-    assigneA: string;
-
-    bac: boolean;
-    bacec: boolean;
-    mai: boolean;
-    maiec: boolean;
-    doc: boolean;
-    docec: boolean;
-}
-
-//DETAILS
-details: {
-    id: string;
-    assigneA: string;
-
-    date_debut: Date;
-    date_fin: Date;
-    statutVersement: string;
-    num_ref: string;
-    montant: number;
-    subventionnaire: string;
-}
-
-//Ventilation
-ventilation: {
-    id: string;
-    assigneA: string;
-
-    tableau: IVentilationAF[];
-}
-signatures: ISignature[];
+    "beneficiaire": {
+        "id": string;
+        "assigneA": string;
+        "nom" : string;
+        "prenom" : string;
+        "mat_etudiant" : string;
+        "mat_enseignant" : string;
+    }
+    "cycle": {
+        "id": string;
+        "assigneA": string;
+        "bac": boolean;
+        "bacec": boolean;
+        "mai": boolean;
+        "maiec": boolean;
+        "doc": boolean;
+        "docec": boolean;
+    }
+    "details": {
+        "id": string;
+        "assigneA": string;
+        "date_debut": Date;
+        "date_fin": Date;
+        "statutVersement": string;
+        "num_ref": string;
+        "montant": number;
+        "subventionnaire": string;
+    }
+    "ventilation": {
+        "id": string;
+        "assigneA": string;
+        "tableau": IVentilationAF[];
+    }
+    signatures: newInstanceISignatures;
 }
 
 let newInstance =   {
@@ -86,25 +109,20 @@ afterAll(async () => {
     await db.close();
 });
 
-it('should aggregate docs from collection', async () => {
-    const files = db.collection('users');
+it('should be ok', async () => {
+    const forms = db.collection('forms');
     await files.insertMany([
-        {type: 'Document'},
-        {type: 'Video'},
-        {type: 'Image'},
-        {type: 'Document'},
-        {type: 'Image'},
-        {type: 'Document'},
+       newInstance
     ]);
-    const topFiles = await files
+    const topFiles = await forms
         .aggregate([
             {$group: {_id: '$type', count: {$sum: 1}}},
             {$sort: {count: -1}},
         ])
         .toArray();
     expect(topFiles).toEqual([
-        {_id: 'Document', count: 3},
-        {_id: 'Image', count: 2},
-        {_id: 'Video', count: 1},
+        // {_id: 'Document', count: 3},
+        // {_id: 'Image', count: 2},
+        // {_id: 'Video', count: 1},
     ]);
 });
