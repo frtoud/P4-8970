@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const factory = require('../factories/formFactory');
+const FormsFactory = require('../factories/FormsFactory');
 const Forms = mongoose.model('Forms');
-const Users = mongoose.model('Users');
+// const Users = mongoose.model('Users');
 
 process.env.TEST_SUITE = 'spacetime-forms-test';
 
@@ -12,7 +12,8 @@ describe('Forms', () => {
     describe('CREATE', () => {
         let forms;
         beforeEach(async () => {
-            forms = await factory.makeForms(50);
+            var formFactory = new FormsFactory();
+            forms = await formFactory.makeForms(50);
         });
         test('can create a form', async () => {
             await new Forms({
