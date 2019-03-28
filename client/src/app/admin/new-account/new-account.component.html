@@ -1,0 +1,48 @@
+<form id="new-account-form" (submit)="newAccount($event)">
+  <h4>Création d'un nouvel utilisateur</h4>
+  <mat-form-field>
+      <input matInput placeholder="Nom" [formControl]="lastNameFormControl">
+      <mat-error *ngIf="lastNameFormControl.hasError('whitespace') && !lastNameFormControl.hasError('required')">
+          Entrez un nom valide
+      </mat-error>
+      <mat-error *ngIf="lastNameFormControl.hasError('required')">
+        Nom <strong>obligatoire</strong>
+      </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+      <input matInput placeholder="Prénom" [formControl]="firstNameFormControl">
+      <mat-error *ngIf="firstNameFormControl.hasError('whitespace') && !firstNameFormControl.hasError('required')">
+          Entrez un prénom valide
+      </mat-error>
+      <mat-error *ngIf="firstNameFormControl.hasError('required')">
+        Prénom <strong>obligatoire</strong>
+      </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+      <input matInput placeholder="Adresse e-mail" [formControl]="emailFormControl">
+      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Entrez une adresse e-mail valide
+      </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        Adresse e-mail <strong>obligatoire</strong>
+      </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Type de compte" [formControl]="typeFormControl">
+      <mat-option *ngFor="let type of TYPES" [value]="type.value">
+        {{ type.display }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div id="control-buttons">
+    <button mat-stroked-button id="cancel" type="button"
+    (click)="cancel()">ANNULER</button>
+    <button mat-stroked-button id="submit" type="submit"
+    [disabled]="!enableAddAccount()">AJOUTER</button>
+  </div>
+  <p id="message" *ngIf="errorMessage">{{ errorMessage }}</p>
+</form>

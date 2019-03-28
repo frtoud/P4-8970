@@ -1,22 +1,160 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { ExchangeRateService } from '../../services/exchangeRate.service';
+import { BaseFormComponent } from '../base-form.component';
+import { ISignature, Signature } from '../fields';
+
+export interface IPaymentForm {
+    
+  entite_employe:
+  {
+    id: string;
+    assigneA: string;
+
+    matricule:string;
+  }
+  entite_fournisseur:
+  {
+    id: string;
+    assigneA: string;
+
+    numero: string;
+    adresse: string;
+  }
+  beneficiaire:
+  {
+    id: string;
+    assigneA: string;
+
+    nom:string;
+  }
+  demandeur:
+  {
+    id: string;
+    assigneA: string;
+
+    nom: string;
+    telephone: string;
+  }
+  
+  fournisseur:
+  {
+    id: string;
+    assigneA: string;
+
+    adresse: string;
+    ville: string;
+    province: string;
+    postal: string;
+    telephone: string;
+    fax: string;
+  }
+
+  description_facture:
+  {
+    id: string;
+    assigneA: string;
+
+    tableau: Bill[];
+  }
+
+  ventilation_budgetaire: 
+  {
+    id: string;
+    assigneA: string;
+
+    tableau: IVentilationDP[];
+  }
+
+  signatures: ISignature[];
+}
+
+export interface IVentilationDP {
+  ubr: string;
+  compte: string;
+  unite: string;
+  code: string;
+  t4a: string;
+  reference: string;
+  montant: number;
+}
 
 @Component({
   selector: 'payment-form',
   templateUrl: './paymentForm.component.html',
   styleUrls: ['./paymentForm.component.css']
 })
+export class PaymentFormComponent extends BaseFormComponent implements IPaymentForm {
+    
+  entite_employe =
+  {
+    id: "entite_employe",
+    assigneA: null,
 
-export class PaymentFormComponent {
+    matricule:"",
+  }
+  entite_fournisseur =
+  {
+    id: "entite_fournisseur",
+    assigneA: null,
+
+    numero: "",
+    adresse: "",
+  }
+  beneficiaire =
+  {
+    id: "beneficiaire",
+    assigneA: null,
+
+    nom:"",
+  }
+  demandeur =
+  {
+    id: "demandeur",
+    assigneA: null,
+
+    nom: "",
+    telephone: "",
+  }
+  fournisseur =
+  {
+    id: "fournisseur",
+    assigneA: null,
+
+    adresse: "",
+    ville: "",
+    province: "",
+    postal: "",
+    telephone: "",
+    fax: "",
+  }
+  description_facture =
+  {
+    id: "description_facture",
+    assigneA: null,
+
+    tableau: [{ id: "", description: "", reference: "", total: 0 }],
+  }
+
+    ventilation_budgetaire = 
+    {
+      id: "ventilation_budgetaire",
+      assigneA: null,
+  
+      tableau: [{ ubr: "", compte: "", unite: "", code: "", t4a: "", reference: "", montant: 0}],
+    }
+  
+  signatures = [
+    new Signature("sig-demandeur", "SIGNATURE DU DEMANDEUR", null, "", false, false, false),
+    new Signature("sig-ubr", "SIGNATURE DU (DES) RESPONSABLES(S) DE L'UBR", null, "", false, false, false),
+    new Signature("sig-superieur", "SIGNATURE DU SUPÉRIEUR IMMÉDIAT", null, "", false, false, false),
+    new Signature("sig-finances", "SERVICE DES FINANCES", null, "", false, false, false),
+  ];
     currency = ["CAD", "USD", "EUR", "GBP", "CHF", "BRL"];
 
-    factures: Bill[] = [{ id: "", description: "", reference: "", total: 0, totalCAD: 0 }];
-    ventilation = [{ ubr: "", compte: "", unite: "", code: "", t4a: "", reference: "", montant: 0}];
-
-    dsFactures = new MatTableDataSource(this.factures);
-    dsVentilation = new MatTableDataSource(this.ventilation);
-    displayedColumns: string[] = ['numFacture', 'descFacture', 'refFacture', 'totalFacture', 'totalFactureCAD'];
+    dsFactures = new MatTableDataSource(this.description_facture.tableau);
+    dsVentilation = new MatTableDataSource(this.ventilation_budgetaire.tableau);
+    displayedColumns: string[] = ['numFacture', 'descFacture', 'refFacture', 'totalFacture'];
     displayedColumnsV: string[] = ['ubr', 'compte', 'unite', 'code', 't4a', 'reference', 'montant'];
 
     selectedCurrency: string = "CAD";
@@ -24,44 +162,32 @@ export class PaymentFormComponent {
     total: number = 0;
     totalVentilation: number = 0;
 
-    nomDemandeur: string = "";
-    demandeurChecked: boolean = false;
-    signatureAdded: boolean = false;
 
     factureTotal: number = 0;
     factureTotalCAD: number = 0;
 
-    constructor(private exchangeRateService: ExchangeRateService) {}
+    constructor(private exchangeRateService: ExchangeRateService)  {super();}
 
     addDescriptionRow() {
-        this.factures.push({ id: "", description: "", reference: "", total: 0, totalCAD: 0 });
+        this.description_facture.tableau.push({ id: "", description: "", reference: "", total: 0 });
         this.dsFactures._updateChangeSubscription();
         this.updateTotal();
     }
 
     addVentilationRow() {
-        this.ventilation.push({ ubr: "", compte: "", unite: "", code: "", t4a: "", reference: "", montant: 0});
+        this.ventilation_budgetaire.tableau.push({ ubr: "", compte: "", unite: "", code: "", t4a: "", reference: "", montant: 0});
         this.dsVentilation._updateChangeSubscription();
         this.updateVentilationTotal();
     }
 
     updateTotal() {
-        this.factures.map(bill => this.total += bill.totalCAD);
+      this.total = 0;
+        this.description_facture.tableau.map(bill => this.total += bill.total);
     }
 
     updateVentilationTotal() {
-        this.ventilation.map(v => this.total += v.montant);
-    }
-
-    addSignature() {
-        this.signatureAdded = !this.signatureAdded;
-    }
-
-    removeSignature() {
-        this.signatureAdded = !this.signatureAdded;
-        //TODO: a changer (selon la personne assignee pour chaque bloc de signature)
-        this.demandeurChecked = false;
-        this.nomDemandeur = "";
+      this.totalVentilation = 0;
+        this.ventilation_budgetaire.tableau.map(v => this.totalVentilation += v.montant);
     }
 
     getRate(from: string, to: string, start: string, end: string) : Promise<number> {
@@ -90,7 +216,19 @@ export class PaymentFormComponent {
             this.total += this.factureTotalCAD;
         }
     }
+
+  setSections(): void {
+    this.sections = [
+      this.beneficiaire, this.entite_employe, this.entite_fournisseur, 
+      this.fournisseur, this.description_facture, this.ventilation_budgetaire,
+      this.demandeur,
+    ];
+    this.dsFactures = new MatTableDataSource(this.description_facture.tableau);
+    this.dsVentilation = new MatTableDataSource(this.ventilation_budgetaire.tableau);
+  }
 }
+
+
 
 //TODO: Move to service (payment form service)
 class Bill {
@@ -98,5 +236,4 @@ class Bill {
     description: string;
     reference: string;
     total: number;
-    totalCAD: number;
 }

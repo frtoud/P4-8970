@@ -1,9 +1,20 @@
-<mat-toolbar color="primary"><span><img src="assets/img/logo-poly.PNG"></span></mat-toolbar>
-<!--<mat-toolbar id="secondaryToolbar" color="primary"></mat-toolbar>-->
-<router-outlet></router-outlet>
-<!--<mat-nav-list>-->
-<!--<a mat-list-item routerLink="/dashboard">Tableau de bord</a>-->
-<!--<a mat-list-item routerLink="/new-form">Nouveau formulaire</a>-->
-<!--<a mat-list-item routerLink="/parameters">Paramètres</a>-->
-<!--<a mat-list-item routerLink="/archive">Archive</a>-->
-<!--</mat-nav-list>-->
+<mat-toolbar color="primary" *ngIf="isLoggedIn$ | async as isLoggedIn" id="toolbar">
+    
+    <span id="bar"><img src="assets/img/logo-poly.PNG"></span>
+    <div id="navbar-links" >
+        <button mat-button id="link" routerLink="/dashboard">Tableau de bord</button>
+        <button mat-button id="link" routerLink="/newForm" *ngIf="isGestionnaire()">Nouveau formulaire</button>
+    </div>
+    <div id="userName" >
+        {{currentUser.firstName}} {{currentUser.lastName}}
+    </div>
+    <div id="settings" >
+            <button button mat-icon-button routerLink="/admin" *ngIf="isAdmin()" > <mat-icon> settings </mat-icon></button>
+    </div>
+    <div id="logOut" >
+        <button button mat-icon-button   (click)="logOut()"> <mat-icon> exit_to_app</mat-icon></button>
+    </div>
+    
+    
+</mat-toolbar>
+  

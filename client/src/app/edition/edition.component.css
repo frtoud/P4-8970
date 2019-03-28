@@ -1,0 +1,46 @@
+#edit-form-container
+{
+  display: flex;
+  flex-direction: row;
+}
+.flex-column
+{
+  flex-direction: column;
+}
+
+.participants{
+    float:right;
+    margin-right: 1em;
+    margin-top: 1em;
+    width: 20%;
+    min-width: 15%;
+  }
+
+  .disabled{
+    pointer-events: none;
+  }
+
+  .assignation_selected {
+    background-color: #aedd94
+  }
+
+  button {
+    width: 100%;
+  }
+  .mat-chip-list-stacked,
+  .participant{
+    width: 100%;
+  }
+
+  @media print{
+    #edit-form-container{
+      visibility: hidden;
+    }
+
+
+
+    #printableArea{
+      visibility: visible;
+      width:120%;
+    }
+  }

@@ -1,6 +1,4 @@
-<form>
-
-  <div id="form-header">
+ <div id="form-header">
     <img src="assets/img/logo-poly-blanc.PNG" width=180 height=80>
     <h4>DEMANDE D'ACHAT</h4>
     <div id="form-date">
@@ -18,178 +16,192 @@
       <mat-checkbox>Entente</mat-checkbox>
     </mat-grid-tile>
   <!--Demandeur-->
-  <div class="section-rectangle">
-      <h6>DEMANDEUR</h6>
+  <div class="section-rectangle" id="demandeur"
+  [ngClass]="{'assignation_selected': demandeur.assigneA === collaborateurID, 'assignation_assigned': demandeur.assigneA !== null}">
+    <h6>DEMANDEUR</h6>
       <mat-grid-list cols="1" rowHeight="4em">
         <mat-grid-tile>
           <mat-form-field>
-            <input matInput placeholder="Nom du demandeur">
+            <input matInput placeholder="Nom du demandeur" [(ngModel)]="demandeur.nom">
           </mat-form-field>
           <br>
           <mat-form-field>
-            <input matInput placeholder="Département">
+            <input matInput placeholder="Département" [(ngModel)]="demandeur.departement">
           </mat-form-field>
           <br>
           <mat-form-field>
-            <input matInput placeholder="Téléphone">
+            <input matInput placeholder="Téléphone" [(ngModel)]="demandeur.telephone">
           </mat-form-field>
           <br>
         </mat-grid-tile>
       </mat-grid-list>
     </div>
   <!--Fournisseur suggéré-->
-  <div class="section-rectangle">
+  <div class="section-rectangle" id="fournisseur"
+    [ngClass]="{'assignation_selected': fournisseur.assigneA === collaborateurID, 'assignation_assigned': fournisseur.assigneA !== null}">
       <h6>FOURNISSEUR SUGGÉRÉ</h6>
       <mat-grid-list cols="1" rowHeight="4em">
       <mat-grid-tile>
         <mat-form-field>
-          <input matInput placeholder="Nom">
+          <input matInput placeholder="Nom" [(ngModel)]="fournisseur.nom">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="No">
+          <input matInput placeholder="No" [(ngModel)]="fournisseur.numero">
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field>
+          <input matInput placeholder="Adresse" [(ngModel)]="fournisseur.adresse">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Adresse">
+          <input matInput placeholder="No" [(ngModel)]="fournisseur.numero2">
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field>
+          <input matInput placeholder="Ville" [(ngModel)]="fournisseur.ville">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="No">
+          <input matInput placeholder="Province/État" [(ngModel)]="fournisseur.province">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Ville">
+          <input matInput placeholder="Code postal" [(ngModel)]="fournisseur.postal">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Province/État">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Code postal">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Pays">
+          <input matInput placeholder="Pays" [(ngModel)]="fournisseur.pays">
         </mat-form-field>
       </mat-grid-tile>
     </mat-grid-list>
     </div>
   <!--Contact-->
-  <div class="section-rectangle">
+  <div class="section-rectangle" id="contact"
+  [ngClass]="{'assignation_selected': contact.assigneA === collaborateurID, 'assignation_assigned': contact.assigneA !== null}">
+    
       <h6>CONTACT</h6>
       <mat-grid-list cols="1" rowHeight="4em">
     <mat-grid-tile>
       <mat-form-field>
-        <input matInput placeholder="Nom">
+        <input matInput placeholder="Nom" [(ngModel)]="contact.nom">
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Courriel">
+        <input matInput placeholder="Courriel" [(ngModel)]="contact.courriel">
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Tél.">
+        <input matInput placeholder="Tél." [(ngModel)]="contact.telephone">
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Fax">
+        <input matInput placeholder="Fax" [(ngModel)]="contact.fax">
       </mat-form-field>
     </mat-grid-tile>
     </mat-grid-list>
     </div>
   <!--Soumission-->
-  <div class="section-rectangle">
-      <h6>SOUMISSION</h6>
+  <div class="section-rectangle" id="soumission"
+  [ngClass]="{'assignation_selected': soumission.assigneA === collaborateurID, 'assignation_assigned': soumission.assigneA !== null}">
+    <h6>SOUMISSION</h6>
       <mat-grid-list cols="1" rowHeight="4em">
     <mat-grid-tile>
       <mat-form-field>
-        <input matInput placeholder="No">
+        <input matInput placeholder="No" [(ngModel)]="soumission.numero">
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Échéance">
+        <input matInput placeholder="Échéance" [(ngModel)]="soumission.echeance">
       </mat-form-field>
     </mat-grid-tile>
     </mat-grid-list>
     </div>
   <!--Livraison-->
-  <div class="section-rectangle">
+  <div class="section-rectangle" id="livraison"
+  [ngClass]="{'assignation_selected': livraison.assigneA === collaborateurID, 'assignation_assigned': livraison.assigneA !== null}">
     <h6>LIVRAISON</h6>
     <mat-grid-list cols="1" rowHeight="4em">
   <mat-grid-tile>
     <mat-form-field>
-      <input matInput placeholder="Date convenue">
+      <input matInput [matDatepicker]="PickerConvenu"
+       placeholder="Date convenue" [(ngModel)]="livraison.date" (click)="PickerConvenu.open()">
+       <mat-datepicker-toggle matSuffix [for]="PickerConvenu"></mat-datepicker-toggle>
+       <mat-datepicker #PickerConvenu></mat-datepicker>
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Lieu convenu">
+      <input matInput placeholder="Lieu convenu" [(ngModel)]="livraison.lieu">
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Incoterms">
+      <input matInput placeholder="Incoterms" [(ngModel)]="livraison.incoterms">
     </mat-form-field>
   </mat-grid-tile>
     </mat-grid-list>
   </div>
   <!--Termes de paiement-->
-  <div class="section-rectangle">
+  <div class="section-rectangle" id="termes"
+  [ngClass]="{'assignation_selected': termes.assigneA === collaborateurID, 'assignation_assigned': termes.assigneA !== null}">
       <h6>TERMES DE PAIEMENT</h6>
     <mat-grid-list cols="1" rowHeight="4em">
     <mat-grid-tile>
     <mat-form-field>
-      <input matInput placeholder="Conditions">
+      <input matInput placeholder="Conditions" [(ngModel)]="termes.conditions">
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Moyens">
+      <input matInput placeholder="Moyens" [(ngModel)]="termes.moyens">
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Précisions">
+      <input matInput placeholder="Précisions" [(ngModel)]="termes.precisions">
     </mat-form-field>
     </mat-grid-tile>
     </mat-grid-list>
   </div>
   <!--Description des items-->
-  <div class="section-rectangle">
+  <div class="section-rectangle" id="items"
+  [ngClass]="{'assignation_selected': items.assigneA === collaborateurID, 'assignation_assigned': items.assigneA !== null}">
     <h6>DESCRIPTION DES ITEMS</h6>
     <div class="section">
       <table mat-table [dataSource]="dSitems">
         <ng-container matColumnDef="ref">
           <th mat-header-cell *matHeaderCellDef> # réf. </th>
           <td mat-cell *matCellDef="let element">
-            <input [(ngModel)]="element.ubr" [ngModelOptions]="{standalone: true}">
+            <input [(ngModel)]="element.ref" type="number">
           </td>
         </ng-container>
         <ng-container matColumnDef="descr">
           <th mat-header-cell *matHeaderCellDef> Description </th>
           <td mat-cell *matCellDef="let element">
-            <input [(ngModel)]="element.compte"  [ngModelOptions]="{standalone: true}">
+            <input [(ngModel)]="element.descr">
           </td>
         </ng-container>
         <ng-container matColumnDef="quant">
           <th mat-header-cell *matHeaderCellDef> Quantité </th>
           <td mat-cell *matCellDef="let element">
-            <input [(ngModel)]="element.unite"  [ngModelOptions]="{standalone: true}">
+            <input [(ngModel)]="element.quant" (ngModelChange)="updateTotalItems()" type="number">
           </td>
         </ng-container>
         <ng-container matColumnDef="prixUnit">
           <th mat-header-cell *matHeaderCellDef> Prix unitaire </th>
           <td mat-cell *matCellDef="let element"
               class="percentile">
-            <input [(ngModel)]="element.percent" type="number"  [ngModelOptions]="{standalone: true}">
+            <input [(ngModel)]="element.prixUnit" (ngModelChange)="updateTotalItems()" type="number">
           </td>
         </ng-container>
         <ng-container matColumnDef="totalItems">
           <th mat-header-cell *matHeaderCellDef> Total </th>
           <td mat-cell *matCellDef="let element">
-            <input [(ngModel)]="element.montant" (ngModelChange)="updateTotal() "
-                   type="number"  [ngModelOptions]="{standalone: true}">
+            <p class="total">{{element.quant * element.prixUnit | currency}}</p>
           </td>
         </ng-container>
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef></th>
           <td mat-cell *matCellDef="let element">
             <button mat-icon-button color="warn"
-                    (click)="onDelete(element.id)">x</button>
+                    (click)="onDeleteItem(element)">x</button>
           </td>
         </ng-container>
         <ng-container matColumnDef="total">
           <td mat-footer-cell *matFooterCellDef colspan="5">
-            <p>TOTAL: {{ ventilationTotal | currency}}</p>
+            <p>TOTAL: {{ itemsTotal | currency}}</p>
           </td>
         </ng-container>
         <ng-container matColumnDef="addRow">
           <td mat-footer-cell *matFooterCellDef colspan="1">
             <button mat-mini-fab color="primary"
-                    (click)="onCreate()">+</button>
+                    (click)="onCreateItem()">+</button>
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumnsItems"></tr>
@@ -199,47 +211,48 @@
     </div>
   </div>
   <!--Ventilation budgétaire-->
-  <div class="section-rectangle">
+  <div class="section-rectangle" id="ventilation"
+  [ngClass]="{'assignation_selected': ventilation.assigneA === collaborateurID, 'assignation_assigned': ventilation.assigneA !== null}">
       <h6>VENTILATION BUDGETAIRE</h6>
       <div class="section">
         <table mat-table [dataSource]="dSventilation">
           <ng-container matColumnDef="ubr">
             <th mat-header-cell *matHeaderCellDef> UBR. </th>
             <td mat-cell *matCellDef="let element">
-              <input [(ngModel)]="element.ubr" [ngModelOptions]="{standalone: true}">
+              <input [(ngModel)]="element.ubr">
             </td>
           </ng-container>
           <ng-container matColumnDef="compte">
             <th mat-header-cell *matHeaderCellDef> Compte </th>
             <td mat-cell *matCellDef="let element">
-              <input [(ngModel)]="element.compte"  [ngModelOptions]="{standalone: true}">
+              <input [(ngModel)]="element.compte">
             </td>
           </ng-container>
           <ng-container matColumnDef="unite">
             <th mat-header-cell *matHeaderCellDef> Unité administrative </th>
             <td mat-cell *matCellDef="let element">
-              <input [(ngModel)]="element.unite"  [ngModelOptions]="{standalone: true}">
+              <input [(ngModel)]="element.unite">
             </td>
           </ng-container>
           <ng-container matColumnDef="percent">
             <th mat-header-cell *matHeaderCellDef> % </th>
             <td mat-cell *matCellDef="let element"
                 class="percentile">
-              <input [(ngModel)]="element.percent" type="number"  [ngModelOptions]="{standalone: true}">
+              <input [(ngModel)]="element.percent" type="number">
             </td>
           </ng-container>
           <ng-container matColumnDef="montant">
             <th mat-header-cell *matHeaderCellDef> Montant </th>
             <td mat-cell *matCellDef="let element">
-              <input [(ngModel)]="element.montant" (ngModelChange)="updateTotal() "
-                     type="number"  [ngModelOptions]="{standalone: true}">
+              <input [(ngModel)]="element.montant" (ngModelChange)="updateTotal()"
+                     type="number">
             </td>
           </ng-container>
           <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element">
               <button mat-icon-button color="warn"
-                      (click)="onDelete(element.id)">x</button>
+                      (click)="onDelete(element)">x</button>
             </td>
           </ng-container>
           <ng-container matColumnDef="total">
@@ -258,156 +271,42 @@
           <tr mat-footer-row *matFooterRowDef="['total','addRow']"></tr>
         </table>
     </div>
+</div>
     <!-- Commentaires et precision -->
-  <div class="section-rectangle">
-    <h6>COMMENTAIRES ET PRÉCISIONS</h6>
+  <div class="section-rectangle" id="commentaire"
+  [ngClass]="{'assignation_selected': commentaire.assigneA === collaborateurID, 'assignation_assigned': commentaire.assigneA !== null}">
+      <h6>COMMENTAIRES ET PRÉCISIONS</h6>
     <mat-grid-list cols="1" rowHeight="4em">
       <mat-grid-tile>
         <mat-form-field>
-          <input matInput>
+          <input matInput [(ngModel)]="commentaire.value">
         </mat-form-field>
       </mat-grid-tile>
     </mat-grid-list>
   </div>
-    <!-- Signatures -->
-    <div class="section-rectangle">
-    <mat-grid-list cols="1" rowHeight="4em">
-      <mat-grid-tile>
+  
+<div id="signatures">
+  <span *ngFor="let sig of signatures" >
+      <div class="signature" id={{sig.id}}
+      [ngClass]="{'assignation_selected': sig.assigneA === collaborateurID, 'assignation_assigned': sig.assigneA !== null}">
           <mat-form-field>
-            <input matInput type="text" placeholder="SIGNATURE DU DEMANDEUR">
-          </mat-form-field>
-          <button mat-raised-button>SIGNER</button>
-          <br>
-          <mat-checkbox class="example-margin">
-            Je confirme et j'accepte la véracité des informations ci-dessus.
+              <input matInput type="text" placeholder="{{sig.name}}" [disabled]="sig.lock || sig.validated" [(ngModel)]="sig.value">
+              <mat-hint *ngIf="sig.value.length === 0">
+                  Le nom et le prénom sont obligatoires!
+                  </mat-hint>
+              </mat-form-field>
+          <mat-checkbox
+          class="large"
+          [(ngModel)]="sig.check"
+          [(indeterminate)]="indeterminate"
+          [labelPosition]="labelPosition"
+          [disabled]="sig.lock || sig.validated">
+          Je confirme et j'accepte la véracité des informations ci-dessus.
           </mat-checkbox>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <mat-form-field>
-          <input matInput type="text" placeholder="SIGNATURE DU DEMANDEUR">
-        </mat-form-field>
-        <button mat-raised-button>SIGNER</button>
-        <br>
-        <mat-checkbox class="example-margin">
-          Je confirme et j'accepte la véracité des informations ci-dessus.
-        </mat-checkbox>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <mat-form-field>
-          <input matInput type="text" placeholder="SIGNATURE DU DEMANDEUR">
-        </mat-form-field>
-        <button mat-raised-button>SIGNER</button>
-        <br>
-        <mat-checkbox class="example-margin">
-          Je confirme et j'accepte la véracité des informations ci-dessus.
-        </mat-checkbox>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <mat-form-field>
-          <input matInput type="text" placeholder="SIGNATURE DU DEMANDEUR">
-        </mat-form-field>
-        <button mat-raised-button>SIGNER</button>
-        <br>
-        <mat-checkbox class="example-margin">
-          Je confirme et j'accepte la véracité des informations ci-dessus.
-        </mat-checkbox>
-      </mat-grid-tile>
-    </mat-grid-list>
-    </div>
-  </div>
-  <!--Signatures-->
-  <!--<div id="signatures">-->
-    <!--<div id="signature-demandeur" class="signature">-->
-      <!--<mat-form-field>-->
-        <!--<input matInput type="text" placeholder="SIGNATURE DU DEMANDEUR" [(ngModel)]="nomDemandeur">-->
-        <!--<mat-hint *ngIf="nomDemandeur.length == 0">-->
-          <!--Le nom et le prénom du demandeur sont obligatoires!-->
-        <!--</mat-hint>-->
-      <!--</mat-form-field>-->
+          <br>
+          <button mat-raised-button [disabled]="sig.value.length <= 0 || sig.lock || !sig.check" (click)="sig.onButtonClick()">{{sig.buttonMessage()}}</button>
+      </div>
+  </span>
+</div>
 
-      <!--<mat-checkbox-->
-        <!--class="example-margin"-->
-        <!--[(ngModel)]="demandeurChecked"-->
-        <!--[(indeterminate)]="indeterminate"-->
-        <!--[labelPosition]="labelPosition"-->
-        <!--[disabled]="disabled"-->
-        <!--color="primary">-->
-        <!--Je confirme et j'accepte la véracité des informations ci-dessus.-->
-      <!--</mat-checkbox>-->
-      <!--<br>-->
-      <!--<button mat-raised-button *ngIf="!signatureAdded"-->
-              <!--[disabled]="nomDemandeur.length == 0 || !demandeurChecked"-->
-              <!--(click)="addSignature()">SIGNER</button>-->
-
-      <!--<button mat-raised-button *ngIf="signatureAdded"-->
-              <!--(click)="removeSignature()">ANNULER</button>-->
-    <!--</div>-->
-    <!--<div id="signature-ubr" class="signature">-->
-      <!--<mat-form-field>-->
-        <!--<input matInput type="text" placeholder="SIGNATURE(S) DU OU DES RESPONSABLE(S) DE L'UBR">-->
-        <!--<mat-hint *ngIf="nomDemandeur.length == 0">-->
-          <!--Le(s) nom(s) et le(s) prénom(s) du ou des responsable(s) sont obligatoires!-->
-        <!--</mat-hint>-->
-      <!--</mat-form-field>-->
-
-      <!--<mat-checkbox-->
-        <!--class="example-margin"-->
-        <!--[(ngModel)]="ubrChecked"-->
-        <!--[(indeterminate)]="indeterminate"-->
-        <!--[labelPosition]="labelPosition"-->
-        <!--[disabled]="disabled"-->
-        <!--color="primary">-->
-        <!--Je confirme et j'accepte la véracité des informations ci-dessus.-->
-      <!--</mat-checkbox>-->
-      <!--<br>-->
-      <!--<button mat-raised-button disabled>SIGNER</button>-->
-    <!--</div>-->
-    <!--<div id="signature-sup" class="signature">-->
-      <!--<mat-form-field>-->
-        <!--<input matInput type="text" placeholder="SIGNATURE DU SUPÉRIEUR IMMÉDIAT">-->
-        <!--<mat-hint *ngIf="nomDemandeur.length == 0">-->
-          <!--Le nom et le prénom du supérieur immédiat sont obligatoires!-->
-        <!--</mat-hint>-->
-      <!--</mat-form-field>-->
-
-      <!--<mat-checkbox-->
-        <!--class="example-margin"-->
-        <!--[(ngModel)]="supChecked"-->
-        <!--[(indeterminate)]="indeterminate"-->
-        <!--[labelPosition]="labelPosition"-->
-        <!--[disabled]="disabled"-->
-        <!--color="primary">-->
-        <!--Je confirme et j'accepte la véracité des informations ci-dessus.-->
-      <!--</mat-checkbox>-->
-      <!--<br>-->
-      <!--<button mat-raised-button disabled>SIGNER</button>-->
-    <!--</div>-->
-    <!--<div id="signature-finance" class="signature">-->
-      <!--<mat-form-field>-->
-        <!--<input matInput type="text" placeholder="SERVICE DES FINANCES">-->
-        <!--<mat-hint *ngIf="nomDemandeur.length == 0">-->
-          <!--Nom obligatoire!-->
-        <!--</mat-hint>-->
-      <!--</mat-form-field>-->
-
-      <!--<mat-checkbox-->
-        <!--class="example-margin"-->
-        <!--[(ngModel)]="financeChecked"-->
-        <!--[(indeterminate)]="indeterminate"-->
-        <!--[labelPosition]="labelPosition"-->
-        <!--[disabled]="disabled"-->
-        <!--color="primary">-->
-        <!--Je confirme et j'accepte la véracité des informations ci-dessus.-->
-      <!--</mat-checkbox>-->
-      <!--<br>-->
-      <!--<button mat-raised-button disabled>SIGNER</button>-->
-    <!--</div>-->
-  <!--</div>-->
-
-  <!--Ajout pièces jointes-->
-  <div class="section-rectangle">
-    <h6>Ajouter des pièces jointes</h6>
-    <input type="file" multiple>
-  </div>
-</form>
 

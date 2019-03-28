@@ -19,3 +19,154 @@
 .dashboard-card-content {
   text-align: center;
 }
+
+.dashboard-card mat-expansion-panel {
+  background-image: linear-gradient(#dfdfdf, #acacac);
+  width: 100%;
+}
+
+#barre-recherche {
+  background-color: #dfdfdf;
+  color: black;
+}
+
+#a-completer-ligne {
+  width: 50%;
+}
+
+#card-titleAndType {
+  float: left;
+}
+
+#card-dateAndAuthor {
+  float: right;
+}
+
+#completedIcon {
+  color: #8cc83c;
+}
+#archivedIcon {
+  color: #bbdeea;
+}
+
+.inProgress.mat-progress-bar,
+.hasLate.mat-progress-bar,
+.refused.mat-progress-bar,
+.completed.mat-progress-bar,
+.archived.mat-progress-bar {
+  width: 230px;
+  height: 20px;
+}
+
+.inProgress .mat-progress-bar-buffer,
+.hasLate .mat-progress-bar-buffer,
+.refused .mat-progress-bar-buffer,
+.completed .mat-progress-bar-buffer,
+.archived .mat-progress-bar-buffer {
+  background-color: white;
+}
+
+.inProgress .mat-progress-bar-fill::after {
+  background-color: #ffff00;
+}
+
+.hasLate .mat-progress-bar-fill::after {
+  background-color: #fa961e;
+}
+  
+.refused .mat-progress-bar-fill::after {
+  background-color: #b91e32;
+}
+
+.completed .mat-progress-bar-fill::after {
+  background-color: #8cc83c;
+}
+
+.archived .mat-progress-bar-fill::after {
+  background-color: #bbdeea;
+}
+
+#collaborateursList {
+  border: 1px solid black;
+  border-bottom: none;
+}
+#collaborateursList td.mat-cell { /* necessary, too delete unwanted border under text */
+  border-bottom: none;
+  flex: 1;
+  min-height: 48px;
+  display: flex;
+}
+#collaborateursList td.mat-cell:last-of-type {
+  padding-right: 0px;
+}
+#collaborateursList td.mat-cell:first-of-type {
+  padding-left: 0px;
+}
+#collaborateursList mat-row {
+  border-bottom: 1px solid black;
+}
+.collaborateurCompleted {
+  padding-left: 4px;
+  text-align: left;
+  width: 100%;
+  background-color: #8cc83c;
+}
+.collaborateurEdition {
+  padding-left: 4px;
+  text-align: left;
+  width: 100%;
+  background-color: #ffff00;
+}
+.collaborateurWaiting {
+  padding-left: 4px;
+  text-align: left;
+  width: 100%;
+  background-color: white;
+}
+
+#option-affichage {
+  background-image: linear-gradient(#bbdeea, #367ec1);
+}
+#modifier {
+  background-image: linear-gradient(#bbdeea, #367ec1);
+}
+
+#valider, #approuver {
+  background-image: linear-gradient(#e8f2db, #8cc83c);
+}
+
+/* --------------------- VUE LISTE ---------------- */
+
+#forms-table{
+  margin: 5px;
+  overflow: auto;
+  width: 80%;
+  margin-left: 25px;
+}
+
+/* TODO fix the padding of the mat-option
+.mat-option{
+  padding: none !important;
+} */
+
+.selectCollaborateurCompleted {
+  padding-left: 4px;
+  text-align: left;
+  width: 100%;
+  background-color: #8cc83c;
+}
+
+.selectCollaborateurEdition {
+  padding-left: 4px;
+  text-align: left;
+  width: 100%;
+  background-color: #ffff00;
+}
+
+.selectCollaborateurWaiting {
+  padding-left: 4px;
+  text-align: left;
+  width: 100%;
+  background-color: white;
+}
+

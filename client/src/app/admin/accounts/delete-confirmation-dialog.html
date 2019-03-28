@@ -1,0 +1,8 @@
+<div mat-dialog-content id="dialog">
+  <i class="material-icons warning">warning</i>
+  <p>Êtes vous sûr de vouloir supprimer le compte de {{ data.name }}?</p>
+</div>
+<div mat-dialog-actions id="control-btn">
+  <button mat-button (click)="onNoClick()">ANNULER</button>
+  <button mat-button [mat-dialog-close]="data._id" cdkFocusInitial>SUPPRIMER</button>
+</div>

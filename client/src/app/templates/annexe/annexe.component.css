@@ -1,0 +1,163 @@
+#form-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 30px;
+    padding: 5px;
+    text-align: center;
+}
+
+#tables{
+    margin: 5px;
+    overflow: auto;
+    width: 95%;
+}
+
+/* tableau totaux */
+#tableau-totaux {
+    border-collapse: collapse; 
+    border: 2px solid black;
+    font-family: 'Roboto';
+}
+
+#cellule-monetaire {
+    background-color: #fcf5c4;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-bottom: 1px solid black;
+    padding: 0px 5px;
+}
+
+.output,
+#cellule-monetaire mat-form-field {
+    width: 175px;
+    text-align: center;
+}
+
+#cellule-code {
+    background-color: #fcf5c4;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    padding: 10px 0px 10px 0px;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+#vide-1 {
+    background-color: #fcf5c4;
+    padding-left: 370px;
+}
+
+#cellule-monetaire-avantVide2 {
+    background-color: #fcf5c4;
+    border-left: 2px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 0px 5px;
+}
+
+#cellule-monetaire-avantVide2 mat-form-field {
+    width: 164px;
+    text-align: center;
+}
+
+#cellule-code-avantVide2 {
+    background-color: #fcf5c4;
+    border-left: 2px solid black;
+    border-right: 1px solid black;
+    border-bottom: 2px solid black;
+    padding: 10px 0px 10px 0px;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+#vide-2 {
+    padding-left: 185px;
+}
+
+#cellule-quebec {
+    background-color: #fcf5c4;
+    border-top: 2px solid black;
+    padding-right: 465px;
+}
+
+#cellule-quebec-total {
+    background-color: #fcf5c4;
+    border-top: 2px solid black;
+}
+
+#cellule-quebec-vide {
+    background-color: #fcf5c4;
+}
+
+#cellule-quebec h6, #cellule-quebec-total h6, #cellule-canada h6,
+#total-rapport-gauche h6 {
+    white-space: nowrap;
+    margin: 0;
+    padding: 2px 5px;
+    font-size: 0.9em;
+    background-color: #fcf5c4;
+}
+
+#cellule-canada {
+    background-color: #fcf5c4;
+    border: 2px solid black;
+    padding-right: 285px;
+}
+
+#total-rapport-gauche {
+    background-color: #fcf5c4;
+    border-left: 2px solid black;
+    border-right: none;
+    border-top: 2px solid black;
+    border-style: double;
+    text-align: center;
+}
+
+#total-rapport-droite {
+    background-color: #fcf5c4;
+    border-left: none;
+    border-top: 2px solid black;
+    border-style: double;
+    text-align: right;
+}
+/* fin tableau totaux */
+
+h6 {
+    margin: 0;
+    padding: 2px 5px;
+    font-size: 0.9em;
+    background-color: #CCD4DF;
+}
+
+h4 {
+    margin: 0;
+    font-family: 'Roboto';
+    font-size: 0.9em;
+}
+
+div {
+    font-size: 13px;
+}
+
+mat-form-field {
+    padding: 0px 5px;
+}
+
+
+#table mat-form-field {
+    width: 100px;
+    text-align: center;
+}
+
+#ventilation-table
+{
+    width: 100%;
+}
+
+.footer-adder
+{
+    text-align: right;
+}

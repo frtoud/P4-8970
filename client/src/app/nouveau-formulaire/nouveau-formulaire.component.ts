@@ -1,16 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ComponentFactoryResolver, } from '@angular/core';
+import { Router } from '@angular/router';
 
-export interface FormData {
-  name: string;
-}
+import { FormDirective } from './form-host.directive';
 
-const FORMS_DATA: FormData[] = [
-  {name: 'Demande d’achat'},
-  {name: 'Demande de paiement'},
-  {name: 'Aide financière'},
-  {name: 'Rapport de déplacement'},
-  {name: 'Avance de voyage'}
-];
+import { TemplateService, FormData } from '../services/template.service';
 
 @Component({
   selector: 'app-nouveau-formulaire',
@@ -18,10 +11,31 @@ const FORMS_DATA: FormData[] = [
   styleUrls: ['./nouveau-formulaire.component.css']
 })
 export class NouveauFormulaireComponent implements OnInit {
-  dataSource = FORMS_DATA;
-  constructor() { }
 
-  ngOnInit() {
+  FORMS_DATA : FormData[];
+  formToDisplay = "DA";
+
+  ngOnInit()
+  {
+    this.FORMS_DATA = this.formService.getForms();
+    this.displayPreview(this.formService.getForms()[0]);
+  }
+
+  @ViewChild(FormDirective) formHost: FormDirective;
+  constructor(private router: Router, private componentFactoryResolver: ComponentFactoryResolver, private formService : TemplateService) { }
+  
+  displayPreview(element) {
+    this.formToDisplay = element.id;
+
+    let componentFactory = this.componentFactoryResolver.resolveComponentFactory(element.component);
+    let viewContainerRef = this.formHost.viewContainerRef;
+    viewContainerRef.clear();
+    viewContainerRef.createComponent(componentFactory);
+
+  }
+
+  create(){
+    this.router.navigate(['/new', this.formToDisplay]);
   }
 
 }

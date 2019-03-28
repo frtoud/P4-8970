@@ -1,0 +1,28 @@
+<form id="edit-account-form" (submit)="editAccount($event)">
+    <h4>{{ title }}</h4>
+  
+    <mat-form-field>
+        <input matInput placeholder="Adresse e-mail" [formControl]="emailFormControl">
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            Entrez une adresse e-mail valide
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          Adresse e-mail <strong>obligatoire</strong>
+        </mat-error>
+    </mat-form-field>
+
+    <button mat-stroked-button id="resetPwd" type="button"
+    (click)="resetAccountPassword($event)">
+      RÉINITIALISER LE MOT DE PASSE
+    </button>
+    <button mat-stroked-button id="promoteAccount" type="button" 
+    (click)="promoteAccount()" *ngIf="displayPromoteButton">
+      PROPAGER PRIVILÈGES ADMINISTRATEUR
+    </button>
+  
+    <div id="control-buttons">
+      <button mat-stroked-button id="cancel" type="button"
+      (click)="cancel()">ANNULER</button>
+      <button mat-stroked-button id="submit" type="submit">ENREGISTRER</button>
+    </div>
+  </form>

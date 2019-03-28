@@ -1,0 +1,24 @@
+<div id="container"> 
+  <h4>Pièces jointes</h4>
+
+    <mat-chip-list>
+      <mat-chip *ngFor="let file of attachedFiles" (click)="onClick(file.nomReel)">
+        {{file.nomOriginal}}
+      </mat-chip>
+    </mat-chip-list>
+    <label id="label" for="files">
+      Ajouter une pièce jointe... &nbsp;
+      <i class="material-icons"> attachment </i>
+    </label>
+    <input id="files" type="file" (change)="fileChangeEvent($event)" multiple>
+    <mat-chip-list>
+      <mat-chip *ngFor="let file of filesToUpload">
+        {{file.name}}
+      </mat-chip>
+    </mat-chip-list>
+
+  <button mat-button (click)="upload($event)">
+    CONFIRMER
+  </button>
+
+</div>

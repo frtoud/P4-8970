@@ -1,0 +1,7 @@
+<div mat-dialog-content id="feedback">
+    <i [ngClass]="{'material-icons': true, 'done': !data.error, 'error': data.error}">{{ data.icon }}</i>
+    <p>{{ data.message }}</p>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">FERMER</button>
+</div>

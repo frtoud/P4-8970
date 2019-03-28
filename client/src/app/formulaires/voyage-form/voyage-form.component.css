@@ -1,0 +1,235 @@
+#form-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 30px;
+    padding: 5px;
+}
+
+#entite-externe, 
+#beneficiaire,  
+#demandeur,
+#nouveau-fournisseur, 
+#endroit-deplacement,
+#but-deplacement,
+#estimation-depenses,
+#ventilation-budgetaire,
+#avances-demandees,
+#references {
+    border: 2px solid black;
+    margin: 5px;
+}
+
+#signatures {
+    margin: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 2;
+    justify-content: space-between;
+}
+
+h6 {
+    margin:0;
+    padding: 2px 5px;
+    font-size: 0.9em;
+    background-color: #CCD4DF;
+}
+
+div {
+    font-size: 13px;
+}
+
+.signature {
+    border: 2px solid black;
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    text-align: center;
+    width: 480px;
+}
+
+.signature mat-form-field {
+    width: 100%;
+}
+
+#entite-externe {
+    width: max-content;
+}
+
+mat-form-field {
+    padding: 0px 5px;
+}
+
+#entite-externe mat-form-field {
+    width: 150px;
+}
+
+#entite-externe mat-form-field:last-child {
+    width: 90px;
+    margin: 0px 20px;
+}
+
+#beneficiaire-demandeur {
+    display: flex;
+}
+
+#beneficiaire-demandeur > div {
+    flex: 1 1;
+}
+
+#beneficiaire mat-form-field {
+    width: 90%;
+}
+
+#demandeur mat-form-field {
+    width: 45%;
+}
+
+#nouveau-fournisseur mat-form-field:first-of-type {
+    width: 30%;
+    margin-right: 30%;
+}
+
+#nouveau-fournisseur mat-form-field:last-child {
+    width: 10%; 
+}
+
+#form-date {
+    background-color: #CCD4DF;
+}
+
+#description-facture th {
+    padding: 10px 0px 0px 5px;
+}
+
+#endroit-deplacement table {
+    border-collapse: collapse;
+}
+
+#endroit {
+    width: 61%;
+}
+
+#endroit mat-form-field {
+    width: 95%;
+}
+
+#du, au {
+    width: 13%;
+}
+
+#duree {
+    text-align: center;
+    width: 13%;
+}
+
+#but-deplacement mat-form-field {
+    text-align: center;
+    width: 95%;
+}
+
+#tableau-estimation-depenses {
+    border-collapse: collapse; 
+    border: 1px solid black;
+    margin-bottom: 1%;
+    margin-left: 5%;
+    margin-right: 5%;
+    table-layout: fixed;
+    width: 90%;
+}
+
+#tableau-avances-demandees {
+    border-collapse: collapse; 
+    border:1px solid black;
+    width: 75%;
+}
+
+#tableau-estimation-depenses th,
+#tableau-estimation-depenses td,
+#tableau-avances-demandees th,
+#tableau-avances-demandees td {
+    border:1px solid black;
+}
+
+#avances-demandees mat-form-field {
+    width: 90%;
+}
+
+#endroit-deplacement thead,
+#estimation-depenses thead {
+    background-color: #CCD4DF;
+}
+
+#ventilation-table {
+    text-align: center;
+    width: 100%;
+}
+
+#ventilation-budgetaire th,
+#avance-1,
+#avance-2,
+#pour-1,
+#pour-2,
+#avances-total {
+    background-color: #CCD4DF;
+    text-align: center;
+}
+
+#unite-colonne,
+#unite-cell {
+    width: 40%;
+}
+
+#compte-colonne,
+#compte-cell {
+    width: 80%;
+}
+
+#montant-colonne,
+#montant-cell {
+    padding-left: 200px;
+}
+
+input {
+    text-align: center;
+}
+
+#ventilation-total-cell {
+    padding-right: 60px;
+    text-align: right;
+}
+
+#ventilation-total {
+    color: red;
+}
+
+#avances-total-cell {
+    padding: 18px 0px 18px 0px;
+    text-align: center;
+}
+
+#estimation-total,
+#avances-total-value {
+    color: red;
+    text-align: center;
+}
+
+#references {
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#references strong:nth-of-type(2) {
+    margin: 5px;
+}
+
+#references div {
+    background-color: #CCD4DF;
+}
+
+th {
+    background: #CCD4DF;
+    color: black;
+}

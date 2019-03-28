@@ -1,0 +1,70 @@
+#edit-account-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid gray;
+    border-radius: 15px 15px 15px 15px;
+    width: 40%;
+    margin: auto;
+    margin-top: 10%;
+}
+
+h4 {
+    text-align: center;
+    width: 96%;
+    background: linear-gradient(to bottom, #eeeeee 0%,#cccccc 100%);
+    font-weight: normal;
+    border-radius: 15px 15px 0px 0px;
+    padding: 2%;
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+#cancel {
+    background: linear-gradient(to bottom, #eeeeee 0%,#cccccc 100%);
+    margin-right: 5px;
+    width: 120px;
+}
+
+#submit {
+    background: linear-gradient(to bottom, #c5deea 0%,#8abbd7 31%,#066dab 100%);
+}
+
+mat-form-field {
+    width: 250px;
+    text-align: center;
+}
+
+#resetPwd, #promoteAccount {
+    background: linear-gradient(to bottom, #e4efc0 0%,#abbd73 100%);
+    width: 300px;
+    margin-bottom: 10px;
+}
+
+#control-buttons {
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
+
+div.mat-dialog-actions {
+    display: flex;
+    justify-content: space-around;
+}
+
+#feedback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.mat-dialog-actions button {
+    background: linear-gradient(to bottom, #eeeeee 0%,#cccccc 100%);
+}
+
+.error {
+    color: #B81E32;
+}
+
+.done {
+    color: #8DC83D;
+}

@@ -1,0 +1,46 @@
+#new-account-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid gray;
+    border-radius: 15px 15px 15px 15px;
+    width: 30%;
+    margin: auto;
+    margin-top: 10%;
+}
+
+h4 {
+    text-align: center;
+    width: 96%;
+    background: linear-gradient(to bottom, #eeeeee 0%,#cccccc 100%);
+    font-weight: normal;
+    border-radius: 15px 15px 0px 0px;
+    padding: 2%;
+    margin: 0;
+}
+
+mat-form-field:not(:last-of-type) {
+    width: 250px;
+}
+
+mat-form-field:last-of-type {
+    width: 150px;
+}
+
+button {
+    width: max-content;
+    margin: 5px;
+}
+
+#cancel {
+    background: linear-gradient(to bottom, #eeeeee 0%,#cccccc 100%);
+}
+
+#submit {
+    background: linear-gradient(to bottom, #c5deea 0%,#8abbd7 31%,#066dab 100%);
+}
+
+#message {
+    color: red;
+    text-align: center;
+}

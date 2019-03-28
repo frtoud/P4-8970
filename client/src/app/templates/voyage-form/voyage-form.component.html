@@ -11,68 +11,89 @@
 </div>
 
 <div id="entite-externe">
-  <h6>ENTITÉ EXTERNE</h6>
-  <mat-form-field>
-      <span matPrefix>P &nbsp;</span>
-      <input matInput type="text" placeholder="EMPLOYÉ (matricule)">
-  </mat-form-field>
-  <br>
-  <mat-form-field>
-      <span matPrefix>F &nbsp;</span>
-      <input matInput type="text" placeholder="FOURNISSEUR (numéro)">
-  </mat-form-field>
-
-  <mat-form-field>
-      <input matInput type="text" placeholder="Code adresse">
-  </mat-form-field> 
+    <h6>ENTITÉ EXTERNE</h6>
+    <div id="entite_employe"
+    [ngClass]="{'assignation_selected': entite_employe.assigneA === collaborateurID, 'assignation_assigned': entite_employe.assigneA !== null}">
+    <mat-form-field>
+        <span matPrefix>P &nbsp;</span>
+        <input matInput type="text" placeholder="EMPLOYÉ (matricule)"
+        [(ngModel)]="entite_employe.matricule">
+    </mat-form-field>
+    <br>
+    </div>
+    <div id="entite_fournisseur"
+    [ngClass]="{'assignation_selected': entite_fournisseur.assigneA === collaborateurID, 'assignation_assigned': entite_fournisseur.assigneA !== null}">
+    <mat-form-field>
+        <span matPrefix>F &nbsp;</span>
+        <input matInput type="text" placeholder="FOURNISSEUR (numéro)"
+        [(ngModel)]="entite_fournisseur.numero">
+    </mat-form-field> 
+    <mat-form-field>
+        <input matInput type="text" placeholder="Code adresse"
+        [(ngModel)]="entite_fournisseur.adresse">
+    </mat-form-field>
+    </div>
 </div>
 
 <div id="beneficiaire-demandeur">
-  <div id="beneficiaire">
+  <div id="beneficiaire"
+  [ngClass]="{'assignation_selected': beneficiaire.assigneA === collaborateurID, 'assignation_assigned': beneficiaire.assigneA !== null}">
       <h6>BÉNÉFICIAIRE</h6>
       <mat-form-field>
-          <input matInput type="text" placeholder="NOM DE L'EMPLOYÉ">
+          <input matInput type="text" placeholder="NOM DE L'EMPLOYÉ"
+          [(ngModel)]="beneficiaire.nom">
       </mat-form-field>
   </div>
-  <div id="demandeur">
+  <div id="demandeur"
+  [ngClass]="{'assignation_selected': demandeur.assigneA === collaborateurID, 'assignation_assigned': demandeur.assigneA !== null}">
       <h6>DEMANDEUR</h6>
       <mat-form-field>
-          <input matInput type="text" placeholder="NOM DU DEMANDEUR">
+          <input matInput type="text" placeholder="NOM DU DEMANDEUR"
+          [(ngModel)]="demandeur.nom">
       </mat-form-field>
       <mat-form-field>
-          <input matInput type="text" placeholder="TÉLÉPHONE">
+          <input matInput type="text" placeholder="TÉLÉPHONE"
+          [(ngModel)]="demandeur.telephone">
       </mat-form-field>
   </div>
 </div>
 
-<div id="nouveau-fournisseur">
+<div id="fournisseur"
+[ngClass]="{'assignation_selected': fournisseur.assigneA === collaborateurID, 'assignation_assigned': fournisseur.assigneA !== null}">
   <mat-form-field>
-      <input matInput type="text" placeholder="ADRESSE DE L'EMPLOYÉ ou DU FOURNISSEUR">
+      <input matInput type="text" placeholder="ADRESSE DE L'EMPLOYÉ ou DU FOURNISSEUR"
+      [(ngModel)]="fournisseur.adresse">
   </mat-form-field>
 
   <mat-form-field>
-      <input matInput type="text" placeholder="TÉLÉPHONE">
+      <input matInput type="text" placeholder="TÉLÉPHONE"
+      [(ngModel)]="fournisseur.telephone">
   </mat-form-field>
 
   <mat-form-field>
-      <input matInput type="text" placeholder="FAX">
+      <input matInput type="text" placeholder="FAX"
+      [(ngModel)]="fournisseur.fax">
   </mat-form-field>
   <br>
   <mat-form-field>
-      <input matInput type="text" placeholder="VILLE">
+      <input matInput type="text" placeholder="VILLE"
+      [(ngModel)]="fournisseur.ville">
   </mat-form-field>
 
   <mat-form-field>
-      <input matInput type="text" placeholder="PROVINCE">
+      <input matInput type="text" placeholder="PROVINCE"
+      [(ngModel)]="fournisseur.provine">
   </mat-form-field>
 
   <mat-form-field>
-      <input matInput type="text" placeholder="CODE POSTAL">
+      <input matInput type="text" placeholder="CODE POSTAL"
+      [(ngModel)]="fournisseur.postal">
   </mat-form-field>
 </div>
 
 
-<div id="endroit-deplacement">
+<div id="endroit_deplacement"
+[ngClass]="{'assignation_selected': endroit_deplacement.assigneA === collaborateurID, 'assignation_assigned': endroit_deplacement.assigneA !== null}">
     <table width="100%">
         <thead>
             <tr>
@@ -85,25 +106,26 @@
             <tr>
                 <td id="endroit">
                     <mat-form-field>
-                        <input matInput type="text">
+                        <input matInput type="text"
+                        [(ngModel)]="endroit_deplacement.endroit">
                     </mat-form-field>
                 </td>
                 <td id="du">
                     <mat-form-field>
-                        <input #DateDu matInput [matDatepicker]="pickerDU" placeholder="DU" (click)="pickerDU.open()" [ngModel]="du" (ngModelChange)="duChange($event)">
+                        <input #DateDu matInput [matDatepicker]="pickerDU" placeholder="DU" (click)="pickerDU.open()" [ngModel]="endroit_deplacement.du" (ngModelChange)="duChange($event)">
                         <mat-datepicker-toggle matSuffix [for]="pickerDU"></mat-datepicker-toggle>
                         <mat-datepicker #pickerDU></mat-datepicker>
                     </mat-form-field>
                 </td>
                 <td id="au">
                     <mat-form-field>
-                        <input #DateAu matInput [matDatepicker]="pickerAU" placeholder="AU" (click)="pickerAU.open()" [ngModel]="au" (ngModelChange)="auChange($event)">
+                        <input #DateAu matInput [matDatepicker]="pickerAU" placeholder="AU" (click)="pickerAU.open()" [ngModel]="endroit_deplacement.au" (ngModelChange)="auChange($event)">
                         <mat-datepicker-toggle matSuffix [for]="pickerAU"></mat-datepicker-toggle>
                         <mat-datepicker #pickerAU></mat-datepicker>
                     </mat-form-field>
                 </td>
                 <td id="duree">
-                    <p *ngIf="bothFilled">{{ dureeDeplacement }}</p>
+                    <p *ngIf="bothFilled && endroit_deplacement.du < endroit_deplacement.au">{{ dureeDeplacement }}</p>
                 </td>
             </tr>
         </tbody>
@@ -111,15 +133,18 @@
 </div>
 
 
-<div id="but-deplacement">
+<div id="but_deplacement"
+[ngClass]="{'assignation_selected': but_deplacement.assigneA === collaborateurID, 'assignation_assigned': but_deplacement.assigneA !== null}">
   <h6>BUT DU DÉPLACEMENT</h6>
   <mat-form-field>
-        <input matInput type="text">
+        <input matInput type="text"
+        [(ngModel)]="but_deplacement.raison">
   </mat-form-field>
 
 </div>
 
-<div id="estimation-depenses">
+<div id="estimation"
+[ngClass]="{'assignation_selected': estimation.assigneA === collaborateurID, 'assignation_assigned': estimation.assigneA !== null}">
   <h6>ESTIMATION DES DÉPENSES (EN DOLLARS CANADIENS)</h6>
   <table width="100%" id="tableau-estimation-depenses">
         <thead>
@@ -135,22 +160,22 @@
             <tr>
                 <td>
                     <mat-form-field>
-                        <input matInput type="number" [ngModel]="fraisInscription" (ngModelChange)="updateFraisInscription($event)">
+                        <input matInput type="number" [ngModel]="estimation.fraisInscription" (ngModelChange)="updateFraisInscription($event)">
                     </mat-form-field>
                 </td>
                 <td>
                     <mat-form-field>
-                        <input matInput type="number" [ngModel]="transport" (ngModelChange)="updateTransport($event)">
+                        <input matInput type="number" [ngModel]="estimation.transport" (ngModelChange)="updateTransport($event)">
                     </mat-form-field>
                 </td>
                 <td>
                     <mat-form-field>
-                        <input matInput type="number" [ngModel]="sejour" (ngModelChange)="updateSejour($event)">
+                        <input matInput type="number" [ngModel]="estimation.sejour" (ngModelChange)="updateSejour($event)">
                     </mat-form-field>
                 </td>
                 <td>
                     <mat-form-field>
-                        <input matInput type="number" [ngModel]="autres" (ngModelChange)="updateAutres($event)">
+                        <input matInput type="number" [ngModel]="estimation.autres" (ngModelChange)="updateAutres($event)">
                     </mat-form-field>
                 </td>
                 <td>
@@ -161,7 +186,8 @@
   </table>
 </div>
 
-<div id="ventilation-budgetaire">
+<div id="ventilation"
+[ngClass]="{'assignation_selected': ventilation.assigneA === collaborateurID, 'assignation_assigned': ventilation.assigneA !== null}">
   <h6>VENTILATION BUDGÉTAIRE</h6>
   <table mat-table [dataSource]="dSventilation" id="ventilation-table">  
         <ng-container matColumnDef="ubr">
@@ -224,7 +250,8 @@
     </table>
 </div>
 
-<div id="avances-demandees">
+<div id="avances"
+[ngClass]="{'assignation_selected': avances.assigneA === collaborateurID, 'assignation_assigned': avances.assigneA !== null}">
   <h6>AVANCES DEMANDÉES</h6>
   <table width="100%" id="tableau-avances-demandees">
         <tbody>
@@ -234,7 +261,7 @@
                 </td>
                 <td>
                     <mat-form-field>
-                        <input matInput type="number" [(ngModel)]="avance1" (ngModelChange)="updateAvanceTotal()">
+                        <input matInput type="number" [(ngModel)]="avances.avance1" (ngModelChange)="updateAvanceTotal()">
                     </mat-form-field>
                 </td>
                 <td id="pour-1">
@@ -242,7 +269,8 @@
                 </td>
                 <td>
                     <mat-form-field>
-                        <input #DateDu matInput [matDatepicker]="pickerPour1" placeholder="POUR" (click)="pickerPour1.open()">
+                        <input #DateDu matInput [matDatepicker]="pickerPour1" placeholder="POUR" (click)="pickerPour1.open()"
+                        [(ngModel)]="avances.date1" >
                         <mat-datepicker-toggle matSuffix [for]="pickerPour1"></mat-datepicker-toggle>
                         <mat-datepicker #pickerPour1></mat-datepicker>
                     </mat-form-field>
@@ -255,7 +283,7 @@
                 </td>
                 <td>
                     <mat-form-field>
-                        <input matInput type="number" [(ngModel)]="avance2" (ngModelChange)="updateAvanceTotal()">
+                        <input matInput type="number" [(ngModel)]="avances.avance2" (ngModelChange)="updateAvanceTotal()">
                     </mat-form-field>
                 </td>
                 <td id="pour-2">
@@ -263,7 +291,8 @@
                 </td>
                 <td>
                     <mat-form-field>
-                        <input #DateAu matInput [matDatepicker]="pickerPour2" placeholder="POUR" (click)="pickerPour1.open()">
+                        <input #DateAu matInput [matDatepicker]="pickerPour2" placeholder="POUR" (click)="pickerPour1.open()"
+                        [(ngModel)]="avances.date2" >
                         <mat-datepicker-toggle matSuffix [for]="pickerPour2"></mat-datepicker-toggle>
                         <mat-datepicker #pickerPour2></mat-datepicker>
                     </mat-form-field>
@@ -283,92 +312,28 @@
   </div>
 
   <div id="signatures">
-    <div id="signature-demandeur" class="signature">
-        <mat-form-field>
-            <input matInput type="text" placeholder="SIGNATURE DU DEMANDEUR" [(ngModel)]="nomDemandeur">
-            <mat-hint *ngIf="nomDemandeur.length == 0">
-            Le nom et le prénom du demandeur sont obligatoires!
-            </mat-hint>
-        </mat-form-field>
-        
-        <mat-checkbox
-          class="example-margin"
-          [(ngModel)]="demandeurChecked"
-          [(indeterminate)]="indeterminate"
-          [labelPosition]="labelPosition"
-          [disabled]="disabled"
-          color="primary">
-          Je confirme et j'accepte la véracité des informations ci-dessus.
-        </mat-checkbox>
-        <br>
-        <button mat-raised-button *ngIf="!signatureAdded" 
-          [disabled]="nomDemandeur.length == 0 || !demandeurChecked" 
-          (click)="addSignature()">SIGNER</button>
-
-        <button mat-raised-button *ngIf="signatureAdded" 
-          (click)="removeSignature()">ANNULER</button>
-    </div>
-    <div id="signature-ubr" class="signature">
-        <mat-form-field>
-            <input matInput type="text" placeholder="SIGNATURE(S) DU OU DES RESPONSABLE(S) DE L'UBR">
-            <mat-hint *ngIf="nomDemandeur.length == 0">
-            Le(s) nom(s) et le(s) prénom(s) du ou des responsable(s) sont obligatoires!
-            </mat-hint>
-        </mat-form-field>
-        
-        <mat-checkbox
-            class="example-margin"
-            [(ngModel)]="ubrChecked"
+    <div *ngFor="let sig of signatures" >
+        <div class="signature" id={{sig.id}}
+        [ngClass]="{'assignation_selected': sig.assigneA === collaborateurID, 'assignation_assigned': sig.assigneA !== null}">
+            <mat-form-field>
+                <input matInput type="text" placeholder="{{sig.name}}" [disabled]="sig.lock || sig.validated" [(ngModel)]="sig.value">
+                <mat-hint *ngIf="sig.value.length === 0">
+                    Le nom et le prénom sont obligatoires!
+                    </mat-hint>
+                </mat-form-field>
+            <mat-checkbox
+            class="large"
+            [(ngModel)]="sig.check"
             [(indeterminate)]="indeterminate"
             [labelPosition]="labelPosition"
-            [disabled]="disabled"
-            color="primary">
+            [disabled]="sig.lock || sig.validated">
             Je confirme et j'accepte la véracité des informations ci-dessus.
-        </mat-checkbox>
-        <br>
-        <button mat-raised-button disabled>SIGNER</button>
+            </mat-checkbox>
+            <br>
+            <button mat-raised-button [disabled]="sig.value.length <= 0 || sig.lock || !sig.check" (click)="sig.onButtonClick()">{{sig.buttonMessage()}}</button>
+        </div>
     </div>
-    <div id="signature-sup" class="signature">
-        <mat-form-field>
-            <input matInput type="text" placeholder="SIGNATURE DU SUPÉRIEUR IMMÉDIAT">
-            <mat-hint *ngIf="nomDemandeur.length == 0">
-            Le nom et le prénom du supérieur immédiat sont obligatoires!
-            </mat-hint>
-        </mat-form-field>
-        
-        <mat-checkbox
-            class="example-margin"
-            [(ngModel)]="supChecked"
-            [(indeterminate)]="indeterminate"
-            [labelPosition]="labelPosition"
-            [disabled]="disabled"
-            color="primary">
-            Je confirme et j'accepte la véracité des informations ci-dessus.
-        </mat-checkbox>
-        <br>
-        <button mat-raised-button disabled>SIGNER</button>
-    </div>
-    <div id="signature-finance" class="signature">
-        <mat-form-field>
-            <input matInput type="text" placeholder="SERVICE DES FINANCES">
-            <mat-hint *ngIf="nomDemandeur.length == 0">
-            Nom obligatoire!
-            </mat-hint>
-        </mat-form-field>
-        
-        <mat-checkbox
-            class="example-margin"
-            [(ngModel)]="financeChecked"
-            [(indeterminate)]="indeterminate"
-            [labelPosition]="labelPosition"
-            [disabled]="disabled"
-            color="primary">
-            Je confirme et j'accepte la véracité des informations ci-dessus.
-        </mat-checkbox>
-        <br>
-        <button mat-raised-button disabled>SIGNER</button>
-    </div>
-</div>
+  </div>
 
 <div id="references">
   <p>

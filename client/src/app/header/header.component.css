@@ -14,8 +14,33 @@
   position: sticky;
   top: 0;
   z-index: 1;
+  background-color: #262627;
 }
 
 .fill-space{
   flex: 1 1 auto;
+}
+
+#navbar-links{
+  flex: 1 1 auto;
+  width: 100px;
+  margin:20px;
+  float:right;
+  color:white
+}
+
+#bar{
+  display: flex;
+  flex-direction: row;
+}
+
+#link{
+  margin: 20px;
+  color:white
+}
+
+@media print{
+  #toolbar{
+    visibility: hidden;
+  }
 }

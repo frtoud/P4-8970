@@ -1,0 +1,383 @@
+<div id="form-header">
+  <img src="assets/img/logo-POLY-forms.png" width=180 height=80>
+  <h4>AVANCE DE VOYAGE</h4>
+  <div id="form-date">
+      <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="DATE" (click)="picker.open()">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+  </div>
+</div>
+
+<div id="entite-externe">
+  <h6>ENTITÉ EXTERNE</h6>
+  <mat-form-field>
+      <span matPrefix>P &nbsp;</span>
+      <input matInput type="text" placeholder="EMPLOYÉ (matricule)">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+      <span matPrefix>F &nbsp;</span>
+      <input matInput type="text" placeholder="FOURNISSEUR (numéro)">
+  </mat-form-field>
+
+  <mat-form-field>
+      <input matInput type="text" placeholder="Code adresse">
+  </mat-form-field> 
+</div>
+
+<div id="beneficiaire-demandeur">
+  <div id="beneficiaire">
+      <h6>BÉNÉFICIAIRE</h6>
+      <mat-form-field>
+          <input matInput type="text" placeholder="NOM DE L'EMPLOYÉ">
+      </mat-form-field>
+  </div>
+  <div id="demandeur">
+      <h6>DEMANDEUR</h6>
+      <mat-form-field>
+          <input matInput type="text" placeholder="NOM DU DEMANDEUR">
+      </mat-form-field>
+      <mat-form-field>
+          <input matInput type="text" placeholder="TÉLÉPHONE">
+      </mat-form-field>
+  </div>
+</div>
+
+<div id="nouveau-fournisseur">
+  <mat-form-field>
+      <input matInput type="text" placeholder="ADRESSE DE L'EMPLOYÉ ou DU FOURNISSEUR">
+  </mat-form-field>
+
+  <mat-form-field>
+      <input matInput type="text" placeholder="TÉLÉPHONE">
+  </mat-form-field>
+
+  <mat-form-field>
+      <input matInput type="text" placeholder="FAX">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+      <input matInput type="text" placeholder="VILLE">
+  </mat-form-field>
+
+  <mat-form-field>
+      <input matInput type="text" placeholder="PROVINCE">
+  </mat-form-field>
+
+  <mat-form-field>
+      <input matInput type="text" placeholder="CODE POSTAL">
+  </mat-form-field>
+</div>
+
+
+<div id="endroit-deplacement">
+    <table width="100%">
+        <thead>
+            <tr>
+                <th align="left">ENDROIT DU DÉPLACEMENT</th>
+                <th colspan="2">DURÉE DU DÉPLACEMENT</th>
+                <th>NOMBRE<br>DE JOURS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="endroit">
+                    <mat-form-field>
+                        <input matInput type="text">
+                    </mat-form-field>
+                </td>
+                <td id="du">
+                    <mat-form-field>
+                        <input #DateDu matInput [matDatepicker]="pickerDU" placeholder="DU" (click)="pickerDU.open()" [ngModel]="du" (ngModelChange)="duChange($event)">
+                        <mat-datepicker-toggle matSuffix [for]="pickerDU"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerDU></mat-datepicker>
+                    </mat-form-field>
+                </td>
+                <td id="au">
+                    <mat-form-field>
+                        <input #DateAu matInput [matDatepicker]="pickerAU" placeholder="AU" (click)="pickerAU.open()" [ngModel]="au" (ngModelChange)="auChange($event)">
+                        <mat-datepicker-toggle matSuffix [for]="pickerAU"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerAU></mat-datepicker>
+                    </mat-form-field>
+                </td>
+                <td id="duree">
+                    <p *ngIf="bothFilled">{{ dureeDeplacement }}</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<div id="but-deplacement">
+  <h6>BUT DU DÉPLACEMENT</h6>
+  <mat-form-field>
+        <input matInput type="text">
+  </mat-form-field>
+
+</div>
+
+<div id="estimation-depenses">
+  <h6>ESTIMATION DES DÉPENSES (EN DOLLARS CANADIENS)</h6>
+  <table width="100%" id="tableau-estimation-depenses">
+        <thead>
+            <tr>
+                <th>FRAIS D'INSCRIPTION</th>
+                <th>TRANSPORT</th>
+                <th>SÉJOUR</th>
+                <th>AUTRES</th>
+                <th>TOTAL</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <mat-form-field>
+                        <input matInput type="number" [ngModel]="fraisInscription" (ngModelChange)="updateFraisInscription($event)">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field>
+                        <input matInput type="number" [ngModel]="transport" (ngModelChange)="updateTransport($event)">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field>
+                        <input matInput type="number" [ngModel]="sejour" (ngModelChange)="updateSejour($event)">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field>
+                        <input matInput type="number" [ngModel]="autres" (ngModelChange)="updateAutres($event)">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <p id="estimation-total">{{ estimationTotal | currency }}</p>
+                </td>
+            </tr>
+        </tbody>
+  </table>
+</div>
+
+<div id="ventilation-budgetaire">
+  <h6>VENTILATION BUDGÉTAIRE</h6>
+  <table mat-table [dataSource]="dSventilation" id="ventilation-table">  
+        <ng-container matColumnDef="ubr">
+            <th mat-header-cell *matHeaderCellDef> UBR </th>
+            <td mat-cell *matCellDef="let element">
+                <mat-form-field>
+                    <input matInput type="text" [(ngModel)]="element.ubr">
+                </mat-form-field>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="compte">
+            <th mat-header-cell *matHeaderCellDef id="compte-colonne"> COMPTE </th>
+            <td mat-cell *matCellDef="let element">
+                <mat-form-field id="compte-cell">
+                    <input matInput type="text" [(ngModel)]="element.compte">
+                </mat-form-field>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="unite">
+            <th mat-header-cell *matHeaderCellDef id="unite-colonne"> UNITÉ <br> ADM. </th>
+            <td mat-cell *matCellDef="let element">
+                <mat-form-field id="unite-cell">
+                    <input matInput type="text" [(ngModel)]="element.unite">
+                </mat-form-field>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="montant">
+            <th mat-header-cell *matHeaderCellDef id="montant-colonne"> MONTANT </th>
+            <td mat-cell *matCellDef="let element" id="montant-cell">
+                <mat-form-field>
+                    <input matInput type="number" [(ngModel)]="element.montant" (ngModelChange)="updateTotal()">
+                </mat-form-field>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button color="warn"
+                (click)="onDelete(element.id)">x</button>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="total">
+            <td mat-footer-cell *matFooterCellDef colspan="4" id="ventilation-total-cell">
+                <strong id="ventilation-total">TOTAL: {{ ventilationTotal | currency}}</strong>
+            </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="addRow">
+            <td mat-footer-cell *matFooterCellDef>
+                <button mat-mini-fab color="primary"
+                (click)="onCreate()">+</button>
+            </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-footer-row *matFooterRowDef="['total','addRow']"></tr>
+    </table>
+</div>
+
+<div id="avances-demandees">
+  <h6>AVANCES DEMANDÉES</h6>
+  <table width="100%" id="tableau-avances-demandees">
+        <tbody>
+            <tr>
+                <td id="avance-1">
+                    <h6>1<sup>ère</sup> AVANCE</h6>
+                </td>
+                <td>
+                    <mat-form-field>
+                        <input matInput type="number" [(ngModel)]="avance1" (ngModelChange)="updateAvanceTotal()">
+                    </mat-form-field>
+                </td>
+                <td id="pour-1">
+                    <h6>POUR</h6>
+                </td>
+                <td>
+                    <mat-form-field>
+                        <input #DateDu matInput [matDatepicker]="pickerPour1" placeholder="POUR" (click)="pickerPour1.open()">
+                        <mat-datepicker-toggle matSuffix [for]="pickerPour1"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerPour1></mat-datepicker>
+                    </mat-form-field>
+                </td>
+            </tr>
+
+            <tr>
+                <td id="avance-2">
+                    <h6>2<sup>ième</sup> AVANCE</h6>
+                </td>
+                <td>
+                    <mat-form-field>
+                        <input matInput type="number" [(ngModel)]="avance2" (ngModelChange)="updateAvanceTotal()">
+                    </mat-form-field>
+                </td>
+                <td id="pour-2">
+                    <h6>POUR</h6>
+                </td>
+                <td>
+                    <mat-form-field>
+                        <input #DateAu matInput [matDatepicker]="pickerPour2" placeholder="POUR" (click)="pickerPour1.open()">
+                        <mat-datepicker-toggle matSuffix [for]="pickerPour2"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerPour2></mat-datepicker>
+                    </mat-form-field>
+                </td>
+            </tr>
+
+            <tr>
+                <td id="avances-total">
+                    <h6>TOTAL</h6>
+                </td>
+                <td id="avances-total-cell">
+                    <strong id="avances-total-value">{{ avanceTotal | currency }}</strong>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+
+  <div id="signatures">
+    <div id="signature-demandeur" class="signature">
+        <mat-form-field>
+            <input matInput type="text" placeholder="SIGNATURE DU DEMANDEUR" [(ngModel)]="nomDemandeur">
+            <mat-hint *ngIf="nomDemandeur.length == 0">
+            Le nom et le prénom du demandeur sont obligatoires!
+            </mat-hint>
+        </mat-form-field>
+        
+        <mat-checkbox
+          class="example-margin"
+          [(ngModel)]="demandeurChecked"
+          [(indeterminate)]="indeterminate"
+          [labelPosition]="labelPosition"
+          [disabled]="disabled"
+          color="primary">
+          Je confirme et j'accepte la véracité des informations ci-dessus.
+        </mat-checkbox>
+        <br>
+        <button mat-raised-button *ngIf="!signatureAdded" 
+          [disabled]="nomDemandeur.length == 0 || !demandeurChecked" 
+          (click)="addSignature()">SIGNER</button>
+
+        <button mat-raised-button *ngIf="signatureAdded" 
+          (click)="removeSignature()">ANNULER</button>
+    </div>
+    <div id="signature-ubr" class="signature">
+        <mat-form-field>
+            <input matInput type="text" placeholder="SIGNATURE(S) DU OU DES RESPONSABLE(S) DE L'UBR">
+            <mat-hint *ngIf="nomDemandeur.length == 0">
+            Le(s) nom(s) et le(s) prénom(s) du ou des responsable(s) sont obligatoires!
+            </mat-hint>
+        </mat-form-field>
+        
+        <mat-checkbox
+            class="example-margin"
+            [(ngModel)]="ubrChecked"
+            [(indeterminate)]="indeterminate"
+            [labelPosition]="labelPosition"
+            [disabled]="disabled"
+            color="primary">
+            Je confirme et j'accepte la véracité des informations ci-dessus.
+        </mat-checkbox>
+        <br>
+        <button mat-raised-button disabled>SIGNER</button>
+    </div>
+    <div id="signature-sup" class="signature">
+        <mat-form-field>
+            <input matInput type="text" placeholder="SIGNATURE DU SUPÉRIEUR IMMÉDIAT">
+            <mat-hint *ngIf="nomDemandeur.length == 0">
+            Le nom et le prénom du supérieur immédiat sont obligatoires!
+            </mat-hint>
+        </mat-form-field>
+        
+        <mat-checkbox
+            class="example-margin"
+            [(ngModel)]="supChecked"
+            [(indeterminate)]="indeterminate"
+            [labelPosition]="labelPosition"
+            [disabled]="disabled"
+            color="primary">
+            Je confirme et j'accepte la véracité des informations ci-dessus.
+        </mat-checkbox>
+        <br>
+        <button mat-raised-button disabled>SIGNER</button>
+    </div>
+    <div id="signature-finance" class="signature">
+        <mat-form-field>
+            <input matInput type="text" placeholder="SERVICE DES FINANCES">
+            <mat-hint *ngIf="nomDemandeur.length == 0">
+            Nom obligatoire!
+            </mat-hint>
+        </mat-form-field>
+        
+        <mat-checkbox
+            class="example-margin"
+            [(ngModel)]="financeChecked"
+            [(indeterminate)]="indeterminate"
+            [labelPosition]="labelPosition"
+            [disabled]="disabled"
+            color="primary">
+            Je confirme et j'accepte la véracité des informations ci-dessus.
+        </mat-checkbox>
+        <br>
+        <button mat-raised-button disabled>SIGNER</button>
+    </div>
+</div>
+
+<div id="references">
+  <p>
+      <strong>*</strong> Joindre les pièces justificatives
+  </p>
+  <div>
+      <mat-form-field>
+          <input matInput type="text" placeholder="RÉFÉRENCE SAFIRH">
+      </mat-form-field>
+      <p>Réservé au service des finances</p>
+  </div>
+</div>

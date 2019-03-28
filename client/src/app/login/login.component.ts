@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { LoginService } from '../services/login.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -21,17 +23,16 @@ export class LoginComponent {
     Validators.required
   ]);
 
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService, private router: Router) {}
 
   login(event) {
     event.preventDefault;
     this.loginService.authenticateUser(this.emailFormControl.value, this.passwordFormControl.value)
     .then(authUser => {
-      console.log(authUser);
+      this.loginService.getUser().then(login=>{console.log(login.firstName);});
       this.isAuthenticated = true;
       this.loginError = undefined;
-      //TODO: Save JWT
-      //TODO: Navigate to dashboard
+      this.router.navigate(["dashboard"]);
     })
     .catch(err => {
       this.isAuthenticated = false;

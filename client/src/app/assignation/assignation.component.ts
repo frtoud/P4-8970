@@ -1,13 +1,34 @@
-import {Component, OnInit} from '@angular/core';
-import {MatDialogRef, MatDialog, ThemePalette} from '@angular/material';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {Component, OnInit, ViewChild, ComponentFactoryResolver, Inject } from '@angular/core';
+import {MatDialog} from '@angular/material';
 import { filter } from 'rxjs/operators';
+import { Router, ActivatedRoute } from '@angular/router';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
-export interface ParticipantColor {
+import { ParticipantsDialog } from './participants-dialog';
+
+import { FormDirective } from '../nouveau-formulaire/form-host.directive';
+
+import { TemplateService, FormData } from '../services/template.service';
+import { InstanceService } from '../services/instance.service';
+import { UserService, User } from '../services/users.service';
+import { BaseFormComponent } from '../templates/base-form.component';
+import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
+
+export interface Participant {
   name: string;
-  color: ThemePalette;
+  id: string;
 }
 
+export interface File {
+  name: string;
+}
+
+export interface Tile {
+  color: string;
+  cols: number;
+  rows: number;
+  text: string;
+}
 
 @Component({
   selector: 'app-assignation',
@@ -17,43 +38,112 @@ export interface ParticipantColor {
 
 export class AssignationComponent implements OnInit {
 
-  participants = [{name: 'bram'}, {name: 'johanne'}];
 
-  constructor(public dialog: MatDialog) {
-  }
+  listCollaborateurs: User[];
+  collaboratorID = '';
+  currentForm: FormData;
+
+  participants: User[] = []; // Liste à afficher
+  usedParticipants: User[] = []; // Sous-liste de ceux qui ont été assignés
+  participantInsuffisants = true; // TRUE si usedParticipants est vide
+
+  @ViewChild(FormDirective) formHost: FormDirective;
+  @ViewChild(FileUploaderComponent) fileUploader: FileUploaderComponent;
+  formInstance: BaseFormComponent;
+
+  constructor(public dialog: MatDialog,
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private templateService: TemplateService,
+    private userService: UserService,
+    private instanceService: InstanceService,
+    private router: Router, private route: ActivatedRoute) { }
+
+
+  tiles: Tile[] = [
+    {text: 'One', cols: 1, rows: 1, color: 'lightblue'},
+    {text: 'Two', cols: 1, rows: 1, color: 'lightgreen'},
+    {text: 'Three', cols: 2, rows: 2, color: 'lightpink'},
+  ];
+  files: File[] = [
+    {name: 'file.txt'}
+  ];
+
   ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
+    const element = this.templateService.getForm(id);
+    if (element) {
+      this.currentForm = element;
+      const componentFactory = this.componentFactoryResolver.resolveComponentFactory(element.component);
+      const viewContainerRef = this.formHost.viewContainerRef;
+      viewContainerRef.clear();
+      this.formInstance = viewContainerRef.createComponent(componentFactory).instance as BaseFormComponent;
+
+      this.userService.getAllUsers().then(list => this.listCollaborateurs = list);
+    } else {
+      // WRONG ID!!
+      this.router.navigate(['/new']);
+    }
   }
+
+  getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
   openDialog(): void {
+    const randomColor = this.getRandomColor();
     const dialogRef = this.dialog.open(ParticipantsDialog, {
-      width: '250px',
-      hasBackdrop: false
+      width: '400px',
+      data: {options: this.listCollaborateurs, participants: this.participants},
     });
-    dialogRef.afterClosed().pipe(filter(name => name))
-      .subscribe(name => {
-        this.participants.push({name: name});
+    dialogRef.afterClosed().pipe(filter(user => user))
+      .subscribe(user => {
+        this.participants.push(user as User);
       });
   }
-}
 
-@Component({
-  selector: 'participants-dialog',
-  templateUrl: 'participants-dialog.html',
-})
-
-export class ParticipantsDialog {
-  form: FormGroup;
-  constructor(
-    private formBuilder: FormBuilder,
-    private dialogRef: MatDialogRef<ParticipantsDialog>
-  ) {}
-
-  ngOnInit() {
-    this.form = this.formBuilder.group({
-      name: ''
-    });
+  loseFocus() {
+    this.collaboratorID = null;
+    this.formInstance.stopAssignation();
+    this.testParticipants();
+  }
+  getFocus(participant) {
+    if (this.collaboratorID === participant._id) {
+      this.loseFocus();
+    } else {
+      this.collaboratorID = participant._id;
+      this.formInstance.startAssignation(this.collaboratorID);
+    }
+    this.testParticipants();
+  }
+  dropParticipant(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.participants, event.previousIndex, event.currentIndex);
   }
 
-  submit(form) {
-    this.dialogRef.close(`${form.value.name}`);
+  onSend() {
+    this.testParticipants();
+
+    if (!this.participantInsuffisants) {
+      this.instanceService.postInstance(this.formInstance.getInterface(),
+      this.fileUploader.attachedFiles, this.usedParticipants, this.currentForm.id, this.currentForm.name).then(res => {
+        this.router.navigate(['/dashboard']);
+      }).catch(err => {
+        // TODOkete: alert?
+      });
+    }
+  }
+
+  testParticipants() {
+    // vérifier si la liste de participants actuelle existe
+    // IE. on peut mettre des participants tant qu'on veux on peut pas send tant qu'il y a pas au moins un assigned
+    // La vraie liste est envoyée
+    const ids: Set<string> = this.formInstance.getAssignations();
+    this.usedParticipants = this.participants.filter(user => ids.has(user._id));
+    this.participantInsuffisants = this.usedParticipants.length === 0;
   }
 }
+

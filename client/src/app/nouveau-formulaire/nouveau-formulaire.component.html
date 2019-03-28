@@ -1,20 +1,13 @@
-<table class="blueTable">
-  <tr>
-    Formulaires
-  </tr>
-  <tr>
-    <td class="dem-ach"> {{dataSource[0].name}} </td>
-  </tr>
-  <tr>
-    <td class="dem-pai"> {{dataSource[1].name}} </td>
-  </tr>
-  <tr>
-    <td class="aide-fin"> {{dataSource[2].name}} </td>
-  </tr>
-  <tr>
-    <td class="rap-dep"> {{dataSource[3].name}} </td>
-  </tr>
-  <tr>
-    <td class="av-voy"> {{dataSource[4].name}} </td>
-  </tr>
-</table>
+<div id="nouv-form-container">
+    <div class="selection-table">
+        <div class="fixed">
+            <button mat-raised-button disabled id="titre">Formulaires</button>
+            <button mat-raised-button [ngClass]="{'selected':element.id === formToDisplay}" 
+            *ngFor="let element of FORMS_DATA" (click)="displayPreview(element)" >{{element.name}}</button>
+            <button mat-raised-button id="creer" (click)="create()">CRÉER</button>
+        </div>
+    </div>
+    <div id="preview">
+        <ng-template formhost></ng-template>
+    </div>
+</div>

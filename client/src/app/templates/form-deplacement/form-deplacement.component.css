@@ -1,0 +1,251 @@
+@import url("../base-form.css");
+
+#form-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 30px;
+    padding: 5px;
+}
+
+#entite_externe, 
+#beneficiaire,  
+#demandeur,
+#nouveau-fournisseur, 
+#description-facture,
+#ventilation,
+#but,
+#date,
+#endroit_duree,
+#table,
+#references, 
+#payment-demande,
+#Moins,
+#paiement-ci-joint,
+#remboursement{
+    border: 2px solid black;
+    margin: 5px;
+}
+
+#signatures {
+    margin: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 2;
+    justify-content: space-between;
+}
+
+h6 {
+    margin:0;
+    padding: 2px 5px;
+    font-size: 0.9em;
+    background-color: #CCD4DF;
+}
+
+div {
+    font-size: 13px;
+}
+
+.signature {
+    border: 2px solid black;
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    text-align: center;
+    width: 480px;
+}
+
+.signature mat-form-field {
+    width: 100%;
+}
+
+#entite_externe {
+    width: 700px;
+}
+
+#date {
+    width: 200px;
+    height: 50px;
+}
+
+mat-form-field {
+    padding: 0px 5px;
+}
+
+#entite_externe mat-form-field {
+    width: 300px;
+}
+
+#entite-date{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+#endroit_duree {
+    display: flex;
+}
+
+#endroit{
+    border-right: 0.5px solid rgba(0, 0, 0, 0.800);
+    width: 30%
+}
+
+#endroit mat-form-field{
+    width:95%
+    
+}
+
+#endroit_duree > div {
+    flex: 1 1;
+}
+
+#duree {
+    display: flex;
+}
+
+
+.duree-section {
+    border-right: 0.5px solid rgba(0, 0, 0, 0.800);
+    width : 33%;
+    text-align: center;
+}
+.duree-section mat-form-field {
+    width : 90%;
+}
+
+#nouveau-fournisseur mat-form-field:first-of-type {
+    width: 30%;
+    margin-right: 30%;
+}
+
+#nouveau-fournisseur mat-form-field:last-child {
+    width: 10%; 
+}
+
+#nom mat-form-field{
+    width: 70%; 
+}
+
+#but mat-form-field:first-of-type {
+    width: 95%;
+}
+
+#form-date {
+    background-color: #CCD4DF;
+}
+
+#description-facture th {
+    padding: 10px 0px 0px 5px;
+}
+
+#ventilation tr:nth-child(2) th {
+    vertical-align: bottom;
+}
+
+#ventilation tbody td:nth-child(4),
+#ventilation tbody td:nth-child(5),
+#ventilation thead,
+#description-facture thead {
+    background-color: #CCD4DF;
+}
+
+#description-facture 
+tr td:first-child {
+    width: 20%;
+}
+
+#description-facture tr td:nth-of-type(2) mat-form-field {
+    width: 100%;
+}
+
+#description-facture 
+tr td:nth-of-type(2) {
+    width: 40%;
+}
+
+#description-facture 
+tr td:nth-of-type(3){
+    width: 10%;
+}
+
+#description-facture 
+tr td:last-child {
+    width: 10%;
+}
+
+#description-facture {
+    text-align: center;
+}
+
+input {
+    text-align: center;
+}
+
+#ventilation#ventilation-table {
+    text-align: center;
+}
+
+
+
+
+#ventilation table {
+    width: 90%;
+}
+
+#ventilation-table mat-form-field {
+    
+    width: 100px;
+}
+
+#references {
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#references strong:nth-of-type(2) {
+    margin: 5px;
+}
+
+#references div {
+    background-color: #CCD4DF;
+}
+
+#payment-demande{
+    width: 250px;
+    float:right;
+    margin: 10px;
+}
+
+
+#bas-ventilation{
+    display: flex;
+}
+
+#Moins,
+#paiement-ci-joint,
+#remboursement{
+    background-color: #fcf5c4;
+    width: 33.3%;
+    height: 100px;
+}
+
+#references {
+    width:400px;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    float: right;
+}
+
+#references strong:nth-of-type(2) {
+    margin: 5px;
+}
+
+#references div {
+    background-color: #CCD4DF;
+}

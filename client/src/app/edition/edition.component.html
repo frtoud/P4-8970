@@ -1,0 +1,36 @@
+<div id="edit-form-container">
+  <div [ngClass]="{'flex-column':true, 'disabled': state === 'view'}">
+    <div id="printableArea">
+    <ng-template formhost></ng-template>
+    </div>
+  </div>
+  <div class="participants">
+    <div class="fixed">
+        <mat-chip-list class="mat-chip-list-stacked">
+          <mat-chip *ngFor="let participant of participants"
+          [ngClass]="{'assignation_selected': participant._id === collaboratorID}">
+            {{participant.nom}}
+          </mat-chip>
+        </mat-chip-list>
+        <br>
+        <app-file-uploader></app-file-uploader>
+        <br>
+    <mat-grid-list cols="2" rowHeight="40px">
+     <!--  <mat-grid-tile [colspan]="tiles[0].cols" [rowspan]="tiles[0].rows">
+        <button id="refuser" mat-raised-button color="warn">REFUSER</button>
+      </mat-grid-tile> -->
+      <mat-grid-tile *ngIf="this.state === 'view'">
+        <button button mat-icon-button id="print"  (click)="printDiv()" ><mat-icon>print</mat-icon></button>
+      </mat-grid-tile>
+      <mat-grid-tile *ngIf="this.state === 'validate'">
+        <button id="valider" mat-raised-button (click)="onValidate()">VALIDER</button>
+      </mat-grid-tile>
+      <mat-grid-tile *ngIf="this.state === 'modify'">
+        <button id="soumettre" mat-raised-button (click)="onSend()" color="primary">SOUMETTRE</button>
+      </mat-grid-tile>
+      <mat-grid-tile >
+        <button id="annuler" mat-raised-button [routerLink]="['/dashboard']">Annuler</button>
+      </mat-grid-tile>
+    </mat-grid-list>
+    </div>
+  </div>

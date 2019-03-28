@@ -1,0 +1,279 @@
+
+<div id="form_total">
+<div id="form-header">
+  <img src="assets/img/logo-POLY-forms.png" width=180 height=80>
+  <h4>Rapport de déplacement et de représentation</h4>
+</div>
+
+<div id="entite-date">
+<div id="entite_externe"
+[ngClass]="{'assignation_selected': entite_externe.assigneA === collaborateurID, 'assignation_assigned': entite_externe.assigneA !== null}">
+  <h6>ENTITÉ EXTERNE</h6>
+  <mat-form-field id = "nom">
+      <input matInput type="text" placeholder="NOM" [(ngModel)]="entite_externe.nom">
+  </mat-form-field>
+  
+  <mat-form-field >
+      <input matInput type="text" placeholder="MATRICULE" [(ngModel)]="entite_externe.matricule">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+        <mat-select [(ngModel)]="entite_externe.statut" placeholder="STATUT">
+                <mat-option value="employe">Employé</mat-option>
+                <mat-option value="etudiantPoly">Étudiant Poly</mat-option>
+                <mat-option value="etudiantExterieur">Étudiant Extérieur</mat-option>
+                <mat-option value="professeur">Professeur invité</mat-option>
+                <mat-option value="conferencier">Conférencier</mat-option>
+                <mat-option value="fournisseur">Fournisseur</mat-option>
+        </mat-select>
+ </mat-form-field> 
+ <br>
+ <mat-form-field id = "nom">
+    <input matInput type="text" placeholder="Adresse" [(ngModel)]="entite_externe.adresse">
+</mat-form-field>
+<br>
+<mat-form-field id = "nom">
+    <input matInput type="text" placeholder="Téléphone" [(ngModel)]="entite_externe.telephone">
+</mat-form-field>
+<br>
+<mat-form-field id = "nom">
+    <input matInput type="text" [(ngModel)]="entite_externe.institut" placeholder="	Centre, département, institut ou service">
+</mat-form-field>
+</div>
+
+<div id="date">
+    <h6>date</h6>
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Choisir une date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+</div>
+</div>
+
+
+
+
+
+<div id="endroit_duree"
+[ngClass]="{'assignation_selected': endroit_duree.assigneA === collaborateurID, 'assignation_assigned': endroit_duree.assigneA !== null}">
+    <div id="endroit">
+        <h6>Endroit de déplacement / de la réception</h6>
+        <br>
+        <mat-form-field>
+        <input matInput type="text" placeholder="" [(ngModel)]="endroit_duree.endroit">
+        </mat-form-field>
+    </div>
+    
+    <div>
+        <h6>Durée du déplacement / Date de réception</h6>
+        <br>
+            <div id="duree">
+                <div class="duree-section">
+                    <mat-form-field>
+                            <input matInput [matDatepicker]="pickerDu" placeholder="Du:"
+                            [ngModel]="endroit_duree.du" (ngModelChange)="duChange($event)" (click)="pickerDu.open()">
+                            <mat-datepicker-toggle matSuffix [for]="pickerDu"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerDu></mat-datepicker>
+                    </mat-form-field>  
+                </div>
+                <div class="duree-section">
+                    <mat-form-field>
+                            <input matInput [matDatepicker]="pickerAu" placeholder="Au:"
+                            [ngModel]="endroit_duree.au" (ngModelChange)="auChange($event)" (click)="pickerAu.open()">
+                            <mat-datepicker-toggle matSuffix [for]="pickerAu"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerAu></mat-datepicker>
+                    </mat-form-field>  
+                </div >
+                <div class="duree-section">
+                        Nombre de jours:
+                        <p *ngIf="bothFilled && endroit_duree.du < endroit_duree.au">{{ dureeDeplacement }}</p>
+                </div>
+        </div>
+    </div>
+</div>
+    
+
+<div id="but"
+[ngClass]="{'assignation_selected': but.assigneA === collaborateurID, 'assignation_assigned': but.assigneA !== null}">
+    <h6>Buts de déplacement / de la réception (Expliquer le lien avec la recherche si imputé dans un compte de recherche)</h6>
+    <mat-form-field>
+        <input matInput type="text" placeholder="" [(ngModel)]="but.valeur">
+    </mat-form-field>
+    <br>
+    <br>
+</div>
+
+
+
+
+
+
+<div id="ventilation"
+[ngClass]="{'assignation_selected': ventilation.assigneA === collaborateurID, 'assignation_assigned': ventilation.assigneA !== null}">
+    <h6>Ventilation budgétaire à débiter (compléter et annexer au formulaire SF-3C)</h6>
+
+    <div id="payment-demande">
+            <h3>
+            <mat-form-field>
+                    <mat-select placeholder="Devise:">
+                            <mat-option value="CAN">CAN</mat-option>
+                            <mat-option value="EUR">EUR</mat-option>
+                            <mat-option value="USD">USD</mat-option>
+                    </mat-select>
+             </mat-form-field>
+            
+        <mat-form-field>
+            <input matInput type="number" placeholder="précisez">
+        </mat-form-field>
+        </h3>
+    </div>
+    <div id=table>
+            <table mat-table [dataSource]="dSventilation" id="ventilation-table">  
+                    <ng-container matColumnDef="ubr">
+                        <th mat-header-cell *matHeaderCellDef id="ubr"> UBR </th>
+                        <td mat-cell *matCellDef="let element">
+                            <mat-form-field>
+                                <input matInput type="text" [(ngModel)]="element.ubr">
+                            </mat-form-field>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="compte">
+                        <th mat-header-cell *matHeaderCellDef id="compte-colonne"> COMPTE </th>
+                        <td mat-cell *matCellDef="let element">
+                            <mat-form-field id="compte-cell">
+                                <input matInput type="text" [(ngModel)]="element.compte">
+                            </mat-form-field>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="unite">
+                        <th mat-header-cell *matHeaderCellDef id="unite-colonne"> UNITÉ <br> ADM. </th>
+                        <td mat-cell *matCellDef="let element">
+                            <mat-form-field id="unite-cell">
+                                <input matInput type="text" [(ngModel)]="element.unite">
+                            </mat-form-field>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="montant">
+                        <th mat-header-cell *matHeaderCellDef id="montant-colonne"> MONTANT </th>
+                        <td mat-cell *matCellDef="let element" id="montant-cell">
+                            <mat-form-field>
+                                <input matInput type="number" [(ngModel)]="element.montant" (ngModelChange)="updateTotal()">
+                            </mat-form-field>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="code">
+                            <th mat-header-cell *matHeaderCellDef id="code-colonne"> CODE-TAXE </th>
+                            <td mat-cell *matCellDef="let element">
+                                <mat-form-field>
+                                    <input matInput type="string" [(ngModel)]="element.code">
+                                </mat-form-field>
+                            </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="commentaire">
+                            <th mat-header-cell *matHeaderCellDef id="commentaire-colonne"> PROJET/COMMENTAIRE </th>
+                            <td mat-cell *matCellDef="let element">
+                                <mat-form-field>
+                                    <input matInput type="string" [(ngModel)]="element.commentaire">
+                                </mat-form-field>
+                            </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef></th>
+                        <td mat-cell *matCellDef="let element">
+                            <button mat-icon-button color="warn"
+                            (click)="onDelete(element.id)">x</button>
+                        </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="total">
+                        <td mat-footer-cell *matFooterCellDef colspan="4" id="ventilation-total-cell">
+                            <strong id="ventilation-total">TOTAL: {{ ventilationTotal | currency}}</strong>
+                        </td>
+                        
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="addRow">
+                        <td mat-footer-cell *matFooterCellDef>
+                            <button mat-mini-fab color="primary"
+                            (click)="onCreate()">+</button>
+                        </td>
+                    </ng-container>
+              
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    <tr mat-footer-row *matFooterRowDef="['total','addRow']"></tr>
+                </table>
+            </div>
+                <div id="bas-ventilation">
+                <div id="Moins"> 
+                        <mat-form-field>
+                            <input matInput type="number" placeholder="MOINS: avance(s) reçue(s):"
+                            [(ngModel)]="ventilation.recu">
+                        </mat-form-field>
+                        <div id="solde">
+                        <h3>SOLDE:{{ventilationTotal-ventilation.recu}}</h3>
+                        </div>
+                </div>
+                <div id="paiement-ci-joint">
+                    <h6>Paiement ci-joint</h6>
+                    <mat-form-field>
+                            <input matInput type="number" placeholder=""
+                            [(ngModel)]="ventilation.paiement">
+                    </mat-form-field>
+                </div>
+                <div id="remboursement">
+                    <h6>Remboursement demandé</h6>
+                    <mat-form-field>
+                            <input matInput type="number" placeholder=""
+                            [(ngModel)]="ventilation.remboursement">
+                    </mat-form-field>
+                </div>
+            </div>
+
+    
+</div>
+
+
+<div id="signatures">
+        <div *ngFor="let sig of signatures" >
+            <div class="signature" id={{sig.id}}
+            [ngClass]="{'assignation_selected': sig.assigneA === collaborateurID, 'assignation_assigned': sig.assigneA !== null}">
+                <mat-form-field>
+                    <input matInput type="text" placeholder="{{sig.name}}" [disabled]="sig.lock || sig.validated" [(ngModel)]="sig.value">
+                    <mat-hint *ngIf="sig.value.length === 0">
+                        Le nom et le prénom sont obligatoires!
+                        </mat-hint>
+                    </mat-form-field>
+                <mat-checkbox
+                class="large"
+                [(ngModel)]="sig.check"
+                [(indeterminate)]="indeterminate"
+                [labelPosition]="labelPosition"
+                [disabled]="sig.lock || sig.validated">
+                Je confirme et j'accepte la véracité des informations ci-dessus.
+                </mat-checkbox>
+                <br>
+                <button mat-raised-button [disabled]="sig.value.length <= 0 || sig.lock || !sig.check" (click)="sig.onButtonClick()">{{sig.buttonMessage()}}</button>
+            </div>
+        </div>
+      </div>
+
+<div id="references">
+        <p>
+            <strong>*</strong> Joindre les pièces justificatives
+        </p>
+        <div>
+            <mat-form-field>
+                <input matInput type="text" placeholder="RÉFÉRENCE SAFIRH">
+            </mat-form-field>
+            <p>Réservé au service des finances</p>
+        </div>
+</div>
+    <div id="annexe"
+    [ngClass]="{'assignation_selected': annexe.assigneA === collaborateurID, 'assignation_assigned': annexe.assigneA !== null}">
+        <app-annexe></app-annexe>
+    </div>
+</div>

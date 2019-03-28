@@ -1,0 +1,403 @@
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+<div id="form-header">
+    <img src="assets/img/logo-POLY-forms.png" width=180 height=80>
+    <h4> 
+    ANNEXE AU RAPPORT DE DÉPLACEMENT ET DE REPRÉSENTATION<br>
+    ÉTAT DES DÉPENSES<br>
+    (Joindre toutes les pièces justificatives originales)<br> 
+    <br> 
+    <a href="http://www.polymtl.ca/si/">Directive relative au
+        remboursement des frais de déplacement et de représentation
+    </a>
+    </h4>
+</div>
+
+
+<div id="tables">
+    <table id="tableau-totaux">
+        <tbody>
+            <!-- rangée 1 -->
+            <tr>
+                <td id="cellule-quebec">
+                    <h6>QUÉBEC</h6>
+                </td>
+                <td id="cellule-quebec-total">
+                    <h6>TOTAL:</h6>
+                </td>
+                <td id="cellule-monetaire">
+                    <p class="output">{{ventTotalQC.perdiem | currency}}</p>
+                </td>
+
+                <td id="vide-1">
+                    <!-- vide1 -->
+                </td>
+                <td id="cellule-monetaire">
+                    <p class="output">{{ventTotalQC.fraisKm | currency}}</p>
+                </td>
+                <td id="cellule-monetaire">
+                    <p class="output">{{ventTotalQC.chambreST | currency}}</p>
+                </td>
+                <td id="cellule-monetaire">
+                    <p class="output">{{ventTotalQC.fraisRecMoins | currency}}</p>
+                </td>
+                <td id="cellule-monetaire">
+                    <p class="output">{{ventTotalQC.fraisRecPlus | currency}}</p>
+                </td>
+                <td id="cellule-monetaire">
+                    <p class="output">{{ventTotalQC.fourniture | currency}}</p>
+                </td>
+                <td id="cellule-monetaire-avantVide2">
+                    <p class="output">{{ventTotalQC.inscription | currency}}</p>
+                </td>
+
+                <td id="vide-2">
+                    <!-- vide 2 -->
+                </td>
+
+                <td id="cellule-canada">
+                    <h6>HORS-CANADA</h6>
+                </td>
+                <td id="cellule-monetaire">
+                    <p class="output">{{ventTotalHCA.montant | currency}}</p>
+                </td>
+                <td id="cellule-monetaire">
+                    <p class="output">{{ventTotalHCA.fourniture | currency}}</p>
+                </td>
+                <td id="cellule-monetaire">
+                    <p class="output">{{ventTotalHCA.personne | currency}}</p>
+                </td>
+            </tr>
+
+
+
+            <!-- rangée 2 -->
+            <tr>
+                <td id="cellule-quebec-vide">
+                </td>
+                <td id="cellule-quebec-vide">
+                </td>
+                <td id="cellule-code">
+                    30101
+                </td>
+
+                <td id="vide-1">
+                    <!-- vide1 -->
+                </td>
+                <td id="cellule-code">
+                    30107
+                </td>
+                <td id="cellule-code">
+                    30113
+                </td>
+                <td id="cellule-code">
+                    30201
+                </td>
+                <td id="cellule-code">
+                    30203
+                </td>
+                <td id="cellule-code">
+                    40303
+                </td>
+
+                <td id="cellule-code-avantVide2">
+                </td>
+                <td>
+                    <!-- vide 2 -->
+                </td>
+
+                <td></td>
+                <td id="cellule-code">
+                	30119
+                </td>
+                <td id="cellule-code">
+                    40329
+                </td>
+                <td id="cellule-code">
+                    30205
+                </td>
+            </tr>
+
+            <!-- rangée 3 -->
+            <tr>
+                <td id="cellule-quebec">
+                    <h6>HORS-QUÉBEC</h6>
+                </td>
+                <td id="cellule-quebec-total">
+                    <h6>TOTAL:</h6>
+                </td>
+                <td id="cellule-monetaire">
+                    <p class="output">{{ventTotalHQC.perdiem | currency}}</p>
+                </td>
+
+                <td id="vide-1">
+                    <!-- vide1 -->
+                </td>
+                <td id="cellule-monetaire">
+                    <p class="output">{{ventTotalHQC.fraisKm | currency}}</p>
+                </td>
+                <td id="cellule-monetaire">
+                    <p class="output">{{ventTotalHQC.chambreST | currency}}</p>
+                </td>
+                <td id="cellule-monetaire">
+                    <p class="output">{{ventTotalHQC.fraisRecMoins | currency}}</p>
+                </td>
+                <td id="cellule-monetaire">
+                    <p class="output">{{ventTotalHQC.fraisRecPlus | currency}}</p>
+                </td>
+                <td id="cellule-monetaire">
+                    <p class="output">{{ventTotalHQC.fourniture | currency}}</p>
+                </td>
+                <td id="cellule-monetaire-avantVide2">
+                    <p class="output">{{ventTotalHQC.inscription | currency}}</p>
+                </td>
+
+                <td>
+                    <!-- vide 2 -->
+                </td>
+
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <!-- rangée 4 -->
+            <tr>
+                <td id="cellule-quebec-vide">
+                </td>
+                <td id="cellule-quebec-vide">
+                </td>
+                <td id="cellule-code">
+                    30104
+                </td>
+
+                <td id="vide-1">
+                    <!-- vide1 -->
+                </td>
+                <td id="cellule-code">
+                    30110
+                </td>
+                <td id="cellule-code">
+                    30116
+                </td>
+                <td id="cellule-code">
+                    30206
+                </td>
+                <td id="cellule-code">
+                    30204
+                </td>
+                <td id="cellule-code">
+                    40328
+                </td>
+
+                <td id="cellule-code-avantVide2"></td>
+                <td>
+                    <!-- vide 2 -->
+                </td>
+
+                <td></td>
+                <td></td>
+                <td id="total-rapport-gauche">
+                    <h6>TOTAL DU RAPPORT:</h6>
+                </td>
+                <td id="total-rapport-droite">
+                    {{ totalDuRapport }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+        <!-- <tr mat-header-row *matHeaderRowDef="displayedColumnsTotaux"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsTotaux;"></tr>
+    </table> -->
+          
+    <table mat-table [dataSource]="dSventilation" id="ventilation-table">  
+            <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef id="date"> date </th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="picker">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef id="description-colonne"> description </th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-form-field id="description-cell">
+                        <input matInput type="text" [(ngModel)]="element.description">
+                    </mat-form-field>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="ref">
+                <th mat-header-cell *matHeaderCellDef id="ref-colonne"> ref </th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-form-field id="ref-cell">
+                        <input matInput type="text" [(ngModel)]="element.ref">
+                    </mat-form-field>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="perdiem">
+                <th mat-header-cell *matHeaderCellDef id="perdiem-colonne"> per diem <br> repas </th>
+                <td mat-cell *matCellDef="let element" id="perdiem-cell">
+                    <mat-form-field>
+                        <input matInput type="number" [(ngModel)]="element.perdiem" (ngModelChange)="updateTotal()">
+                    </mat-form-field>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="nbKm">
+                <th mat-header-cell *matHeaderCellDef id="nbKm-colonne"> nb Km </th>
+                <td mat-cell *matCellDef="let element" id="nbKm-cell">
+                    <mat-form-field>
+                        <input matInput type="number" [(ngModel)]="element.nbKm" (ngModelChange)="updateTotal()">
+                    </mat-form-field>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="pers">
+                <th mat-header-cell *matHeaderCellDef id="pers-colonne"> 3 personnes <br> ou plus </th>
+                <td mat-cell *matCellDef="let element" id="pers-cell">
+            <mat-form-field floatLabel="never">
+                <mat-select [(value)]="element.pers" placeholder="Non" (selectionChange)="updateTotal()">
+                        <mat-option value="false">Non</mat-option>
+                        <mat-option value="true">Oui</mat-option>
+                </mat-select>
+            </mat-form-field>
+            </td>
+            </ng-container>
+            <ng-container matColumnDef="fraisKm">
+                <th mat-header-cell *matHeaderCellDef id="fraisKm-colonne"> frais de <br> kilométrage </th>
+                <td mat-cell *matCellDef="let element" id="fraisKm-cell">
+                    <p class="output">
+                        {{ element.fraisKm | currency}}
+                    </p>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="chambreST">
+                <th mat-header-cell *matHeaderCellDef id="chambreST-colonne"> chambre <br> stationnement <br> transport </th>
+                <td mat-cell *matCellDef="let element" id="chambreST-cell">
+                    <mat-form-field>
+                        <input matInput type="number" [(ngModel)]="element.chambreST" (ngModelChange)="updateTotal()">
+                    </mat-form-field>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="fraisRecMoins">
+                <th mat-header-cell *matHeaderCellDef id="fraisRecMoins-colonne"> frais réception <br> 5 pers. et moins </th>
+                <td mat-cell *matCellDef="let element" id="fraisRecMoins-cell">
+                    <mat-form-field>
+                        <input matInput type="number" [(ngModel)]="element.fraisRecMoins" (ngModelChange)="updateTotal()">
+                    </mat-form-field>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="fraisRecPlus">
+                <th mat-header-cell *matHeaderCellDef id="fraisRecPlus-colonne"> frais réception <br> plus de 5 pers. </th>
+                <td mat-cell *matCellDef="let element" id="fraisRecPlus-cell">
+                    <mat-form-field>
+                        <input matInput type="number" [(ngModel)]="element.fraisRecPlus" (ngModelChange)="updateTotal()">
+                    </mat-form-field>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="fourniture">
+                <th mat-header-cell *matHeaderCellDef id="fourniture-colonne"> fourniture et matériel </th>
+                <td mat-cell *matCellDef="let element" id="fraisRecPlus-cell">
+                    <mat-form-field>
+                        <input matInput type="number" [(ngModel)]="element.fourniture" (ngModelChange)="updateTotal()">
+                    </mat-form-field>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="inscription">
+                <th mat-header-cell *matHeaderCellDef id="fourniture-colonne"> inscription et autre </th>
+                <td mat-cell *matCellDef="let element" id="inscription-cell">
+                    <mat-form-field>
+                        <input matInput type="number" [(ngModel)]="element.inscription" (ngModelChange)="updateTotal()">
+                    </mat-form-field>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="qcHqc">
+                <th mat-header-cell *matHeaderCellDef id="qcHqc-colonne"> Québec/ <br> Hors-Québec </th>
+                <td mat-cell *matCellDef="let element" id="qcHqc-cell">
+            <mat-form-field>
+                <mat-select [(value)]="element.qcHqc" (selectionChange)="updateTotal()">
+                        <mat-option value="HQC">Hors-Québec</mat-option>
+                        <mat-option value="QC">Québec</mat-option>
+                </mat-select>
+            </mat-form-field>
+            </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="montant">
+                <th mat-header-cell *matHeaderCellDef id="montant-colonne"> montant </th>
+                <td mat-cell *matCellDef="let element" id="montant-cell">
+                    <mat-form-field>
+                        <input matInput type="number" [(ngModel)]="element.montant" (ngModelChange)="updateTotal()">
+                    </mat-form-field>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="devise">
+                <th mat-header-cell *matHeaderCellDef id="devise-colonne"> devise </th>
+                <td mat-cell *matCellDef="let element" id="devise-cell">
+                    <mat-form-field floatLabel="never">
+                        <!--TODOKETE: use Hiba's currency conversion-->
+                        <mat-select placeholder="CAN">
+                                <mat-option >CAN</mat-option>
+                                <mat-option >EUR</mat-option>
+                                <mat-option >USD</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="deviseCAN">
+                <th mat-header-cell *matHeaderCellDef id="deviseCAN-colonne"> CAN </th>
+                <td mat-cell *matCellDef="let element" id="deviseCAN-cell">
+                    <p class="output">{{ element.deviseCAN | currency }}</p>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="fournitureMateriel">
+                <th mat-header-cell *matHeaderCellDef id="fournitureMateriel-colonne"> fourniture et materiel </th>
+                <td mat-cell *matCellDef="let element" id="fournitureMateriel-cell">
+            <mat-form-field floatLabel="never">
+                <mat-select [(value)]="selected" placeholder="non" (ngModelChange)="updateTotal()">
+                        <mat-option value="false">non</mat-option>
+                        <mat-option value="true">oui</mat-option>
+                </mat-select>
+            </mat-form-field>
+            </ng-container>
+            <ng-container matColumnDef="plusDeCinq">
+                <th mat-header-cell *matHeaderCellDef id="plusDeCinq-colonne"> plus de cinq personne </th>
+                <td mat-cell *matCellDef="let element" id="plusDeCinq-cell">
+            <mat-form-field floatLabel="never">
+                <mat-select [(value)]="selected" placeholder="non" (ngModelChange)="updateTotal()">
+                        <mat-option value="false">Non</mat-option>
+                        <mat-option value="true">Oui</mat-option>
+                </mat-select>
+            </mat-form-field>
+            </ng-container>
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button color="warn"
+                    (click)="onDelete(element.id)">x</button>
+                </td>
+            </ng-container>
+            
+    
+            <ng-container matColumnDef="total">
+                <td mat-footer-cell *matFooterCellDef colspan="4" id="ventilation-total-cell">
+                    <strong id="ventilation-total">TOTAL: {{ ventilationTotal | currency }}</strong>
+                </td>
+                
+            </ng-container>
+            
+            <ng-container matColumnDef="addRow">
+                <td mat-footer-cell *matFooterCellDef colspan="999">
+                    <button mat-mini-fab color="primary"
+                    (click)="onCreate()">+</button>
+                </td>
+            </ng-container>
+      
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-footer-row *matFooterRowDef="['addRow']" class="footer-adder"></tr>
+    </table>
+
+</div>

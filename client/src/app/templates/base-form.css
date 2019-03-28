@@ -1,0 +1,14 @@
+div.assignation_assigned {
+    background-color: #aaaaaa;
+  }
+  div.assignation_assigned.assignation_selected {
+    background-color: #aedd94;
+  }
+
+  .mat-table {
+    background: inherit;
+  }
+
+  .form_disabled {  
+    pointer-events: none;
+  }
