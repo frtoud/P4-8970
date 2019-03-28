@@ -12,16 +12,14 @@
 
 <div id="entite-externe">
     <h6>ENTITÉ EXTERNE</h6>
-    <div id="entite_employe"
-    [ngClass]="{'assignation_selected': entite_employe.assigneA === collaborateurID, 'assignation_assigned': entite_employe.assigneA !== null}">
+    <div id="entite_employe">
     <mat-form-field>
         <input matInput type="text" placeholder="EMPLOYÉ (matricule)"
         [(ngModel)]="entite_employe.matricule">
     </mat-form-field>
     <br>
     </div>
-    <div id="entite_fournisseur"
-    [ngClass]="{'assignation_selected': entite_fournisseur.assigneA === collaborateurID, 'assignation_assigned': entite_fournisseur.assigneA !== null}">
+    <div id="entite_fournisseur">
     <mat-form-field>
         <input matInput type="text" placeholder="FOURNISSEUR (numéro)"
         [(ngModel)]="entite_fournisseur.numero">
@@ -35,16 +33,14 @@
 </div>
 
 <div id="beneficiaire-demandeur">
-    <div id="beneficiaire"
-    [ngClass]="{'assignation_selected': beneficiaire.assigneA === collaborateurID, 'assignation_assigned': beneficiaire.assigneA !== null}">
+    <div id="beneficiaire">
         <h6>BÉNÉFICIAIRE</h6>
         <mat-form-field>
             <input matInput type="text" placeholder="NOM DE L'EMPLOYÉ ou DU FOURNISSEUR à payer"
             [(ngModel)]="beneficiaire.nom">
         </mat-form-field>
     </div>
-    <div id="demandeur"
-    [ngClass]="{'assignation_selected': demandeur.assigneA === collaborateurID, 'assignation_assigned': demandeur.assigneA !== null}">
+    <div id="demandeur">
         <h6>DEMANDEUR</h6>
         <mat-form-field>
             <input matInput type="text" placeholder="NOM DU DEMANDEUR"
@@ -57,8 +53,7 @@
     </div>
 </div>
 
-<div id="fournisseur"
-[ngClass]="{'assignation_selected': fournisseur.assigneA === collaborateurID, 'assignation_assigned': fournisseur.assigneA !== null}">
+<div id="fournisseur">
    <h6>NOUVEAU FOURNISSEUR</h6>
     <mat-form-field>
         <input matInput type="text" placeholder="ADRESSE DE L'EMPLOYÉ ou DU FOURNISSEUR"
@@ -91,8 +86,7 @@
     </mat-form-field>
 </div>
 
-<div id="description_facture"
-[ngClass]="{'assignation_selected': description_facture.assigneA === collaborateurID, 'assignation_assigned': description_facture.assigneA !== null}">
+<div id="description_facture">
    <h6>DESCRIPTION DE LA FACTURE</h6>
     <table mat-table [dataSource]="dsFactures" class="mat-elevation-z8">  
             <ng-container matColumnDef="numFacture">
@@ -159,8 +153,7 @@
         </table>
 </div>
 
-<div id="ventilation_budgetaire"
-[ngClass]="{'assignation_selected': ventilation_budgetaire.assigneA === collaborateurID, 'assignation_assigned': ventilation_budgetaire.assigneA !== null}">
+<div id="ventilation_budgetaire">
   <h6>VENTILATION BUDGÉTAIRE</h6>
     <table mat-table [dataSource]="dsVentilation" class="mat-elevation-z8"> 
         <ng-container matColumnDef="ubr">
@@ -246,8 +239,7 @@
 
 <div id="signatures">
     <div *ngFor="let sig of signatures" >
-        <div class="signature" id={{sig.id}}
-        [ngClass]="{'assignation_selected': sig.assigneA === collaborateurID, 'assignation_assigned': sig.assigneA !== null}">
+        <div class="signature" id={{sig.id}}>
             <mat-form-field>
                 <input matInput type="text" placeholder="{{sig.name}}" [disabled]="sig.lock || sig.validated" [(ngModel)]="sig.value">
                 <mat-hint *ngIf="sig.value.length === 0">

@@ -12,8 +12,7 @@
 
 <div id="entite-externe">
     <h6>ENTITÉ EXTERNE</h6>
-    <div id="entite_employe"
-    [ngClass]="{'assignation_selected': entite_employe.assigneA === collaborateurID, 'assignation_assigned': entite_employe.assigneA !== null}">
+    <div id="entite_employe">
     <mat-form-field>
         <span matPrefix>P &nbsp;</span>
         <input matInput type="text" placeholder="EMPLOYÉ (matricule)"
@@ -21,8 +20,7 @@
     </mat-form-field>
     <br>
     </div>
-    <div id="entite_fournisseur"
-    [ngClass]="{'assignation_selected': entite_fournisseur.assigneA === collaborateurID, 'assignation_assigned': entite_fournisseur.assigneA !== null}">
+    <div id="entite_fournisseur">
     <mat-form-field>
         <span matPrefix>F &nbsp;</span>
         <input matInput type="text" placeholder="FOURNISSEUR (numéro)"
@@ -36,16 +34,14 @@
 </div>
 
 <div id="beneficiaire-demandeur">
-  <div id="beneficiaire"
-  [ngClass]="{'assignation_selected': beneficiaire.assigneA === collaborateurID, 'assignation_assigned': beneficiaire.assigneA !== null}">
+  <div id="beneficiaire">
       <h6>BÉNÉFICIAIRE</h6>
       <mat-form-field>
           <input matInput type="text" placeholder="NOM DE L'EMPLOYÉ"
           [(ngModel)]="beneficiaire.nom">
       </mat-form-field>
   </div>
-  <div id="demandeur"
-  [ngClass]="{'assignation_selected': demandeur.assigneA === collaborateurID, 'assignation_assigned': demandeur.assigneA !== null}">
+  <div id="demandeur">
       <h6>DEMANDEUR</h6>
       <mat-form-field>
           <input matInput type="text" placeholder="NOM DU DEMANDEUR"
@@ -58,8 +54,7 @@
   </div>
 </div>
 
-<div id="fournisseur"
-[ngClass]="{'assignation_selected': fournisseur.assigneA === collaborateurID, 'assignation_assigned': fournisseur.assigneA !== null}">
+<div id="fournisseur">
   <mat-form-field>
       <input matInput type="text" placeholder="ADRESSE DE L'EMPLOYÉ ou DU FOURNISSEUR"
       [(ngModel)]="fournisseur.adresse">
@@ -92,8 +87,7 @@
 </div>
 
 
-<div id="endroit_deplacement"
-[ngClass]="{'assignation_selected': endroit_deplacement.assigneA === collaborateurID, 'assignation_assigned': endroit_deplacement.assigneA !== null}">
+<div id="endroit_deplacement">
     <table width="100%">
         <thead>
             <tr>
@@ -133,8 +127,7 @@
 </div>
 
 
-<div id="but_deplacement"
-[ngClass]="{'assignation_selected': but_deplacement.assigneA === collaborateurID, 'assignation_assigned': but_deplacement.assigneA !== null}">
+<div id="but_deplacement">
   <h6>BUT DU DÉPLACEMENT</h6>
   <mat-form-field>
         <input matInput type="text"
@@ -143,8 +136,7 @@
 
 </div>
 
-<div id="estimation"
-[ngClass]="{'assignation_selected': estimation.assigneA === collaborateurID, 'assignation_assigned': estimation.assigneA !== null}">
+<div id="estimation">
   <h6>ESTIMATION DES DÉPENSES (EN DOLLARS CANADIENS)</h6>
   <table width="100%" id="tableau-estimation-depenses">
         <thead>
@@ -186,8 +178,7 @@
   </table>
 </div>
 
-<div id="ventilation"
-[ngClass]="{'assignation_selected': ventilation.assigneA === collaborateurID, 'assignation_assigned': ventilation.assigneA !== null}">
+<div id="ventilation">
   <h6>VENTILATION BUDGÉTAIRE</h6>
   <table mat-table [dataSource]="dSventilation" id="ventilation-table">  
         <ng-container matColumnDef="ubr">
@@ -250,8 +241,7 @@
     </table>
 </div>
 
-<div id="avances"
-[ngClass]="{'assignation_selected': avances.assigneA === collaborateurID, 'assignation_assigned': avances.assigneA !== null}">
+<div id="avances">
   <h6>AVANCES DEMANDÉES</h6>
   <table width="100%" id="tableau-avances-demandees">
         <tbody>
@@ -313,8 +303,7 @@
 
   <div id="signatures">
     <div *ngFor="let sig of signatures" >
-        <div class="signature" id={{sig.id}}
-        [ngClass]="{'assignation_selected': sig.assigneA === collaborateurID, 'assignation_assigned': sig.assigneA !== null}">
+        <div class="signature" id={{sig.id}}>
             <mat-form-field>
                 <input matInput type="text" placeholder="{{sig.name}}" [disabled]="sig.lock || sig.validated" [(ngModel)]="sig.value">
                 <mat-hint *ngIf="sig.value.length === 0">

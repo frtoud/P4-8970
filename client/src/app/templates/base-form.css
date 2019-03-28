@@ -1,7 +1,7 @@
 div.assignation_assigned {
     background-color: #aaaaaa;
   }
-  div.assignation_assigned.assignation_selected {
+div.assignation_selected {
     background-color: #aedd94;
   }
 

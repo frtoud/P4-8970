@@ -1,12 +1,14 @@
 import { AfterViewInit } from '@angular/core';
-import { Signature } from './fields';
+import { Signature, ISignature, ISection } from './fields';
 import { User } from '../services/users.service';
+import { strictEqual } from 'assert';
 
 export abstract class BaseFormComponent implements AfterViewInit {
 
     collaborateurID = null;
     captureActive = false;
 
+    coloring = true;
     edition = false;
 
     public sections: any[];
@@ -32,39 +34,63 @@ export abstract class BaseFormComponent implements AfterViewInit {
       }
 
       if (this.edition) { this.editDisable(); }
+      this.doColoring();
     }
 
-    public setUserEdition(user: User) {
+    public setUserEdition(user: User, coloring: boolean) {
       this.collaborateurID = user._id;
-
+      this.coloring = coloring;
       // ADMIN et MANAGER ont droit à tout; pas besoin de check
       this.edition = user.type === 'USER';
-
     }
 
     public editDisable() {
-        this.sections.forEach(element => {
-          if (element.assigneA !== this.collaborateurID) {
-            document.getElementById(element.id).classList.add('form_disabled');
-          }
-        });
-
-        for (const sig of this.signatures) {
-          if (sig.assigneA !== this.collaborateurID) {
-            document.getElementById(sig.id).classList.add('form_disabled');
-          }
+      this.sections.forEach(element => {
+        if (element.assigneA !== this.collaborateurID) {
+          document.getElementById(element.id).classList.add('form_disabled');
         }
+      });
+
+      for (const sig of this.signatures) {
+        if (sig.assigneA !== this.collaborateurID) {
+          document.getElementById(sig.id).classList.add('form_disabled');
+        }
+      }
     }
+
+    public doColoring() {
+      this.sections.forEach(element => {
+        this.recolor(element);
+      });
+      for (const sig of this.signatures) {
+        this.recolor(sig);
+      }
+    }
+    public recolor(section: ISection) {
+        const elem = document.getElementById(section.id);
+        if (!this.coloring || section.assigneA === null) {
+          elem.classList.remove('assignation_selected');
+          elem.classList.remove('assignation_assigned');
+        } else if (section.assigneA === this.collaborateurID) {
+          elem.classList.add('assignation_selected');
+          elem.classList.remove('assignation_assigned');
+        } else {
+          elem.classList.remove('assignation_selected');
+          elem.classList.add('assignation_assigned');
+        }
+      }
 
     public startAssignation(userid) {
         this.captureActive = true;
         this.collaborateurID = userid;
         this.disableInputs();
+        this.doColoring();
     }
     public stopAssignation() {
         this.collaborateurID = null;
         this.captureActive = false;
         this.enableInputs();
+        this.doColoring();
     }
 
     public removeAssignation(user: string) {
@@ -94,6 +120,7 @@ export abstract class BaseFormComponent implements AfterViewInit {
         } else {
           section.assigneA = this.collaborateurID;
         }
+        this.doColoring();
       }
     }
 
