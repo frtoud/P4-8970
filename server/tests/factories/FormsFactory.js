@@ -4,8 +4,6 @@ const mongoose = require('mongoose');
 class FormsFactory{
     constructor(){}
     makeForms(n){
-        var db = mongoose.connection;
-        var formsArray = [];
         var form = null;
         for(var i = 0; i < n; i++){
             form = new FormsSchema();
@@ -25,7 +23,16 @@ class FormsFactory{
             form.data= newInstanceData;
             form.creeLe= new Date();
             form.modifierLe = new Date();
-            formsArray.push(form);
+            form.save(function (err) {
+                if (err) return handleError(err);
+            });
         }
     }
+    clearForms(){
+        FormsSchema.remove({}, function() {
+            if (err) return handleError(err);
+        })
+    }
 }
+
+module.exports.FormsFactory;
