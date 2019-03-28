@@ -15,14 +15,21 @@ export interface AuthenticatedUser {
 
 @Injectable()
 export class LoginService {
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {
+    this.currentUserSubject = new BehaviorSubject<AuthenticatedUser>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUser = this.currentUserSubject.asObservable();
+   }
   
-  public currentUser: AuthenticatedUser ;
-  
-  //ne pas s'en servir pour l'instant
   private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  private currentUserObs: Observable<any>;
+  private currentUserSubject: BehaviorSubject<AuthenticatedUser>;
+  public currentUser: Observable<AuthenticatedUser>;
   
+
+
+
+
+
+
   private static handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     return Promise.reject(error.feedbackMessage || error);
@@ -42,31 +49,45 @@ export class LoginService {
       this.loggedIn.next(true);
       localStorage.setItem("acc_tkn", user.token);
       localStorage.setItem("currentUser", JSON.stringify(user));
-      this.currentUser = user;
-      this.createCurrentUserObservable();
+      this.currentUserSubject.next(user);
       return user;
     })
     .catch(LoginService.handleError);
   }
 
-  getUserWeb(): Promise<AuthenticatedUser>{
+ // getUserWeb(): Promise<AuthenticatedUser>{
 
    //return this.currentUser;
 
-   return new Promise<AuthenticatedUser>((resolve, reject) => {
-    const user = this.currentUser;
+   //return new Promise<AuthenticatedUser>((resolve, reject) => {
+    //const user = this.currentUser;
       
-     if (user) {
-      resolve(user);
-      } else {
-        console.log("Error in loginService: getUser()")
-         reject('No user logged in');
-       }
+    // if (user) {
+    //  resolve(user);
+    //  } else {
+     //   console.log("Error in loginService: getUser()")
+     //    reject('No user logged in');
+     //  }
       
-      });
+     // });
+ // }
+
+  getUser(): Promise<AuthenticatedUser>{
+   
+
+    return new Promise<AuthenticatedUser>((resolve, reject) => {
+        
+       if (this.currentUserSubject.value) {
+        resolve(this.currentUserSubject.value);
+        } else {
+          console.log("Error in loginService: getUser()")
+           reject('No user in loginService');
+         }
+        
+        });
   }
 
-  getUser():Promise<AuthenticatedUser>{
+  getUserOldVersion():Promise<AuthenticatedUser>{
     
 
     
@@ -83,25 +104,25 @@ export class LoginService {
           });
       }
 
-  createCurrentUserObservable() {
-    const simpleObservable = new Observable((observer) => {
+//  createCurrentUserObservable() {
+ //   const simpleObservable = new Observable((observer) => {
       
       // observable execution
-      observer.next(this.currentUser);
-      observer.complete();
-  });
-    this.currentUserObs = simpleObservable;
-  }
+ //     observer.next(this.currentUser);
+ //     observer.complete();
+ // });
+  //  this.currentUserObs = simpleObservable;
+ // }
 
-  getCurrentUserObservable(): Observable<AuthenticatedUser>{
-    return this.currentUserObs ;
-  }
+//  getCurrentUserObservable(): Observable<AuthenticatedUser>{
+ //   return this.currentUserObs ;
+ // }
 
   logout(){
     this.loggedIn.next(false);
     localStorage.removeItem("acc_tkn");
-    localStorage.clear();
-    this.currentUser = null;
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
     this.router.navigate(['/login']);
   }
 

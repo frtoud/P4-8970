@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class HeaderComponent  {
   constructor(private loginService: LoginService) {
+    this.loginService.currentUser.subscribe(x => this.currentUser = x);
   }
 
   currentUser: AuthenticatedUser;

@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
 export class LoginComponent {
 
   loginError: string;
-  isAuthenticated: boolean = false;
 
   emailFormControl = new FormControl('', [
     Validators.required,
@@ -30,12 +29,10 @@ export class LoginComponent {
     this.loginService.authenticateUser(this.emailFormControl.value, this.passwordFormControl.value)
     .then(authUser => {
       this.loginService.getUser().then(login=>{console.log(login.firstName);});
-      this.isAuthenticated = true;
       this.loginError = undefined;
       this.router.navigate(["dashboard"]);
     })
     .catch(err => {
-      this.isAuthenticated = false;
       this.loginError = err.error;
     });
   }
