@@ -40,7 +40,6 @@
     "validator": "^10.11.0"
   },
   "devDependencies": {
-    "mongodb-memory-server": "^4.2.1",
     "nodemon": "^1.18.10"
   }
 }
