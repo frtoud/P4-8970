@@ -9,7 +9,7 @@ const usersManager = new UsersManager();
  */
 router.post('/users/new', /*guard.admin,*/ (req, res) => {
     const { body: { user } } = req;
-    usersManager.createUser(user)
+    usersManager.createUser(user, res)
     .then(user => res.status(201).json(user))
     .catch(err => res.status(err.status).json(err.message));
 });
@@ -37,7 +37,7 @@ router.delete('/users/:id', /*guard.admin,*/ (req, res) => {
  * RESET USER PASSWORD 
  */
 router.get('/users/reset/:id', /*guard.admin,*/ (req, res) => {
-    usersManager.resetPassword(req.params.id)
+    usersManager.resetPassword(req.params.id, res)
     .then(() => res.status(200).send())
     .catch(err => res.status(err.status).json(err.message));
 });

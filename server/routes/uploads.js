@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const multer = require('multer');
+var path = require('path');
 
 var storage = multer.diskStorage({
 // destination
@@ -34,6 +35,14 @@ router.post("/uploadMultiple", upload.array('attachments', 12), function (req, r
       res.status(400).send("Aucun fichier à attacher.")
     }
     res.send(files);
+});
+
+/**
+ * GET ATTACHMENT
+ */
+router.get("/uploads/:file", (req, res) => {
+  const fileName = req.params.file;
+  res.sendFile(path.resolve('uploads', fileName));
 });
 
 module.exports = router;

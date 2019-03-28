@@ -6,6 +6,7 @@ const Users = mongoose.model('Users');
 const Validator = require('validator');
 const Mailer = require("../mailer/mailer");
 const CONFIG = require("../lib/keys");
+const T = require("../views/emails/text");
 
 class UsersManager {
     constructor() {
@@ -113,7 +114,7 @@ class UsersManager {
         return deferred.promise;
     }
 
-    createUser(user) {
+    createUser(user, res) {
         const deferred = Q.defer();
         let finalUser = new Users(user);
         const errors = this.validate(finalUser);
@@ -127,17 +128,21 @@ class UsersManager {
                 }
                 else if (!result) {
                     finalUser.setCreatedAt().setUpdatedAt().setLinkExpiration();
-                    finalUser.save().then(res => {
-                        this.mailer.sendMail(CONFIG.mailer.from, 
-                        res.email,
-                        'Activation de compte - ' + res.firstName + ' ' + res.lastName,
-                        'text',
-                        '<p>Cliquez sur le bouton ci-dessous pour confirmer votre adresse e-mail et activer votre compte.' +
-                        '<br><a href="' + CONFIG.host + '/password/' + res._id + 
-                        '"><button type="button">Activer mon compte!</button></a></p>'
-                        )
-                        .then(()=> deferred.resolve(res))
-                        .catch(error => deferred.reject({ err: true, status: 400, message: error }));
+                    finalUser.save().then(user => {
+                        res.render('emails/template', 
+                        { name : user.firstName + ' ' + user.lastName,
+                          content: T.accountActivation.body,
+                          title: T.accountActivation.button,
+                          link: CONFIG.host + '/password/' + user._id }, (err, html) => {
+                            this.mailer.sendMail(CONFIG.mailer.from,
+                                user.email, 
+                                'Activation de compte - ' + user.firstName + ' ' + user.lastName,
+                                'Activation de compte',
+                                html)
+                            .then(()=> deferred.resolve(user))
+                            .catch(error => deferred.reject({ err: true, status: 400, message: error }));
+
+                        });
                     });
                 }
                 else {
@@ -190,24 +195,27 @@ class UsersManager {
         return deferred.promise;
     }
 
-    resetPassword(id) {
+    resetPassword(id, res) {
         const deferred = Q.defer();
         Users.findOne({ "_id": id }).then(user => {
             if (!user) {
                 deferred.reject({ err: true, status: 404, message: "Utilisateur non trouvé." });
             }
             else {
-                user.setUpdatedAt().setLinkExpiration().save().then(res => {
-                    this.mailer.sendMail(CONFIG.mailer.from, 
-                    res.email,
-                    'Réinitialisation de mot de passe - ' + res.firstName + ' ' + res.lastName,
-                    'text',
-                    '<p>Cliquez sur le bouton ci-dessous pour réinitialiser votre mot de passe.' +
-                    '<br><a href="' + CONFIG.host + '/password/' + res._id + 
-                    '"><button type="button">Réinitialiser!</button></a></p>'
-                    )
-                    .then(()=> deferred.resolve(res))
-                    .catch(error => deferred.reject({ err: true, status: 400, message: error }));
+                user.setUpdatedAt().setLinkExpiration().save().then(user => {
+                    res.render('emails/template', 
+                    { name : user.firstName + ' ' + user.lastName,
+                      content: T.passwordReset.body,
+                      title: T.passwordReset.button,
+                      link: CONFIG.host + '/password/' + user._id }, (err, html) => {
+                        this.mailer.sendMail(CONFIG.mailer.from,
+                            user.email, 
+                            'Réinitialisation de mot de passe - ' + user.firstName + ' ' + user.lastName,
+                            'Réinitialisation de mot de passe',
+                            html)
+                        .then(()=> deferred.resolve(user))
+                        .catch(error => deferred.reject({ err: true, status: 400, message: error }));
+                    });
                 });
             }
         });

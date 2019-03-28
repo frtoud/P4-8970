@@ -6,6 +6,7 @@ const Form = mongoose.model('Forms');
 const Users = mongoose.model('Users');
 const Mailer = require("../mailer/mailer");
 const CONFIG = require("../lib/keys");
+const T = require("../views/emails/text");
 
 class FormsManager {
 
@@ -15,7 +16,7 @@ class FormsManager {
         this.mailer = new Mailer('smtp.polymtl.ca', 587, false);
     }
 
-    createForm(form) {
+    createForm(form, res) {
         const deferred = Q.defer();
         let formToCreate = new Form(form);
         this.canCreateForm(formToCreate.auteur.idAuteur, formToCreate.collaborateurs)
@@ -25,16 +26,7 @@ class FormsManager {
                 //Get first collaborator
                 let collaborator = result.collaborateurs[0].email;
                 //notify by email the first collaborator
-                this.mailer.sendMail(CONFIG.mailer.from,
-                    collaborator,
-                    'Invitation pour remplir/signer un formulaire',
-                    'text',
-                    '<p>' + result.auteur.nom + ' vous invite à remplir/signer le formulaire ' +
-                    result.nomFormulaire + '</p><br>' + 
-                    '<a href="' + CONFIG.host + '/edit/' + result._id + 
-                    '"><button type="button">Accéder au formulaire!</button></a></p>')
-                    .then(()=> deferred.resolve(result))
-                    .catch(error => deferred.reject({ err: true, status: 400, message: error }));
+                this.notifyCollaborator(result, collaborator, res, deferred);
             });
         })
         .catch(err => deferred.reject({ err: true, status: 400, message: err }));
@@ -65,21 +57,37 @@ class FormsManager {
         }
     }
 
-    editForm(formId, userId, data) {
+    editForm(formId, userId, data, attachments, res) {
         const deferred = Q.defer();
         this.canEditForm(formId, userId).then(() => {
             Form.findOne({ "_id": formId }).then(form => {
                 if (form) {
-                    form.updateForm(data).setUpdatedAt();
+                    form.data = data;
+                    form.attachements = attachments;
+                    form.setUpdatedAt();
                     const collabIndex = form.collaborateurs.findIndex(c => c.idCollaborateur === userId);
-                    console.log(collabIndex);
                     if (collabIndex === form.collaborateurs.length - 1) {
                         console.log("DERNIER COLLABORATEUR");
+                        form.collaborateurs[collabIndex].acces = "COMPLETED";
                         form.setStatus("COMPLETED");
                         //Notify author by email
-                        form.save().then(updatedForm => 
-                            deferred.resolve({ err: false, data: updatedForm })
-                        )
+                        form.save().then(updatedForm => {
+                            // res.render('emails/template', 
+                            // { name : updatedForm.auteur.nom,
+                            //   content: T.formCompletion.body + updatedForm.nomFormulaire,
+                            //   title: T.formCompletion.button,
+                            //   link: CONFIG.host + '/edit/' + updatedForm._id + '/valider'}, (err, html) => {
+                            //     this.mailer.sendMail(CONFIG.mailer.from,
+                            //         //email de l'auteur
+                            //         "",
+                            //         'Invitation pour valider un formulaire',
+                            //         'Invitation pour valider un formulaire',
+                            //         html)
+                            //         .then(()=> deferred.resolve(updatedForm))
+                            //         .catch(error => deferred.reject({ status: 400, message: error }));
+                            // });
+                            deferred.resolve(updatedForm);
+                        })
                         .catch(err => deferred.reject({ err: true, status: 400, message: err}));
                     }
                     else if (collabIndex != -1 && collabIndex < form.collaborateurs.length - 1){
@@ -88,15 +96,14 @@ class FormsManager {
                         const nextCollaborator = form.collaborateurs[collabIndex + 1];
                         form.collaborateurs[collabIndex + 1].acces = "EDITION";
                         form.save().then(updatedForm => {
-                            deferred.resolve({ err: false, data: updatedForm });
-                            this.notifyCollaborator(updatedForm, nextCollaborator.email);
+                            this.notifyCollaborator(updatedForm, nextCollaborator.email, res, deferred);
                         })
                         .catch(err => deferred.reject({ err: true, status: 400, message: err}));
                     }
                     else if (collabIndex === -1) {
                         console.log("AUTEUR");
                         form.save().then(updatedForm => 
-                            deferred.resolve({ err: false, data: updatedForm })
+                            deferred.resolve(updatedForm)
                         )
                         .catch(err => deferred.reject({ err: true, status: 400, message: err}));
                     }
@@ -124,18 +131,22 @@ class FormsManager {
         .catch(err => Promise.reject(err));
     }
 
-    notifyCollaborator(form, email) {
+    notifyCollaborator(form, email, res, deferred) {
         console.log("NOTIFY COLLABORATOR");
-        return this.mailer.sendMail(CONFIG.mailer.from,
-            email,
-            'Invitation pour remplir/signer un formulaire',
-            'text',
-            '<p>' + form.auteur.nom + ' vous invite à remplir/signer le formulaire ' +
-            form.nomFormulaire + '</p><br>' + 
-            '<a href="' + CONFIG.host + '/edit/' + form._id + 
-            '"><button type="button">Accéder au formulaire!</button></a></p>')
-            .then(()=> Promise.resolve(form))
-            .catch(error => Promise.reject({ status: 400, message: error }));
+        //TODO: FIX name (collab name)
+        res.render('emails/template', 
+                    { name : form.collaborateurs[0].nom,
+                      content: form.auteur.nom + T.formEdition.body + form.nomFormulaire,
+                      title: T.formEdition.button,
+                      link: CONFIG.host + '/edit/' + form._id + '/modify'}, (err, html) => {
+            return this.mailer.sendMail(CONFIG.mailer.from,
+                email,
+                'Invitation pour remplir/signer un formulaire',
+                'Invitation pour remplir/signer un formulaire',
+                html)
+                .then(()=> deferred.resolve(form))
+                .catch(error => deferred.reject({ status: 400, message: error }));
+        });
     }
 
     getFormById(id) {
@@ -154,8 +165,8 @@ class FormsManager {
     getFormsByUser(userId) {
         const deferred = Q.defer();
         Form.find({$or:[
-            { "auteur.idAuteur": userId},
-            {"collaborateurs": {$elemMatch: { "idCollaborateur" : userId }}}
+            { "auteur.idAuteur": userId },
+            { "collaborateurs": {$elemMatch: { "idCollaborateur" : userId }} }
         ]}).then(forms => {
             if (!forms) {
                 deferred.resolve({ err: false, data: []});

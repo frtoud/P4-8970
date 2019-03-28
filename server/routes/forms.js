@@ -5,12 +5,12 @@ const FormsManager = require("../managers/formsManager");
 const formsManager = new FormsManager();
 
 /**
- *  CREATE NEW FORM
+ * CREATE NEW FORM
  * TODO: Protect route
  */
 router.post('/new', (req, res) => {
     const { body: { form } } = req;
-    formsManager.createForm(form)
+    formsManager.createForm(form, res)
     .then(form => res.status(201).json(form))
     .catch(err => res.status(err.status).json(err.message));
 });
@@ -50,8 +50,8 @@ router.get('/user/:id', (req, res) => {
  * TODO: Protect route
  */
 router.patch('/:id', (req, res) => {
-    formsManager.editForm(req.params.id, req.body.userId, req.body.data)
-    .then(result => res.status(200).json(result.data))
+    formsManager.editForm(req.params.id, req.body.userId, req.body.data, req.body.attachments, res)
+    .then(result => res.status(200).json(result))
     .catch(err => res.status(err.status).json(err.message));
 });
 

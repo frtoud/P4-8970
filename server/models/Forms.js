@@ -6,9 +6,15 @@ const collaborateurSchema = new Schema({
     idCollaborateur: String,
     nom: String,
     email: String,
-    //Not mandatory, we can use array index
+    //Deprecated
     ordre: Number,
     acces: String
+});
+
+const AttachmentSchema = new Schema({
+    nomOriginal: String,
+    nomReel: String,
+    path: String,
 });
 
 const FormsSchema = new Schema({
@@ -22,6 +28,7 @@ const FormsSchema = new Schema({
   collaborateurs: [collaborateurSchema],
   statut: String,
   data: Schema.Types.Mixed,
+  attachements: [AttachmentSchema],
   creeLe: Date,
   modifieLe: Date
 });
