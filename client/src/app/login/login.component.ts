@@ -22,7 +22,13 @@ export class LoginComponent {
     Validators.required
   ]);
 
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(private loginService: LoginService, private router: Router) {
+    this.loginService.getUser().then(user=> {
+      if(user){
+        this.router.navigate(["/dashboard"]);
+      }
+    });
+  }
 
   login(event) {
     event.preventDefault;
@@ -30,7 +36,7 @@ export class LoginComponent {
     .then(authUser => {
       this.loginService.getUser().then(login=>{console.log(login.firstName);});
       this.loginError = undefined;
-      this.router.navigate(["dashboard"]);
+      this.router.navigate(["/dashboard"]);
     })
     .catch(err => {
       this.loginError = err.error;
