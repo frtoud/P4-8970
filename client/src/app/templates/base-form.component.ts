@@ -163,5 +163,12 @@ export abstract class BaseFormComponent implements AfterViewInit {
       this.setSections();
     }
 
+    clearSignatures(): void {
+      this.signatures.forEach(sig => {
+        sig.resetSignature();
+        sig.lock = false;
+        sig.date = null;
+      });
+    }
     abstract setSections();
 }

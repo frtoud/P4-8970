@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, ComponentFactoryResolver, Inject } from '@angular/core';
+import {Component, OnInit, OnDestroy, ViewChild, ComponentFactoryResolver, Inject } from '@angular/core';
 import {MatDialog} from '@angular/material';
 import { filter } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -13,6 +13,7 @@ import { InstanceService } from '../services/instance.service';
 import { UserService, User } from '../services/users.service';
 import { BaseFormComponent } from '../templates/base-form.component';
 import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
+import { Subscription } from 'rxjs';
 
 export interface Participant {
   name: string;
@@ -36,7 +37,7 @@ export interface Tile {
   styleUrls: ['./assignation.component.css']
 })
 
-export class AssignationComponent implements OnInit {
+export class AssignationComponent implements OnInit, OnDestroy {
 
 
   listCollaborateurs: User[];
@@ -46,6 +47,9 @@ export class AssignationComponent implements OnInit {
   participants: User[] = []; // Liste à afficher
   usedParticipants: User[] = []; // Sous-liste de ceux qui ont été assignés
   participantInsuffisants = true; // TRUE si usedParticipants est vide
+
+  sub: Subscription;
+  referenceId: string = null;
 
   @ViewChild(FormDirective) formHost: FormDirective;
   @ViewChild(FileUploaderComponent) fileUploader: FileUploaderComponent;
@@ -78,11 +82,29 @@ export class AssignationComponent implements OnInit {
       viewContainerRef.clear();
       this.formInstance = viewContainerRef.createComponent(componentFactory).instance as BaseFormComponent;
 
+      this.sub = this.route.queryParams.subscribe(params => {
+        console.log(params);
+        this.referenceId = params['ref'] || null; });
+        // NULL = formulaire frais; rien besoin de plus.
+        if (this.referenceId !== null) { this.initCopy(); }
+
       this.userService.getAllUsers().then(list => this.listCollaborateurs = list);
     } else {
       // WRONG ID!!
       this.router.navigate(['/new']);
     }
+  }
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
+
+  initCopy() {
+    // Suite du OnInit, pour la copie d'un formulaire existant
+    this.instanceService.getInstance(this.referenceId).then(form => {
+      this.fileUploader.attachedFiles = form.attachements;
+      this.formInstance.setInterface(form.data);
+      this.formInstance.clearSignatures();
+    });
   }
 
   getRandomColor() {
