@@ -1,7 +1,13 @@
-
 <div id="form-header">
   <img src="assets/img/logo-POLY-forms.png" width=180 height=80>
   <h4>AIDE FINANCIÈRE</h4>
+  <div id="form-date">
+      <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="DATE" (click)="picker.open()">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+  </div>
 </div>
 
 <div class="sectionheader">
@@ -196,6 +202,13 @@
 </div>
 
 <div class="sectionheader">
+  <h6>REMARQUES</h6>
+  <div class="section">
+    <input matInput type="text">
+  </div>
+</div>
+
+<div class="sectionheader">
   <h6>ATTESTATION DU BOURSIER ET DU (DES) TITULAIRE(S) DE SUBVENTION</h6>
   <div class="section">
     <p>
@@ -234,5 +247,6 @@
 </div>
   </div>
 </div>
+<p>Référence/no. doc. physique <b>DA-026067</b></p>
 
 
