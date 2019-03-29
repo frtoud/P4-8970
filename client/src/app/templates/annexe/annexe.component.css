@@ -12,6 +12,7 @@
     margin: 5px;
     overflow: auto;
     width: 95%;
+    max-width: 1300px;
 }
 
 /* tableau totaux */

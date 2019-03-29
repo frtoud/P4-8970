@@ -100,9 +100,10 @@ export class EditionComponent implements OnInit {
       this.formInstance.setInterface(form.data);
     this.loginService.getUser().then(user => {
       this.formInstance.setUserEdition(user, this.state !== 'view');
-
-      this.canCopy = this.metadata.statut === 'ARCHIVED' || this.metadata.statut === 'CANCELED'; // TODOkete: à changer
-      this.canCancel = this.metadata.statut !== 'CANCELED' || this.metadata.auteur.idAuteur === user._id;
+      if (user.type !== 'USER' && this.metadata.auteur.idAuteur === user._id) {
+        this.canCopy = this.metadata.statut === 'ARCHIVED' || this.metadata.statut === 'CANCELED';
+        this.canCancel = this.metadata.statut !== 'CANCELED';
+      }
     });
   }
 
