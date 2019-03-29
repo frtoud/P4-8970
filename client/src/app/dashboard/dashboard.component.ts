@@ -70,7 +70,7 @@ export class DashboardComponent implements OnInit {
         case 'USER':
           this.dashboardService.getForms(this.currentUser._id).then(forms => {
             this.sortCardsDecreasingDate(forms);
-            let collaborationForms: Form[] = this.searchAccesCollaborations(forms);
+            let collaborationForms: Form[] = this.searchUserAccesCollaborations(forms);
             this.dashboardForms = collaborationForms;
             this.dashboardForms = collaborationForms;
             this.displayedCards = collaborationForms;
@@ -86,7 +86,7 @@ export class DashboardComponent implements OnInit {
     formArray.sort((vala, valb) => { return +valb.creeLe - +vala.creeLe });
   }
 
-  private searchAccesCollaborations(forms: Form[]): Form[]
+  private searchUserAccesCollaborations(forms: Form[]): Form[]
   {
     let results: Form[] = [];
 
