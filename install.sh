@@ -28,7 +28,7 @@ const KEYS = {
     mailer: {
         from: "gigl-projet-a@polymtl.ca"
     },
-    host: "http://localhost:443"
+    host: "http://localhost:8000"
 };
 module.exports = KEYS; 
 EOF

@@ -9,7 +9,7 @@ const KEYS = {
     mailer: {
         from: "gigl-projet-a@polymtl.ca"
     },
-    host: "http://localhost:443"
+    host: "http://localhost:8000"
 };
 module.exports = KEYS; 
 EOF
@@ -18,7 +18,7 @@ cd ../../client/src/app
 sudo rm ./config.ts
 sudo cat <<EOF > ./config.ts
 export class Config {
-    public static apiUrl = 'http://localhost:443';
+    public static apiUrl = 'http://localhost:8000';
   }
 EOF
 sudo mongo use users
@@ -31,4 +31,4 @@ sudo mongo --eval 'var admin =  {
         "createdAt": "",
         "updatedAt": ""
     }; db.users.insert(user);'
-sudo ng serve --host 0.0.0.0 --port 80 --disable-host-check &
+sudo ng serve --host 0.0.0.0 --port 4200 --disable-host-check &
