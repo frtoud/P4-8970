@@ -137,7 +137,7 @@ export class EditionComponent implements OnInit {
   }
 
   onCopy() {
-    // naviguer sur assignation + id spécial
+    this.router.navigate(['/new', this.currentForm.id], { queryParams: { ref: this.formId } });
   }
   onCancel() {
     // apeller service pour annuler
