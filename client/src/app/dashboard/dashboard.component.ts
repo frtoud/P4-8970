@@ -55,6 +55,7 @@ export class DashboardComponent implements OnInit {
             this.dashboardForms = forms;
             this.displayedCards = forms;
             this.loadedCards = forms;
+            console.log(forms);
           }).catch(err => console.log(err.error));
           break;
         case 'MANAGER':
@@ -63,6 +64,7 @@ export class DashboardComponent implements OnInit {
             this.dashboardForms = forms;
             this.displayedCards = forms;
             this.loadedCards = forms;
+            console.log(forms);
           }).catch(err => console.log(err.error));
           break;
         case 'USER':
@@ -73,6 +75,7 @@ export class DashboardComponent implements OnInit {
             this.dashboardForms = collaborationForms;
             this.displayedCards = collaborationForms;
             this.loadedCards = collaborationForms;
+            console.log(forms);
           }).catch(err => console.log(err.error));
           break;
       }
