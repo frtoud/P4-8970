@@ -9,7 +9,7 @@ import { ParticipantsDialog } from './participants-dialog';
 import { FormDirective } from '../nouveau-formulaire/form-host.directive';
 
 import { TemplateService, FormData } from '../services/template.service';
-import { InstanceService } from '../services/instance.service';
+import { InstanceService, Instance } from '../services/instance.service';
 import { UserService, User } from '../services/users.service';
 import { BaseFormComponent } from '../templates/base-form.component';
 import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
@@ -83,12 +83,14 @@ export class AssignationComponent implements OnInit, OnDestroy {
       this.formInstance = viewContainerRef.createComponent(componentFactory).instance as BaseFormComponent;
 
       this.sub = this.route.queryParams.subscribe(params => {
-        console.log(params);
         this.referenceId = params['ref'] || null; });
         // NULL = formulaire frais; rien besoin de plus.
-        if (this.referenceId !== null) { this.initCopy(); }
+        if (this.referenceId !== null) {  }
+        this.userService.getAllUsers().then(list => {
+          this.listCollaborateurs = list;
+          if (this.referenceId !== null) { this.initCopy(); }
+        });
 
-      this.userService.getAllUsers().then(list => this.listCollaborateurs = list);
     } else {
       // WRONG ID!!
       this.router.navigate(['/new']);
@@ -104,6 +106,12 @@ export class AssignationComponent implements OnInit, OnDestroy {
       this.fileUploader.attachedFiles = form.attachements;
       this.formInstance.setInterface(form.data);
       this.formInstance.clearSignatures();
+      // get form.nomFormulaire
+      this.formInstance.doColoring();
+      form.collaborateurs.forEach(c => {
+        const foundUser = this.listCollaborateurs.find(u => u._id === c.idCollaborateur);
+        if (foundUser) { this.participants.push(foundUser); }
+      });
     });
   }
 
