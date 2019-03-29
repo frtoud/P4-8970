@@ -53,21 +53,20 @@
   À compléter <hr id="a-completer-ligne">
 
 
-  <div *ngSwitchCase="'true'">
-    <mat-grid-list cols="3" >
-      <mat-grid-tile *ngFor="let card of displayedCards" [colspan]="1" [rowspan]="1">
+  <div *ngSwitchCase="'true'" id="cards-container">
+    <div id = "card-array">
+      <div *ngFor="let card of displayedCards" id="card">
         <mat-card class="dashboard-card">
           <mat-card-content class="dashboard-card-content">
             <ng-container id="card-header">
+              
               <span id="card-titleAndType">
                   {{card.nomFormulaire}}
               </span>
               <span id="card-dateAndAuthor">
                   Créé le: {{card.creeLe|date:'dd-MM-yyyy'}}
               </span> <br>
-              <span id="carte-title-type">
-                  {{card.idForm}}
-              </span>
+              
               <span id="carte-date-auteur">
                   Auteur: {{card.auteur.nom}}
               </span>
@@ -139,30 +138,39 @@
                   <mat-row *matRowDef="let row; columns: cardCollaborateurs;"></mat-row>
                 </mat-table>
 
+                
                 <ng-container [ngSwitch]="determineState(card)">
                   <div *ngSwitchCase="'EDIT'">
+                      
                     <button mat-raised-button id="modifier" [routerLink]="['/edit', card._id, 'modify']">
                       MODIFIER
                     </button>
+                  
+                    
                   </div>
                   <div *ngSwitchCase="'VALIDATE'">
+                      
                     <button mat-raised-button id="modifier" [routerLink]="['/edit', card._id, 'validate']">
                       VALIDER
                     </button>
+                   
                   </div>
                   <div *ngSwitchCase="'VIEW'">
+                      
                     <button mat-raised-button id="modifier" [routerLink]="['/edit', card._id, 'view']">
                       VISUALISER
                     </button>
+                    
                   </div>
                 </ng-container>
+                
                 
               </mat-expansion-panel>
             </ng-container>
           </mat-card-content>
         </mat-card>
-      </mat-grid-tile>
-    </mat-grid-list>
+      </div>
+    </div>
   </div>
 
   <div *ngSwitchCase="'false'">
