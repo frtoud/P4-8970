@@ -49,6 +49,22 @@
   color: #bbdeea;
 }
 
+
+#card {
+ width: 350px;
+ margin: 20px;
+ margin-bottom: 10px;
+}
+
+#card-array {
+  display: flex;
+  flex-wrap: wrap;
+ }
+
+ #cards-container {
+  width:100%;
+ }
+
 .inProgress.mat-progress-bar,
 .hasLate.mat-progress-bar,
 .refused.mat-progress-bar,
