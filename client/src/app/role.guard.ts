@@ -19,6 +19,7 @@ export class RoleGuard implements CanActivate {
         if(user.type == "ADMIN"){
           return true;
         }else{
+          window.alert("Cette zone est réservée aux administrateurs.");
           return false;
         }
      }else{
