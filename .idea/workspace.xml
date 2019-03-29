@@ -194,9 +194,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="319" />
-    <option name="y" value="104" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="116" />
+    <option name="y" value="140" />
     <option name="width" value="694" />
     <option name="height" value="735" />
   </component>
@@ -242,7 +242,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../projet4-serveur" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="C:\Users\Joel\Documents\repos\joelljpoulin\projet4\node_modules\tslint" />
@@ -371,12 +371,12 @@
       <workItem from="1553361314006" duration="7168000" />
       <workItem from="1553739023393" duration="1190000" />
       <workItem from="1553777526297" duration="2158000" />
-      <workItem from="1553880844451" duration="3406000" />
+      <workItem from="1553880844451" duration="3908000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="230139000" />
+    <option name="totallyTimeSpent" value="230641000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
