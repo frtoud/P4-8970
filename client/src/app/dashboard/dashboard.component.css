@@ -42,6 +42,10 @@
   float: right;
 }
 
+#carte-date-auteur{
+  float: right;
+}
+
 #completedIcon {
   color: #8cc83c;
 }
@@ -54,17 +58,20 @@
 
 #card {
  width: 350px;
- margin: 20px;
+ margin-right: 40px;
  margin-bottom: 10px;
+ 
 }
 
 #card-array {
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-start;
+  
  }
 
  #cards-container {
-  width:100%;
+  align-content: center;
  }
 
 .inProgress.mat-progress-bar,
@@ -141,6 +148,7 @@
 }
 #modifier {
   background-image: linear-gradient(#bbdeea, #367ec1);
+  width:100px;
 }
 
 #valider, #approuver {
