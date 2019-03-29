@@ -260,10 +260,10 @@ export class DashboardComponent implements OnInit {
     let results: Form[] = [];
     
     this.searchResult.forEach(form => {
-      
-    if(form.idForm==this.searchPatron){
-      results.push(form);
-    }});
+      if(form.idForm==this.searchPatron){
+        results.push(form);
+      }
+    });
     return(results);
   }
 
@@ -275,7 +275,8 @@ export class DashboardComponent implements OnInit {
 
       if(dateCreeLe > this.dateFrom){
         results.push(form);
-    }});
+      }
+    });
     return(results);
   }
 
@@ -288,7 +289,8 @@ export class DashboardComponent implements OnInit {
       
       if(dateCreeLe < this.dateTo){
         results.push(form);
-    }});
+      }
+    });
     return(results);
   }
 }
