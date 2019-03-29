@@ -43,15 +43,17 @@ export class Signature implements ISignature
 
   public validerSignature()
   {
-      //Signature possible si nom existant et case cochée
+      // Signature possible si nom existant et case cochée
     this.validated = this.value.length > 0 && this.check;
+    this.date = new Date();
   }
   public resetSignature()
   {
-      //annuler toute la signature
+      // Annuler toute la signature
     this.validated = false;
-    this.value = "";
+    this.value = '';
     this.check = false;
+    this.date = null;
   }
   public onButtonClick()
   {

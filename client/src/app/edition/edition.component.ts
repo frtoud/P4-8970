@@ -27,6 +27,9 @@ export class EditionComponent implements OnInit {
   state: string; // modify, view, validate
   displaying = true;
 
+  canCopy = false;
+  canCancel = false;
+
   participants: Collaborateur[] = [];
 
   tiles = [
@@ -97,6 +100,9 @@ export class EditionComponent implements OnInit {
       this.formInstance.setInterface(form.data);
     this.loginService.getUser().then(user => {
       this.formInstance.setUserEdition(user, this.state !== 'view');
+
+      this.canCopy = this.metadata.statut === 'ARCHIVED' || this.metadata.statut === 'CANCELED'; // TODOkete: à changer
+      this.canCancel = this.metadata.statut !== 'CANCELED' || this.metadata.auteur.idAuteur === user._id;
     });
   }
 
@@ -130,7 +136,12 @@ export class EditionComponent implements OnInit {
     });
   }
 
-
+  onCopy() {
+    this.router.navigate(['/new', this.currentForm.id], { queryParams: { ref: this.formId } });
+  }
+  onCancel() {
+    // apeller service pour annuler
+  }
 
   printDiv() {
 

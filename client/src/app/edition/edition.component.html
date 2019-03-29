@@ -19,17 +19,23 @@
      <!--  <mat-grid-tile [colspan]="tiles[0].cols" [rowspan]="tiles[0].rows">
         <button id="refuser" mat-raised-button color="warn">REFUSER</button>
       </mat-grid-tile> -->
-      <mat-grid-tile *ngIf="this.state === 'view'">
+      <mat-grid-tile *ngIf="state === 'view'">
         <button button mat-icon-button id="print"  (click)="printDiv()" ><mat-icon>print</mat-icon></button>
       </mat-grid-tile>
-      <mat-grid-tile *ngIf="this.state === 'validate'">
+      <mat-grid-tile *ngIf="state === 'validate'">
         <button id="valider" mat-raised-button (click)="onValidate()">VALIDER</button>
       </mat-grid-tile>
-      <mat-grid-tile *ngIf="this.state === 'modify'">
+      <mat-grid-tile *ngIf="state === 'modify'">
         <button id="soumettre" mat-raised-button (click)="onSend()" color="primary">SOUMETTRE</button>
       </mat-grid-tile>
       <mat-grid-tile >
-        <button id="annuler" mat-raised-button [routerLink]="['/dashboard']">Annuler</button>
+        <button id="annuler" mat-raised-button [routerLink]="['/dashboard']">RETOUR</button>
+      </mat-grid-tile>
+      <mat-grid-tile *ngIf="canCopy">
+        <button id="copier" mat-raised-button (click)="onCopy()">COPIER</button>
+      </mat-grid-tile>
+      <mat-grid-tile *ngIf="canCancel">
+        <button id="copier" mat-raised-button color="warn" (click)="onCancel()">INVALIDER</button>
       </mat-grid-tile>
     </mat-grid-list>
     </div>
