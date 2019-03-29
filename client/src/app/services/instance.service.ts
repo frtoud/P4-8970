@@ -1,7 +1,7 @@
 
 import { Injectable } from '@angular/core';
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Config } from '../config';
 
 import { User, UserService } from './users.service';
@@ -130,10 +130,17 @@ export class InstanceService
             .then(res => console.log("*****", res))
             .catch(InstanceService.handleError);
     }
-    public validateInstance(id: string)
-    {
+    public validateInstance(id: string) {
         return this.http.patch(`${Config.apiUrl}/forms/${id}/archive`, {}, {}).toPromise()
             .then(res => console.log(res))
             .catch(InstanceService.handleError);
+    }
+    public cancelInstance(id: string) {
+        return this.loginService.getUser().then(user => {
+            const httpparams = new HttpParams().set('user', user._id);
+            return this.http.patch(`${Config.apiUrl}/forms/${id}/cancel`, {}, { params: httpparams }).toPromise()
+                .then(res => console.log(res))
+                .catch(InstanceService.handleError);
+        });
     }
 }
