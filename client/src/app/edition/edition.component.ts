@@ -140,7 +140,7 @@ export class EditionComponent implements OnInit {
     this.router.navigate(['/new', this.currentForm.id], { queryParams: { ref: this.formId } });
   }
   onCancel() {
-    // apeller service pour annuler
+    this.instanceService.cancelInstance(this.formId);
   }
 
   printDiv() {
