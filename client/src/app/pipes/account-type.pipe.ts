@@ -32,6 +32,9 @@ export class StatePipe implements PipeTransform {
         else if (value === "ARCHIVED") {
             return "archivé";
         }
+        else if (value === "CANCELED") {
+            return "annulé";
+        }
         return "";
     }
 }

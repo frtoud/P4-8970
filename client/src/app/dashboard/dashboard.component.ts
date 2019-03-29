@@ -105,12 +105,10 @@ export class DashboardComponent implements OnInit {
     return results;
   }
 
-  // res = ["VALIDATE", "EDIT", "VIEW"];
+  // return values : res = ["VALIDATE", "EDIT", "VIEW"];
   determineState(form: Form): string {
     let res = 'VIEW';
     let userIsAuthor = form.auteur.idAuteur === this.currentUser._id;
-    // this.userAccess = ["WAITING", "EDITION", "COMPLETED", "PREVIEW"];
-    // this.formStatus = ["IN_PROGRESS", "COMPLETED", "ARCHIVED"];
     
     if (this.currentUser.type === 'ADMIN' || this.currentUser.type === 'MANAGER') {
       
@@ -133,19 +131,23 @@ export class DashboardComponent implements OnInit {
 
       const collab: Collaborateur = form.collaborateurs.find(u => u.idCollaborateur === this.currentUser._id);
       if (collab) {
-        switch (collab.acces) {
-          case 'EDITION':
-            res = 'EDIT';
-            break;
-          case 'COMLETED':
-            res = 'VIEW';
-            break;
-          case 'PREVIEW':
-            res = 'VIEW';
-            break;
-          case 'CANCELED':
-            res = 'VIEW';
-            break;
+        if (form.statut == 'IN_PROGRESS') {
+          switch (collab.acces) {
+            case 'EDITION':
+              res = 'EDIT';
+              break;
+            case 'COMLETED':
+              res = 'VIEW';
+              break;
+            case 'PREVIEW':
+              res = 'VIEW';
+              break;
+            case 'CANCELED':
+              res = 'VIEW';
+              break;
+          }
+        } else {
+          res = 'VIEW';
         }
       }
 
@@ -157,7 +159,7 @@ export class DashboardComponent implements OnInit {
     let nCollaborateursCompleted = 0;
 
     collaborateurs.forEach(collaborateur => {
-      if(collaborateur.acces == "COMPLETED" || collaborateur.acces == "PREVIEW") {
+      if(collaborateur.acces == 'COMPLETED' || collaborateur.acces == 'PREVIEW') {
         nCollaborateursCompleted++;
       }
     });
@@ -185,21 +187,21 @@ export class DashboardComponent implements OnInit {
       this.searchResult = this.searchAuthor();
     }
 
-    if(this.searchStatus=="COMPLETED") {
+    if(this.searchStatus=='COMPLETED') {
         this.searchResult = this.searchCompleted();
     }
 
-    if(this.searchStatus=="IN_PROGRESS")
+    if(this.searchStatus=='IN_PROGRESS')
     {
         this.searchResult = this.searchActive();
     }
 
-    if(this.searchStatus=="ARCHIVED")
+    if(this.searchStatus=='ARCHIVED')
     {
         this.searchResult = this.searchArchived();
     }
 
-    if(this.searchStatus=="CANCELED")
+    if(this.searchStatus=='CANCELED')
     {
         this.searchResult = this.searchCanceled();
     }
@@ -231,7 +233,7 @@ export class DashboardComponent implements OnInit {
     let results: Form[] = [];
 
     this.searchResult.forEach(form => {
-      if(form.statut=="COMPLETED"){
+      if(form.statut=='COMPLETED'){
         results.push(form);
       }
     });
@@ -245,7 +247,7 @@ export class DashboardComponent implements OnInit {
     let results: Form[] = [];
 
     this.searchResult.forEach(form => {
-      if(form.statut=="IN_PROGRESS"){
+      if(form.statut=='IN_PROGRESS'){
         results.push(form);
       }
     })
@@ -259,7 +261,7 @@ export class DashboardComponent implements OnInit {
     let results: Form[] = [];
 
     this.searchResult.forEach(form => {
-      if(form.statut=="ARCHIVED"){
+      if(form.statut=='ARCHIVED'){
         results.push(form);
     }});
 
@@ -272,7 +274,7 @@ export class DashboardComponent implements OnInit {
     let results: Form[] = [];
 
     this.searchResult.forEach(form => {
-      if(form.statut=="CANCELED"){
+      if(form.statut=='CANCELED'){
         results.push(form);
     }});
 
