@@ -219,6 +219,32 @@ class FormsManager {
         return deferred.promise;
     }
 
+    cancelForm(userId, formId) {
+        const deferred = Q.defer();
+        Form.findOne({ "_id": formId }).then(form => {
+            if (form) {
+                Users.findOne({ "_id": userId }).then(user => {
+                    if (user && (user.type === "ADMIN" || user.type === "MANAGER")) {
+                        form.setStatus("CANCELED").setUpdatedAt();
+                        form.save()
+                        .then(cForm => deferred.resolve(cForm))
+                        .catch(err => deferred.reject({status: 400, message: err}));
+                    }
+                    else {
+                        deferred.reject({status: 403, message: "Opération non permise."});
+                    }
+                })
+                .catch(err => deferred.reject({status: 400, message: "Opération non permise."}));
+            }
+            else {
+                deferred.reject({status: 400, message: "Formulaire introuvable!"});
+            }
+        })
+        .catch(err => deferred.reject({status: 400, message: err}));
+
+        return deferred.promise;
+    }
+
 }
 
 module.exports = FormsManager;
