@@ -49,7 +49,12 @@ sudo yum -y install -y mongodb-org
 sudo service mongod start
 # Enable mongod daemon on boot.
 sudo systemctl enable mongod
-
+sudo systemctl enable firewalld
+sudo systemctl start firewalld
+sudo firewall-cmd --zone=public --add-port=8000/tcp --permanent
+sudo firewall-cmd --zone=public --add-port=4200/tcp --permanent
+sudo firewall-cmd --zone=public --add-port=27017/tcp --permanent
+sudo firewall-cmd --reload
 echo "Le système doit redémarrer pour compléter l'installation. Voulez-vous continuer?"
 select yn in "Oui" "Non"; do
     case $yn in
