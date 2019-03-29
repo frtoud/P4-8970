@@ -191,7 +191,7 @@ export class DashboardComponent implements OnInit {
         this.searchResult = this.searchCompleted();
     }
 
-    if(this.searchStatus='IN_PROGRESS')
+    if(this.searchStatus=='IN_PROGRESS')
     {
         this.searchResult = this.searchActive();
     }
