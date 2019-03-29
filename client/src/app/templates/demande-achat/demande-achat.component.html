@@ -288,6 +288,14 @@
           <tr mat-row *matRowDef="let row; columns: displayedColumnsVentilation;"></tr>
           <tr mat-footer-row *matFooterRowDef="['total','addRow']"></tr>
         </table>
+        <mat-form-field>
+            <input matInput placeholder="Frais de transport">
+          </mat-form-field>
+          <mat-form-field>
+              <input matInput placeholder="Autres frais">
+          </mat-form-field>
+          <p><b>Total: </b></p>
+          <p><b>Engagement réel: </b></p>
     </div>
 </div>
     <!-- Commentaires et precision -->
@@ -301,6 +309,7 @@
       </mat-grid-tile>
     </mat-grid-list>
   </div>
+
   
 <div id="signatures">
   <span *ngFor="let sig of signatures" >
@@ -324,5 +333,15 @@
       </div>
   </span>
 </div>
+<div class="section-rectangle">
+    <div>
+        <p>Réservé au service des finances</p>
+        <mat-form-field>
+            <input matInput type="text" placeholder="RÉFÉRENCE SAFIRH">
+        </mat-form-field>
+    </div>
+</div>
+<p>Référence/no. doc. physique <b>DA- 012944</b></p>
+
 
 
