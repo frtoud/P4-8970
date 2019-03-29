@@ -50,10 +50,12 @@ export interface Form {
       typeAuteur: String;
   }
   collaborateurs: Collaborateur[];
-  idForm: string;
   creeLe: Date;
+  idForm: string;
   modifieLe: Date;
+  nomFormulaire: string;
   statut: string;
+  _id: string;
   //TODO : we need a type of form (dashboard search by Patron)
 }
 

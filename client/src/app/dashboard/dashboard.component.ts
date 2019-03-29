@@ -260,7 +260,7 @@ export class DashboardComponent implements OnInit {
     let results: Form[] = [];
     
     this.searchResult.forEach(form => {
-      if(form.idForm==this.searchPatron){
+      if(form.nomFormulaire==this.searchPatron){
         results.push(form);
       }
     });
