@@ -162,8 +162,7 @@ export class DashboardComponent implements OnInit {
   private searchAuthor(): Form[] {
     let results: Form[] = [];
     this.dashboardForms.forEach(form => {
-      if (form.auteur.nom === this.searchName){
-          console.log("found cardId: " + form.idForm);
+      if (form.auteur.nom === this.searchName) {
           results.push(form);
         }
     });
@@ -180,38 +179,30 @@ export class DashboardComponent implements OnInit {
       this.searchResult = this.searchAuthor();
     }
 
-  
-    console.log("search: " + this.searchStatus);
-    if(this.searchStatus=="COMPLETED"){
+    if(this.searchStatus=="COMPLETED") {
         this.searchResult = this.searchCompleted();
     }
-    
 
     if(this.searchStatus=="IN_PROGRESS")
     {
-        console.log("searchStatus: calling searchActive");
         this.searchResult = this.searchActive();
     }
 
     if(this.searchStatus=="ARCHIVED")
     {
-        console.log("searchStatus: calling searchArchived");
         this.searchResult = this.searchArchived();
     }
 
     if(this.searchPatron)
     {
-        console.log("searchStatus: calling searchId");
         this.searchResult = this.searchId();
     }
 
-    if(this.dateFrom){
-      console.log("searchStatus: calling searchDateFrom");
+    if(this.dateFrom) {
       this.searchResult = this.searchDateFrom();
     }
 
-    if(this.dateTo){
-      console.log("searchStatus: calling searchDateTo");
+    if(this.dateTo) {
       this.searchResult = this.searchDateTo();
     }
 
@@ -229,12 +220,11 @@ export class DashboardComponent implements OnInit {
     let results: Form[] = [];
 
     this.searchResult.forEach(form => {
-      
       if(form.statut=="COMPLETED"){
         results.push(form);
-        console.log("found completed participation: " + form.idForm);
-      }});
-      return(results);
+      }
+    });
+    return(results);
   }
 
   
@@ -244,20 +234,12 @@ export class DashboardComponent implements OnInit {
     let results: Form[] = [];
 
     this.searchResult.forEach(form => {
-      form.collaborateurs.forEach(collaborateur=>{
-        if(collaborateur.idCollaborateur==this.currentUser._id){
-          if(form.statut=="IN_PROGRESS"){
-            results.push(form);
-            console.log("card in progress found: cardID: "+ form.idForm +
-            " collaborator status confirmation: " + collaborateur.acces +
-            " collaborator: id:" + collaborateur.idCollaborateur +
-            " name: "+ collaborateur.nom);
-            
-          }
-        }
-      })})
+      if(form.statut=="IN_PROGRESS"){
+        results.push(form);
+      }
+    })
       
-      return(results);
+    return(results);
   }
 
   private searchArchived(): Form[]
@@ -268,7 +250,6 @@ export class DashboardComponent implements OnInit {
     this.searchResult.forEach(form => {
       if(form.statut=="ARCHIVED"){
         results.push(form);
-        console.log("found archived participation: " + form.idForm);
     }});
 
     return(results);
@@ -282,7 +263,6 @@ export class DashboardComponent implements OnInit {
       
     if(form.idForm==this.searchPatron){
       results.push(form);
-      console.log("found patron: " + form.idForm);
     }});
     return(results);
   }
