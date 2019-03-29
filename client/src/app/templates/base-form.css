@@ -8,7 +8,7 @@ div.assignation_selected {
   .mat-table {
     background: inherit;
   }
-
-  .form_disabled {  
+  
+  .child_disabled * {  
     pointer-events: none;
   }
