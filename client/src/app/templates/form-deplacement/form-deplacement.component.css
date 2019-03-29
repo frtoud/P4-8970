@@ -9,6 +9,12 @@
     padding: 5px;
 }
 
+#annexe {
+    
+    max-width: 100%;
+    border: solid;
+}
+
 #entite_externe, 
 #beneficiaire,  
 #demandeur,
