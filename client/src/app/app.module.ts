@@ -53,7 +53,7 @@ const appRoutes: Routes = [
   { path: 'admin/accounts', component: AccountsComponent, canActivate: [RoleGuard] },
   { path: 'admin/accounts/new', component: NewAccountComponent, canActivate: [RoleGuard] },
   { path: 'admin/accounts/:id', component: EditAccountComponent, canActivate: [RoleGuard] },
-  { path: 'password/:id', component: SetPasswordComponent, canActivate: [AuthGuard] },
+  { path: 'password/:id', component: SetPasswordComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]  },
   { path: 'archive', component: ArchiveComponent, canActivate: [AuthGuard] },
   { path: 'userSettings', component: UserSettingsComponent, canActivate: [AuthGuard] },
