@@ -14,5 +14,11 @@ const KEYS = {
 module.exports = KEYS; 
 EOF
 sudo npm start &
-cd ../../client
+cd ../../client/src/app
+sudo rm ./config.ts
+sudo cat <<EOF > ./config.ts
+export class Config {
+    public static apiUrl = 'http://localhost:443';
+  }
+EOF
 sudo ng serve --host 0.0.0.0 --port 80 --disable-host-check &
