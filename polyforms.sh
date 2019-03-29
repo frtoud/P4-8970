@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-sudo wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1BJlp4udnEZUb71bhf9FagPdwE7vu0qml' -O polyforms.tar.gz
+sudo wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1JgmX85txC-WyEaJAQZQQAIgfezjDXIR8' -O polyforms.tar.gz
 sudo tar xvzf polyforms.tar.gz
 cd polyforms
 sudo chmod +x ./deploy.sh
