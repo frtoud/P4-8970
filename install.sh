@@ -50,10 +50,10 @@ sudo service mongod start
 # Enable mongod daemon on boot.
 sudo systemctl enable mongod
 
-echo "System reboot is required to complete installation. Do you want to continue?"
-select yn in "Yes" "No"; do
+echo "Le système doit redémarrer pour compléter l'installation. Voulez-vous continuer?"
+select yn in "Oui" "Non"; do
     case $yn in
-        Yes ) sudo reboot;
+        Oui ) sudo reboot;
     esac
 done
 
