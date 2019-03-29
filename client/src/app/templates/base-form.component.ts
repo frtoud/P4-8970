@@ -138,9 +138,8 @@ export abstract class BaseFormComponent implements AfterViewInit {
 
     getAssignations(): Set<string> {
       const list: Set<string> = new Set<string>();
-      this.sections.forEach(s => {
-        list.add(s.assigneA);
-      });
+      this.sections.forEach(s => { list.add(s.assigneA); });
+      this.signatures.forEach(s => { list.add(s.assigneA); });
       return list;
     }
 
