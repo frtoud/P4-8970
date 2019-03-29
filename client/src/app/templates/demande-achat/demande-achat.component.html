@@ -16,8 +16,7 @@
       <mat-checkbox>Entente</mat-checkbox>
     </mat-grid-tile>
   <!--Demandeur-->
-  <div class="section-rectangle" id="demandeur"
-  [ngClass]="{'assignation_selected': demandeur.assigneA === collaborateurID, 'assignation_assigned': demandeur.assigneA !== null}">
+  <div class="section-rectangle" id="demandeur">
     <h6>DEMANDEUR</h6>
       <mat-grid-list cols="1" rowHeight="4em">
         <mat-grid-tile>
@@ -37,8 +36,7 @@
       </mat-grid-list>
     </div>
   <!--Fournisseur suggéré-->
-  <div class="section-rectangle" id="fournisseur"
-    [ngClass]="{'assignation_selected': fournisseur.assigneA === collaborateurID, 'assignation_assigned': fournisseur.assigneA !== null}">
+  <div class="section-rectangle" id="fournisseur">
       <h6>FOURNISSEUR SUGGÉRÉ</h6>
       <mat-grid-list cols="1" rowHeight="4em">
       <mat-grid-tile>
@@ -74,8 +72,7 @@
     </mat-grid-list>
     </div>
   <!--Contact-->
-  <div class="section-rectangle" id="contact"
-  [ngClass]="{'assignation_selected': contact.assigneA === collaborateurID, 'assignation_assigned': contact.assigneA !== null}">
+  <div class="section-rectangle" id="contact">
     
       <h6>CONTACT</h6>
       <mat-grid-list cols="1" rowHeight="4em">
@@ -96,8 +93,7 @@
     </mat-grid-list>
     </div>
   <!--Soumission-->
-  <div class="section-rectangle" id="soumission"
-  [ngClass]="{'assignation_selected': soumission.assigneA === collaborateurID, 'assignation_assigned': soumission.assigneA !== null}">
+  <div class="section-rectangle" id="soumission">
     <h6>SOUMISSION</h6>
       <mat-grid-list cols="1" rowHeight="4em">
     <mat-grid-tile>
@@ -111,8 +107,7 @@
     </mat-grid-list>
     </div>
   <!--Livraison-->
-  <div class="section-rectangle" id="livraison"
-  [ngClass]="{'assignation_selected': livraison.assigneA === collaborateurID, 'assignation_assigned': livraison.assigneA !== null}">
+  <div class="section-rectangle" id="livraison">
     <h6>LIVRAISON</h6>
     <mat-grid-list cols="1" rowHeight="4em">
   <mat-grid-tile>
@@ -132,8 +127,7 @@
     </mat-grid-list>
   </div>
   <!--Termes de paiement-->
-  <div class="section-rectangle" id="termes"
-  [ngClass]="{'assignation_selected': termes.assigneA === collaborateurID, 'assignation_assigned': termes.assigneA !== null}">
+  <div class="section-rectangle" id="termes">
       <h6>TERMES DE PAIEMENT</h6>
     <mat-grid-list cols="1" rowHeight="4em">
     <mat-grid-tile>
@@ -150,8 +144,7 @@
     </mat-grid-list>
   </div>
   <!--Description des items-->
-  <div class="section-rectangle" id="items"
-  [ngClass]="{'assignation_selected': items.assigneA === collaborateurID, 'assignation_assigned': items.assigneA !== null}">
+  <div class="section-rectangle" id="items">
     <h6>DESCRIPTION DES ITEMS</h6>
     <div class="section">
       <table mat-table [dataSource]="dSitems">
@@ -211,8 +204,7 @@
     </div>
   </div>
   <!--Ventilation budgétaire-->
-  <div class="section-rectangle" id="ventilation"
-  [ngClass]="{'assignation_selected': ventilation.assigneA === collaborateurID, 'assignation_assigned': ventilation.assigneA !== null}">
+  <div class="section-rectangle" id="ventilation">
       <h6>VENTILATION BUDGETAIRE</h6>
       <div class="section">
         <table mat-table [dataSource]="dSventilation">
@@ -273,8 +265,7 @@
     </div>
 </div>
     <!-- Commentaires et precision -->
-  <div class="section-rectangle" id="commentaire"
-  [ngClass]="{'assignation_selected': commentaire.assigneA === collaborateurID, 'assignation_assigned': commentaire.assigneA !== null}">
+  <div class="section-rectangle" id="commentaire">
       <h6>COMMENTAIRES ET PRÉCISIONS</h6>
     <mat-grid-list cols="1" rowHeight="4em">
       <mat-grid-tile>
@@ -287,8 +278,7 @@
   
 <div id="signatures">
   <span *ngFor="let sig of signatures" >
-      <div class="signature" id={{sig.id}}
-      [ngClass]="{'assignation_selected': sig.assigneA === collaborateurID, 'assignation_assigned': sig.assigneA !== null}">
+      <div class="signature" id={{sig.id}}>
           <mat-form-field>
               <input matInput type="text" placeholder="{{sig.name}}" [disabled]="sig.lock || sig.validated" [(ngModel)]="sig.value">
               <mat-hint *ngIf="sig.value.length === 0">

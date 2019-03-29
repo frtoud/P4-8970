@@ -1,5 +1,9 @@
-export interface ISignature
-{
+export interface ISection {
+    id: string;
+    assigneA: string;
+}
+
+export interface ISignature {
     id: string;
     name: string;
     assigneA: string;

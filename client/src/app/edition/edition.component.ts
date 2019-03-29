@@ -96,7 +96,7 @@ export class EditionComponent implements OnInit {
     console.log(this.oldData);
       this.formInstance.setInterface(form.data);
     this.loginService.getUser().then(user => {
-      this.formInstance.setUserEdition(user);
+      this.formInstance.setUserEdition(user, this.state !== 'view');
     });
   }
 

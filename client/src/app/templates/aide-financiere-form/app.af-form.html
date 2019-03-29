@@ -6,8 +6,7 @@
 
 <div class="sectionheader">
   <h6>DEMANDEUR</h6>
-  <div class="section section-row" id="demandeur"
-  [ngClass]="{'assignation_selected': demandeur.assigneA === collaborateurID, 'assignation_assigned': demandeur.assigneA !== null}">
+  <div class="section section-row" id="demandeur">
     <mat-form-field floatLabel="auto" class="large">
       <input matInput placeholder="Nom"
       [(ngModel)]="demandeur.nom">
@@ -29,8 +28,7 @@
 
 <div class="sectionheader">
   <h6>BÉNÉFICIAIRE</h6>
-  <div class="section section-row" id="beneficiaire" 
-  [ngClass]="{'assignation_selected': beneficiaire.assigneA === collaborateurID, 'assignation_assigned': beneficiaire.assigneA !== null}">
+  <div class="section section-row" id="beneficiaire">
     <mat-form-field floatLabel="auto" class="medium">
       <input matInput placeholder="Nom" [(ngModel)]="beneficiaire.nom">
     </mat-form-field>
@@ -49,8 +47,7 @@
 </div>
 <div class="sectionheader">
   <h6>CYCLE DE L'ÉTUDIANT</h6>
-  <div class="section section-column" id="cycle"
-  [ngClass]="{'assignation_selected': cycle.assigneA === collaborateurID, 'assignation_assigned': cycle.assigneA !== null}">
+  <div class="section section-column" id="cycle">
     <p>Identifier le cycle de l'étudiant(e):</p>
     <div class="section-row">
       <p class="checkbox-label">BACCALAURÉAT:</p>
@@ -90,8 +87,7 @@
 </div>
 <div class="sectionheader">
   <h6>DÉTAIL DE L'AIDE FINANCIÈRE</h6>
-  <div class="section section-row" id="details"
-  [ngClass]="{'assignation_selected': details.assigneA === collaborateurID, 'assignation_assigned': details.assigneA !== null}">
+  <div class="section section-row" id="details">
     <p>Les versements sont faits aux quize jours, selon le cycle de la paie.</p>
     <p>PÉRIODE D'ENGAGEMENT:</p>
     <mat-form-field class="short">
@@ -130,8 +126,7 @@
 
 <div class="sectionheader">
   <h6>VENTILATION BUDGETAIRE</h6>
-  <div class="section" id="ventilation"
-  [ngClass]="{'assignation_selected': ventilation.assigneA === collaborateurID, 'assignation_assigned': ventilation.assigneA !== null}">
+  <div class="section" id="ventilation">
     <table mat-table [dataSource]="dSventilation">  
       <ng-container matColumnDef="ubr">
           <th mat-header-cell *matHeaderCellDef class="short"> UBR. </th>
@@ -217,8 +212,7 @@
     </p>
     <div id="signatures">
       <div  *ngFor="let sig of signatures" >
-    <div class="signature" id={{sig.id}}
-    [ngClass]="{'assignation_selected': sig.assigneA === collaborateurID, 'assignation_assigned': sig.assigneA !== null}">
+    <div class="signature" id={{sig.id}}>
         <mat-form-field>
           <input matInput type="text" placeholder="{{sig.name}}" [disabled]="sig.lock || sig.validated" [(ngModel)]="sig.value">
           <mat-hint *ngIf="sig.name.length == 0">

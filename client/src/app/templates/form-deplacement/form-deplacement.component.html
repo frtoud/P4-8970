@@ -6,8 +6,7 @@
 </div>
 
 <div id="entite-date">
-<div id="entite_externe"
-[ngClass]="{'assignation_selected': entite_externe.assigneA === collaborateurID, 'assignation_assigned': entite_externe.assigneA !== null}">
+<div id="entite_externe">
   <h6>ENTITÉ EXTERNE</h6>
   <mat-form-field id = "nom">
       <input matInput type="text" placeholder="NOM" [(ngModel)]="entite_externe.nom">
@@ -55,8 +54,7 @@
 
 
 
-<div id="endroit_duree"
-[ngClass]="{'assignation_selected': endroit_duree.assigneA === collaborateurID, 'assignation_assigned': endroit_duree.assigneA !== null}">
+<div id="endroit_duree">
     <div id="endroit">
         <h6>Endroit de déplacement / de la réception</h6>
         <br>
@@ -94,8 +92,7 @@
 </div>
     
 
-<div id="but"
-[ngClass]="{'assignation_selected': but.assigneA === collaborateurID, 'assignation_assigned': but.assigneA !== null}">
+<div id="but">
     <h6>Buts de déplacement / de la réception (Expliquer le lien avec la recherche si imputé dans un compte de recherche)</h6>
     <mat-form-field>
         <input matInput type="text" placeholder="" [(ngModel)]="but.valeur">
@@ -109,8 +106,7 @@
 
 
 
-<div id="ventilation"
-[ngClass]="{'assignation_selected': ventilation.assigneA === collaborateurID, 'assignation_assigned': ventilation.assigneA !== null}">
+<div id="ventilation">
     <h6>Ventilation budgétaire à débiter (compléter et annexer au formulaire SF-3C)</h6>
 
     <div id="payment-demande">
@@ -239,8 +235,7 @@
 
 <div id="signatures">
         <div *ngFor="let sig of signatures" >
-            <div class="signature" id={{sig.id}}
-            [ngClass]="{'assignation_selected': sig.assigneA === collaborateurID, 'assignation_assigned': sig.assigneA !== null}">
+            <div class="signature" id={{sig.id}}>
                 <mat-form-field>
                     <input matInput type="text" placeholder="{{sig.name}}" [disabled]="sig.lock || sig.validated" [(ngModel)]="sig.value">
                     <mat-hint *ngIf="sig.value.length === 0">
@@ -272,8 +267,7 @@
             <p>Réservé au service des finances</p>
         </div>
 </div>
-    <div id="annexe"
-    [ngClass]="{'assignation_selected': annexe.assigneA === collaborateurID, 'assignation_assigned': annexe.assigneA !== null}">
+    <div id="annexe">
         <app-annexe></app-annexe>
     </div>
 </div>
