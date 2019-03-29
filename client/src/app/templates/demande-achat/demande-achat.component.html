@@ -10,11 +10,24 @@
     </div>
   </div>
 
-  <mat-grid-tile [rowspan]="1">
-      <span>COMMANDE</span>
-      <mat-checkbox>Standard</mat-checkbox>
-      <mat-checkbox>Entente</mat-checkbox>
-    </mat-grid-tile>
+ <!--Service des finances-->
+ <div class="section-rectangle" id="demandeur">
+  <h6>Réservé au Service des finances</h6>
+    <mat-grid-list cols="1" rowHeight="4em">
+      <mat-grid-tile>
+        <mat-form-field>
+          <!-- <input matInput placeholder="Technique de réception" [(ngModel)]="demandeur.nom"> -->
+          <input matInput placeholder="Technique de réception">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="No Bon de comande">
+        </mat-form-field>
+        <br>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+
   <!--Demandeur-->
   <div class="section-rectangle" id="demandeur">
     <h6>DEMANDEUR</h6>
