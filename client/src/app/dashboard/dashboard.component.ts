@@ -182,24 +182,18 @@ export class DashboardComponent implements OnInit {
 
   
     console.log("search: " + this.searchStatus);
-    if(this.searchStatus=="completed"){
+    if(this.searchStatus=="COMPLETED"){
         this.searchResult = this.searchCompleted();
     }
     
 
-    if(this.searchStatus=="collaboratorInProgress")
+    if(this.searchStatus=="IN_PROGRESS")
     {
         console.log("searchStatus: calling searchActive");
         this.searchResult = this.searchActive();
     }
-    
-    if(this.searchStatus=="collaboratorSent")
-    {
-        console.log("searchStatus: calling searchToBeCompleted");
-        this.searchResult = this.searchToBeCompleted();
-    }
 
-    if(this.searchStatus=="archived")
+    if(this.searchStatus=="ARCHIVED")
     {
         console.log("searchStatus: calling searchArchived");
         this.searchResult = this.searchArchived();
@@ -278,30 +272,6 @@ export class DashboardComponent implements OnInit {
     }});
 
     return(results);
-  }
-
-  private searchToBeCompleted(): Form[]
-  {
-    
-    let results: Form[] = [];
-
-    this.searchResult.forEach(form => {
-      form.collaborateurs.forEach(collaborateur=>{
-        if(collaborateur.idCollaborateur==this.currentUser._id){
-          if(form.statut=="WAITING"){
-            
-            results.push(form);
-            console.log("card in progress found: cardID: "+ form.idForm +
-            " collaborator status confirmation: " + collaborateur.acces +
-            " collaborator: id:" + collaborateur.idCollaborateur + " name: " +
-            collaborateur.nom);
-            
-          }
-        }
-      })})
-      
-      results.forEach(form=>{console.log("results: " + form.idForm)})
-      return(results);
   }
 
   private searchId(): Form[]{
