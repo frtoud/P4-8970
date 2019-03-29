@@ -107,11 +107,11 @@ export class AssignationComponent implements OnInit, OnDestroy {
       this.formInstance.setInterface(form.data);
       this.formInstance.clearSignatures();
       // get form.nomFormulaire
-      this.formInstance.doColoring();
       form.collaborateurs.forEach(c => {
         const foundUser = this.listCollaborateurs.find(u => u._id === c.idCollaborateur);
         if (foundUser) { this.participants.push(foundUser); }
       });
+      this.formInstance.addListeners();
     });
   }
 

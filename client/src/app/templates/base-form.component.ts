@@ -47,13 +47,13 @@ export abstract class BaseFormComponent implements AfterViewInit {
     public editDisable() {
       this.sections.forEach(element => {
         if (element.assigneA !== this.collaborateurID) {
-          document.getElementById(element.id).classList.add('form_disabled');
+          document.getElementById(element.id).classList.add('child_disabled');
         }
       });
 
       for (const sig of this.signatures) {
         if (sig.assigneA !== this.collaborateurID) {
-          document.getElementById(sig.id).classList.add('form_disabled');
+          document.getElementById(sig.id).classList.add('child_disabled');
         }
       }
     }
@@ -109,12 +109,6 @@ export abstract class BaseFormComponent implements AfterViewInit {
 
     captureAssignation(event, section) {
       if (this.captureActive) {
-        // TODOKETE: STOP THAT EVENT!
-        event.preventDefault();
-        event.stopPropagation();
-        event.stopImmediatePropagation();
-        event.cancelBubble = true;
-        console.log(event);
         if (section.assigneA === this.collaborateurID) {
           section.assigneA = null;
         } else {
@@ -124,16 +118,22 @@ export abstract class BaseFormComponent implements AfterViewInit {
       }
     }
 
-    // Hack-ish way to disable inputs
-    disableInputs() {
-      document.querySelectorAll('input').forEach( (element) => {
-         element.toggleAttribute('readonly', true);
+    public disableInputs() {
+      this.sections.forEach(element => {
+          document.getElementById(element.id).classList.add('child_disabled');
       });
+      for (const sig of this.signatures) {
+          document.getElementById(sig.id).classList.add('child_disabled');
+      }
     }
-    enableInputs() {
-      document.querySelectorAll('input').forEach( (element) => {
-           element.toggleAttribute('readonly', false);
+    public enableInputs() {
+      this.sections.forEach(element => {
+          document.getElementById(element.id).classList.remove('child_disabled');
       });
+
+      for (const sig of this.signatures) {
+          document.getElementById(sig.id).classList.remove('child_disabled');
+      }
     }
 
     getAssignations(): Set<string> {
