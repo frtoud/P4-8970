@@ -1,24 +1,23 @@
 # PolyForms
 
-## Install software.
-To install software and all it's needed dependencies (i.e: Node.js and MongoDB)
-run the script located at the root of the project folder called install.sh.
+## Installer un logiciel.
+Pour installer un logiciel et toutes les dépendances nécessaires (c'est-à-dire: Node.js et MongoDB)
+exécutez le script situé à la racine du dossier du projet appelé install.sh.
 
-```
+`` `
 sudo bash ./install.sh
-```
+`` `
 
-## Deploy PolyForms
-To deploy statusthe PolyForms application on the local machine, run : 
+## Déployer PolyForms
+Pour déployer l'application PolyForms sur l'ordinateur local, exécutez:
 
-```
+`` `
 sudo bash ./deploy.sh
-```
+`` `
 
-## Uninstall PolyForms
-To uninstall PolyForms and all it's dependencies (i.e.: Node.js and MongoDB), run:
+## Désinstallez PolyForms
+Pour désinstaller PolyForms et toutes ses dépendances (c'est-à-dire Node.js et MongoDB), exécutez:
 
-````
+`` `
 sudo bash ./uninstall.sh
-```
-
+`` `
