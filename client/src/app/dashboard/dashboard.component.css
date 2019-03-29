@@ -42,6 +42,10 @@
   float: right;
 }
 
+#carte-date-auteur{
+  float: right;
+}
+
 #completedIcon {
   color: #8cc83c;
 }
