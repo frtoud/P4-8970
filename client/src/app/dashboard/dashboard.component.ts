@@ -10,7 +10,7 @@ import { StatePipe } from '../pipes/account-type.pipe';
 
 // Status
 // this.userAccess = ["WAITING", "EDITION", "COMPLETED", "PREVIEW"];
-// this.formStatus = ["IN_PROGRESS", "COMPLETED", "ARCHIVED"];
+// this.formStatus = ["IN_PROGRESS", "COMPLETED", "ARCHIVED", "CANCELED"];
 // this.types = ['ADMIN', 'MANAGER', 'USER'];
 
 @Component({
@@ -124,6 +124,9 @@ export class DashboardComponent implements OnInit {
         case 'ARCHIVED':
           res = 'VIEW';
           break;
+        case 'CANCELED':
+          res = 'VIEW';
+          break;
       }
 
     } else if (this.currentUser.type === 'USER') {
@@ -140,6 +143,9 @@ export class DashboardComponent implements OnInit {
           case 'PREVIEW':
             res = 'VIEW';
             break;
+          case 'CANCELED':
+            res = 'VIEW';
+            break;
         }
       }
 
@@ -151,7 +157,7 @@ export class DashboardComponent implements OnInit {
     let nCollaborateursCompleted = 0;
 
     collaborateurs.forEach(collaborateur => {
-      if(collaborateur.acces == "COMPLETED") {
+      if(collaborateur.acces == "COMPLETED" || collaborateur.acces == "PREVIEW") {
         nCollaborateursCompleted++;
       }
     });
@@ -191,6 +197,11 @@ export class DashboardComponent implements OnInit {
     if(this.searchStatus=="ARCHIVED")
     {
         this.searchResult = this.searchArchived();
+    }
+
+    if(this.searchStatus=="CANCELED")
+    {
+        this.searchResult = this.searchCanceled();
     }
 
     if(this.searchPatron)
@@ -249,6 +260,19 @@ export class DashboardComponent implements OnInit {
 
     this.searchResult.forEach(form => {
       if(form.statut=="ARCHIVED"){
+        results.push(form);
+    }});
+
+    return(results);
+  }
+
+  private searchCanceled(): Form[]
+  {
+    
+    let results: Form[] = [];
+
+    this.searchResult.forEach(form => {
+      if(form.statut=="CANCELED"){
         results.push(form);
     }});
 

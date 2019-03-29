@@ -15,6 +15,7 @@
         <mat-option value="IN_PROGRESS">en cours</mat-option>
         <mat-option value="COMPLETED">complété</mat-option>
         <mat-option value="ARCHIVED">archivé</mat-option>
+        <mat-option value="CANCELED">annulé</mat-option>
       </mat-select>
     </mat-form-field>
   
@@ -97,6 +98,12 @@
                     <i class="material-icons" id="archivedIcon"> check_box </i>
                     <mat-progress-bar class="archived"
                     [mode]="determinate" [value]="100">
+                    </mat-progress-bar>
+                  </ng-container>
+                  <ng-container *ngSwitchCase="'CANCELED'">
+                    <i class="material-icons" id="canceledIcon"> indeterminate_check_box </i>
+                    <mat-progress-bar class="canceled"
+                    [mode]="determinate" [value]="calculateCompletionRate(card.collaborateurs)">
                     </mat-progress-bar>
                   </ng-container>
                 </mat-expansion-panel-header>

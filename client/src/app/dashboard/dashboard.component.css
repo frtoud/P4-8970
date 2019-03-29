@@ -50,9 +50,11 @@
   color: #8cc83c;
 }
 #archivedIcon {
-  color: #bbdeea;
+  color: #41aae6;
 }
-
+#canceledIcon {
+  color: #232323;
+}
 
 #card {
  width: 350px;
@@ -73,8 +75,7 @@
  }
 
 .inProgress.mat-progress-bar,
-.hasLate.mat-progress-bar,
-.refused.mat-progress-bar,
+.canceled.mat-progress-bar,
 .completed.mat-progress-bar,
 .archived.mat-progress-bar {
   width: 230px;
@@ -82,8 +83,7 @@
 }
 
 .inProgress .mat-progress-bar-buffer,
-.hasLate .mat-progress-bar-buffer,
-.refused .mat-progress-bar-buffer,
+.canceled .mat-progress-bar-buffer,
 .completed .mat-progress-bar-buffer,
 .archived .mat-progress-bar-buffer {
   background-color: white;
@@ -92,13 +92,9 @@
 .inProgress .mat-progress-bar-fill::after {
   background-color: #ffff00;
 }
-
-.hasLate .mat-progress-bar-fill::after {
-  background-color: #fa961e;
-}
   
-.refused .mat-progress-bar-fill::after {
-  background-color: #b91e32;
+.canceled .mat-progress-bar-fill::after {
+  background-color: #666666;
 }
 
 .completed .mat-progress-bar-fill::after {
