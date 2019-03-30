@@ -29,21 +29,22 @@ EOF
 
 #Install MongoDB
 cd /
-sudo yum install libcurl openssl
-sudo wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-4.0.8.tgz
-sudo tar -zxvf mongodb-linux-x86_64-rhel70-4.0.8.tgz
-sudo cp -a mongodb-linux-x86_64-rhel70-4.0.8/bin/. /usr/local/bin
-#cd etc/yum.repos.d/
-#sudo touch mongodb-org-4.0.repo
-#sudo cat <<EOF > ./mongodb-org-4.0.repo
-#[mongodb-org-4.0]
-#name=MongoDB Repository
-#baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.0/x86_64/
-#gpgcheck=1
-#enabled=1
-#gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc
-#EOF
-#sudo yum -y install -y mongodb-org
+#sudo yum install libcurl openssl
+#sudo wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-4.0.8.tgz
+#sudo tar -zxvf mongodb-linux-x86_64-rhel70-4.0.8.tgz
+#sudo cp -a mongodb-linux-x86_64-rhel70-4.0.8/bin/. /usr/local/bin
+
+cd etc/yum.repos.d/
+sudo touch mongodb-org-4.0.repo
+sudo cat <<EOF > ./mongodb-org-4.0.repo
+[mongodb-org-4.0]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.0/x86_64/
+gpgcheck=1
+enabled=1
+gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc
+EOF
+sudo yum install -y mongodb-org
 sudo service mongod start
 # Enable mongod daemon on boot.
 sudo systemctl enable mongod
