@@ -58,7 +58,6 @@ export class DashboardComponent implements OnInit {
             this.displayedCards = forms;
             this.loadedCards = forms;
             this.sortACompleterAutres();
-            console.log(this.dashboardForms);
           }).catch(err => console.log(err.error));
           break;
         case 'MANAGER':
@@ -83,8 +82,18 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  private sortCardsDecreasingDate(formArray: Form[]) {
-    formArray.sort((vala, valb) => { return +valb.creeLe - +vala.creeLe });
+  //https://stackoverflow.com/questions/10123953/sort-javascript-object-array-by-date
+  private sortCardsDecreasingDate(forms: Form[]) {
+    forms.sort(function(a,b) {
+      // Turn your strings into dates, and then subtract them
+      // to get a value that is either negative, positive, or zero.
+      let dateA = new Date(a.creeLe);
+      let dateB = new Date(b.creeLe);
+      return +dateB - +dateA;
+    });
+    forms.forEach(form => {
+      console.log(form.creeLe);
+    })
   }
 
   private searchUserAccesCollaborations(forms: Form[]): Form[]
