@@ -14,10 +14,13 @@ sudo npm install -g @angular/cli
 sudo npm install -g typescript
 
 #Install Angular Packages
+cd ./client/
+sudo npm install
+cd ../server/
 sudo npm install
 
 #Create keys.js
-cd ./server/lib
+cd lib
 sudo touch keys.js
 sudo cat <<EOF > ./keys.js
 const KEYS = {
@@ -32,11 +35,6 @@ EOF
 
 #Install MongoDB
 cd /
-#sudo yum install libcurl openssl
-#sudo wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-4.0.8.tgz
-#sudo tar -zxvf mongodb-linux-x86_64-rhel70-4.0.8.tgz
-#sudo cp -a mongodb-linux-x86_64-rhel70-4.0.8/bin/. /usr/local/bin
-
 cd etc/yum.repos.d/
 sudo touch mongodb-org-4.0.repo
 sudo cat <<EOF > ./mongodb-org-4.0.repo
@@ -62,6 +60,7 @@ sudo npm install @angular-devkit/build-angular
 sudo npm install @angular/compiler-cli
 sudo npm install mongodb
 sudo npm install @angular/compiler
+
 #echo "Le système doit redémarrer pour compléter l'installation. Voulez-vous continuer?"
 #select yn in "Oui" "Non"; do
 #    case $yn in
