@@ -1,5 +1,9 @@
 <div id="asgn-form-container">
   <div>
+      <div id="metadata" *ngIf="currentForm">
+        <img src="assets/img/logo-POLY-forms.png" width=180 height=80>
+          <h4>{{currentForm.name | uppercase}}</h4>
+      </div>
       <ng-template formhost></ng-template>
   </div>
   <div class="participants" (click)="loseFocus()">
@@ -19,10 +23,10 @@
     <mat-grid-list cols="2" rowHeight="40px">
       <mat-grid-tile [colspan]="tiles[0].cols" [rowspan]="tiles[0].rows">
         <button id="envoyer" mat-raised-button (click)="onSend()" color="primary"
-        [disabled]="participantInsuffisants">Envoyer</button>
+        [disabled]="participantInsuffisants">ENVOYER</button>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="tiles[1].cols" [rowspan]="tiles[1].rows">
-        <button id="annuler" mat-raised-button color="primary" routerLink="/dashboard" >Annuler</button>
+        <button id="annuler" mat-raised-button color="primary" (click)="onReturn()" >RETOUR</button>
       </mat-grid-tile>
       
      <!--  <mat-grid-tile [colspan]="tiles[2].cols" [rowspan]="tiles[2].rows">

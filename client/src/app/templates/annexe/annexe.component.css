@@ -162,3 +162,21 @@ mat-form-field {
 {
     text-align: right;
 }
+
+@media print{
+    
+    #tout {
+        
+        /*display:none !important;*/
+    }
+
+
+    #tables{
+        
+        margin: 5px !important;
+        overflow: hidden !important;
+        width: 30% !important;
+        max-width: 90% !important;
+    }
+
+  }

@@ -160,14 +160,18 @@ export class AssignationComponent implements OnInit, OnDestroy {
     if (!this.participantInsuffisants) {
       this.instanceService.postInstance(this.formInstance.getInterface(),
       this.fileUploader.attachedFiles, this.usedParticipants, this.currentForm.id, this.currentForm.name).then(res => {
-        window.alert("formulaire envoyé")
+        window.alert('formulaire envoyé');
         this.router.navigate(['/dashboard']);
       }).catch(err => {
-        window.alert("erreur de création")
+        window.alert('erreur de création');
         // TODOkete: alert?
       });
     }
   }
+  onReturn() {
+    this.router.navigate(['/dashboard']);
+  }
+
 
   testParticipants() {
     // vérifier si la liste de participants actuelle existe
