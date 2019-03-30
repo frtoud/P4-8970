@@ -17,8 +17,19 @@ div.assignation_selected {
   @media print{
     
         * {
-          width: 90%;
+          max-width: 70%;
         }
+
+        button {
+          display: none !important;
+        }
+
+      
+      .signature {
+        
+        max-width:390px !important ;
+      }
+      
     
         
   }
