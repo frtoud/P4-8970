@@ -33,6 +33,11 @@
   }
 
   @media print{
+
+    * body{
+      width: 90%;
+    }
+
     #edit-form-container{
       visibility: hidden;
     }
