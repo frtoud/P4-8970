@@ -10,21 +10,6 @@
   bottom: 15px;
 }
 
-h4 {
-  text-align: center;
-  background: linear-gradient(to bottom, #f3f3f3 0%,#acacac 100%);
-  font-weight: normal;
-  padding: 5px;
-  margin: 0;
-}
-
-th.mat-header-cell {
-  background: linear-gradient(to bottom, #f3f3f3 0%,#acacac 100%);
-  color: black;
-  font-size: 13px;
-  vertical-align: middle;
-}
-
 .dashboard-card-content {
   text-align: center;
 }
@@ -175,6 +160,34 @@ th.mat-header-cell {
 .mat-option{
   padding: none !important;
 } */
+
+h4 {
+  text-align: center;
+  background: linear-gradient(to bottom, #f3f3f3 0%,#acacac 100%);
+  font-weight: normal;
+  padding: 5px;
+  margin: 0;
+}
+
+.mat-cell {
+  border: 1px solid #acacac;
+  border-collapse: collapse;
+}
+
+th.mat-header-cell {
+  background: linear-gradient(to bottom, #f3f3f3 0%,#acacac 100%);
+  color: black;
+  font-size: 13px;
+  vertical-align: middle;
+}
+
+.mat-row:nth-child(odd){
+  background-color:white;
+}
+
+.mat-row:nth-child(even){
+  background-color: #ebebeb;
+}
 
 .selectCollaborateurCompleted {
   padding-left: 4px;
