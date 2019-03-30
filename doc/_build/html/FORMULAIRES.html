@@ -1,0 +1,520 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="fr" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="fr" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Créer une nouvelle instance de formulaire &mdash; Documentation PolyForms 0.1</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="POLYFORMS-REST-API.html" />
+    <link rel="prev" title="Créer un nouvel utilisateur" href="ADMIN.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> PolyForms
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="README.html">Installer PolyForms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#deployer-polyforms">Déployer PolyForms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#eteindre-polyforms">Éteindre PolyForms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#desinstaller-polyforms">Désinstaller PolyForms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ADMIN.html">Créer un nouvel utilisateur</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ADMIN.html#mettre-a-jour-un-compte-utilisateur">Mettre à jour un compte utilisateur</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ADMIN.html#supprimer-un-compte-utilisateur">Supprimer un compte utilisateur</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ADMIN.html#reinitialiser-le-mot-de-passe-d-un-compte-utilisateur">Réinitialiser le mot de passe d’un compte utilisateur</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Créer une nouvelle instance de formulaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#obtenir-la-liste-des-formulaires">Obtenir la liste des formulaires</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#obtenir-un-formulaire">Obtenir un formulaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#obtenir-les-formulaires-d-un-utilisateur">Obtenir les formulaires d’un utilisateur</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#modifier-un-formulaire">Modifier un formulaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#valider-archiver-un-formulaire">Valider/Archiver un formulaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UTILISATEURS.html">Accéder au lien d’activation d’un compte utilisateur</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UTILISATEURS.html#activer-un-compte-definir-un-mot-de-passe">Activer un compte : définir un mot de passe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UTILISATEURS.html#authentification">Authentification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UTILISATEURS.html#obtenir-la-liste-d-utilisateurs">Obtenir la liste d’utilisateurs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UTILISATEURS.html#obtenir-un-utilisateur-par-son-id">Obtenir un utilisateur par son ID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NOUVEAU-FORMULAIRE.html">Ajouter un nouveau patron de formulaire</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PolyForms</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Créer une nouvelle instance de formulaire</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/FORMULAIRES.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="creer-une-nouvelle-instance-de-formulaire">
+<h1>Créer une nouvelle instance de formulaire<a class="headerlink" href="#creer-une-nouvelle-instance-de-formulaire" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Exemple d’un JSON à envoyer :</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>{
+  &quot;form&quot;: {
+    &quot;idForm&quot;: &quot;DA&quot;,
+    &quot;auteur&quot;: {
+        &quot;idAuteur&quot;: &quot;5c8dbd4800de679f160dd618&quot;,
+        &quot;nom&quot;: &quot;John Smith&quot;,
+        &quot;typeAuteur&quot;: &quot;MANAGER&quot;
+    },
+    &quot;nomFormulaire&quot;: &quot;Avance de voyage&quot;,
+    &quot;collaborateurs&quot;: [
+         { &quot;idCollaborateur&quot;: &quot;5c81f580d56259370d9e049a&quot;, &quot;nom&quot;: &quot;Jane Doe&quot;, &quot;email&quot;: &quot;jane.doe@email.com&quot;, &quot;acces&quot;: &quot;EDITION&quot;},
+         { &quot;idCollaborateur&quot;: &quot;5c8dbcb700de679f160dd617&quot;, &quot;nom&quot;: &quot;John Smith&quot;, &quot;email&quot;: &quot;john.smith@email.com&quot;, &quot;acces&quot;: &quot;WAITING&quot;}],
+    &quot;data&quot;: { /* Contenu du formulaire */ }
+  }
+}
+</pre></div>
+</div>
+<p>Exemple de réponse :</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>{
+    &quot;_id&quot;: &quot;5c9906d7f459c74ef861eee2&quot;,
+    &quot;idForm&quot;: &quot;DA-5c9906d7f459c74ef861eee2&quot;,
+    &quot;auteur&quot;: {
+        &quot;idAuteur&quot;: &quot;5c8dbd4800de679f160dd618&quot;,
+        &quot;nom&quot;: &quot;John Smith&quot;,
+        &quot;typeAuteur&quot;: &quot;MANAGER&quot;
+    },
+    &quot;nomFormulaire&quot;: &quot;Avance de voyage&quot;,
+    &quot;collaborateurs&quot;: [
+        {
+            &quot;_id&quot;: &quot;5c9906d8f459c74ef861eee4&quot;,
+            &quot;idCollaborateur&quot;: &quot;5c81f580d56259370d9e049a&quot;,
+            &quot;nom&quot;: &quot;Jane Doe&quot;,
+            &quot;email&quot;: &quot;jane.doe@email.com&quot;,
+            &quot;acces&quot;: &quot;EDITION&quot;
+        },
+        {
+            &quot;_id&quot;: &quot;5c9906d8f459c74ef861eee3&quot;,
+            &quot;idCollaborateur&quot;: &quot;5c8dbcb700de679f160dd617&quot;,
+            &quot;nom&quot;: &quot;John Smith&quot;,
+            &quot;email&quot;: &quot;john.smith@email.com&quot;,
+            &quot;acces&quot;: &quot;WAITING&quot;
+        }
+    ],
+    &quot;data&quot;: { /* Contenu du formulaire */ },
+    &quot;statut&quot;: &quot;IN_PROGRESS&quot;,
+    &quot;creeLe&quot;: &quot;2019-03-25T16:50:32.695Z&quot;,
+    &quot;modifieLe&quot;: &quot;2019-03-25T16:50:32.695Z&quot;
+}
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="obtenir-la-liste-des-formulaires">
+<h1>Obtenir la liste des formulaires<a class="headerlink" href="#obtenir-la-liste-des-formulaires" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Exemple de réponse :</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;5c970d425547ae2c2bb4c2d2&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;idForm&quot;</span><span class="p">:</span> <span class="s2">&quot;DA-5c970d425547ae2c2bb4c2d2&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;auteur&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;idAuteur&quot;</span><span class="p">:</span> <span class="s2">&quot;5c8aef7f720a8f79f24e8db5&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;nom&quot;</span><span class="p">:</span> <span class="s2">&quot;John Smith&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;typeAuteur&quot;</span><span class="p">:</span> <span class="s2">&quot;MANAGER&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;nomFormulaire&quot;</span><span class="p">:</span> <span class="s2">&quot;Demande d&#39;achat&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;collaborateurs&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;5c9711cec36a4a2dd4ee9c3a&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;idCollaborateur&quot;</span><span class="p">:</span> <span class="s2">&quot;5c8bb5627ebd2693e142193c&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;nom&quot;</span><span class="p">:</span> <span class="s2">&quot;John Smith&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;john.smith@email.com&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;ordre&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+                <span class="nt">&quot;acces&quot;</span><span class="p">:</span> <span class="s2">&quot;COMPLETED&quot;</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;statut&quot;</span><span class="p">:</span> <span class="s2">&quot;ARCHIVED&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;creeLe&quot;</span><span class="p">:</span> <span class="s2">&quot;2019-03-24T05:12:46.843Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;modifieLe&quot;</span><span class="p">:</span> <span class="s2">&quot;2019-03-24T05:12:46.843Z&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;5c9906d7f459c74ef861eee2&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;idForm&quot;</span><span class="p">:</span> <span class="s2">&quot;DA-5c9906d7f459c74ef861eee2&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;auteur&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;idAuteur&quot;</span><span class="p">:</span> <span class="s2">&quot;5c8dbd4800de679f160dd618&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;nom&quot;</span><span class="p">:</span> <span class="s2">&quot;John Smith&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;typeAuteur&quot;</span><span class="p">:</span> <span class="s2">&quot;MANAGER&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;nomFormulaire&quot;</span><span class="p">:</span> <span class="s2">&quot;Avance de voyage&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;collaborateurs&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;5c9712a06ebf8c2df96257bc&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;idCollaborateur&quot;</span><span class="p">:</span> <span class="s2">&quot;5c8aef7f720a8f79f24e8db5&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;nom&quot;</span><span class="p">:</span> <span class="s2">&quot;Jane Doe&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;jane.doe@email.com&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;ordre&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="nt">&quot;acces&quot;</span><span class="p">:</span> <span class="s2">&quot;COMPLETED&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;5c9712a06ebf8c2df96257bb&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;idCollaborateur&quot;</span><span class="p">:</span> <span class="s2">&quot;5c8bb5627ebd2693e142193c&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;nom&quot;</span><span class="p">:</span> <span class="s2">&quot;John Smith&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;john.smith@email.com&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;ordre&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+                <span class="nt">&quot;acces&quot;</span><span class="p">:</span> <span class="s2">&quot;COMPLETED&quot;</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;statut&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_PROGRESS&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;creeLe&quot;</span><span class="p">:</span> <span class="s2">&quot;2019-03-24T05:16:16.600Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;modifieLe&quot;</span><span class="p">:</span> <span class="s2">&quot;2019-03-24T05:16:16.600Z&quot;</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="obtenir-un-formulaire">
+<h1>Obtenir un formulaire<a class="headerlink" href="#obtenir-un-formulaire" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Exemple de réponse :</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>{
+    &quot;_id&quot;: &quot;5c9906d7f459c74ef861eee2&quot;,
+    &quot;idForm&quot;: &quot;DA-5c9906d7f459c74ef861eee2&quot;,
+    &quot;auteur&quot;: {
+        &quot;idAuteur&quot;: &quot;5c8dbd4800de679f160dd618&quot;,
+        &quot;nom&quot;: &quot;John Smith&quot;,
+        &quot;typeAuteur&quot;: &quot;MANAGER&quot;
+    },
+    &quot;nomFormulaire&quot;: &quot;Avance de voyage&quot;,
+    &quot;collaborateurs&quot;: [
+        {
+            &quot;_id&quot;: &quot;5c9906d8f459c74ef861eee4&quot;,
+            &quot;idCollaborateur&quot;: &quot;5c81f580d56259370d9e049a&quot;,
+            &quot;nom&quot;: &quot;Jane Doe&quot;,
+            &quot;email&quot;: &quot;jane.doe@email.com&quot;,
+            &quot;acces&quot;: &quot;EDITION&quot;
+        },
+        {
+            &quot;_id&quot;: &quot;5c9906d8f459c74ef861eee3&quot;,
+            &quot;idCollaborateur&quot;: &quot;5c8dbcb700de679f160dd617&quot;,
+            &quot;nom&quot;: &quot;John Smith&quot;,
+            &quot;email&quot;: &quot;john.smith@email.com&quot;,
+            &quot;acces&quot;: &quot;WAITING&quot;
+        }
+    ],
+    &quot;data&quot;: { /* Contenu du formulaire */ },
+    &quot;statut&quot;: &quot;IN_PROGRESS&quot;,
+    &quot;creeLe&quot;: &quot;2019-03-25T16:50:32.695Z&quot;,
+    &quot;modifieLe&quot;: &quot;2019-03-25T16:50:32.695Z&quot;
+}
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="obtenir-les-formulaires-d-un-utilisateur">
+<h1>Obtenir les formulaires d’un utilisateur<a class="headerlink" href="#obtenir-les-formulaires-d-un-utilisateur" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Retourne la liste des formulaires qui concernent l’utilisateur en question (L’utilisateur est l’auteur ou collaborateur).</p>
+<p>Exemple de réponse :</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;5c970d425547ae2c2bb4c2d2&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;idForm&quot;</span><span class="p">:</span> <span class="s2">&quot;DA-5c970d425547ae2c2bb4c2d2&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;auteur&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;idAuteur&quot;</span><span class="p">:</span> <span class="s2">&quot;5c8aef7f720a8f79f24e8db5&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;nom&quot;</span><span class="p">:</span> <span class="s2">&quot;John Smith&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;typeAuteur&quot;</span><span class="p">:</span> <span class="s2">&quot;MANAGER&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;nomFormulaire&quot;</span><span class="p">:</span> <span class="s2">&quot;Demande d&#39;achat&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;collaborateurs&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;5c9711cec36a4a2dd4ee9c3a&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;idCollaborateur&quot;</span><span class="p">:</span> <span class="s2">&quot;5c8bb5627ebd2693e142193c&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;nom&quot;</span><span class="p">:</span> <span class="s2">&quot;John Smith&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;john.smith@email.com&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;ordre&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+                <span class="nt">&quot;acces&quot;</span><span class="p">:</span> <span class="s2">&quot;COMPLETED&quot;</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;statut&quot;</span><span class="p">:</span> <span class="s2">&quot;ARCHIVED&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;creeLe&quot;</span><span class="p">:</span> <span class="s2">&quot;2019-03-24T05:12:46.843Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;modifieLe&quot;</span><span class="p">:</span> <span class="s2">&quot;2019-03-24T05:12:46.843Z&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;5c9906d7f459c74ef861eee2&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;idForm&quot;</span><span class="p">:</span> <span class="s2">&quot;DA-5c9906d7f459c74ef861eee2&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;auteur&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;idAuteur&quot;</span><span class="p">:</span> <span class="s2">&quot;5c8dbd4800de679f160dd618&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;nom&quot;</span><span class="p">:</span> <span class="s2">&quot;John Smith&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;typeAuteur&quot;</span><span class="p">:</span> <span class="s2">&quot;MANAGER&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;nomFormulaire&quot;</span><span class="p">:</span> <span class="s2">&quot;Avance de voyage&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;collaborateurs&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;5c9712a06ebf8c2df96257bc&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;idCollaborateur&quot;</span><span class="p">:</span> <span class="s2">&quot;5c8aef7f720a8f79f24e8db5&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;nom&quot;</span><span class="p">:</span> <span class="s2">&quot;Jane Doe&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;jane.doe@email.com&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;ordre&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="nt">&quot;acces&quot;</span><span class="p">:</span> <span class="s2">&quot;COMPLETED&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;5c9712a06ebf8c2df96257bb&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;idCollaborateur&quot;</span><span class="p">:</span> <span class="s2">&quot;5c8bb5627ebd2693e142193c&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;nom&quot;</span><span class="p">:</span> <span class="s2">&quot;John Smith&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;john.smith@email.com&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;ordre&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+                <span class="nt">&quot;acces&quot;</span><span class="p">:</span> <span class="s2">&quot;COMPLETED&quot;</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;statut&quot;</span><span class="p">:</span> <span class="s2">&quot;IN_PROGRESS&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;creeLe&quot;</span><span class="p">:</span> <span class="s2">&quot;2019-03-24T05:16:16.600Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;modifieLe&quot;</span><span class="p">:</span> <span class="s2">&quot;2019-03-24T05:16:16.600Z&quot;</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="modifier-un-formulaire">
+<h1>Modifier un formulaire<a class="headerlink" href="#modifier-un-formulaire" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Soumettre une modification à un formulaire en cours. Cette action ne peut être effectuée que par l’auteur du formulaire et les collaborateurs de ce dernier.</p>
+<p>Exemple d’un JSON à envoyer :</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>{
+    &quot;userId&quot;: &quot;5c8dbd4800de679f160dd618&quot;,
+    &quot;data&quot;: { /* UNIQUEMENT les champs modifiés du formulaire */ }
+}
+</pre></div>
+</div>
+<p>Exemple de réponse :</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>{
+    &quot;_id&quot;: &quot;5c9906d7f459c74ef861eee2&quot;,
+    &quot;idForm&quot;: &quot;DA-5c9906d7f459c74ef861eee2&quot;,
+    &quot;auteur&quot;: {
+        &quot;idAuteur&quot;: &quot;5c8dbd4800de679f160dd618&quot;,
+        &quot;nom&quot;: &quot;John Smith&quot;,
+        &quot;typeAuteur&quot;: &quot;MANAGER&quot;
+    },
+    &quot;nomFormulaire&quot;: &quot;Avance de voyage&quot;,
+    &quot;collaborateurs&quot;: [
+        {
+            &quot;_id&quot;: &quot;5c9906d8f459c74ef861eee4&quot;,
+            &quot;idCollaborateur&quot;: &quot;5c81f580d56259370d9e049a&quot;,
+            &quot;nom&quot;: &quot;Jane Doe&quot;,
+            &quot;email&quot;: &quot;jane.doe@email.com&quot;,
+            &quot;acces&quot;: &quot;EDITION&quot;
+        },
+        {
+            &quot;_id&quot;: &quot;5c9906d8f459c74ef861eee3&quot;,
+            &quot;idCollaborateur&quot;: &quot;5c8dbcb700de679f160dd617&quot;,
+            &quot;nom&quot;: &quot;John Smith&quot;,
+            &quot;email&quot;: &quot;john.smith@email.com&quot;,
+            &quot;acces&quot;: &quot;WAITING&quot;
+        }
+    ],
+    &quot;data&quot;: { /* Contenu du formulaire */ },
+    &quot;statut&quot;: &quot;IN_PROGRESS&quot;,
+    &quot;creeLe&quot;: &quot;2019-03-25T16:50:32.695Z&quot;,
+    &quot;modifieLe&quot;: &quot;2019-03-25T16:50:32.695Z&quot;
+}
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="valider-archiver-un-formulaire">
+<h1>Valider/Archiver un formulaire<a class="headerlink" href="#valider-archiver-un-formulaire" title="Lien permanent vers ce titre">¶</a></h1>
+<p>La validation d’un formulaire entraîne automatiquement sa mise en archive.</p>
+<p>Exemple de réponse :</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>{
+    &quot;_id&quot;: &quot;5c9906d7f459c74ef861eee2&quot;,
+    &quot;idForm&quot;: &quot;DA-5c9906d7f459c74ef861eee2&quot;,
+    &quot;auteur&quot;: {
+        &quot;idAuteur&quot;: &quot;5c8dbd4800de679f160dd618&quot;,
+        &quot;nom&quot;: &quot;John Smith&quot;,
+        &quot;typeAuteur&quot;: &quot;MANAGER&quot;
+    },
+    &quot;nomFormulaire&quot;: &quot;Avance de voyage&quot;,
+    &quot;collaborateurs&quot;: [
+        {
+            &quot;_id&quot;: &quot;5c9906d8f459c74ef861eee4&quot;,
+            &quot;idCollaborateur&quot;: &quot;5c81f580d56259370d9e049a&quot;,
+            &quot;nom&quot;: &quot;Jane Doe&quot;,
+            &quot;email&quot;: &quot;jane.doe@email.com&quot;,
+            &quot;acces&quot;: &quot;PREVIEW&quot;
+        },
+        {
+            &quot;_id&quot;: &quot;5c9906d8f459c74ef861eee3&quot;,
+            &quot;idCollaborateur&quot;: &quot;5c8dbcb700de679f160dd617&quot;,
+            &quot;nom&quot;: &quot;John Smith&quot;,
+            &quot;email&quot;: &quot;john.smith@email.com&quot;,
+            &quot;acces&quot;: &quot;PREVIEW&quot;
+        }
+    ],
+    &quot;data&quot;: { /* Contenu du formulaire */ },
+    &quot;statut&quot;: &quot;ARCHIVED&quot;,
+    &quot;creeLe&quot;: &quot;2019-03-25T16:50:32.695Z&quot;,
+    &quot;modifieLe&quot;: &quot;2019-03-25T16:50:32.695Z&quot;
+}
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="POLYFORMS-REST-API.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ADMIN.html" class="btn btn-neutral float-left" title="Créer un nouvel utilisateur" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Polytechnique Montréal
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
