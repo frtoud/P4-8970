@@ -10,6 +10,14 @@
   bottom: 15px;
 }
 
+h4 {
+  text-align: center;
+  background: linear-gradient(to bottom, #eeeeee 0%,#cccccc 100%);
+  font-weight: normal;
+  padding: 5px;
+  margin: 0;
+}
+
 .dashboard-card-content {
   text-align: center;
 }
