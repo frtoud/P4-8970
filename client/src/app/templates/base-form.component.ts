@@ -5,6 +5,8 @@ import { strictEqual } from 'assert';
 
 export abstract class BaseFormComponent implements AfterViewInit {
 
+    date_creation: Date = new Date();
+
     collaborateurID = null;
     captureActive = false;
 

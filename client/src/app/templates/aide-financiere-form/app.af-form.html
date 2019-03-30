@@ -1,11 +1,9 @@
 <div id="form-header">
   <img src="assets/img/logo-POLY-forms.png" width=180 height=80>
   <h4>AIDE FINANCIÈRE</h4>
-  <div id="form-date">
+  <div id="form-date" class="child_disabled">
       <mat-form-field>
-          <input matInput [matDatepicker]="picker" placeholder="DATE" (click)="picker.open()">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
+          <input matInput placeholder="DATE" [(ngModel)]="date_creation">
       </mat-form-field>
   </div>
 </div>
@@ -203,8 +201,13 @@
 
 <div class="sectionheader">
   <h6>REMARQUES</h6>
-  <div class="section">
-    <input matInput type="text">
+  <div class="section" id="remarques">
+    <mat-form-field hideRequiredMarker=true floatLabel="auto">
+      <textarea matInput [(ngModel)]="remarques.value"
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="1"></textarea>
+    </mat-form-field>
   </div>
 </div>
 

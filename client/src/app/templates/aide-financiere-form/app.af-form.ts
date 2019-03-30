@@ -7,7 +7,7 @@ import { BaseFormComponent } from '../base-form.component';
 
 export interface IAideFinanciere {
 
-  //DEMANDEUR
+  // DEMANDEUR
   demandeur: {
     id: string;
     assigneA: string;
@@ -16,21 +16,21 @@ export interface IAideFinanciere {
     telephone: string;
     centre: string;
     admin: string;
-  }
+  };
 
-  //BENEFICIAIRE
+  // BENEFICIAIRE
   beneficiaire: {
     id: string;
     assigneA: string;
-    
-    nom : string;
-    prenom : string;
-    mat_etudiant : string;
-    mat_enseignant : string;
-  }
+
+    nom: string;
+    prenom: string;
+    mat_etudiant: string;
+    mat_enseignant: string;
+  };
 
 
-  //CYCLE DE L'ETUDIANT
+  // CYCLE DE L'ETUDIANT
   cycle: {
     id: string;
     assigneA: string;
@@ -41,10 +41,10 @@ export interface IAideFinanciere {
     maiec: boolean;
     doc: boolean;
     docec: boolean;
-  }
+  };
 
 
-  //DETAILS
+  // DETAILS
   details: {
     id: string;
     assigneA: string;
@@ -55,19 +55,26 @@ export interface IAideFinanciere {
     num_ref: string;
     montant: number;
     subventionnaire: string;
-  }
+  };
 
 
-  //Ventilation
+  // Ventilation
   ventilation: {
     id: string;
     assigneA: string;
 
     tableau: IVentilationAF[];
-  }
+  };
+
+  remarques: {
+    id: string;
+    assigneA: string;
+
+    value: string;
+  };
 
   signatures: ISignature[];
-  
+
 }
 export interface IVentilationAF {
   id: number;
@@ -85,29 +92,29 @@ export interface IVentilationAF {
 })
 export class AFFormComponent extends BaseFormComponent implements IAideFinanciere {
 
-  //DEMANDEUR
+  // DEMANDEUR
   demandeur = {
-    id: "demandeur",
+    id: 'demandeur',
     assigneA: null,
-    nom : "",
-    telephone : "",
-    centre : "",
-    admin : "",
+    nom : '',
+    telephone : '',
+    centre : '',
+    admin : '',
   };
 
-  //BENEFICIAIRE
+  // BENEFICIAIRE
   beneficiaire = {
-    id: "beneficiaire",
+    id: 'beneficiaire',
     assigneA: null,
-    nom : "",
-    prenom : "",
-    mat_etudiant : "",
-    mat_enseignant : "",
+    nom : '',
+    prenom : '',
+    mat_etudiant : '',
+    mat_enseignant : '',
   };
 
-  //CYCLE DE L'ETUDIANT
+  // CYCLE DE L'ETUDIANT
   cycle = {
-    id: "cycle",
+    id: 'cycle',
     assigneA: null,
 
     bac: false,
@@ -116,52 +123,58 @@ export class AFFormComponent extends BaseFormComponent implements IAideFinancier
     maiec: false,
     doc: false,
     docec: false,
-  }
+  };
 
-  //DETAILS
+  // DETAILS
   details = {
-    id: "details",
+    id: 'details',
     assigneA: null,
 
     date_debut: undefined,
     date_fin: undefined,
-    statutVersement: "",
-    num_ref: "",
+    statutVersement: '',
+    num_ref: '',
     montant: 0,
-    subventionnaire: "",
-  }
+    subventionnaire: '',
+  };
   ventilation = {
-    id: "ventilation",
+    id: 'ventilation',
     assigneA: null,
 
     tableau: [
-      {id:0, ubr:"", compte:"", unite:"", percent:0, montant:0, },
-      {id:1, ubr:"", compte:"", unite:"", percent:0, montant:0, },
-      {id:2, ubr:"", compte:"", unite:"", percent:0, montant:0, },
+      {id: 0, ubr: '', compte: '', unite: '', percent: 0, montant: 0, },
+      {id: 1, ubr: '', compte: '', unite: '', percent: 0, montant: 0, },
+      {id: 2, ubr: '', compte: '', unite: '', percent: 0, montant: 0, },
     ],
-  }
-  signatures = [
-    new Signature("sig-boursier", "SIGNATURE DU BOURSIER", null, "", false, false, false),
-    new Signature("sig-titulaire", "SIGNATURE DU (DES) TITULAIRES(S) DE SUBVENTION", null, "", false, false, false),
-    new Signature("sig-autorise", "SIGNATURE(S) AUTORISÉE(S)", null, "", false, false, false),
-    new Signature("sig-finances", "SERVICE DES FINANCES", null, "", false, false, false),
-  ];
+  };
+  remarques = {
+    id: 'remarques',
+    assigneA: null,
 
-  onChangeStatus(value)
-  {
+    value: '',
+  };
+  signatures = [
+    new Signature('sig-boursier', 'SIGNATURE DU BOURSIER', null, '', false, false, false),
+    new Signature('sig-titulaire', 'SIGNATURE DU (DES) TITULAIRES(S) DE SUBVENTION', null, '', false, false, false),
+    new Signature('sig-autorise', 'SIGNATURE(S) AUTORISÉE(S)', null, '', false, false, false),
+    new Signature('sig-finances', 'SERVICE DES FINANCES', null, '', false, false, false),
+  ];
+  ventilationTotal = 0;
+
+  dSventilation = new MatTableDataSource(this.ventilation.tableau);
+  displayedColumns: string[] = ['ubr', 'compte', 'unite', 'percent', 'montant', 'action'];
+
+  matriculesValide = false;
+
+  onChangeStatus(value) {
     this.details.statutVersement = value;
   }
-  ventilationTotal :number = 0;
-  updateTotal()
-  {
+  updateTotal() {
     this.ventilationTotal = 0;
     this.ventilation.tableau.forEach(element => {
       this.ventilationTotal += element.montant;
     });
   }
-
-  dSventilation = new MatTableDataSource(this.ventilation.tableau);
-  displayedColumns: string[] = ['ubr', 'compte', 'unite', 'percent', 'montant', 'action'];
   onCreate() {
     const id = BaseFormComponent.getHighestId(this.ventilation.tableau) + 1;
     this.ventilation.tableau.push(
@@ -170,27 +183,22 @@ export class AFFormComponent extends BaseFormComponent implements IAideFinancier
     this.dSventilation._updateChangeSubscription();
     this.updateTotal();
   }
-  onDelete(value)
-  {
-    let index : number = this.ventilation.tableau.findIndex((el:any) => el.id === value.id);
-    if (index >= 0)
-    {
+  onDelete(value) {
+    const index: number = this.ventilation.tableau.findIndex((el: any) => el.id === value.id);
+    if (index >= 0) {
       this.ventilation.tableau.splice(index, 1);
     }
 
     this.dSventilation._updateChangeSubscription();
     this.updateTotal();
   }
-
-  matriculesValide:boolean = false;
-  testMatricule()
-  {
+  testMatricule() {
     this.matriculesValide = this.beneficiaire.mat_enseignant.length === 0 && this.beneficiaire.mat_etudiant.length === 0;
   }
 
   setSections() {
   this.sections = [
-      this.beneficiaire, this.cycle, this.details, this.ventilation, this.demandeur
+      this.beneficiaire, this.cycle, this.details, this.ventilation, this.demandeur, this.remarques
     ];
     this.dSventilation = new MatTableDataSource(this.ventilation.tableau);
   }
