@@ -17,7 +17,7 @@ sudo bash ./deploy.sh
 Le déploiement se fait en mode développement, les serveurs continuent donc à être exécutés sur des processus en parallèle. Pour éteindre Polyforms, exécutez
 
 ```
-sudo bash ./deploy.sh
+sudo bash ./stop.sh
 ```
 
 ## Désinstaller PolyForms
