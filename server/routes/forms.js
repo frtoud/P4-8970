@@ -69,7 +69,7 @@ router.patch('/:id/archive', (req, res) => {
  * Cancel FORM
  */
 router.patch('/:id/cancel', (req, res) => {
-    formsManager.cancelForm(req.query.user, req.params.id)
+    formsManager.cancelForm(req.query.user, req.params.id, res)
     .then(result => res.status(200).json(result))
     .catch(err => res.status(err.status).json(err.message));
 });
