@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const multer = require('multer');
 var path = require('path');
+const ID = require('shortid');
 
 var storage = multer.diskStorage({
 // destination
@@ -8,7 +9,7 @@ destination: function (req, file, cb) {
     cb(null, './uploads/')
 },
 filename: function (req, file, cb) {
-    cb(null, file.originalname);
+    cb(null, ID.generate().toString());
 }
 });
 
