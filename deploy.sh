@@ -21,11 +21,6 @@ export class Config {
     public static apiUrl = 'http://localhost:8000';
   }
 EOF
-sudo npm install -g @angular/cli
-sudo npm install @angular-devkit/build-angular
-sudo npm install @angular/compiler-cli
-sudo npm install mongodb
-sudo npm install @angular/compiler
 cd ../../../
 sudo mongo < db-admin.js
 cd ./client

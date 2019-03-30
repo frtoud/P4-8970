@@ -10,6 +10,9 @@ sudo yum -y install nodejs
 #Install Angular CLI
 sudo npm install -g @angular/cli
 
+#Install Typescript
+sudo npm install -g typescript
+
 #Install Angular Packages
 sudo npm install
 
@@ -54,6 +57,11 @@ sudo firewall-cmd --zone=public --add-port=8000/tcp --permanent
 sudo firewall-cmd --zone=public --add-port=4200/tcp --permanent
 sudo firewall-cmd --zone=public --add-port=27017/tcp --permanent
 sudo firewall-cmd --reload
+sudo npm install -g @angular/cli
+sudo npm install @angular-devkit/build-angular
+sudo npm install @angular/compiler-cli
+sudo npm install mongodb
+sudo npm install @angular/compiler
 #echo "Le système doit redémarrer pour compléter l'installation. Voulez-vous continuer?"
 #select yn in "Oui" "Non"; do
 #    case $yn in
