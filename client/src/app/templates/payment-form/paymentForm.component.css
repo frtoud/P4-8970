@@ -47,6 +47,8 @@ div {
     width: 480px;
 }
 
+
+
 .signature mat-form-field {
     width: 100%;
 }
@@ -206,3 +208,16 @@ td.mat-footer-cell:first-of-type {
 th {
     background: #CCD4DF;
 }
+
+@media print{
+    
+        .signature {
+          max-width:360px !important  ;
+        }
+      
+        #signature-text {
+            font-size: 10px;
+        }
+        
+  }
+  
