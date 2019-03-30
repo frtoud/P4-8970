@@ -21,7 +21,7 @@
 
 project = 'PolyForms'
 copyright = '2019, Polytechnique Montréal'
-authors = 'Hiba Bagané, Joël Poulin, Vincent Larocque, François Toulouse, Kevin Chan'
+author = 'Luna-06'
 
 # The short X.Y version
 version = ''

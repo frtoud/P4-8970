@@ -33,7 +33,8 @@ export class DashboardComponent implements OnInit {
   searchResult: Form[] = [];
   dashboardForms: Form[] = [];
   displayedCards: Form[] = [];
-  loadedCards: Form[] = [];
+  aCompleterCards: Form[] = [];
+  autresCards: Form[] = [];
 
   position = new FormControl('above');
   vueCarte: string = "true";
@@ -54,8 +55,7 @@ export class DashboardComponent implements OnInit {
             this.sortCardsDecreasingDate(forms);
             this.dashboardForms = forms;
             this.displayedCards = forms;
-            this.loadedCards = forms;
-            console.log(forms);
+            this.sortACompleterAutres();
           }).catch(err => console.log(err.error));
           break;
         case 'MANAGER':
@@ -63,30 +63,34 @@ export class DashboardComponent implements OnInit {
             this.sortCardsDecreasingDate(forms);
             this.dashboardForms = forms;
             this.displayedCards = forms;
-            this.loadedCards = forms;
-            console.log(forms);
+            this.sortACompleterAutres();
           }).catch(err => console.log(err.error));
           break;
         case 'USER':
           this.dashboardService.getForms(this.currentUser._id).then(forms => {
             this.sortCardsDecreasingDate(forms);
-            let collaborationForms: Form[] = this.searchAccesCollaborations(forms);
-            this.dashboardForms = collaborationForms;
+            let collaborationForms: Form[] = this.searchUserAccesCollaborations(forms);
             this.dashboardForms = collaborationForms;
             this.displayedCards = collaborationForms;
-            this.loadedCards = collaborationForms;
-            console.log(forms);
+            this.sortACompleterAutres();
           }).catch(err => console.log(err.error));
           break;
       }
     });
   }
 
-  private sortCardsDecreasingDate(formArray: Form[]) {
-    formArray.sort((vala, valb) => { return +valb.creeLe - +vala.creeLe });
+  //https://stackoverflow.com/questions/10123953/sort-javascript-object-array-by-date
+  private sortCardsDecreasingDate(forms: Form[]) {
+    forms.sort(function(a,b) {
+      // Turn your strings into dates, and then subtract them
+      // to get a value that is either negative, positive, or zero.
+      let dateA = new Date(a.creeLe);
+      let dateB = new Date(b.creeLe);
+      return +dateB - +dateA;
+    });
   }
 
-  private searchAccesCollaborations(forms: Form[]): Form[]
+  private searchUserAccesCollaborations(forms: Form[]): Form[]
   {
     let results: Form[] = [];
 
@@ -155,6 +159,16 @@ export class DashboardComponent implements OnInit {
     return res;
   }
 
+  private sortACompleterAutres() {
+    this.dashboardForms.forEach(form => {
+      if(form.statut == 'IN_PROGRESS') {
+        this.aCompleterCards.push(form);
+      } else {
+        this.autresCards.push(form);
+      }
+    })
+  }
+
   private calculateCompletionRate(collaborateurs: Collaborateur[]): number {
     let nCollaborateursCompleted = 0;
 
@@ -177,10 +191,15 @@ export class DashboardComponent implements OnInit {
     return(results);
   }
 
-  private search(){
-
+  private search() {
+    if (this.searchName == "" && this.searchStatus == "" && 
+        this.searchPatron == "" && this.dateFrom == null && this.dateTo == null)
+    {
+      this.desactivateSearch();
+      return;
+    }
     
-    this.searchResult = this.loadedCards;
+    this.searchResult = this.dashboardForms;
     // à ajouter la maniere de gérer les combinaisons de filtres!!!
     if(this.searchName)
     {
@@ -218,14 +237,18 @@ export class DashboardComponent implements OnInit {
     if(this.dateTo) {
       this.searchResult = this.searchDateTo();
     }
-
-    this.displayedCards = this.searchResult;
     
+    this.activateSearch();    
   }
 
-  private activateSearch(){
+  private activateSearch() {
     this.displayedCards = this.searchResult;
     this.searchActivated = true;
+  }
+
+  private desactivateSearch() {
+    this.displayedCards = this.dashboardForms;
+    this.searchActivated = false;
   }
 
   private searchCompleted(): Form[]

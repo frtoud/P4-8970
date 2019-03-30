@@ -14,6 +14,10 @@ const TEXT = {
     formCompletion: { 
         body: "Le formulaire suivant est prêt pour être validé : ", 
         button: "Accéder au formulaire!" 
+    },
+    canceledForm: {
+        body: " vient d'être annulé par ",
+        button: "Accéder au formulaire!" 
     }
 };
 

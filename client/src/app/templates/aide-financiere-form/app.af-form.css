@@ -1,5 +1,9 @@
 @import url("../base-form.css");
 
+#form-date {
+  background-color: #CCD4DF;
+}
+
 #form-header {
   display: flex;
   flex-direction: row;

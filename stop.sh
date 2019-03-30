@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-fuser -k 443/tcp
-fuser -k 80/tcp
+sudo fuser -k 8000/tcp
+sudo fuser -k 4200/tcp
 sudo killall node

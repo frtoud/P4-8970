@@ -5,6 +5,8 @@ import { strictEqual } from 'assert';
 
 export abstract class BaseFormComponent implements AfterViewInit {
 
+    date_creation: Date = new Date();
+
     collaborateurID = null;
     captureActive = false;
 
@@ -138,9 +140,8 @@ export abstract class BaseFormComponent implements AfterViewInit {
 
     getAssignations(): Set<string> {
       const list: Set<string> = new Set<string>();
-      this.sections.forEach(s => {
-        list.add(s.assigneA);
-      });
+      this.sections.forEach(s => { list.add(s.assigneA); });
+      this.signatures.forEach(s => { list.add(s.assigneA); });
       return list;
     }
 
