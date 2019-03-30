@@ -255,3 +255,15 @@ input {
 #references div {
     background-color: #CCD4DF;
 }
+
+@media print{
+    
+        * {
+          max-width: 90%;
+        }
+
+        
+      
+    
+        
+  }
