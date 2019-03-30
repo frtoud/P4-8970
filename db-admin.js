@@ -1,4 +1,5 @@
-var MongoClient = require('mongodb').MongoClient;
+conn = new Mongo();
+db = conn.getDB("polyforms");
 var admin = {
   "_id": "5c8177712e64ab2736875bc7",
   "firstName": "admin",
@@ -8,14 +9,10 @@ var admin = {
   "createdAt": "",
   "updatedAt": ""
 };
-
-MongoClient.connect("mongodb://localhost:27017/polyforms", function(err, db) {
-  if (err) throw err;
-    db.createCollection("users", function (err, res) {
+db.createCollection("users", function (err, res) {
       if(err) throw err;
       db.collection("users").insertOne(admin, function(err, res){
         if (err) throw err;
       })
   });
-    db.close();
-});
+
