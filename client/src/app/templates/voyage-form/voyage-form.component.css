@@ -235,3 +235,14 @@ th {
     background: #CCD4DF;
     color: black;
 }
+
+@media print{
+    
+        * {
+          max-width: 91%;
+          
+        }
+      
+    
+        
+  }
