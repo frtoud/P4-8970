@@ -20,7 +20,7 @@
         <button id="refuser" mat-raised-button color="warn">REFUSER</button>
       </mat-grid-tile> -->
       <mat-grid-tile *ngIf="state === 'view'">
-        <button button mat-icon-button id="print"  (click)="printDiv()" ><mat-icon>print</mat-icon></button>
+        <button mat-raised-button id="print"  (click)="printDiv()" ><mat-icon>print</mat-icon></button>
       </mat-grid-tile>
       <mat-grid-tile *ngIf="state === 'validate'">
         <button id="valider" mat-raised-button (click)="onValidate()">VALIDER</button>

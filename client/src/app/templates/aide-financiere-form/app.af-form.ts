@@ -203,4 +203,8 @@ export class AFFormComponent extends BaseFormComponent implements IAideFinancier
     this.dSventilation = new MatTableDataSource(this.ventilation.tableau);
   }
 
+  initCalculs() {
+    this.updateTotal();
+    this.testMatricule();
+    }
 }

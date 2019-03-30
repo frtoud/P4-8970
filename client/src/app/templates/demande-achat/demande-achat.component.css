@@ -52,6 +52,11 @@ div {
   min-width: 100px;
 }
 
+.ventilation_autres {
+  padding-right: 50%;
+  min-width: 100px;
+}
+
 #signatures {
   margin: 5px;
   display: flex;
