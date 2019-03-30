@@ -157,7 +157,7 @@ export class PaymentFormComponent extends BaseFormComponent implements IPaymentF
     dsFactures = new MatTableDataSource(this.description_facture.tableau);
     dsVentilation = new MatTableDataSource(this.ventilation_budgetaire.tableau);
     displayedColumns: string[] = ['numFacture', 'descFacture', 'refFacture', 'totalFacture', 'action'];
-    displayedColumnsV: string[] = ['ubr', 'compte', 'unite', 'code', 't4a', 'reference', 'action', 'montant'];
+    displayedColumnsV: string[] = ['ubr', 'compte', 'unite', 'code', 't4a', 'reference', 'montant', 'action'];
 
     selectedCurrency = 'CAD';
 

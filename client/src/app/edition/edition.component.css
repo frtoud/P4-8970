@@ -5,7 +5,14 @@
 }
 .flex-column
 {
+  display: flex;
   flex-direction: column;
+  align-content: center;
+}
+
+#metadata {
+  display: flex;
+  flex-direction: row;
 }
 
 .participants{
