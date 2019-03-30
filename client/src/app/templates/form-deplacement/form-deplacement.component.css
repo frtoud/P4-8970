@@ -259,15 +259,7 @@ input {
 @media print{
     
         * {
-          max-width: 90%;
+          max-width: 100%;
         }
 
-        #form-body {
-        
-            width:100% ;
-        
-        }
-      
-    
-        
   }
