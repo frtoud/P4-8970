@@ -87,6 +87,15 @@ class FormsManager {
                             //         .catch(error => deferred.reject({ status: 400, message: error }));
                             // });
                             deferred.resolve(updatedForm);
+                            this.getUserEmail(userId).then(email => {
+                                this.sendNotification({ 
+                                    name : updatedForm.auteur.nom, 
+                                    content: T.formCompletion.body + updatedForm.nomFormulaire,
+                                    title: T.formCompletion.button,
+                                    link: CONFIG.host + '/edit/' + updatedForm._id + '/valider' }, 
+                                    email, "Invitation pour valider un formulaire", deferred, res);
+                            })
+                            .catch(err => deferred.reject({status: 400, message: err}));
                         })
                         .catch(err => deferred.reject({ err: true, status: 400, message: err}));
                     }
@@ -135,7 +144,7 @@ class FormsManager {
         console.log("NOTIFY COLLABORATOR");
         //TODO: FIX name (collab name)
         res.render('emails/template', 
-                    { name : form.collaborateurs[0].nom,
+                    { name : "",
                       content: form.auteur.nom + T.formEdition.body + form.nomFormulaire,
                       title: T.formEdition.button,
                       link: CONFIG.host + '/edit/' + form._id + '/modify'}, (err, html) => {
