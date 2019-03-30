@@ -54,7 +54,7 @@
 
   <!-------------------------------cartes A Completer---------------------------------->
   <div *ngIf="vueCarte == 'true' && !searchActivated" id="cards-container">
-    À compléter <hr id="a-completer-ligne">
+    À compléter ({{aCompleterCards.length}})<hr id="a-completer-ligne">
     <div id = "card-array">
       <div *ngFor="let card of aCompleterCards" id="card">
         <mat-card class="dashboard-card">
@@ -183,7 +183,7 @@
 
   <!-------------------------------cartes Autres ------------------------------------------->
   <div *ngIf="vueCarte == 'true' && !searchActivated" id="cards-container">
-    Autres <hr id="a-completer-ligne">
+    Autres ({{autresCards.length}})<hr id="a-completer-ligne">
     <div id = "card-array">
       <div *ngFor="let card of autresCards" id="card">
         <mat-card class="dashboard-card">
@@ -445,7 +445,7 @@
 
   <!---------------------liste A completer ------------------------->
   <div *ngIf="vueCarte == 'false' && !searchActivated">
-    <h4>Formulaires à compléter</h4>
+    <h4>Formulaires à compléter ({{aCompleterCards.length}})</h4>
     <table mat-table [dataSource]="aCompleterCards" id="forms-table">  
       <ng-container matColumnDef="idForm">
         <th mat-header-cell *matHeaderCellDef> id </th>
@@ -527,7 +527,7 @@
   
   <!---------------------liste Autres ------------------------->
   <div *ngIf="vueCarte == 'false' && !searchActivated">
-    <h4>Autres formulaires</h4>
+    <h4>Autres formulaires ({{autresCards.length}})</h4>
     <table mat-table [dataSource]="autresCards" id="forms-table">  
       <ng-container matColumnDef="idForm">
         <th mat-header-cell *matHeaderCellDef> id </th>
