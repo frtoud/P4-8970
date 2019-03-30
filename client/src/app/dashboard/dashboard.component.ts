@@ -7,6 +7,7 @@ import { Time } from '@angular/common';
 import { DashboardService, Form, Collaborateur } from '../services/dashboard.service';
 import { LoginService, AuthenticatedUser } from '../services/login.service';
 import { StatePipe } from '../pipes/account-type.pipe';
+import { Router } from '@angular/router';
 
 // Status
 // this.userAccess = ["WAITING", "EDITION", "COMPLETED", "PREVIEW"];
@@ -20,16 +21,16 @@ import { StatePipe } from '../pipes/account-type.pipe';
   encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent implements OnInit {
-  cardCollaborateurs: string[] = ["collaborateursList"];
+  cardCollaborateurs: string[] = ['collaborateursList'];
   vueListeColumns: string[] = ['idForm', 'auteur', 'collaborateurs', 'statut', 'modifieLe', 'creeLe', 'modifier'];
-  
-  searchName: string = "";
-  searchStatus: string ="";
-  searchPatron: string ="";
+
+  searchName = '';
+  searchStatus = '';
+  searchPatron = '';
   dateFrom: Date;
   dateTo: Date;
-  searchActivated: boolean = false;
-  
+  searchActivated = false;
+
   searchResult: Form[] = [];
   dashboardForms: Form[] = [];
   displayedCards: Form[] = [];
@@ -37,19 +38,20 @@ export class DashboardComponent implements OnInit {
   autresCards: Form[] = [];
 
   position = new FormControl('above');
-  vueCarte: string = "true";
+  vueCarte = 'true';
   currentUser: AuthenticatedUser;
 
   constructor(public dialog: MatDialog, private breakpointObserver: BreakpointObserver,
-    private dashboardService: DashboardService, private loginService: LoginService) {}
+    private dashboardService: DashboardService, private loginService: LoginService,
+    private router: Router) {}
 
   ngOnInit() {
-    this.loginService.getUser().then(login=> {
-      
+    this.loginService.getUser().then(login => {
+
       this.currentUser = login;
 
-    
-      switch(this.currentUser.type) {
+
+      switch (this.currentUser.type) {
         case 'ADMIN':
           this.dashboardService.getAllForms().then(forms => {
             this.sortCardsDecreasingDate(forms);
@@ -69,7 +71,7 @@ export class DashboardComponent implements OnInit {
         case 'USER':
           this.dashboardService.getForms(this.currentUser._id).then(forms => {
             this.sortCardsDecreasingDate(forms);
-            let collaborationForms: Form[] = this.searchUserAccesCollaborations(forms);
+            const collaborationForms: Form[] = this.searchUserAccesCollaborations(forms);
             this.dashboardForms = collaborationForms;
             this.displayedCards = collaborationForms;
             this.sortACompleterAutres();
@@ -79,31 +81,30 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  //https://stackoverflow.com/questions/10123953/sort-javascript-object-array-by-date
+  // https://stackoverflow.com/questions/10123953/sort-javascript-object-array-by-date
   private sortCardsDecreasingDate(forms: Form[]) {
-    forms.sort(function(a,b) {
+    forms.sort(function(a, b) {
       // Turn your strings into dates, and then subtract them
       // to get a value that is either negative, positive, or zero.
-      let dateA = new Date(a.creeLe);
-      let dateB = new Date(b.creeLe);
+      const dateA = new Date(a.creeLe);
+      const dateB = new Date(b.creeLe);
       return +dateB - +dateA;
     });
   }
 
-  private searchUserAccesCollaborations(forms: Form[]): Form[]
-  {
-    let results: Form[] = [];
+  private searchUserAccesCollaborations(forms: Form[]): Form[] {
+    const results: Form[] = [];
 
     forms.forEach(form => {
-      form.collaborateurs.forEach(collaborateur =>{
-        if (collaborateur.idCollaborateur == this.currentUser._id) {
-          if (collaborateur.acces == 'EDITION' ||
-              collaborateur.acces == 'COMPLETED' ||
-              collaborateur.acces == 'PREVIEW') {
+      form.collaborateurs.forEach(collaborateur => {
+        if (collaborateur.idCollaborateur === this.currentUser._id) {
+          if (collaborateur.acces === 'EDITION' ||
+              collaborateur.acces === 'COMPLETED' ||
+              collaborateur.acces === 'PREVIEW') {
                 results.push(form);
           }
         }
-      })
+      });
     });
 
     return results;
@@ -112,10 +113,10 @@ export class DashboardComponent implements OnInit {
   // return values : res = ["VALIDATE", "EDIT", "VIEW"];
   determineState(form: Form): string {
     let res = 'VIEW';
-    let userIsAuthor = form.auteur.idAuteur === this.currentUser._id;
-    
+    const userIsAuthor = form.auteur.idAuteur === this.currentUser._id;
+
     if (this.currentUser.type === 'ADMIN' || this.currentUser.type === 'MANAGER') {
-      
+
       switch (form.statut) {
         case 'COMPLETED':
           res = 'VALIDATE';
@@ -135,7 +136,7 @@ export class DashboardComponent implements OnInit {
 
       const collab: Collaborateur = form.collaborateurs.find(u => u.idCollaborateur === this.currentUser._id);
       if (collab) {
-        if (form.statut == 'IN_PROGRESS') {
+        if (form.statut === 'IN_PROGRESS') {
           switch (collab.acces) {
             case 'EDITION':
               res = 'EDIT';
@@ -161,19 +162,19 @@ export class DashboardComponent implements OnInit {
 
   private sortACompleterAutres() {
     this.dashboardForms.forEach(form => {
-      if(form.statut == 'IN_PROGRESS') {
+      if (form.statut === 'IN_PROGRESS') {
         this.aCompleterCards.push(form);
       } else {
         this.autresCards.push(form);
       }
-    })
+    });
   }
 
   private calculateCompletionRate(collaborateurs: Collaborateur[]): number {
     let nCollaborateursCompleted = 0;
 
     collaborateurs.forEach(collaborateur => {
-      if(collaborateur.acces == 'COMPLETED' || collaborateur.acces == 'PREVIEW') {
+      if (collaborateur.acces === 'COMPLETED' || collaborateur.acces === 'PREVIEW') {
         nCollaborateursCompleted++;
       }
     });
@@ -182,7 +183,7 @@ export class DashboardComponent implements OnInit {
   }
 
   private searchAuthor(): Form[] {
-    let results: Form[] = [];
+    const results: Form[] = [];
     this.dashboardForms.forEach(form => {
       if (form.auteur.nom === this.searchName) {
           results.push(form);
@@ -192,53 +193,47 @@ export class DashboardComponent implements OnInit {
   }
 
   private search() {
-    if (this.searchName == "" && this.searchStatus == "" && 
-        this.searchPatron == "" && this.dateFrom == null && this.dateTo == null)
-    {
+    if (this.searchName === '' && this.searchStatus === '' &&
+        this.searchPatron === '' && this.dateFrom == null && this.dateTo == null) {
       this.desactivateSearch();
       return;
     }
-    
+
     this.searchResult = this.dashboardForms;
     // à ajouter la maniere de gérer les combinaisons de filtres!!!
-    if(this.searchName)
-    {
+    if (this.searchName) {
       this.searchResult = this.searchAuthor();
     }
 
-    if(this.searchStatus=='COMPLETED') {
+    if (this.searchStatus === 'COMPLETED') {
         this.searchResult = this.searchCompleted();
     }
 
-    if(this.searchStatus=='IN_PROGRESS')
-    {
+    if (this.searchStatus === 'IN_PROGRESS') {
         this.searchResult = this.searchActive();
     }
 
-    if(this.searchStatus=='ARCHIVED')
-    {
+    if (this.searchStatus === 'ARCHIVED') {
         this.searchResult = this.searchArchived();
     }
 
-    if(this.searchStatus=='CANCELED')
-    {
+    if (this.searchStatus === 'CANCELED') {
         this.searchResult = this.searchCanceled();
     }
 
-    if(this.searchPatron)
-    {
+    if (this.searchPatron) {
         this.searchResult = this.searchId();
     }
 
-    if(this.dateFrom) {
+    if (this.dateFrom) {
       this.searchResult = this.searchDateFrom();
     }
 
-    if(this.dateTo) {
+    if (this.dateTo) {
       this.searchResult = this.searchDateTo();
     }
-    
-    this.activateSearch();    
+
+    this.activateSearch();
   }
 
   private activateSearch() {
@@ -251,95 +246,96 @@ export class DashboardComponent implements OnInit {
     this.searchActivated = false;
   }
 
-  private searchCompleted(): Form[]
-  {
-    let results: Form[] = [];
+  private searchCompleted(): Form[] {
+    const results: Form[] = [];
 
     this.searchResult.forEach(form => {
-      if(form.statut=='COMPLETED'){
+      if (form.statut === 'COMPLETED') {
         results.push(form);
       }
     });
     return(results);
   }
 
-  
 
-  private searchActive(): Form[]
-  {
-    let results: Form[] = [];
+
+  private searchActive(): Form[] {
+    const results: Form[] = [];
 
     this.searchResult.forEach(form => {
-      if(form.statut=='IN_PROGRESS'){
+      if (form.statut === 'IN_PROGRESS') {
         results.push(form);
       }
-    })
-      
+    });
+
     return(results);
   }
 
-  private searchArchived(): Form[]
-  {
-    
-    let results: Form[] = [];
+  private searchArchived(): Form[] {
+
+    const results: Form[] = [];
 
     this.searchResult.forEach(form => {
-      if(form.statut=='ARCHIVED'){
+      if (form.statut === 'ARCHIVED') {
         results.push(form);
     }});
 
     return(results);
   }
 
-  private searchCanceled(): Form[]
-  {
-    
-    let results: Form[] = [];
+  private searchCanceled(): Form[] {
+
+    const results: Form[] = [];
 
     this.searchResult.forEach(form => {
-      if(form.statut=='CANCELED'){
+      if (form.statut === 'CANCELED') {
         results.push(form);
     }});
 
     return(results);
   }
 
-  private searchId(): Form[]{
+  private searchId(): Form[] {
 
-    let results: Form[] = [];
-    
+    const results: Form[] = [];
+
     this.searchResult.forEach(form => {
-      if(form.nomFormulaire==this.searchPatron){
+      if (form.nomFormulaire === this.searchPatron) {
         results.push(form);
       }
     });
     return(results);
   }
 
-  private searchDateFrom(): Form[]{
-    
-    let results: Form[] = [];
-    this.searchResult.forEach(form => {
-      let dateCreeLe = new Date(form.creeLe);
+  private searchDateFrom(): Form[] {
 
-      if(dateCreeLe > this.dateFrom){
+    const results: Form[] = [];
+    this.searchResult.forEach(form => {
+      const dateCreeLe = new Date(form.creeLe);
+
+      if (dateCreeLe > this.dateFrom) {
         results.push(form);
       }
     });
     return(results);
   }
 
-  private searchDateTo(): Form[]{
-    
-    let results: Form[] = [];
+  private searchDateTo(): Form[] {
+
+    const results: Form[] = [];
 
     this.searchResult.forEach(form => {
-      let dateCreeLe = new Date(form.creeLe);
-      
-      if(dateCreeLe < this.dateTo){
+      const dateCreeLe = new Date(form.creeLe);
+
+      if (dateCreeLe < this.dateTo) {
         results.push(form);
       }
     });
     return(results);
+  }
+
+  private redirectTo(arg: string[]) {
+    console.log(arg);
+    this.router.navigate(arg);
   }
 }

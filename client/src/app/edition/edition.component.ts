@@ -133,7 +133,19 @@ export class EditionComponent implements OnInit {
 
     this.instanceService.patchInstance(this.formId, this.formInstance.collaborateurID,
     newData, this.fileUploader.attachedFiles).then(res => {
-      this.instanceService.validateInstance(this.formId);
+      console.log(res);
+      this.instanceService.validateInstance(this.formId)
+      .then(resp => {
+        console.log(resp);
+        window.alert('formulaire validé.');
+        this.router.navigate(['/dashboard']);
+      }).catch(err => {
+        window.alert('erreur lors de la validation:' + err);
+        // TODOkete: alert?
+      });
+    }).catch(err => {
+      window.alert('erreur lors de la validation:' + err);
+      // TODOkete: alert?
     });
   }
 
@@ -141,7 +153,16 @@ export class EditionComponent implements OnInit {
     this.router.navigate(['/new', this.currentForm.id], { queryParams: { ref: this.formId } });
   }
   onCancel() {
-    this.instanceService.cancelInstance(this.formId);
+    this.instanceService.cancelInstance(this.formId).then(res => {
+      window.alert('formulaire invalidé');
+      this.router.navigate(['/dashboard']);
+    }).catch(err => {
+      window.alert('erreur de création');
+      // TODOkete: alert?
+    });
+  }
+  onReturn() {
+    this.router.navigate(['/dashboard']);
   }
 
   printDiv() {

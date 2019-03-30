@@ -163,7 +163,7 @@
   padding: none !important;
 } */
 
-h4 {
+.header-title {
   background: linear-gradient(to bottom, #f3f3f3 0%,#acacac 100%);
   border: 1px solid #acacac;
   border-top-left-radius: 4px;
@@ -174,12 +174,12 @@ h4 {
   margin: 0;
 }
 
-.mat-cell {
+#collaborateursList .mat-cell {
   border: 1px solid #acacac;
   border-collapse: collapse;
 }
 
-th.mat-header-cell {
+#collaborateursList th.mat-header-cell {
   border: 1px solid #acacac;
   background: linear-gradient(to bottom, #f3f3f3 0%,#acacac 100%);
   color: black;
@@ -187,11 +187,11 @@ th.mat-header-cell {
   vertical-align: middle;
 }
 
-.mat-row:nth-child(odd){
+#collaborateursList .mat-row:nth-child(odd){
   background-color:white;
 }
 
-.mat-row:nth-child(even){
+#collaborateursList .mat-row:nth-child(even){
   background-color: #ebebeb;
 }
 
