@@ -254,7 +254,9 @@
             [(indeterminate)]="indeterminate"
             [labelPosition]="labelPosition"
             [disabled]="sig.lock || sig.validated">
+            <div id="signature-text">
             Je confirme et j'accepte la véracité des informations ci-dessus.
+            </div>
             </mat-checkbox>
             <br>
             <button mat-raised-button [disabled]="sig.value.length <= 0 || sig.lock || !sig.check" (click)="sig.onButtonClick()">{{sig.buttonMessage()}}</button>
