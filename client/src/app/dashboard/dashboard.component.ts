@@ -196,7 +196,6 @@ export class DashboardComponent implements OnInit {
         this.searchPatron == "" && this.dateFrom == null && this.dateTo == null)
     {
       this.desactivateSearch();
-      console.log("DESACTIVATED");
       return;
     }
     
@@ -239,7 +238,6 @@ export class DashboardComponent implements OnInit {
       this.searchResult = this.searchDateTo();
     }
     
-    console.log("ACTIVATED");
     this.activateSearch();    
   }
 

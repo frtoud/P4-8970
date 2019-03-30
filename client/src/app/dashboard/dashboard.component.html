@@ -52,6 +52,7 @@
 
 <div class="grid-container">
 
+  <!-------------------------------cartes A Completer---------------------------------->
   <div *ngIf="!searchActivated && vueCarte == 'true'" id="cards-container">
     À compléter <hr id="a-completer-ligne">
     <div id = "card-array">
@@ -176,11 +177,11 @@
           </mat-card-content>
         </mat-card>
       </div>
-    
-      
     </div>
   </div>
+  <!-------------------------------FIN cartes A Completer---------------------------------->
 
+  <!-------------------------------cartes Autres ------------------------------------------->
   <div *ngIf="!searchActivated && vueCarte == 'true'" id="cards-container">
     Autres <hr id="a-completer-ligne">
     <div id = "card-array">
@@ -305,11 +306,11 @@
           </mat-card-content>
         </mat-card>
       </div>
-    
-      
     </div>
   </div>
+  <!-------------------------------FIN cartes Autres ------------------------------------------->
 
+  <!-------------------------------cartes recherche------------------------------------------->
   <div *ngIf="searchActivated && vueCarte == 'true'" id="cards-container">
     Résultats de la recherche ({{displayedCards.length}}) <hr id="a-completer-ligne">
     <div id = "card-array">
@@ -434,10 +435,9 @@
           </mat-card-content>
         </mat-card>
       </div>
-    
-      
     </div>
   </div>
+  <!-------------------------------FIN cartes recherche------------------------------------------->
 
   <div *ngIf="vueCarte == 'false'">
     <table mat-table [dataSource]="displayedCards" id="forms-table">  
@@ -453,7 +453,7 @@
       <ng-container matColumnDef="collaborateurs">
         <th mat-header-cell *matHeaderCellDef> collaborateurs </th>
         <td mat-cell *matCellDef="let element">
-          <mat-select placeholder={{element.collaborateurs[0].nom}}><!--TODO REPLACE BACK{{element.collaborateurs[0].nom}}>-->
+          <mat-select placeholder={{element.collaborateurs[0].nom}}>
             <ng-container *ngFor="let collaborateur of element.collaborateurs">
               <mat-option [ngSwitch]="collaborateur.acces">
                 <div *ngSwitchCase="'COMPLETED'" class="selectCollaborateurCompleted" >
