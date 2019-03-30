@@ -1,20 +1,19 @@
-var url = "mongodb://localhost:27017/polyforms";
-var MongoClient = require('mongodb').MongoClient;
-var Users = require('./server/models/Users');
-var admin = new Users({
-  "_id": "5c8177712e64ab2736875bc7",
+conn = new Mongo();
+db = conn.getDB("polyforms");
+// "_id": "5c8177712e64ab2736875bc7",
+var admin = {
   "firstName": "admin",
   "lastName": "",
   "email": "",
   "type": "ADMIN",
   "createdAt": "",
   "updatedAt": ""
+};
+db.createCollection("users", function (err, res) {
+  if(err) throw err;
+  db.collection("users").insertOne(admin, function(err, res){
+    if (err) throw err;
+  })
 });
 
-MongoClient.connect(url, function(err, db) {
-  if (err) throw err;
-    db.createCollection("users", function (err, res) {
-    admin.save().then(() => console.log('Un compte administrateur a été ajouté.'))
-  });
-  db.close();
-}
+

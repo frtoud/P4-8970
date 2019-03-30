@@ -13,11 +13,24 @@ div.assignation_selected {
     pointer-events: none;
   }
 
+  /* --------------------------------Print options----------------------------------*/
   @media print{
     
         * {
-          width: 90%;
+          max-width: 70%;
         }
+
+        button {
+          display: none !important;
+        }
+
+      
+      .signature {
+        
+        max-width:390px !important ;
+      }
+      
     
         
   }
+  /* --------------------------------Print options----------------------------------*/
