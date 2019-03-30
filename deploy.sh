@@ -23,5 +23,7 @@ export class Config {
 EOF
 sudo npm install -g @angular/cli
 sudo npm install @angular-devkit/build-angular
+sudo npm install @angular/compiler-cli
+cd ../../../
 sudo mongo < db-admin.js
 sudo ng serve --host 0.0.0.0 --port 4200 --disable-host-check &
