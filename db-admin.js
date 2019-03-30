@@ -9,7 +9,7 @@ var admin = {
   "updatedAt": ""
 };
 
-MongoClient.connect("http://localhost:27017/polyforms", function(err, db) {
+MongoClient.connect("mongodb://localhost:27017/polyforms", function(err, db) {
   if (err) throw err;
     db.createCollection("users", function (err, res) {
       if(err) throw err;
