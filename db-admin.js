@@ -1,7 +1,6 @@
 conn = new Mongo();
 db = conn.getDB("polyforms");
 var admin = {
-  "_id": "5c8177712e64ab2736875bc7",
   "firstName": "admin",
   "lastName": "",
   "email": "",
@@ -9,10 +8,15 @@ var admin = {
   "createdAt": "",
   "updatedAt": ""
 };
-db.createCollection("users", function (err, res) {
+
+db.collectionNames("users", function(err, names) {
+  if(!(names.length > 0)){
+    db.createCollection("users", function (err, res) {
       if(err) throw err;
       db.collection("users").insertOne(admin, function(err, res){
         if (err) throw err;
       })
-  });
+    });
+  }
+});
 
