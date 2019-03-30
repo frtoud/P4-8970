@@ -149,6 +149,21 @@ class FormsManager {
         });
     }
 
+    sendNotification(params, email, subject, deferred, res) {
+        res.render('emails/template', params, (err, html) => {
+            if (err) {
+                return deferred.reject({status: 400, message: err});
+            }
+            return this.mailer.sendMail(CONFIG.mailer.from,
+                email,
+                subject,
+                subject,
+                html)
+                .then(()=> deferred.resolve(form))
+                .catch(error => deferred.reject({ status: 400, message: error }));
+        });
+    }
+
     getFormById(id) {
         const deferred = Q.defer();
         Form.findOne({ "_id": id }).then(form => {
@@ -219,7 +234,7 @@ class FormsManager {
         return deferred.promise;
     }
 
-    cancelForm(userId, formId) {
+    cancelForm(userId, formId, res) {
         const deferred = Q.defer();
         Form.findOne({ "_id": formId }).then(form => {
             if (form) {
@@ -227,14 +242,25 @@ class FormsManager {
                     if (user && (user.type === "ADMIN" || user.type === "MANAGER")) {
                         form.setStatus("CANCELED").setUpdatedAt();
                         form.save()
-                        .then(cForm => deferred.resolve(cForm))
+                        .then(cForm => {
+                            deferred.resolve(cForm);
+                            this.getUserEmail(userId).then(email => {
+                                this.sendNotification({ 
+                                    name : cForm.auteur.nom, 
+                                    content: cForm.nomFormulaire + T.canceledForm.body + user.firstName + " " + user.lastName,
+                                    title: T.canceledForm.button,
+                                    link: CONFIG.host + '/edit/' + form._id + '/view' }, 
+                                    email, "Annulation d'un formulaire", deferred, res);
+                            })
+                            .catch(err => deferred.reject({status: 400, message: err}));
+                        })
                         .catch(err => deferred.reject({status: 400, message: err}));
                     }
                     else {
                         deferred.reject({status: 403, message: "Opération non permise."});
                     }
                 })
-                .catch(err => deferred.reject({status: 400, message: "Opération non permise."}));
+                .catch(err => deferred.reject({status: 400, message: "Utilisateur introuvable!"}));
             }
             else {
                 deferred.reject({status: 400, message: "Formulaire introuvable!"});
@@ -243,6 +269,18 @@ class FormsManager {
         .catch(err => deferred.reject({status: 400, message: err}));
 
         return deferred.promise;
+    }
+
+    getUserEmail(id) {
+        return Users.findOne({ "_id": id }).then(user => {
+            if(user) {
+                return Promise.resolve(user.email);
+            }
+            else {
+                return Promise.reject("Utilisateur invalide!");
+            }
+        })
+        .catch(err => Promise.reject("Utilisateur introuvable!"));
     }
 
 }
