@@ -55,7 +55,7 @@
   <div *ngSwitchCase="'true'" id="cards-container">
     À compléter <hr id="a-completer-ligne">
     <div id = "card-array">
-      <div *ngFor="let card of displayedCards" id="card">
+      <div *ngFor="let card of aCompleterCards" id="card">
         <mat-card class="dashboard-card">
           <mat-card-content class="dashboard-card-content">
             <ng-container id="card-header">
@@ -184,7 +184,7 @@
   <div *ngSwitchCase="'true'" id="cards-container">
     Autres <hr id="a-completer-ligne">
     <div id = "card-array">
-      <div *ngFor="let card of displayedCards" id="card">
+      <div *ngFor="let card of autresCards" id="card">
         <mat-card class="dashboard-card">
           <mat-card-content class="dashboard-card-content">
             <ng-container id="card-header">

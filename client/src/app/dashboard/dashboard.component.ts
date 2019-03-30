@@ -34,6 +34,8 @@ export class DashboardComponent implements OnInit {
   dashboardForms: Form[] = [];
   displayedCards: Form[] = [];
   loadedCards: Form[] = [];
+  aCompleterCards: Form[] = [];
+  autresCards: Form[] = [];
 
   position = new FormControl('above');
   vueCarte: string = "true";
@@ -55,7 +57,8 @@ export class DashboardComponent implements OnInit {
             this.dashboardForms = forms;
             this.displayedCards = forms;
             this.loadedCards = forms;
-            console.log(forms);
+            this.sortACompleterAutres();
+            console.log(this.dashboardForms);
           }).catch(err => console.log(err.error));
           break;
         case 'MANAGER':
@@ -64,7 +67,6 @@ export class DashboardComponent implements OnInit {
             this.dashboardForms = forms;
             this.displayedCards = forms;
             this.loadedCards = forms;
-            console.log(forms);
           }).catch(err => console.log(err.error));
           break;
         case 'USER':
@@ -75,7 +77,6 @@ export class DashboardComponent implements OnInit {
             this.dashboardForms = collaborationForms;
             this.displayedCards = collaborationForms;
             this.loadedCards = collaborationForms;
-            console.log(forms);
           }).catch(err => console.log(err.error));
           break;
       }
@@ -153,6 +154,16 @@ export class DashboardComponent implements OnInit {
 
     }
     return res;
+  }
+
+  private sortACompleterAutres() {
+    this.dashboardForms.forEach(form => {
+      if(form.statut == 'IN_PROGRESS') {
+        this.aCompleterCards.push(form);
+      } else {
+        this.autresCards.push(form);
+      }
+    })
   }
 
   private calculateCompletionRate(collaborateurs: Collaborateur[]): number {
