@@ -5,8 +5,21 @@ import { ISignature, Signature } from '../fields';
 import { BaseFormComponent } from '../base-form.component';
 
 
-export interface IDemandeAchat
-{
+export interface IDemandeAchat {
+  commande: {
+    id: string;
+    assigneA: string;
+
+    standard: boolean;
+    entente: boolean;
+  };
+  finances: {
+    id: string;
+    assigneA: string;
+
+    technique: string;
+    commande: string;
+  };
   demandeur: {
     id: string;
     assigneA: string;
@@ -14,7 +27,7 @@ export interface IDemandeAchat
     nom: string;
     departement: string;
     telephone: string;
-  }
+  };
   fournisseur: {
     id: string;
     assigneA: string;
@@ -27,7 +40,7 @@ export interface IDemandeAchat
     provice: string;
     postal: string;
     pays: string;
-  }
+  };
   contact: {
     id: string;
     assigneA: string;
@@ -36,14 +49,14 @@ export interface IDemandeAchat
     courriel: string;
     telephone: string;
     fax: string;
-  }
+  };
   soumission: {
     id: string;
     assigneA: string;
 
     numero: string;
     echeance: string;
-  }
+  };
   livraison: {
     id: string;
     assigneA: string;
@@ -51,7 +64,7 @@ export interface IDemandeAchat
     date: Date;
     lieu: string;
     incoterms: string;
-  }
+  };
   termes: {
     id: string;
     assigneA: string;
@@ -59,7 +72,7 @@ export interface IDemandeAchat
     conditions: string;
     moyens: string;
     precisions: string;
-  }
+  };
   items: {
     id: string;
     assigneA: string;
@@ -67,34 +80,36 @@ export interface IDemandeAchat
     frais_transport: number;
     frais_autres: number;
     tableau: IItem[];
-  }
+  };
   ventilation: {
     id: string;
     assigneA: string;
 
     tableau: IVentilationDA[];
-  }
+    transport: number;
+    autres: number;
+  };
   commentaire: {
     id: string;
     assigneA: string;
 
     value: string;
-  }
+  };
   signatures: ISignature[];
 }
-export interface IItem{
+export interface IItem {
   id: number;
   ref: number;
   descr: string;
   quant: number;
   prixUnit: number;
 }
-export interface IVentilationDA{
+export interface IVentilationDA {
   id: number;
   ubr: string;
   compte: string;
   unite: string;
-  percent: number; 
+  percent: number;
   montant: number;
 }
 
@@ -105,91 +120,111 @@ export interface IVentilationDA{
 })
 export class DemandeAchatComponent extends BaseFormComponent implements IDemandeAchat {
 
-  demandeur = {
-    id: "demandeur",
+  commande = {
+    id: 'commande',
     assigneA: null,
 
-    nom: "",
-    departement: "",
-    telephone: "",
+    standard: false,
+    entente: false,
+  };
+  finances = {
+    id: 'finances',
+    assigneA: null,
+
+    technique: '',
+    commande: '',
+  };
+  demandeur = {
+    id: 'demandeur',
+    assigneA: null,
+
+    nom: '',
+    departement: '',
+    telephone: '',
   };
   fournisseur = {
-    id: "fournisseur",
+    id: 'fournisseur',
     assigneA: null,
 
-    nom: "",
-    numero: "",
-    adresse: "",
-    numero2: "",
-    ville: "",
-    provice: "",
-    postal: "",
-    pays: "",
+    nom: '',
+    numero: '',
+    adresse: '',
+    numero2: '',
+    ville: '',
+    provice: '',
+    postal: '',
+    pays: '',
   };
   contact = {
-    id: "contact",
+    id: 'contact',
     assigneA: null,
 
-    nom: "",
-    courriel: "",
-    telephone: "",
-    fax: "",
+    nom: '',
+    courriel: '',
+    telephone: '',
+    fax: '',
   };
   soumission = {
-    id: "soumission",
+    id: 'soumission',
     assigneA: null,
 
-    numero: "",
-    echeance: "",
+    numero: '',
+    echeance: '',
   };
   livraison = {
-    id: "livraison",
+    id: 'livraison',
     assigneA: null,
 
     date: null,
-    lieu: "",
-    incoterms: "",
+    lieu: '',
+    incoterms: '',
   };
   termes = {
-    id: "termes",
+    id: 'termes',
     assigneA: null,
 
-    conditions: "",
-    moyens: "",
-    precisions: "",
+    conditions: '',
+    moyens: '',
+    precisions: '',
   };
   items = {
-    id: "items",
+    id: 'items',
     assigneA: null,
 
     frais_transport: 0,
     frais_autres: 0,
-    tableau:[
+    tableau: [
       {id: 0, ref: 0, descr: '', quant: 0, prixUnit: 0},
     ],
   };
   ventilation = {
-    id: "ventilation",
+    id: 'ventilation',
     assigneA: null,
 
-    tableau:[
+    tableau: [
       {id: 0, ubr: '', compte: '', unite: '', percent: 0, montant: 0},
     ],
+    transport: 0,
+    autres: 0,
   };
   commentaire = {
-    id: "commentaire",
+    id: 'commentaire',
     assigneA: null,
 
-    value: "",
+    value: '',
   };
   signatures = [
-    new Signature("sig-boursier", "SIGNATURE DU DEMANDEUR", null, "", false, false, false),
-    new Signature("sig-titulaire", "SIGNATURE DU RESPONSABLE(S) DE L'UBR", null, "", false, false, false),
-    new Signature("sig-autorise", "SIGNATURE DU SUPÉRIEUR IMMÉDIAT / ADJOINTE AU DIRECTEUR", null, "", false, false, false),
-    new Signature("sig-finances", "SERVICE DES FINANCES", null, "", false, false, false),
+    new Signature('sig-boursier', 'SIGNATURE DU DEMANDEUR', null, '', false, false, false),
+    new Signature('sig-titulaire', 'SIGNATURE DU RESPONSABLE(S) DE L\'UBR', null, '', false, false, false),
+    new Signature('sig-autorise', 'SIGNATURE DU SUPÉRIEUR IMMÉDIAT / ADJOINTE AU DIRECTEUR', null, '', false, false, false),
+    new Signature('sig-finances', 'SERVICE DES FINANCES', null, '', false, false, false),
   ];
 
+  ventilationSTotal = 0;
   ventilationTotal = 0;
+  taxeTPS = 0;
+  taxeTVQ = 0;
+  engagement = 0;
   dSventilation = new MatTableDataSource(this.ventilation.tableau);
   dSitems = new MatTableDataSource(this.items.tableau);
   displayedColumnsVentilation: string[] = ['ubr', 'compte', 'unite', 'percent', 'montant', 'action'];
@@ -215,20 +250,17 @@ export class DemandeAchatComponent extends BaseFormComponent implements IDemande
 
   onDelete(value) {
     console.log(this);
-    let index : number = this.ventilation.tableau.findIndex((el:any) => el.id === value.id);
-    if (index >= 0)
-    {
+    const index: number = this.ventilation.tableau.findIndex((el: any) => el.id === value.id);
+    if (index >= 0) {
       this.ventilation.tableau.splice(index, 1);
     }
 
     this.dSventilation._updateChangeSubscription();
     this.updateTotal();
   }
-  onDeleteItem(value)
-  {
-    let index : number = this.items.tableau.findIndex((el:any) => el.id === value.id);
-    if (index >= 0)
-    {
+  onDeleteItem(value) {
+    const index: number = this.items.tableau.findIndex((el: any) => el.id === value.id);
+    if (index >= 0) {
       this.items.tableau.splice(index, 1);
     }
 
@@ -237,10 +269,15 @@ export class DemandeAchatComponent extends BaseFormComponent implements IDemande
   }
 
   updateTotal() {
-    this.ventilationTotal = 0;
+    this.ventilationSTotal = 0;
     this.ventilation.tableau.forEach(element => {
-      this.ventilationTotal += element.montant;
+      this.ventilationSTotal += element.montant;
     });
+    const pretax = this.ventilationSTotal + this.ventilation.transport + this.ventilation.autres;
+    this.taxeTPS = pretax * 0.05; // Todokete: constante?
+    this.taxeTVQ = pretax * 0.09975; // Todokete: constante?
+    this.engagement = pretax + this.taxeTPS * 0.33 + this.taxeTVQ * 0.53;
+    this.ventilationTotal = pretax + this.taxeTPS + this.taxeTVQ;
   }
 
   updateTotalItems() {
@@ -253,7 +290,7 @@ export class DemandeAchatComponent extends BaseFormComponent implements IDemande
   setSections(): void {
     this.sections = [
       this.items, this.ventilation, this.livraison, this.soumission, this.commentaire,
-      this.demandeur, this.fournisseur, this.contact, this.termes,
+      this.demandeur, this.fournisseur, this.contact, this.termes, this.commande, this.finances
     ];
     // Resetting DataSource bindings for new data
     this.dSventilation = new MatTableDataSource(this.ventilation.tableau);
