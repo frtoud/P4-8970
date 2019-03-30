@@ -31,13 +31,18 @@ EOF
 cd /
 cd etc/yum -y.repos.d/
 sudo touch mongodb-org-4.0.repo
-sudo cat <<EOF > ./mongodb-org-4.0.repo.js
-[mongodb-org-4.0]
+sudo cat <<EOF > ./mongodb.repo
+[mongodb]
 name=MongoDB Repository
-baseurl=https://repo.mongodb.org/yum -y/redhat/$releasever/mongodb-org/4.0/x86_64/
-gpgcheck=1
+baseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/
+gpgcheck=0
 enabled=1
-gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc
+#[mongodb-org-4.0]
+#name=MongoDB Repository
+#baseurl=https://repo.mongodb.org/yum -y/redhat/$releasever/mongodb-org/4.0/x86_64/
+#gpgcheck=1
+#enabled=1
+#gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc
 EOF
 sudo yum -y install -y mongodb-org
 sudo service mongod start
