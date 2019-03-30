@@ -262,7 +262,11 @@ input {
           max-width: 90%;
         }
 
+        #form-body {
         
+            width:100% ;
+        
+        }
       
     
         
