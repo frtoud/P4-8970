@@ -50,9 +50,9 @@
   </mat-select>
 </mat-form-field>
 
-<div class="grid-container" [ngSwitch]="vueCarte">
+<div class="grid-container">
 
-  <div *ngSwitchCase="'true'" id="cards-container">
+  <div *ngIf="!searchActivated && vueCarte == 'true'" id="cards-container">
     À compléter <hr id="a-completer-ligne">
     <div id = "card-array">
       <div *ngFor="let card of aCompleterCards" id="card">
@@ -181,7 +181,7 @@
     </div>
   </div>
 
-  <div *ngSwitchCase="'true'" id="cards-container">
+  <div *ngIf="!searchActivated && vueCarte == 'true'" id="cards-container">
     Autres <hr id="a-completer-ligne">
     <div id = "card-array">
       <div *ngFor="let card of autresCards" id="card">
@@ -310,7 +310,7 @@
     </div>
   </div>
 
-  <div *ngSwitchCase="'false'">
+  <div *ngIf="vueCarte == 'false'">
     <table mat-table [dataSource]="displayedCards" id="forms-table">  
       <ng-container matColumnDef="idForm">
         <th mat-header-cell *matHeaderCellDef> id </th>

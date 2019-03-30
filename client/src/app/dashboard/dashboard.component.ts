@@ -71,7 +71,6 @@ export class DashboardComponent implements OnInit {
             this.sortCardsDecreasingDate(forms);
             let collaborationForms: Form[] = this.searchUserAccesCollaborations(forms);
             this.dashboardForms = collaborationForms;
-            this.dashboardForms = collaborationForms;
             this.displayedCards = collaborationForms;
             this.sortACompleterAutres();
           }).catch(err => console.log(err.error));
@@ -234,6 +233,11 @@ export class DashboardComponent implements OnInit {
       this.searchResult = this.searchDateTo();
     }
 
+    console.log(this.searchName);
+    console.log(this.searchStatus);
+    console.log(this.searchPatron);
+    console.log(this.dateFrom);
+    console.log(this.dateTo);
     this.displayedCards = this.searchResult;
     
   }
