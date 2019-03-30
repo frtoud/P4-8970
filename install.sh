@@ -30,7 +30,7 @@ EOF
 #Install MongoDB
 cd /
 cd etc/yum -y.repos.d/
-sudo touch mongodb-org-4.0.repo
+sudo touch mongodb.repo
 sudo cat <<EOF > ./mongodb.repo
 [mongodb]
 name=MongoDB Repository
