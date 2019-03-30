@@ -1,9 +1,9 @@
-import { AfterViewInit } from '@angular/core';
+import { AfterViewInit, AfterContentInit } from '@angular/core';
 import { Signature, ISignature, ISection } from './fields';
 import { User } from '../services/users.service';
 import { strictEqual } from 'assert';
 
-export abstract class BaseFormComponent implements AfterViewInit {
+export abstract class BaseFormComponent implements AfterViewInit, AfterContentInit {
 
     date_creation: Date = new Date();
 
@@ -108,6 +108,9 @@ export abstract class BaseFormComponent implements AfterViewInit {
     // Add 'implements AfterViewInit' to the class.
     this.addListeners();
   }
+  ngAfterContentInit(): void {
+    this.initCalculs();
+  }
 
     captureAssignation(event, section) {
       if (this.captureActive) {
@@ -172,4 +175,5 @@ export abstract class BaseFormComponent implements AfterViewInit {
       });
     }
     abstract setSections();
+    abstract initCalculs();
 }

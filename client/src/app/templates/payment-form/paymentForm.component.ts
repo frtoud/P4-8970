@@ -226,6 +226,11 @@ export class PaymentFormComponent extends BaseFormComponent implements IPaymentF
     this.dsFactures = new MatTableDataSource(this.description_facture.tableau);
     this.dsVentilation = new MatTableDataSource(this.ventilation_budgetaire.tableau);
   }
+
+  initCalculs() {
+    this.updateTotal();
+    this.updateVentilationTotal();
+  }
 }
 
 
