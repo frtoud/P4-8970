@@ -297,5 +297,10 @@ export class DemandeAchatComponent extends BaseFormComponent implements IDemande
     this.dSitems = new MatTableDataSource(this.items.tableau);
 
   }
+
+  initCalculs() {
+    this.updateTotal();
+    this.updateTotalItems();
+  }
 }
 

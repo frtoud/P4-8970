@@ -43,9 +43,7 @@
 <div id="date">
     <h6>date</h6>
     <mat-form-field>
-        <input matInput [matDatepicker]="picker" placeholder="Choisir une date">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <input matInput [ngModel]="date_creation" placeholder="Choisir une date">
     </mat-form-field>
 </div>
 </div>
@@ -70,7 +68,7 @@
                 <div class="duree-section">
                     <mat-form-field>
                             <input matInput [matDatepicker]="pickerDu" placeholder="Du:"
-                            [ngModel]="endroit_duree.du" (ngModelChange)="duChange($event)" (click)="pickerDu.open()">
+                            [(ngModel)]="endroit_duree.du" (ngModelChange)="duChange($event)" (click)="pickerDu.open()">
                             <mat-datepicker-toggle matSuffix [for]="pickerDu"></mat-datepicker-toggle>
                             <mat-datepicker #pickerDu></mat-datepicker>
                     </mat-form-field>  
@@ -78,7 +76,7 @@
                 <div class="duree-section">
                     <mat-form-field>
                             <input matInput [matDatepicker]="pickerAu" placeholder="Au:"
-                            [ngModel]="endroit_duree.au" (ngModelChange)="auChange($event)" (click)="pickerAu.open()">
+                            [(ngModel)]="endroit_duree.au" (ngModelChange)="auChange($event)" (click)="pickerAu.open()">
                             <mat-datepicker-toggle matSuffix [for]="pickerAu"></mat-datepicker-toggle>
                             <mat-datepicker #pickerAu></mat-datepicker>
                     </mat-form-field>  
@@ -185,7 +183,7 @@
                     </ng-container>
             
                     <ng-container matColumnDef="total">
-                        <td mat-footer-cell *matFooterCellDef colspan="4" id="ventilation-total-cell">
+                        <td mat-footer-cell *matFooterCellDef colspan="999" id="ventilation-total-cell">
                             <strong id="ventilation-total">TOTAL: {{ ventilationTotal | currency}}</strong>
                         </td>
                         

@@ -332,4 +332,11 @@ export class VoyageFormComponent extends BaseFormComponent implements IVoyageFor
     ];
     this.dSventilation = new MatTableDataSource(this.ventilation.tableau);
     }
+
+  initCalculs() {
+    this.updateDuree();
+    this.updateAvanceTotal();
+    this.updateEstimationTotal();
+    this.updateTotal();
+  }
 }
