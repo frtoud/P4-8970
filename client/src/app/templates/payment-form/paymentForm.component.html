@@ -3,9 +3,7 @@
     <h4>DEMANDE DE PAIEMENT</h4>
     <div id="form-date">
         <mat-form-field>
-            <input matInput [matDatepicker]="picker" placeholder="DATE" (click)="picker.open()">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <input matInput placeholder="DATE" [ngModel]="date_creation">
         </mat-form-field>
     </div>
 </div>
@@ -93,7 +91,7 @@
               <th mat-header-cell *matHeaderCellDef> Numéro de la facture <br> (numéro de référence) </th>
               <td mat-cell *matCellDef="let facture" class="nbFacture">
                     <mat-form-field>
-                        <input matInput type="text" [(ngModel)]="facture.id">
+                        <input matInput type="text" [(ngModel)]="facture.num">
                     </mat-form-field>
               </td>
             </ng-container>
@@ -116,6 +114,13 @@
               </td>
             </ng-container>
           
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button color="warn"
+                    (click)="onDelete(element)">x</button>
+                </td>
+            </ng-container>
             <ng-container matColumnDef="totalFacture">
               <th mat-header-cell *matHeaderCellDef> TOTAL DE LA FACTURE <br> (en devise) </th>
               <td mat-cell *matCellDef="let facture" class="total">
@@ -224,6 +229,13 @@
             </td>
         </ng-container>
 
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button color="warn"
+                (click)="onDeleteVentilation(element)">x</button>
+            </td>
+        </ng-container>
         <ng-container matColumnDef="addVRow" id="addVRow">
             <td mat-footer-cell *matFooterCellDef>
                 <button mat-mini-fab color="primary"
