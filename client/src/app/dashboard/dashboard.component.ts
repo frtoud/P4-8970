@@ -191,8 +191,14 @@ export class DashboardComponent implements OnInit {
     return(results);
   }
 
-  private search(){
-
+  private search() {
+    if (this.searchName == "" && this.searchStatus == "" && 
+        this.searchPatron == "" && this.dateFrom == null && this.dateTo == null)
+    {
+      this.desactivateSearch();
+      console.log("DESACTIVATED");
+      return;
+    }
     
     this.searchResult = this.dashboardForms;
     // à ajouter la maniere de gérer les combinaisons de filtres!!!
@@ -232,19 +238,19 @@ export class DashboardComponent implements OnInit {
     if(this.dateTo) {
       this.searchResult = this.searchDateTo();
     }
-
-    console.log(this.searchName);
-    console.log(this.searchStatus);
-    console.log(this.searchPatron);
-    console.log(this.dateFrom);
-    console.log(this.dateTo);
-    this.displayedCards = this.searchResult;
     
+    console.log("ACTIVATED");
+    this.activateSearch();    
   }
 
-  private activateSearch(){
+  private activateSearch() {
     this.displayedCards = this.searchResult;
     this.searchActivated = true;
+  }
+
+  private desactivateSearch() {
+    this.displayedCards = this.dashboardForms;
+    this.searchActivated = false;
   }
 
   private searchCompleted(): Form[]
