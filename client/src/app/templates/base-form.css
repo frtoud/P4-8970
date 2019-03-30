@@ -12,3 +12,12 @@ div.assignation_selected {
   .child_disabled * {  
     pointer-events: none;
   }
+
+  @media print{
+    
+        * {
+          width: 90%;
+        }
+    
+        
+  }
