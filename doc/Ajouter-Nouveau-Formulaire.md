@@ -1,23 +1,31 @@
-# PolyForms
+# Documentation développeur
 
-## Installer un logiciel.
-Pour installer un logiciel et toutes les dépendances nécessaires (c'est-à-dire: Node.js et MongoDB)
-exécutez le script situé à la racine du dossier du projet appelé install.sh.
+## Ajouter un nouveau patron de formulaire.
 
-`` `
-sudo bash ./install.sh
-`` `
+Pour ajouter un nouveau patron de formulaire,
 
-## Déployer PolyForms
-Pour déployer l'application PolyForms sur l'ordinateur local, exécutez:
+1. cd templates
+2. ng g c newForm
+3. in .ts, exports a new class AND an Interface,
+l'interface doit contenir un filed: {id: string, assigneA:string, ...}
+un champ obligatoire signatures: ISignature[]
+4. Pour chaque section dans le .html, 
+    <div class = "section"> // peut changer
+    <div id = "$field"> // exactement pareil
+5. Pour les signaures, <div *ngFor="let sig of signatures">
 
-`` `
-sudo bash ./deploy.sh
-`` `
+TS
 
-## Désinstallez PolyForms
-Pour désinstaller PolyForms et toutes ses dépendances (c'est-à-dire Node.js et MongoDB), exécutez:
+1. Make it extends BaseFormComponent implements INewForm 
+2. Initialiser les attributs : des lignes pour un tableau et les Signatures (classe Signature existante)
+3. Obligatoire: setSection(){this.section=[...]}
+4. this.dSventilation = new MatTableDataSource
+   
+instance.service.ts
+1. Importer la nouvelle Interface
 
-`` `
-sudo bash ./uninstall.sh
-`` `
+template.service.ts
+1. import new Component
+2. add it to FORMS_DATA {name:, id:, NewFormClass}
+3. 3. add Interface to interface Instace "data"
+4. add interface to postInstance(formdata, ...)
