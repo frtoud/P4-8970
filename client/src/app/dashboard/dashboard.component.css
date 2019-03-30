@@ -174,12 +174,12 @@
   margin: 0;
 }
 
-#collaborateursList .mat-cell {
+#forms-table .mat-cell {
   border: 1px solid #acacac;
   border-collapse: collapse;
 }
 
-#collaborateursList th.mat-header-cell {
+#forms-table th.mat-header-cell {
   border: 1px solid #acacac;
   background: linear-gradient(to bottom, #f3f3f3 0%,#acacac 100%);
   color: black;
@@ -187,11 +187,11 @@
   vertical-align: middle;
 }
 
-#collaborateursList .mat-row:nth-child(odd){
+#forms-table .mat-row:nth-child(odd){
   background-color:white;
 }
 
-#collaborateursList .mat-row:nth-child(even){
+#forms-table .mat-row:nth-child(even){
   background-color: #ebebeb;
 }
 
