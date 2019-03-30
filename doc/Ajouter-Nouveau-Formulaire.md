@@ -2,7 +2,7 @@
 
 Pour ajouter un nouveau patron de formulaire
 
-1. Il faut d'abord créer un nouveau composant, par exemple le compoasant NouveauFormulaire. Il doit être dans le dossier templates. 
+1. Créer un nouveau composant, par exemple le compoasant NouveauFormulaire. Il doit être dans le dossier templates. 
    ```
     $ cd templates
     $ ng g c NouveauFormulaire
@@ -67,23 +67,66 @@ export interface INouveauFormulaire
     ];
 }
 ```
-7. Pour chaque section dans le .html, 
+
+7. Dans le *.ts* du nouveau composant, faire en sorte que la classe *extends* BaseFormComponent et implémente INouveauFormulaire.
+
+```
+export class NewFormFormComponent extends BaseFormComponent implements INewForm 
+{
+    ...
+}
+```
+
+8. Initialiser les attributs de la classe du nouveau composant du nouveau formulaire. Ceux-ci doivent être les mêmes que ceux de son interface. Lors de l'utilisation de tableau, des lignes (au moins 1) doit être initialiser. De plus, la construction des Signature doit être dans un tableau de Signature.
+```
+export class NewFormFormComponent extends BaseFormComponent implements INewForm {
+ section1 = {
+    id: "section1",
+    assigneA: null,
+    ...
+  };
+   section1 = {
+    id: "section1",
+    assigneA: null,
+    ...
+  };
+  ...
+
+    tableau: [
+      {id:0, ubr:"", compte:"", unite:"", percent:0, montant:0, },
+      {id:1, ubr:"", compte:"", unite:"", percent:0, montant:0, },
+      {id:2, ubr:"", compte:"", unite:"", percent:0, montant:0, },
+    ],
+  }
+  signatures = [
+    new Signature("sig-boursier", "SIGNATURE DU BOURSIER", null, "", false, false, false),
+    new Signature("sig-titulaire", "SIGNATURE DU (DES) TITULAIRES(S) DE SUBVENTION", null, "", false, false, false),
+    new Signature("sig-autorise", "SIGNATURE(S) AUTORISÉE(S)", null, "", false, false, false),
+    new Signature("sig-finances", "SERVICE DES FINANCES", null, "", false, false, false),
+  ];
+
+}
+```
+9.  Obligatoire: 
+    ``` 
+    setSection(){
+        this.section = [...]
+        }
+    ```
+1.  this.dSventilation = new MatTableDataSource
+2.  Pour chaque section dans le .html, 
+    ```
     <div class = "section"> // peut changer
     <div id = "$field"> // exactement pareil
-8.  Pour les signaures, <div *ngFor="let sig of signatures">
-
-TS
-
-1. Make it extends BaseFormComponent implements INewForm 
-2. Initialiser les attributs : des lignes pour un tableau et les Signatures (classe Signature existante)
-3. Obligatoire: setSection(){this.section=[...]}
-4. this.dSventilation = new MatTableDataSource
-   
-instance.service.ts
-1. Importer la nouvelle Interface
-
-template.service.ts
-1. import new Component
-2. add it to FORMS_DATA {name:, id:, NewFormClass}
-3. 3. add Interface to interface Instace "data"
-4. add interface to postInstance(formdata, ...)
+    ```
+3.  Pour les signaures, 
+     ```
+    <div *ngFor="let sig of signatures">
+    ```
+4.  instance.service.ts
+    Importer la nouvelle Interface
+5.  template.service.ts
+    import new Component
+6.  add it to FORMS_DATA {name:, id:, NewFormClass}
+7.  add Interface to interface Instace "data"
+8.  add interface to postInstance(formdata, ...)
