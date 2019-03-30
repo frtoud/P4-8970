@@ -33,7 +33,6 @@ export class DashboardComponent implements OnInit {
   searchResult: Form[] = [];
   dashboardForms: Form[] = [];
   displayedCards: Form[] = [];
-  loadedCards: Form[] = [];
   aCompleterCards: Form[] = [];
   autresCards: Form[] = [];
 
@@ -56,7 +55,6 @@ export class DashboardComponent implements OnInit {
             this.sortCardsDecreasingDate(forms);
             this.dashboardForms = forms;
             this.displayedCards = forms;
-            this.loadedCards = forms;
             this.sortACompleterAutres();
           }).catch(err => console.log(err.error));
           break;
@@ -65,7 +63,7 @@ export class DashboardComponent implements OnInit {
             this.sortCardsDecreasingDate(forms);
             this.dashboardForms = forms;
             this.displayedCards = forms;
-            this.loadedCards = forms;
+            this.sortACompleterAutres();
           }).catch(err => console.log(err.error));
           break;
         case 'USER':
@@ -75,7 +73,7 @@ export class DashboardComponent implements OnInit {
             this.dashboardForms = collaborationForms;
             this.dashboardForms = collaborationForms;
             this.displayedCards = collaborationForms;
-            this.loadedCards = collaborationForms;
+            this.sortACompleterAutres();
           }).catch(err => console.log(err.error));
           break;
       }
@@ -91,9 +89,6 @@ export class DashboardComponent implements OnInit {
       let dateB = new Date(b.creeLe);
       return +dateB - +dateA;
     });
-    forms.forEach(form => {
-      console.log(form.creeLe);
-    })
   }
 
   private searchUserAccesCollaborations(forms: Form[]): Form[]
@@ -200,7 +195,7 @@ export class DashboardComponent implements OnInit {
   private search(){
 
     
-    this.searchResult = this.loadedCards;
+    this.searchResult = this.dashboardForms;
     // à ajouter la maniere de gérer les combinaisons de filtres!!!
     if(this.searchName)
     {
