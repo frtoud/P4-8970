@@ -1,31 +1,13 @@
 #!/usr/bin/env bash
-cd ./server
-sudo npm install
-cd lib
-sudo touch keys.js
-sudo cat <<EOF > ./keys.js
-const KEYS = {
-    mongo: {},
-    mailer: {
-        from: "gigl-projet-a@polymtl.ca"
-    },
-    host: "http://localhost:8000"
-};
-module.exports = KEYS; 
-EOF
+cd server
 sudo npm start &
-cd ../../client/src/app
+cd ../client/src/app
 sudo rm ./config.ts
 sudo cat <<EOF > ./config.ts
 export class Config {
     public static apiUrl = 'http://localhost:8000';
   }
 EOF
-sudo npm install -g @angular/cli
-sudo npm install @angular-devkit/build-angular
-sudo npm install @angular/compiler-cli
-sudo npm install mongodb
-sudo npm install @angular/compiler
 cd ../../../
 sudo mongo < db-admin.js
 cd ./client
