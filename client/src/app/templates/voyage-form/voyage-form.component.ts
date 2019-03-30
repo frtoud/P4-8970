@@ -5,15 +5,14 @@ import { DataSource } from '@angular/cdk/table';
 import { Signature, ISignature } from '../fields';
 import { BaseFormComponent } from '../base-form.component';
 
-export interface IVoyageForm
-{
+export interface IVoyageForm {
   entite_employe:
   {
     id: string;
     assigneA: string;
 
-    matricule:string;
-  }
+    matricule: string;
+  };
   entite_fournisseur:
   {
     id: string;
@@ -21,15 +20,15 @@ export interface IVoyageForm
 
     numero: string;
     adresse: string;
-  }
+  };
 
-  beneficiaire: 
+  beneficiaire:
   {
     id: string;
     assigneA: string;
 
     nom: string;
-  }
+  };
   demandeur:
   {
     id: string;
@@ -37,7 +36,7 @@ export interface IVoyageForm
 
     nom: string;
     telephone: string;
-  }
+  };
 
   fournisseur:
   {
@@ -50,7 +49,7 @@ export interface IVoyageForm
     postal: string;
     telephone: string;
     fax: string;
-  }
+  };
 
   endroit_deplacement:
   {
@@ -60,14 +59,14 @@ export interface IVoyageForm
     endroit: string;
     du: Date;
     au: Date;
-  }
+  };
   but_deplacement:
   {
     id: string;
     assigneA: string;
 
     raison: string;
-  }
+  };
   estimation:
   {
     id: string;
@@ -77,14 +76,14 @@ export interface IVoyageForm
     transport: number;
     sejour: number;
     autres: number;
-  }
-  
+  };
+
   ventilation: {
     id: string;
     assigneA: string;
 
     tableau: IVentilationA[];
-  }
+  };
 
   avances: {
     id: string;
@@ -94,141 +93,142 @@ export interface IVoyageForm
     avance2: number;
     date1: Date;
     date2: Date;
-  }
+  };
 
   signatures: ISignature[];
 }
 
 export interface IVentilationA {
-  id:number;
-  ubr:string;
-  compte:string;
-  unite:string;
-  montant:number;
+  id: number;
+  ubr: string;
+  compte: string;
+  unite: string;
+  montant: number;
 }
 
 @Component({
+// tslint:disable-next-line: component-selector
   selector: 'voyage-form',
   templateUrl: './voyage-form.component.html',
   styleUrls: ['./voyage-form.component.css']
 })
 export class VoyageFormComponent extends BaseFormComponent implements IVoyageForm, OnInit, AfterViewInit {
 
-  entite_employe = 
+  entite_employe =
   {
-    id: "entite_employe",
+    id: 'entite_employe',
     assigneA: null,
 
-    matricule:"",
+    matricule: '',
   };
   entite_fournisseur =
   {
-    id: "entite_fournisseur",
+    id: 'entite_fournisseur',
     assigneA: null,
 
-    numero: "",
-    adresse: "",
+    numero: '',
+    adresse: '',
   };
 
-  beneficiaire = 
+  beneficiaire =
   {
-    id: "beneficiaire",
+    id: 'beneficiaire',
     assigneA: null,
 
-    nom: "",
-  }
-  demandeur = 
+    nom: '',
+  };
+  demandeur =
   {
-    id: "demandeur",
+    id: 'demandeur',
     assigneA: null,
 
-    nom: "",
-    telephone: "",
-  }
+    nom: '',
+    telephone: '',
+  };
 
   fournisseur =
   {
-    id: "fournisseur",
+    id: 'fournisseur',
     assigneA: null,
 
-    adresse: "",
-    ville: "",
-    province: "",
-    postal: "",
-    telephone: "",
-    fax: "",
-  }
+    adresse: '',
+    ville: '',
+    province: '',
+    postal: '',
+    telephone: '',
+    fax: '',
+  };
 
   endroit_deplacement =
   {
-    id: "endroit_deplacement",
+    id: 'endroit_deplacement',
     assigneA: null,
 
-    endroit: "",
+    endroit: '',
     du: null,
     au: null,
-  }
+  };
   but_deplacement =
   {
-    id: "but_deplacement",
+    id: 'but_deplacement',
     assigneA: null,
 
-    raison: "",
-  }
+    raison: '',
+  };
   estimation =
   {
-    id: "estimation",
+    id: 'estimation',
     assigneA: null,
 
     fraisInscription: 0,
     transport: 0,
     sejour: 0,
     autres: 0,
-  }
-  
+  };
+
   ventilation = {
-    id: "ventilation",
+    id: 'ventilation',
     assigneA: null,
 
     tableau: [
-      {id:0, ubr:"", compte:"", unite:"", montant:0 },
-      {id:1, ubr:"", compte:"", unite:"", montant:0 },
-      {id:2, ubr:"", compte:"", unite:"", montant:0 },
+      {id: 0, ubr: '', compte: '', unite: '', montant: 0 },
+      {id: 1, ubr: '', compte: '', unite: '', montant: 0 },
+      {id: 2, ubr: '', compte: '', unite: '', montant: 0 },
     ],
-  }
+  };
 
   avances = {
-    id: "avances",
+    id: 'avances',
     assigneA: null,
 
     avance1: 0,
     avance2: 0,
     date1: null,
     date2: null,
-  }
+  };
 
   signatures = [
-    new Signature("sig-demandeur", "SIGNATURE DU DEMANDEUR", null, "", false, false, false),
-    new Signature("sig-ubr", "SIGNATURE DU (DES) RESPONSABLES(S) DE L'UBR", null, "", false, false, false),
-    new Signature("sig-superieur", "SIGNATURE DU SUPÉRIEUR IMMÉDIAT", null, "", false, false, false),
-    new Signature("sig-finances", "SERVICE DES FINANCES", null, "", false, false, false),
+    new Signature('sig-demandeur', 'SIGNATURE DU DEMANDEUR', null, '', false, false, false),
+    new Signature('sig-ubr', 'SIGNATURE DU (DES) RESPONSABLES(S) DE L\'UBR', null, '', false, false, false),
+    new Signature('sig-superieur', 'SIGNATURE DU SUPÉRIEUR IMMÉDIAT', null, '', false, false, false),
+    new Signature('sig-finances', 'SERVICE DES FINANCES', null, '', false, false, false),
   ];
 
-  private dureeDeplacement: number = 0;
+  private dureeDeplacement = 0;
   private bothFilled = false;
 
-  private avanceTotal: number = 0;
+  private avanceTotal = 0;
 
-  private estimationTotal: number = 0;
+  private estimationTotal = 0;
 
-  montant :number = 0;
-  ventilationTotal :number = 0;
+  montant = 0;
+  ventilationTotal = 0;
 
-  nomDemandeur: string = "";
-  demandeurChecked: boolean = false;
-  signatureAdded: boolean = false;
+  nomDemandeur = '';
+  demandeurChecked = false;
+  signatureAdded = false;
 
-  currency = ["CAN", "US", "EURO", "GBP", "CHF", "BRL"];
+  currency = ['CAN', 'US', 'EURO', 'GBP', 'CHF', 'BRL'];
   displayedColumns: string[] = ['ubr', 'compte', 'unite', 'montant', 'action'];
 
   dSventilation = new MatTableDataSource(this.ventilation.tableau);
@@ -237,26 +237,23 @@ export class VoyageFormComponent extends BaseFormComponent implements IVoyageFor
     this.avanceTotal = this.avances.avance1 + this.avances.avance2;
   }
 
-  updateTotal()
-  {
+  updateTotal() {
     this.ventilationTotal = 0;
     this.ventilation.tableau.forEach(element => {
       this.ventilationTotal += element.montant;
     });
   }
 
-  onCreate()
-  {
+  onCreate() {
     const id = BaseFormComponent.getHighestId(this.ventilation.tableau) + 1;
     this.ventilation.tableau.push(
-      {id: id, ubr:"", compte:"", unite:"", montant:0 }
+      {id: id, ubr: '', compte: '', unite: '', montant: 0 }
     );
     this.dSventilation._updateChangeSubscription();
     this.updateTotal();
   }
 
-  onDelete(value)
-  {
+  onDelete(value) {
     for (let i = 0; i < this.ventilation.tableau.length; i++) {
       if (this.ventilation[i].id === value) {
           this.ventilation.tableau.splice(i, 1);
@@ -280,12 +277,12 @@ export class VoyageFormComponent extends BaseFormComponent implements IVoyageFor
   }
 
   private updateDuree(): void {
+    this.endroit_deplacement.au = new Date(this.endroit_deplacement.au);
+    this.endroit_deplacement.du = new Date(this.endroit_deplacement.du);
     this.bothFilled = (this.endroit_deplacement.au !== null && this.endroit_deplacement.du !== null);
-
-    if (this.bothFilled)
-    {
+    if (this.bothFilled) {
       this.dureeDeplacement = this.endroit_deplacement.au.valueOf() - this.endroit_deplacement.du.valueOf();
-      this.dureeDeplacement = Math.round((((this.dureeDeplacement/60)/60)/24)/1000);
+      this.dureeDeplacement = Math.round((((this.dureeDeplacement / 60) / 60) / 24) / 1000);
     }
   }
 
@@ -315,9 +312,9 @@ export class VoyageFormComponent extends BaseFormComponent implements IVoyageFor
 
   removeSignature() {
       this.signatureAdded = !this.signatureAdded;
-      //TODO: a changer (selon la personne assignee pour chaque bloc de signature)
+      // TODO: a changer (selon la personne assignee pour chaque bloc de signature)
       this.demandeurChecked = false;
-      this.nomDemandeur = "";
+      this.nomDemandeur = '';
   }
 
   private updateEstimationTotal(): void {
@@ -327,7 +324,7 @@ export class VoyageFormComponent extends BaseFormComponent implements IVoyageFor
 
     setSections() {
     this.sections = [
-      this.beneficiaire, this.entite_employe, this.entite_fournisseur, this.ventilation, this.demandeur,
+      this.beneficiaire, this.entite_employe, this.entite_fournisseur, this.ventilation, // this.demandeur,
       this.fournisseur, this.endroit_deplacement, this.but_deplacement, this.estimation, this.avances,
     ];
     this.dSventilation = new MatTableDataSource(this.ventilation.tableau);

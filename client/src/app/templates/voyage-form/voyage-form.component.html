@@ -1,11 +1,9 @@
 <div id="form-header">
   <img src="assets/img/logo-POLY-forms.png" width=180 height=80>
   <h4>AVANCE DE VOYAGE</h4>
-  <div id="form-date">
+  <div id="form-date" class="child_disabled">
       <mat-form-field>
-          <input matInput [matDatepicker]="picker" placeholder="DATE" (click)="picker.open()">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
+          <input matInput placeholder="DATE" [ngModel]="date_creation">
       </mat-form-field>
   </div>
 </div>
@@ -41,7 +39,7 @@
           [(ngModel)]="beneficiaire.nom">
       </mat-form-field>
   </div>
-  <div id="demandeur">
+  <!-- <div id="demandeur" hidden>
       <h6>DEMANDEUR</h6>
       <mat-form-field>
           <input matInput type="text" placeholder="NOM DU DEMANDEUR"
@@ -51,7 +49,7 @@
           <input matInput type="text" placeholder="TÉLÉPHONE"
           [(ngModel)]="demandeur.telephone">
       </mat-form-field>
-  </div>
+  </div> -->
 </div>
 
 <div id="fournisseur">
