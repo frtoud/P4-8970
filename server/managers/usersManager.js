@@ -112,7 +112,7 @@ class UsersManager {
             }
         });
         return deferred.promise;
-    }
+    }cre
 
     createUser(user, res) {
         const deferred = Q.defer();
