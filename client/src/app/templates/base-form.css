@@ -13,6 +13,7 @@ div.assignation_selected {
     pointer-events: none;
   }
 
+  /* --------------------------------Print options----------------------------------*/
   @media print{
     
         * {
@@ -21,3 +22,4 @@ div.assignation_selected {
     
         
   }
+  /* --------------------------------Print options----------------------------------*/
