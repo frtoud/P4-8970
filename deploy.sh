@@ -24,6 +24,7 @@ EOF
 sudo npm install -g @angular/cli
 sudo npm install @angular-devkit/build-angular
 sudo npm install @angular/compiler-cli
+sudo npm install mongodb
 cd ../../../
 sudo mongo < db-admin.js
 cd ./client
