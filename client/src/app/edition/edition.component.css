@@ -34,9 +34,6 @@
 
   @media print{
 
-    * body{
-      width: 90%;
-    }
 
     #edit-form-container{
       visibility: hidden;
@@ -44,6 +41,6 @@
 
     #printableArea{
       visibility: visible;
-      width:120%;
+      width:115%;
     }
   }
