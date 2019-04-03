@@ -2,7 +2,7 @@
   <h4>Pièces jointes</h4>
 
     <mat-chip-list>
-      <mat-chip *ngFor="let file of attachedFiles" (click)="onClick(file.nomReel)">
+      <mat-chip *ngFor="let file of attachedFiles" (click)="onClick(file)">
         {{file.nomOriginal}}
       </mat-chip>
     </mat-chip-list>
