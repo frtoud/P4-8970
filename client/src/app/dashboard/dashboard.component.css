@@ -158,8 +158,30 @@
   width: 100%;
 }
 
+.collabSelect .mat-option {
+  padding: 0px;
+}
+
+/* .my-panel-class .mat-select-content {
+  background: black;
+  border: .5px solid #323030;        
+}  */
+
+
+/* .viewListOption.mat-option {
+  padding: none;
+}
+
+.mat-option.ng-star-inserted {
+  padding: none;
+}
+
+.mat-option#mat-option-15.mat-option.ng-star-inserted.mat-active {
+  padding: none;
+} */
+
 /* TODO fix the padding of the mat-option
-.mat-option{ //CHEH
+.mat-option{
   padding: none !important;
 } */
 
