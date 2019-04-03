@@ -82,13 +82,7 @@
 
                 <mat-expansion-panel-header [ngSwitch]="card.statut">
                   <ng-container *ngSwitchCase="'IN_PROGRESS'">
-                    <div>
-                      <i *ngIf="calculateCompletionRate(card.collaborateurs) == 100 ; else unchecked"
-                        class="material-icons"> radio_button_checked </i>
-                      <ng-template #unchecked>
-                        <i class="material-icons" id="inProgresIcon"> radio_button_unchecked </i>
-                      </ng-template>
-                    </div>
+                    <i class="material-icons" id="inProgresIcon"> radio_button_unchecked </i>
                     <mat-progress-bar class="inProgress" [mode]="determinate"
                       [value]="calculateCompletionRate(card.collaborateurs)">
                     </mat-progress-bar>
@@ -96,19 +90,19 @@
                   <ng-container *ngSwitchCase="'COMPLETED'">
                     <i class="material-icons" id="completedIcon"> check_circle </i>
                     <mat-progress-bar class="completed"
-                    [mode]="determinate" [value]="100">
+                      [mode]="determinate" [value]="100">
                     </mat-progress-bar>
                   </ng-container>
                   <ng-container *ngSwitchCase="'ARCHIVED'">
                     <i class="material-icons" id="archivedIcon"> check_box </i>
                     <mat-progress-bar class="archived"
-                    [mode]="determinate" [value]="100">
+                      [mode]="determinate" [value]="100">
                     </mat-progress-bar>
                   </ng-container>
                   <ng-container *ngSwitchCase="'CANCELED'">
                     <i class="material-icons" id="canceledIcon"> indeterminate_check_box </i>
-                    <mat-progress-bar class="canceled"
-                    [mode]="determinate" [value]="calculateCompletionRate(card.collaborateurs)">
+                    <mat-progress-bar class="canceled" [mode]="determinate"
+                      [value]="calculateCompletionRate(card.collaborateurs)">
                     </mat-progress-bar>
                   </ng-container>
                 </mat-expansion-panel-header>
