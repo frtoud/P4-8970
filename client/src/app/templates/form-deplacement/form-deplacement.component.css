@@ -257,7 +257,7 @@ input {
 }
 
 @media print{
-    
+
         * {
           max-width: 100%;
         }
