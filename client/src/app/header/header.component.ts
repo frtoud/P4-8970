@@ -43,7 +43,7 @@ export class HeaderComponent  {
   ngOnInit() {
 
     this.isLoggedIn$ = this.loginService.isLoggedIn();
-    this.loginService.getUser().then(login=>{this.currentUser = login ;});
+    this.loginService.getUser().then(login=>{this.currentUser = login ;}).catch(function(error) {});
     
   }
   

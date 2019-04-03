@@ -55,6 +55,8 @@ export class LoginService {
     .catch(LoginService.handleError);
   }
 
+  
+
  // getUserWeb(): Promise<AuthenticatedUser>{
 
    //return this.currentUser;
