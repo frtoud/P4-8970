@@ -59,6 +59,7 @@ export class SetPasswordComponent implements OnInit {
     this.authService.setNewPassword(this.id, this.passwordForm.controls.password.value)
     .then(() => {
       this.errorMessage = null;
+      window.alert("Mot de passe créé avec succès!")
       this.router.navigateByUrl('/login');
     })
     .catch(err => this.errorMessage = err.error);
