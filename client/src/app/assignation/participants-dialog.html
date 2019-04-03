@@ -2,7 +2,7 @@
   <h1 mat-dialog-title>Ajouter un collaborateur</h1>
   <mat-dialog-content>
     <mat-form-field>
-      <input matInput placeholder="Recherche" [formControl]="form" [matAutocomplete]="auto">
+      <input matInput placeholder="Utilisateur" [formControl]="form" [matAutocomplete]="auto">
       <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
           {{option.firstName}} {{option.lastName}}: {{option.email}}
@@ -11,7 +11,7 @@
     </mat-form-field>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-button type="submit">Ajouter</button>
-    <button mat-button type="button" mat-dialog-close>Fermer</button>
+    <button id="submit-btn" mat-button type="submit">Ajouter</button>
+    <button id="cancel-btn" mat-button type="button" mat-dialog-close>Fermer</button>
   </mat-dialog-actions>
 </form>

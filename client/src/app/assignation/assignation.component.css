@@ -48,3 +48,20 @@
   flex: row;
   justify-content: space-between;
 }
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-dialog-actions {
+  width: 100%;
+  justify-content: space-around;
+}
+
+#submit-btn {
+  background: linear-gradient(to bottom, #c5deea 0%,#8abbd7 31%,#066dab 100%);
+}
+
+#cancel-btn {
+  background: linear-gradient(to bottom, #eeeeee 0%,#cccccc 100%);
+}
