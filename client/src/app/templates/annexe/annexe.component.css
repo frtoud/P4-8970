@@ -12,7 +12,7 @@
     margin: 5px;
     overflow: auto;
     width: 95%;
-    max-width: 1300px;
+    max-width: 1500px;
 }
 
 /* tableau totaux */
@@ -32,7 +32,7 @@
 
 .output,
 #cellule-monetaire mat-form-field {
-    width: 175px;
+    width: 60px;
     text-align: center;
 }
 
@@ -46,10 +46,7 @@
     text-align: center;
 }
 
-#vide-1 {
-    background-color: #fcf5c4;
-    padding-left: 370px;
-}
+
 
 #cellule-monetaire-avantVide2 {
     background-color: #fcf5c4;
@@ -60,7 +57,7 @@
 }
 
 #cellule-monetaire-avantVide2 mat-form-field {
-    width: 164px;
+    width: 20px;
     text-align: center;
 }
 
@@ -74,14 +71,19 @@
     text-align: center;
 }
 
+#vide-1 {
+    background-color: #fcf5c4;
+    padding-left: 5px;
+}
+
 #vide-2 {
-    padding-left: 185px;
+    padding-left: 5px;
 }
 
 #cellule-quebec {
     background-color: #fcf5c4;
     border-top: 2px solid black;
-    padding-right: 465px;
+    padding-right: 5px;
 }
 
 #cellule-quebec-total {
@@ -105,7 +107,7 @@
 #cellule-canada {
     background-color: #fcf5c4;
     border: 2px solid black;
-    padding-right: 285px;
+    padding-right: 5px;
 }
 
 #total-rapport-gauche {
@@ -149,14 +151,25 @@ mat-form-field {
 
 
 #table mat-form-field {
-    width: 100px;
-    text-align: center;
+    width: 50px;
+    text-align: left;
 }
 
 #ventilation-table
 {
     width: 100%;
 }
+
+#ventilation-table mat-form-field {
+    width: 100px;
+    text-align: left;
+}
+
+#fraisKm-cell {
+    width: 100px;
+    text-align: left;
+}
+
 
 .footer-adder
 {
@@ -167,16 +180,21 @@ mat-form-field {
     
     #tout {
         
-        display:none !important;
+        /*display:none !important;*/
     }
 
 
-    #tables{
-        
-        margin: 5px !important;
-        overflow: hidden !important;
-        width: 30% !important;
-        max-width: 90% !important;
+    #tableau-totaux mat-form-field {
+        width: 25px !important;
+    }
+
+    #tableau-totaux cellule-code {
+        padding: 0px !important;
+    }
+
+    #ventilation-table mat-form-field {
+        width: 50px !important;
+        text-align: left;
     }
 
   }

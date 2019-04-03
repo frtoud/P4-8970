@@ -267,9 +267,9 @@
             </mat-form-field>
             </td>
             </ng-container>
-            <ng-container matColumnDef="fraisKm">
+            <ng-container matColumnDef="fraisKm" id="fraisKm-cell">
                 <th mat-header-cell *matHeaderCellDef id="fraisKm-colonne"> frais de <br> kilométrage </th>
-                <td mat-cell *matCellDef="let element" id="fraisKm-cell">
+                <td mat-cell *matCellDef="let element" >
                     <p class="output">
                         {{ element.fraisKm | currency}}
                     </p>
