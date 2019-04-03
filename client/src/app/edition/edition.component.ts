@@ -93,10 +93,7 @@ export class EditionComponent implements OnInit {
   }
 
   InitFormData(form: Instance) {
-    this.oldData = form.data;
-    console.log('OLD_DATA');
     this.fileUploader.attachedFiles = form.attachements;
-    console.log(this.oldData);
       this.formInstance.setInterface(form.data);
     this.loginService.getUser().then(user => {
       this.formInstance.setUserEdition(user, this.state !== 'view');
@@ -119,8 +116,6 @@ export class EditionComponent implements OnInit {
 
     this.instanceService.patchInstance(this.formId, this.formInstance.collaborateurID,
     newData, this.fileUploader.attachedFiles).then(res => {
-      console.log('RESPONSE');
-      console.log(res);
       this.router.navigate(['/dashboard']);
     }).catch(err => {
       window.alert('erreur avec le formulaire:' + err);
@@ -141,11 +136,9 @@ export class EditionComponent implements OnInit {
         this.router.navigate(['/dashboard']);
       }).catch(err => {
         window.alert('erreur lors de la validation:' + err);
-        // TODOkete: alert?
       });
     }).catch(err => {
       window.alert('erreur lors de la validation:' + err);
-      // TODOkete: alert?
     });
   }
 
@@ -158,7 +151,6 @@ export class EditionComponent implements OnInit {
       this.router.navigate(['/dashboard']);
     }).catch(err => {
       window.alert('erreur de création');
-      // TODOkete: alert?
     });
   }
   onReturn() {

@@ -163,7 +163,6 @@ export class AssignationComponent implements OnInit, OnDestroy {
         this.router.navigate(['/dashboard']);
       }).catch(err => {
         window.alert('erreur de création');
-        // TODOkete: alert?
       });
     }
   }

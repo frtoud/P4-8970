@@ -224,10 +224,6 @@ export class VoyageFormComponent extends BaseFormComponent implements IVoyageFor
   montant = 0;
   ventilationTotal = 0;
 
-  nomDemandeur = '';
-  demandeurChecked = false;
-  signatureAdded = false;
-
   currency = ['CAN', 'US', 'EURO', 'GBP', 'CHF', 'BRL'];
   displayedColumns: string[] = ['ubr', 'compte', 'unite', 'montant', 'action'];
 
@@ -304,17 +300,6 @@ export class VoyageFormComponent extends BaseFormComponent implements IVoyageFor
   private updateAutres(frais: number): void {
     this.estimation.autres = frais;
     this.updateEstimationTotal();
-  }
-
-  addSignature() {
-    this.signatureAdded = !this.signatureAdded;
-  }
-
-  removeSignature() {
-      this.signatureAdded = !this.signatureAdded;
-      // TODO: a changer (selon la personne assignee pour chaque bloc de signature)
-      this.demandeurChecked = false;
-      this.nomDemandeur = '';
   }
 
   private updateEstimationTotal(): void {
