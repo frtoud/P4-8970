@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { map, startWith } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { FormControl, NgForm } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, TooltipPosition } from '@angular/material';
@@ -8,6 +8,9 @@ import { DashboardService, Form, Collaborateur } from '../services/dashboard.ser
 import { LoginService, AuthenticatedUser } from '../services/login.service';
 import { StatePipe } from '../pipes/account-type.pipe';
 import { Router } from '@angular/router';
+
+import { UserService, User } from '../services/users.service';
+import { Observable } from 'rxjs';
 
 // Status
 // this.userAccess = ["WAITING", "EDITION", "COMPLETED", "PREVIEW"];
@@ -40,10 +43,15 @@ export class DashboardComponent implements OnInit {
   position = new FormControl('above');
   vueCarte = 'true';
   currentUser: AuthenticatedUser;
+  
+  // ------ autocomplete ------
+  listCollaborateurs: User[];
+  form: FormControl = new FormControl();
+  filteredOptions: Observable<User[]>;
 
   constructor(public dialog: MatDialog, private breakpointObserver: BreakpointObserver,
-    private dashboardService: DashboardService, private loginService: LoginService,
-    private router: Router) {}
+    private dashboardService: DashboardService, private userService: UserService,
+    private loginService: LoginService, private router: Router) {}
 
   ngOnInit() {
     this.loginService.getUser().then(login => {
@@ -78,7 +86,34 @@ export class DashboardComponent implements OnInit {
           }).catch(err => console.log(err.error));
           break;
       }
+
     });
+    this.userService.getAllUsers().then(list => {
+      this.listCollaborateurs = list;
+      this.filteredOptions = this.form.valueChanges
+      .pipe(
+        startWith<string | User>(''),
+        map(value => typeof value === 'string' ? value : ""),
+        map(user => user ? this.filtrer(user) : this.listCollaborateurs.slice())
+      );
+    });
+
+    
+  }
+  
+  displayFn(user?: User): string | undefined {
+    return user ? user.firstName + ' ' + user.lastName + ': ' + user.email : undefined;
+  }
+
+  private filtrer(name: string): User[] {
+    const filterValue = name.toLowerCase();
+
+    return this.listCollaborateurs.filter(option => ( //TODOkete: filtrer sur tout le string
+         option.firstName.toLowerCase().indexOf(filterValue) === 0
+      || option.lastName.toLowerCase().indexOf(filterValue) === 0
+      || option.email.toLowerCase().indexOf(filterValue) === 0
+    )
+    );
   }
 
   // https://stackoverflow.com/questions/10123953/sort-javascript-object-array-by-date

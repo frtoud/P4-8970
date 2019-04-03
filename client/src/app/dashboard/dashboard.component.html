@@ -6,7 +6,12 @@
     <mat-icon>search</mat-icon>
     </button>
     <mat-form-field>
-      <input matInput [(ngModel)]= searchName placeholder="Auteur...">
+      <input matInput [(ngModel)]= searchName placeholder="Auteur..." [formControl]="form" [matAutocomplete]="auto">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option.firstName}} {{option.lastName}}: {{option.email}}
+        </mat-option>
+      </mat-autocomplete>
     </mat-form-field>
   
     <mat-form-field>
@@ -81,7 +86,7 @@
                       <i *ngIf="calculateCompletionRate(card.collaborateurs) == 100 ; else unchecked"
                         class="material-icons"> radio_button_checked </i>
                       <ng-template #unchecked>
-                        <i class="material-icons"> radio_button_unchecked </i>
+                        <i class="material-icons" id="inProgresIcon"> radio_button_unchecked </i>
                       </ng-template>
                     </div>
                     <mat-progress-bar class="inProgress" [mode]="determinate"
