@@ -85,7 +85,6 @@ export class AssignationComponent implements OnInit, OnDestroy {
       this.sub = this.route.queryParams.subscribe(params => {
         this.referenceId = params['ref'] || null; });
         // NULL = formulaire frais; rien besoin de plus.
-        if (this.referenceId !== null) {  }
         this.userService.getAllUsers().then(list => {
           this.listCollaborateurs = list;
           if (this.referenceId !== null) { this.initCopy(); }
