@@ -167,7 +167,7 @@ export class AssignationComponent implements OnInit, OnDestroy {
     }
   }
   onReturn() {
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/newForm']);
   }
 
 
