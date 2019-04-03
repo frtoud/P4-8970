@@ -22,6 +22,7 @@ export abstract class BaseFormComponent implements AfterViewInit, AfterContentIn
       return n;
     }
 
+    sigNeedsListeners = true;
 
     public addListeners() {
       this.setSections();
@@ -29,8 +30,11 @@ export abstract class BaseFormComponent implements AfterViewInit, AfterContentIn
         document.getElementById(element.id).addEventListener('click', (event) => this.captureAssignation(event, element), true);
       });
 
-      for (const sig of this.signatures) {
-        document.getElementById(sig.id).addEventListener('click', (event) => this.captureAssignation(event, sig) , true);
+      if (this.sigNeedsListeners) {
+        for (const sig of this.signatures) {
+          document.getElementById(sig.id).addEventListener('click', (event) => this.captureAssignation(event, sig) , true);
+        }
+        this.sigNeedsListeners = false;
       }
 
       if (this.edition) { this.editDisable(); }
@@ -156,12 +160,14 @@ export abstract class BaseFormComponent implements AfterViewInit, AfterContentIn
     }
 
     setInterface(data: any) {
-      // Deep copy
+      // Deep copy, but spare the signatures
+      const help = this.signatures;
       Object.assign(this, JSON.parse(JSON.stringify(data)));
-      this.signatures = [];
-      data.signatures.forEach(sig => {
-        this.signatures.push(Signature.fromInterface(sig));
-      });
+      this.signatures = help;
+      for (let i = 0; i < this.signatures.length; i++) {
+        this.signatures[i].setData(data.signatures[i]);
+      }
+      console.log(this.signatures);
       this.setSections();
     }
 

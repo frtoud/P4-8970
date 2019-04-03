@@ -27,14 +27,16 @@ export class LoginComponent {
       if(user){
         this.router.navigate(["/dashboard"]);
       }
+    }).catch(function(error) {
     });
   }
+
 
   login(event) {
     event.preventDefault;
     this.loginService.authenticateUser(this.emailFormControl.value, this.passwordFormControl.value)
     .then(authUser => {
-      this.loginService.getUser().then(login=>{console.log(login.firstName);});
+      this.loginService.getUser().then(login=>{console.log(login.firstName);}).catch(function(error) {});
       this.loginError = undefined;
       this.router.navigate(["/dashboard"]);
     })

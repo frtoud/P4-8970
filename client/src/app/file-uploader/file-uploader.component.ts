@@ -30,6 +30,7 @@ export class FileUploaderComponent {
         console.log(data);
         data.forEach(f => {
           this.attachedFiles.push({nomOriginal: f.originalname, path: f.path, nomReel: f.filename});
+
         });
         this.filesToUpload = []; // Memory leak, what's that
       })
@@ -40,7 +41,7 @@ export class FileUploaderComponent {
     this.filesToUpload = <Array<File>>fileInput.target.files;
   }
 
-  onClick(file: string) {
+  onClick(file: Attachments) {
     this.uploadService.getFile(file);
   }
 
