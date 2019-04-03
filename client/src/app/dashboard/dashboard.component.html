@@ -6,12 +6,17 @@
     <mat-icon>search</mat-icon>
     </button>
     <mat-form-field>
-      <input matInput [(ngModel)]= searchName placeholder="Auteur...">
+      <input matInput [(ngModel)]="searchName" placeholder="Auteur..." [formControl]="form" [matAutocomplete]="auto">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option.firstName}} {{option.lastName}}: {{option.email}}
+        </mat-option>
+      </mat-autocomplete>
     </mat-form-field>
   
     <mat-form-field>
-      <mat-select placeholder="Statut..." [(ngModel)]="searchStatus">
-        <mat-option value="">aucun</mat-option>
+      <mat-select placeholder="Statut..." [(value)]="searchStatus">
+        <mat-option >-</mat-option>
         <mat-option value="IN_PROGRESS">en cours</mat-option>
         <mat-option value="COMPLETED">complété</mat-option>
         <mat-option value="ARCHIVED">archivé</mat-option>
@@ -20,8 +25,8 @@
     </mat-form-field>
   
     <mat-form-field>
-      <mat-select placeholder="Patron..." [(ngModel)]="searchPatron">
-        <mat-option value="">aucun</mat-option>
+      <mat-select placeholder="Patron..." [(value)]="searchPatron">
+        <mat-option >-</mat-option>
         <mat-option value="Aide financière">aide financière</mat-option>
         <mat-option value="Avance de voyage">avance de voyage</mat-option>
         <mat-option value="Demande d’achat">demande d'achat</mat-option>
@@ -81,7 +86,7 @@
                       <i *ngIf="calculateCompletionRate(card.collaborateurs) == 100 ; else unchecked"
                         class="material-icons"> radio_button_checked </i>
                       <ng-template #unchecked>
-                        <i class="material-icons"> radio_button_unchecked </i>
+                        <i class="material-icons" id="inProgresIcon"> radio_button_unchecked </i>
                       </ng-template>
                     </div>
                     <mat-progress-bar class="inProgress" [mode]="determinate"

@@ -126,7 +126,7 @@ export class AssignationComponent implements OnInit, OnDestroy {
   openDialog(): void {
     const randomColor = this.getRandomColor();
     const dialogRef = this.dialog.open(ParticipantsDialog, {
-      width: '400px',
+      width: '500px',
       data: {options: this.listCollaborateurs, participants: this.participants},
     });
     dialogRef.afterClosed().pipe(filter(user => user))
@@ -163,7 +163,6 @@ export class AssignationComponent implements OnInit, OnDestroy {
         this.router.navigate(['/dashboard']);
       }).catch(err => {
         window.alert('erreur de création');
-        // TODOkete: alert?
       });
     }
   }
