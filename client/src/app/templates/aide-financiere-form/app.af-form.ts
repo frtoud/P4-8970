@@ -251,13 +251,5 @@ export class AFFormComponent extends BaseFormComponent implements IAideFinancier
         subventionnaire: new FormControl(this.details.subventionnaire, Validators.required),
       });
     }
-    getFormValues() {
-      Object.assign(this.demandeur, this.fg_demandeur.value);
-      Object.assign(this.beneficiaire, this.fg_beneficiaire.value);
-      Object.assign(this.cycle, this.fg_cycle.value);
-      Object.assign(this.details, this.fg_details.value);
-      //Object.assign(this.ventilation, this.fg_ventilation.value);
-      //Object.assign(this.remarques, this.fg_remarques.value);
-    }
 
 }

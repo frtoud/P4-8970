@@ -193,6 +193,10 @@ export abstract class BaseFormComponent implements AfterViewInit, AfterContentIn
     abstract initCalculs();
     buildFormGroups() { }
     getFormValues() {
-      
+      this.sections.forEach(s => {
+        const key = 'fg_' + s.id;
+        if (this[key]) { Object.assign(s, this[key].value); }
+      });
+      console.log("DIAGNOSTIC", this);
     }
 }
