@@ -231,7 +231,7 @@ class UsersManager {
             else {
                 finalUser.validatePassword(user.password).then((result) => {
                     if (!result) {
-                        deferred.reject({ err: true, status: 403, message: "Connexion refusée." });
+                        deferred.reject({ err: true, status: 403, message: "Adresse e-mail/mot de passe invalide(s)!" });
                     }
                     else {
                         deferred.resolve({ err: false, data: finalUser.toAuthJSON() });
