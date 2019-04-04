@@ -81,7 +81,7 @@
                   {{card.nomFormulaire}}
               </span>
               <span id="card-dateAndAuthor">
-                  Créé le: {{card.creeLe|date:'dd-MM-yyyy'}}
+                  Créé le: {{card.creeLe|date:'dd/MM/yyyy HH:mm'}}
               </span> <br>
               
               <span id="carte-date-auteur">
@@ -208,7 +208,7 @@
                   {{card.nomFormulaire}}
               </span>
               <span id="card-dateAndAuthor">
-                  Créé le: {{card.creeLe|date:'dd-MM-yyyy'}}
+                  Créé le: {{card.creeLe|date:'dd/MM/yyyy HH:mm'}}
               </span> <br>
               
               <span id="carte-date-auteur">
@@ -340,7 +340,7 @@
                   {{card.nomFormulaire}}
               </span>
               <span id="card-dateAndAuthor">
-                  Créé le: {{card.creeLe|date:'dd-MM-yyyy'}}
+                  Créé le: {{card.creeLe|date:'dd/MM/yyyy HH:mm'}}
               </span> <br>
               
               <span id="carte-date-auteur">
@@ -515,11 +515,11 @@
         </ng-container>
         <ng-container matColumnDef="modifieLe">
           <th mat-header-cell *matHeaderCellDef> Dernière modification </th>
-          <td mat-cell *matCellDef="let element"> {{element.modifieLe|date:'dd-MM-yyyy hh:mm'}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.modifieLe|date:'dd/MM/yyyy HH:mm'}} </td>
         </ng-container>
         <ng-container matColumnDef="creeLe">
           <th mat-header-cell *matHeaderCellDef> Date de création </th>
-          <td mat-cell *matCellDef="let element"> {{element.creeLe|date:'dd-MM-yyyy hh:mm'}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.creeLe|date:'dd/MM/yyyy HH:mm'}} </td>
         </ng-container>
         <ng-container matColumnDef="modifier">
             <th mat-header-cell *matHeaderCellDef> Action </th>
@@ -599,11 +599,11 @@
       </ng-container>
       <ng-container matColumnDef="modifieLe">
         <th mat-header-cell *matHeaderCellDef> Dernière modification </th>
-        <td mat-cell *matCellDef="let element"> {{element.modifieLe|date:'dd-MM-yyyy hh:mm'}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.modifieLe|date:'dd/MM/yyyy HH:mm'}} </td>
       </ng-container>
       <ng-container matColumnDef="creeLe">
         <th mat-header-cell *matHeaderCellDef> Date de création </th>
-        <td mat-cell *matCellDef="let element"> {{element.creeLe|date:'dd-MM-yyyy hh:mm'}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.creeLe|date:'dd/MM/yyyy HH:mm'}} </td>
       </ng-container>
       <ng-container matColumnDef="modifier">
           <th mat-header-cell *matHeaderCellDef> Action </th>
@@ -681,11 +681,11 @@
       </ng-container>
       <ng-container matColumnDef="modifieLe">
         <th mat-header-cell *matHeaderCellDef> Dernière modification </th>
-        <td mat-cell *matCellDef="let element"> {{element.modifieLe|date:'dd-MM-yyyy hh:mm'}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.modifieLe|date:'dd/MM/yyyy HH:mm'}} </td>
       </ng-container>
       <ng-container matColumnDef="creeLe">
         <th mat-header-cell *matHeaderCellDef> Date de création </th>
-        <td mat-cell *matCellDef="let element"> {{element.creeLe|date:'dd-MM-yyyy hh:mm'}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.creeLe|date:'dd/MM/yyyy HH:mm'}} </td>
       </ng-container>
       <ng-container matColumnDef="modifier">
           <th mat-header-cell *matHeaderCellDef> Action </th>
