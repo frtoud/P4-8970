@@ -1,8 +1,15 @@
-<form [formGroup]="form" (ngSubmit)="submit(form, $event)">
+<form [formGroup]="form" (ngSubmit)="submit(form)">
   <h1 mat-dialog-title>Ajouter un collaborateur</h1>
   <mat-dialog-content>
     <mat-form-field>
       <input matInput placeholder="Utilisateur" [formControl]="form" [matAutocomplete]="auto">
+      <mat-hint>Recherchez un nouveau collaborateur</mat-hint>
+      <mat-error *ngIf="form.hasError('invalid')">
+          Utilisateur introuvable.
+      </mat-error>
+      <mat-error *ngIf="form.hasError('exists')">
+          Utilisateur déjà inclus.
+      </mat-error>
       <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
           {{option.firstName}} {{option.lastName}}: {{option.email}}
@@ -11,7 +18,8 @@
     </mat-form-field>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button id="submit-btn" mat-button type="submit">Ajouter</button>
+    <button id="submit-btn" mat-button type="submit" 
+    [disabled]="form.invalid || form.value === '' || form.value === null">Ajouter</button>
     <button id="cancel-btn" mat-button type="button" mat-dialog-close>Fermer</button>
   </mat-dialog-actions>
 </form>
