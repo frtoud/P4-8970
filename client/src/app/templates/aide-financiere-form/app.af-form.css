@@ -52,6 +52,9 @@
     flex-wrap: wrap;
     display: block;
   }
+  form {
+    width: 100%;
+  }
   div.section-row {
     display: flex;
     align-content: flex-start;

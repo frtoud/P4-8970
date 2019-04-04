@@ -119,6 +119,9 @@ export abstract class BaseFormComponent implements AfterViewInit, AfterContentIn
   ngAfterContentInit(): void {
     this.initCalculs();
   }
+  ngOnInit() {
+    this.buildFormGroups();
+  }
 
     captureAssignation(event, section) {
       if (this.captureActive) {
@@ -157,6 +160,7 @@ export abstract class BaseFormComponent implements AfterViewInit, AfterContentIn
     }
 
     getInterface() {
+      this.getFormValues();
       const obj: any = {};
       this.sections.forEach(s => {
         obj[s.id] = s;
@@ -175,6 +179,7 @@ export abstract class BaseFormComponent implements AfterViewInit, AfterContentIn
       }
       console.log(this.signatures);
       this.setSections();
+      this.buildFormGroups();
     }
 
     clearSignatures(): void {
@@ -186,4 +191,6 @@ export abstract class BaseFormComponent implements AfterViewInit, AfterContentIn
     }
     abstract setSections();
     abstract initCalculs();
+    buildFormGroups() { }
+    getFormValues() { }
 }

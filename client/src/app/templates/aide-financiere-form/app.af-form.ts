@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {MatFormFieldModule, MatGridListModule, MatTableDataSource} from '@angular/material';
-import { FormsModule, ReactiveFormsModule, FormControl, Validators} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormControl, Validators, FormGroup} from '@angular/forms';
 import { checkAndUpdateBinding } from '@angular/core/src/view/util';
 import { Signature, ISignature } from '../fields';
 import { BaseFormComponent } from '../base-form.component';
@@ -196,9 +196,11 @@ export class AFFormComponent extends BaseFormComponent implements IAideFinancier
     this.matriculesValide = this.beneficiaire.mat_enseignant.length === 0 && this.beneficiaire.mat_etudiant.length === 0;
   }
 
+  // BASECLASS FUNCTIONS
+
   setSections() {
   this.sections = [
-      this.beneficiaire, this.cycle, this.details, this.ventilation, this.demandeur, this.remarques
+      this.demandeur, this.beneficiaire, this.cycle, this.details, this.ventilation, this.remarques
     ];
     this.dSventilation = new MatTableDataSource(this.ventilation.tableau);
   }
@@ -206,5 +208,51 @@ export class AFFormComponent extends BaseFormComponent implements IAideFinancier
   initCalculs() {
     this.updateTotal();
     this.testMatricule();
+    }
+
+    fg_demandeur :FormGroup;
+    fg_beneficiaire :FormGroup;
+    fg_cycle :FormGroup;
+    fg_details :FormGroup;
+    fg_ventilation :FormGroup;
+    fg_remarques :FormGroup;
+
+    buildFormGroups() {
+      this.fg_demandeur = new FormGroup({
+        nom: new FormControl(this.demandeur.nom),
+        telephone: new FormControl(this.demandeur.telephone),
+        centre: new FormControl(this.demandeur.centre),
+        admin: new FormControl(this.demandeur.admin),
+      });
+      this.fg_beneficiaire = new FormGroup({
+        nom: new FormControl(this.beneficiaire.nom),
+        prenom: new FormControl(this.beneficiaire.prenom),
+        mat_enseignant: new FormControl(this.beneficiaire.mat_enseignant),
+        mat_etudiant: new FormControl(this.beneficiaire.mat_etudiant),
+      });
+      this.fg_cycle = new FormGroup({
+        bac: new FormControl(this.cycle.bac),
+        bacec: new FormControl(this.cycle.bacec),
+        mai: new FormControl(this.cycle.mai),
+        maiec: new FormControl(this.cycle.maiec),
+        doc: new FormControl(this.cycle.doc),
+        docec: new FormControl(this.cycle.docec),
+      });
+      this.fg_details = new FormGroup({
+        date_debut: new FormControl(this.details.date_debut),
+        date_fin: new FormControl(this.details.date_fin),
+        statutVersement: new FormControl(this.details.statutVersement),
+        num_ref: new FormControl(this.details.num_ref),
+        montant: new FormControl(this.details.montant),
+        subventionnaire: new FormControl(this.details.subventionnaire),
+      });
+    }
+    getFormValues() {
+      Object.assign(this.demandeur, this.fg_demandeur.value);
+      Object.assign(this.beneficiaire, this.fg_beneficiaire.value);
+      Object.assign(this.cycle, this.fg_cycle.value);
+      Object.assign(this.details, this.fg_details.value);
+      //Object.assign(this.ventilation, this.fg_ventilation.value);
+      //Object.assign(this.remarques, this.fg_remarques.value);
     }
 }

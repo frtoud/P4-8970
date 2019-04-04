@@ -1,75 +1,85 @@
 <div class="sectionheader">
   <h6>DEMANDEUR</h6>
   <div class="section section-row" id="demandeur">
-    <mat-form-field floatLabel="auto" class="large">
-      <input matInput placeholder="Nom"
-      [(ngModel)]="demandeur.nom">
-    </mat-form-field>
-    <mat-form-field floatLabel="auto" class="short">
-      <input matInput placeholder="Téléphone" 
-      [(ngModel)]="demandeur.telephone">
-    </mat-form-field>
-    <mat-form-field floatLabel="auto" class="large">
-      <input matInput placeholder="Centre, Département, Institut ou Service"
-      [(ngModel)]="demandeur.centre">
-    </mat-form-field>
-    <mat-form-field floatLabel="auto" class="short">
-      <input matInput placeholder="Unité Administrative"
-      [(ngModel)]="demandeur.admin">
-    </mat-form-field>
+    <form [formGroup]="fg_demandeur">
+      <mat-form-field floatLabel="auto" class="large">
+        <input matInput placeholder="Nom"
+        formControlName="nom">
+      </mat-form-field>
+      <mat-form-field floatLabel="auto" class="short">
+        <input matInput placeholder="Téléphone" 
+        formControlName="telephone">
+      </mat-form-field>
+      <mat-form-field floatLabel="auto" class="large">
+        <input matInput placeholder="Centre, Département, Institut ou Service"
+        formControlName="centre">
+      </mat-form-field>
+      <mat-form-field floatLabel="auto" class="short">
+        <input matInput placeholder="Unité Administrative"
+        formControlName="admin">
+      </mat-form-field>
+    </form>
   </div>
 </div>
 
 <div class="sectionheader">
   <h6>BÉNÉFICIAIRE</h6>
   <div class="section section-row" id="beneficiaire">
-    <mat-form-field floatLabel="auto" class="medium">
-      <input matInput placeholder="Nom" [(ngModel)]="beneficiaire.nom">
-    </mat-form-field>
-    <mat-form-field floatLabel="auto" class="medium">
-      <input matInput placeholder="Prénom" [(ngModel)]="beneficiaire.prenom">
-    </mat-form-field>
-    <mat-form-field floatLabel="auto" class="short">
-      <input matInput placeholder="Matricule (Employé)" [(ngModel)]="beneficiaire.mat_enseignant" required>
-      <mat-error *ngIf="matriculesValide">Au moins un matricule est obligatoire.</mat-error>
-    </mat-form-field>
-    <mat-form-field floatLabel="auto" class="short">
-      <input matInput placeholder="Matricule (Étudiant)" [(ngModel)]="beneficiaire.mat_etudiant" required>
-      <mat-error *ngIf="matriculesValide"></mat-error>
-    </mat-form-field>
+    <form [formGroup]="fg_beneficiaire">
+      <mat-form-field floatLabel="auto" class="medium">
+        <input matInput placeholder="Nom"
+        formControlName="nom">
+      </mat-form-field>
+      <mat-form-field floatLabel="auto" class="medium">
+        <input matInput placeholder="Prénom"
+        formControlName="prenom">
+      </mat-form-field>
+      <mat-form-field floatLabel="auto" class="short">
+        <input matInput placeholder="Matricule (Employé)"
+        formControlName="mat_enseignant">
+        <mat-error *ngIf="matriculesValide">Au moins un matricule est obligatoire.</mat-error>
+      </mat-form-field>
+      <mat-form-field floatLabel="auto" class="short">
+        <input matInput placeholder="Matricule (Étudiant)"
+        formControlName="mat_etudiant">
+        <mat-error *ngIf="matriculesValide"></mat-error>
+      </mat-form-field>
+    </form>
   </div>
 </div>
 <div class="sectionheader">
   <h6>CYCLE DE L'ÉTUDIANT</h6>
   <div class="section section-column" id="cycle">
+    <form [formGroup]="fg_cycle">
     <p>Identifier le cycle de l'étudiant(e):</p>
     <div class="section-row">
       <p class="checkbox-label">BACCALAURÉAT:</p>
-      <mat-checkbox [(ngModel)]="cycle.bac" class="checkbox-field">
+      <mat-checkbox formControlName="bac" class="checkbox-field">
         Obtenu
       </mat-checkbox>
-      <mat-checkbox [(ngModel)]="cycle.bacec" class="checkbox-field">
+      <mat-checkbox formControlName="bacec" class="checkbox-field">
         En cours
       </mat-checkbox>
     </div>
     <div class="section-row">
       <p class="checkbox-label">MAITRISE:</p>
-      <mat-checkbox [(ngModel)]="cycle.mai" class="checkbox-field">
+      <mat-checkbox formControlName="mai" class="checkbox-field">
         Obtenu
       </mat-checkbox>
-      <mat-checkbox [(ngModel)]="cycle.maiec" class="checkbox-field">
+      <mat-checkbox formControlName="maiec" class="checkbox-field">
         En cours
       </mat-checkbox>
     </div>
     <div class="section-row">
       <p class="checkbox-label">DOCTORAT:</p>
-      <mat-checkbox [(ngModel)]="cycle.doc" class="checkbox-field">
+      <mat-checkbox formControlName="doc" class="checkbox-field">
         Obtenu
       </mat-checkbox>
-      <mat-checkbox [(ngModel)]="cycle.docec" class="checkbox-field">
+      <mat-checkbox formControlName="docec" class="checkbox-field">
         En cours
       </mat-checkbox>
     </div>
+    </form>
   </div>
 </div>
 
@@ -82,39 +92,41 @@
 <div class="sectionheader">
   <h6>DÉTAIL DE L'AIDE FINANCIÈRE</h6>
   <div class="section section-row" id="details">
+    <form [formGroup]="fg_details">
     <p>Les versements sont faits aux quize jours, selon le cycle de la paie.</p>
     <p>PÉRIODE D'ENGAGEMENT:</p>
     <mat-form-field class="short">
       <input matInput [matDatepicker]="debut" placeholder="Date de début"
-      [(ngModel)]="details.date_debut">
+      formControlName="date_debut">
       <mat-datepicker-toggle matSuffix [for]="debut"></mat-datepicker-toggle>
       <mat-datepicker #debut></mat-datepicker>
     </mat-form-field>
     <mat-form-field class="short">
       <input matInput [matDatepicker]="fin" placeholder="Date de fin"
-      [(ngModel)]="details.date_fin">
+      formControlName="date_fin">
       <mat-datepicker-toggle matSuffix [for]="fin"></mat-datepicker-toggle>
       <mat-datepicker #fin></mat-datepicker>
     </mat-form-field>
     <div class="end full">
-      <mat-radio-group [(ngModel)]="details.statutVersement" class="large">
+      <mat-radio-group formControlName="statutVersement" class="large">
         <mat-radio-button value="UNIQUE">Versement unique</mat-radio-button>
         <mat-radio-button value="NEW">Nouveau versement</mat-radio-button>
         <mat-radio-button value="CHANGE">Changement</mat-radio-button>
       </mat-radio-group>
     <mat-form-field floatLabel="auto" class="short">
       <input matInput placeholder="Numéro de référence"
-      [disabled]="details.statutVersement != 'CHANGE'" [(ngModel)]="details.num_ref">
+      [disabled]="details.statutVersement != 'CHANGE'" formControlName="num_ref">
     </mat-form-field></div>
     <mat-form-field floatLabel="auto" class="short">
       <mat-label>Montant de l'aide financière</mat-label>
       <input class="monetaire" matInput
-      [(ngModel)]="details.montant"  type=number/>
+      formControlName="montant"  type=number/>
     </mat-form-field>
     <mat-form-field floatLabel="auto" class="medium">
       <input matInput placeholder="Organisme subventionnaire"
-       [(ngModel)]="details.subventionnaire">
+      formControlName="subventionnaire">
     </mat-form-field>
+    </form>
   </div>
 </div>
 
