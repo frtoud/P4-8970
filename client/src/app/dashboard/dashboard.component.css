@@ -26,10 +26,21 @@
   height: 40px;
 }
 
-.searchBarField, .searchBarDate {
-  background-color: white;
+.searchBarDiv {
+  display: inline-block;
+  padding-right: 25px;
+}
+.searchBarLastDiv {
+  display: inline-block;
+}
+
+.searchBarFieldAuteur {
   font-size: inherit;
-  padding-right: 20px;
+  width: 345px;
+}
+
+.searchBarField, .searchBarDate {
+  font-size: inherit;
 }
 
 .searchBarDate {
@@ -40,20 +51,24 @@
   font-size: 18px;
 }
 
+.searchBarFieldAuteur .mat-form-field-infix,
 .searchBarField .mat-form-field-infix,
 .searchBarDate .mat-form-field-infix {
   border-top: 0;
   padding-bottom: 8px;
   padding-top: 8px;
 }
+.searchBarFieldAuteur .mat-form-field-wrapper,
 .searchBarField .mat-form-field-wrapper,
 .searchBarDate .mat-form-field-wrapper {
-  padding-bottom: 0px;
+  padding-bottom: 12px;
 }
+/* .searchBarFieldAuteur .mat-form-field-underline,
 .searchBarField .mat-form-field-underline,
 .searchBarDate .mat-form-field-underline {
-  display: none;
-}
+  padding-top: 6px;
+  margin: 0px;
+} */
 
 #a-completer-ligne {
   width: 50%;
