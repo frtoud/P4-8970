@@ -192,5 +192,7 @@ export abstract class BaseFormComponent implements AfterViewInit, AfterContentIn
     abstract setSections();
     abstract initCalculs();
     buildFormGroups() { }
-    getFormValues() { }
+    getFormValues() {
+      
+    }
 }

@@ -219,14 +219,14 @@ export class AFFormComponent extends BaseFormComponent implements IAideFinancier
 
     buildFormGroups() {
       this.fg_demandeur = new FormGroup({
-        nom: new FormControl(this.demandeur.nom),
-        telephone: new FormControl(this.demandeur.telephone),
-        centre: new FormControl(this.demandeur.centre),
-        admin: new FormControl(this.demandeur.admin),
+        nom: new FormControl(this.demandeur.nom, Validators.required),
+        telephone: new FormControl(this.demandeur.telephone, Validators.required),
+        centre: new FormControl(this.demandeur.centre, Validators.required),
+        admin: new FormControl(this.demandeur.admin, Validators.required),
       });
       this.fg_beneficiaire = new FormGroup({
-        nom: new FormControl(this.beneficiaire.nom),
-        prenom: new FormControl(this.beneficiaire.prenom),
+        nom: new FormControl(this.beneficiaire.nom, Validators.required),
+        prenom: new FormControl(this.beneficiaire.prenom, Validators.required),
         mat_enseignant: new FormControl(this.beneficiaire.mat_enseignant),
         mat_etudiant: new FormControl(this.beneficiaire.mat_etudiant),
       });
@@ -237,14 +237,18 @@ export class AFFormComponent extends BaseFormComponent implements IAideFinancier
         maiec: new FormControl(this.cycle.maiec),
         doc: new FormControl(this.cycle.doc),
         docec: new FormControl(this.cycle.docec),
-      });
+      }, (form) => { // At least one
+         return form.value.bac || form.value.bacec
+             || form.value.mai || form.value.maiec
+             || form.value.doc || form.value.docec ? null : { invalid: true };
+        });
       this.fg_details = new FormGroup({
         date_debut: new FormControl(this.details.date_debut),
         date_fin: new FormControl(this.details.date_fin),
-        statutVersement: new FormControl(this.details.statutVersement),
+        statutVersement: new FormControl(this.details.statutVersement, Validators.required),
         num_ref: new FormControl(this.details.num_ref),
-        montant: new FormControl(this.details.montant),
-        subventionnaire: new FormControl(this.details.subventionnaire),
+        montant: new FormControl(this.details.montant, Validators.required),
+        subventionnaire: new FormControl(this.details.subventionnaire, Validators.required),
       });
     }
     getFormValues() {
@@ -255,4 +259,5 @@ export class AFFormComponent extends BaseFormComponent implements IAideFinancier
       //Object.assign(this.ventilation, this.fg_ventilation.value);
       //Object.assign(this.remarques, this.fg_remarques.value);
     }
+
 }
