@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Config } from '../config';
 
 export interface User {
@@ -9,7 +9,6 @@ export interface User {
     email: string;
     type: string;
 }
-
 
 @Injectable({
     providedIn: 'root',

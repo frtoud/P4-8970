@@ -24,18 +24,10 @@ export class LoginService {
   private currentUserSubject: BehaviorSubject<AuthenticatedUser>;
   public currentUser: Observable<AuthenticatedUser>;
   
-
-
-
-
-
-
   private static handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     return Promise.reject(error.feedbackMessage || error);
   }
-
-
 
   authenticateUser(email: string, password: string): Promise<AuthenticatedUser> {
     const httpOptions = {
@@ -55,70 +47,29 @@ export class LoginService {
     .catch(LoginService.handleError);
   }
 
-  
-
- // getUserWeb(): Promise<AuthenticatedUser>{
-
-   //return this.currentUser;
-
-   //return new Promise<AuthenticatedUser>((resolve, reject) => {
-    //const user = this.currentUser;
-      
-    // if (user) {
-    //  resolve(user);
-    //  } else {
-     //   console.log("Error in loginService: getUser()")
-     //    reject('No user logged in');
-     //  }
-      
-     // });
- // }
-
-  getUser(): Promise<AuthenticatedUser>{
-   
-
+  getUser(): Promise<AuthenticatedUser> {
     return new Promise<AuthenticatedUser>((resolve, reject) => {
-        
-       if (this.currentUserSubject.value) {
-        resolve(this.currentUserSubject.value);
-        } else {
-          console.log("Error in loginService: getUser()")
-           reject('No user in loginService');
-         }
-        
-        });
+      if (this.currentUserSubject.value) {
+      resolve(this.currentUserSubject.value);
+      } 
+      else {
+        console.log("Error in loginService: getUser()")
+        reject('No user in loginService');
+      }});
   }
 
-  getUserOldVersion():Promise<AuthenticatedUser>{
-    
-
-    
-       return new Promise<AuthenticatedUser>((resolve, reject) => {
-        let user = JSON.parse(localStorage.getItem('currentUser'));
-          
-         if (user) {
-          resolve(user);
-          } else {
-            console.log("Error in loginService: getUser()")
-             reject('No user in local storage');
-           }
-          
-          });
-      }
-
-//  createCurrentUserObservable() {
- //   const simpleObservable = new Observable((observer) => {
+  getUserOldVersion():Promise<AuthenticatedUser> {
+    return new Promise<AuthenticatedUser>((resolve, reject) => {
+    let user = JSON.parse(localStorage.getItem('currentUser'));
       
-      // observable execution
- //     observer.next(this.currentUser);
- //     observer.complete();
- // });
-  //  this.currentUserObs = simpleObservable;
- // }
-
-//  getCurrentUserObservable(): Observable<AuthenticatedUser>{
- //   return this.currentUserObs ;
- // }
+      if (user) {
+        resolve(user);
+      } 
+      else {
+        console.log("Error in loginService: getUser()")
+        reject('No user in local storage');
+      }});
+  }
 
   logout(){
     this.loggedIn.next(false);
@@ -129,7 +80,6 @@ export class LoginService {
   }
 
   isLoggedIn() {
-      //return localStorage.getItem("acc_tkn");
       return this.loggedIn.asObservable();
   }
 

@@ -1,38 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Config } from '../config';
-import { FormsModule } from '@angular/forms';
-
-
-// export interface Collaborateur {
-//   idCollaborateur: String;
-//   nom: String;
-//   email: String;
-//   //Not mandatory, we can use array index
-//   ordre: Number;
-//   acces: String;
-// }
-
-// export interface Instance {
-//   idForm: string;
-//   auteur: {
-//       idAuteur: String;
-//       nom: String;
-//       typeAuteur: String;
-//   }
-//   nomFormulaire: String,
-//   collaborateurs: Collaborateur[];
-//   statut: string;
-//   data: IPaymentForm | IAideFinanciere | IVoyageForm | IDeplacementForm;
-//   creeLe: Date;
-//   modifieLe: Date;
-
-// }
-
-// Status
-// this.userAccess = ["WAITING", "EDITION", "COMPLETED", "PREVIEW"];
-// this.formStatus = ["IN_PROGRESS", "COMPLETED", "ARCHIVED"];
-// this.types = ['ADMIN', 'MANAGER', 'USER'];
 
 export interface Collaborateur {
   email: String;
