@@ -86,7 +86,7 @@ class UsersManager {
     //Gets users of all types: ADMIN + MANAGER + USER
     getAllUsers() {
         const deferred = Q.defer();
-        Users.find().lean().exec((err, users) => {
+        Users.find({ hash: { $ne : null }}).lean().exec((err, users) => {
             if (err) {
                 deferred.reject({ err: true, status: 400, message: "Erreur."});
             }
@@ -99,9 +99,9 @@ class UsersManager {
 
     getUsersByType(type) {
         const deferred = Q.defer();
-        let filter = {};
+        let filter = { "hash": { $ne : null } };
         if (type && this.types.includes(type)) {
-            filter = { "type": type };
+            filter = { "type": type, "hash": { $ne : null } };
         }
         Users.find(filter).lean().exec((err, users) => {
             if (err || !users) {
