@@ -11,6 +11,8 @@ export abstract class BaseFormComponent implements AfterViewInit, AfterContentIn
     coloring = true;
     edition = false;
 
+    sigNeedsListeners = true;
+
     public sections: any[];
     public signatures: Signature[];
 
@@ -21,8 +23,6 @@ export abstract class BaseFormComponent implements AfterViewInit, AfterContentIn
       });
       return n;
     }
-
-    sigNeedsListeners = true;
 
     public addListeners() {
       this.setSections();
@@ -103,6 +103,12 @@ export abstract class BaseFormComponent implements AfterViewInit, AfterContentIn
           element.assigneA = null;
         }
       });
+      this.signatures.forEach(element => {
+        if (element.assigneA === user) {
+          element.assigneA = null;
+        }
+      });
+      this.doColoring();
     }
 
   ngAfterViewInit(): void {

@@ -11,7 +11,10 @@
         <mat-chip-list class="mat-chip-list-stacked" cdkDropList (cdkDropListDropped)="dropParticipant($event)">
           <mat-chip *ngFor="let participant of participants" (click)="getFocus(participant)"
           [ngClass]="{'assignation_selected': participant._id === collaboratorID}" cdkDrag>
-            {{participant.firstName}} {{participant.lastName}}
+            <p>{{participant.firstName}} {{participant.lastName}}</p> 
+            <button class="deleteParticipant" mat-mini-fab color="warn" (click)="deleteParticipant(participant)">
+              <p class="delX">x</p>
+            </button>
           </mat-chip>
         </mat-chip-list>
         <br>
@@ -28,25 +31,9 @@
       <mat-grid-tile [colspan]="tiles[1].cols" [rowspan]="tiles[1].rows">
         <button id="annuler" mat-raised-button color="primary" (click)="onReturn()" >RETOUR</button>
       </mat-grid-tile>
-      
-     <!--  <mat-grid-tile [colspan]="tiles[2].cols" [rowspan]="tiles[2].rows">
-        <button id="envoie-ult" mat-raised-button color="primary">Envoyer ultérieurement</button>
-      </mat-grid-tile> -->
     </mat-grid-list>
     
     </div>
   </div>
 </div>
-    <!--Liste piece-jointes
-    <div class="piece-jointes">
-      <mat-chip-list class="mat-chip-list-stacked">
-        <mat-chip *ngFor="let file of files">
-          {{file.name}}
-        </mat-chip>
-      </mat-chip-list>
-      <input type="file" multiple>-->
-      <!--<button mat-mini-fab color="primary"-->
-              <!--(click)="addFile()">+</button>
-    </div>-->
-    <!--Boutons-->
 
