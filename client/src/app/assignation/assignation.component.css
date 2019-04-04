@@ -8,10 +8,6 @@
 .piece-jointes{
   float:left;
 }
-/*.fixed {
-  position: fixed;
-  width: 20%;
-}*/
 
 .mat-chip-list-stacked {
   width: 100%;
@@ -29,12 +25,28 @@
 .assignation_selected {
   background-color: #aedd94
 }
+
 #envoyer {
   width: 100px;
+  background: linear-gradient(to bottom, #e8f2db, #8dc83e);
 }
+
 #annuler {
   width: 100px;
+  color: black;
+  background: linear-gradient(to bottom, #eeeeee 0%,#cccccc 100%);
 }
+
+#addCollab {
+  background: linear-gradient(to bottom, rgba(184,198,223,1) 0%,rgba(109,136,183,1) 100%);
+  align-self: flex-end;
+}
+
+.fixed {
+  display: flex;
+  flex-direction: column;
+}
+
 #envoie-ult {
   width: 200px;
 }
