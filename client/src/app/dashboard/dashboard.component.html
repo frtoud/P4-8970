@@ -32,12 +32,12 @@
       </mat-select>
     </mat-form-field>
   
-    <mat-form-field floatLabel="never" class="searchBarField">
+    <mat-form-field floatLabel="never" class="searchBarDate">
       <input matInput [matDatepicker]="pickerEntre" placeholder="Entre le" [(ngModel)]="dateFrom">
       <mat-datepicker-toggle matSuffix [for]="pickerEntre"></mat-datepicker-toggle>
       <mat-datepicker #pickerEntre></mat-datepicker>
     </mat-form-field>
-    <mat-form-field floatLabel="never" class="searchBarField">
+    <mat-form-field floatLabel="never" class="searchBarDate">
       <input matInput [matDatepicker]="pickerEtLe" placeholder="et le" [(ngModel)]="dateTo">
       <mat-datepicker-toggle matSuffix [for]="pickerEtLe"></mat-datepicker-toggle>
       <mat-datepicker #pickerEtLe></mat-datepicker>

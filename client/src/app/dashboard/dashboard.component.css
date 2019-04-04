@@ -23,24 +23,35 @@
   background: linear-gradient(#f3f3f3, #acacac);
   color: black;
   font-size: 14px;
+  height: 40px;
 }
 
-.searchBarField {
+.searchBarField, .searchBarDate {
+  background-color: white;
   font-size: inherit;
+  padding-right: 20px;
+}
+
+.searchBarDate {
+  width: 100px;
 }
 
 #searchIcon {
   font-size: 18px;
 }
 
-.searchBarField .mat-form-field-infix {
+.searchBarField .mat-form-field-infix,
+.searchBarDate .mat-form-field-infix {
   border-top: 0;
+  padding-bottom: 8px;
+  padding-top: 8px;
+}
+.searchBarField .mat-form-field-wrapper,
+.searchBarDate .mat-form-field-wrapper {
   padding-bottom: 0px;
 }
-.searchBarField .mat-form-field-wrapper {
-  padding-bottom: 0px;
-}
-.searchBarField .mat-form-field-underline {
+.searchBarField .mat-form-field-underline,
+.searchBarDate .mat-form-field-underline {
   display: none;
 }
 
