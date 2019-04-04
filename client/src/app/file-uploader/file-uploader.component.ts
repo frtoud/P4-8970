@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { UploadService } from '../services/upload.service';
 import { Attachments } from '../services/instance.service';
 
@@ -13,7 +13,12 @@ export class FileUploaderComponent {
 
   attachedFiles: Attachments[] = [];
 
-  constructor(private uploadService: UploadService) { }
+  @Input() state: string;
+  isActive = true;
+  constructor(private uploadService: UploadService) {
+    
+
+  }
 
   upload(event) {
     event.preventDefault;
