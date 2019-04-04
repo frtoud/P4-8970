@@ -61,20 +61,18 @@
 .searchBarFieldAuteur .mat-form-field-wrapper,
 .searchBarField .mat-form-field-wrapper,
 .searchBarDate .mat-form-field-wrapper {
-  padding-bottom: 7px;
+  padding-bottom: 9px;
 }
-/* .searchBarFieldAuteur .mat-form-field-underline,
-.searchBarField .mat-form-field-underline,
-.searchBarDate .mat-form-field-underline {
-  padding-top: 6px;
-  margin: 0px;
-} */
 
 #a-completer-ligne {
   width: 50%;
 }
 
 /* ---------------   Début cartes   -------------- */
+
+#toggleViewButton {
+  float: right;
+}
 
 #card-titleAndType {
   float: left;

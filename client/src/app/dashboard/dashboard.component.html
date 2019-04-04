@@ -70,6 +70,14 @@
   <!-------------------------------cartes A Completer---------------------------------->
   <div *ngIf="vueCarte == 'true' && !searchActivated" id="cards-container">
     À compléter ({{aCompleterCards.length}})<hr id="a-completer-ligne">
+    <div id="toggleViewButton">
+      <button mat-icon-button>
+        <i class="material-icons">view_module</i>
+      </button>
+      <button mat-icon-button>
+        <i class="material-icons">view_list</i>
+      </button>
+    </div>
     <div id = "card-array">
       <div *ngFor="let card of aCompleterCards" id="card">
         <mat-card class="dashboard-card">
