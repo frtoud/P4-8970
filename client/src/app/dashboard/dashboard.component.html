@@ -58,26 +58,26 @@
   </div>
 </mat-toolbar>
 
-<mat-form-field floatLabel="never">
+<!-- <mat-form-field floatLabel="never">
   <mat-select id="option-affichage" placeholder="Option d'affichage" disableRipple [(ngModel)]="vueCarte">
     <mat-option value="true">Cartes</mat-option>
     <mat-option value="false">Listes</mat-option>
   </mat-select>
-</mat-form-field>
+</mat-form-field> -->
 
 <div class="grid-container">
 
   <!-------------------------------cartes A Completer---------------------------------->
   <div *ngIf="vueCarte == 'true' && !searchActivated" id="cards-container">
-    À compléter ({{aCompleterCards.length}})<hr id="a-completer-ligne">
+    À compléter ({{aCompleterCards.length}})
     <div id="toggleViewButton">
-      <button mat-icon-button>
-        <i class="material-icons">view_module</i>
-      </button>
-      <button mat-icon-button>
+      <button mat-icon-button (click)="toggleVueListe()">
         <i class="material-icons">view_list</i>
       </button>
     </div>
+      
+    <hr id="a-completer-ligne">
+    
     <div id = "card-array">
       <div *ngFor="let card of aCompleterCards" id="card">
         <mat-card class="dashboard-card">
@@ -202,7 +202,15 @@
 
   <!-------------------------------cartes Autres ------------------------------------------->
   <div *ngIf="vueCarte == 'true' && !searchActivated" id="cards-container">
-    Autres ({{autresCards.length}})<hr id="a-completer-ligne">
+    Autres ({{autresCards.length}})
+    <div id="toggleViewButton">
+      <button mat-icon-button (click)="toggleVueListe()">
+        <i class="material-icons">view_list</i>
+      </button>
+    </div>
+    
+    <hr id="a-completer-ligne">
+
     <div id = "card-array">
       <div *ngFor="let card of autresCards" id="card">
         <mat-card class="dashboard-card">
@@ -331,7 +339,15 @@
 
   <!-------------------------------cartes recherche------------------------------------------->
   <div *ngIf="vueCarte == 'true' && searchActivated" id="cards-container">
-    Résultats de la recherche ({{displayedCards.length}}) <hr id="a-completer-ligne">
+    Résultats de la recherche ({{displayedCards.length}})
+    <div id="toggleViewButton">
+      <button mat-icon-button (click)="toggleVueListe()">
+        <i class="material-icons">view_list</i>
+      </button>
+    </div>
+    
+    <hr id="a-completer-ligne">
+    
     <div id = "card-array">
       <div *ngFor="let card of displayedCards" id="card">
         <mat-card class="dashboard-card">
@@ -464,6 +480,12 @@
 
   <!---------------------liste A completer ------------------------->
   <div *ngIf="vueCarte == 'false' && !searchActivated">
+    <div id="toggleViewButton">
+      <button mat-icon-button (click)="toggleVueCarte()">
+        <i class="material-icons">view_module</i>
+      </button>
+    </div>
+
     <h4 class="header-title">Formulaires à compléter ({{aCompleterCards.length}})</h4>
     <table mat-table [dataSource]="aCompleterCards" id="forms-table">  
       <ng-container matColumnDef="idForm">
@@ -546,6 +568,12 @@
   
   <!---------------------liste Autres ------------------------->
   <div *ngIf="vueCarte == 'false' && !searchActivated">
+    <div id="toggleViewButton">
+      <button mat-icon-button (click)="toggleVueCarte()">
+        <i class="material-icons">view_module</i>
+      </button>
+    </div>
+
     <h4 class="header-title">Autres formulaires ({{autresCards.length}})</h4>
     <table mat-table [dataSource]="autresCards" id="forms-table">  
       <ng-container matColumnDef="idForm">
@@ -627,6 +655,12 @@
 
   <!---------------------liste recherche ------------------------->
   <div *ngIf="vueCarte == 'false' && searchActivated">
+    <div id="toggleViewButton">
+      <button mat-icon-button (click)="toggleVueCarte()">
+        <i class="material-icons">view_module</i>
+      </button>
+    </div>
+  
     <h4 class="header-title">Résultats de la recherche ({{displayedCards.length}})</h4>
     <table mat-table [dataSource]="displayedCards" id="forms-table">  
       <ng-container matColumnDef="idForm">
