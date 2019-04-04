@@ -66,7 +66,10 @@ export class NewAccountComponent {
       type: this.typeFormControl.value
     };
     this.accountsService.addAccount(account)
-    .then(() => this.openDialog())
+    .then(() => {
+      this.openDialog();
+      this.resetFormControls();
+    })
     .catch(err => this.errorMessage = err.error);
   }
 
@@ -82,6 +85,13 @@ export class NewAccountComponent {
 
   cancel() {
     this.router.navigateByUrl("/admin");
+  }
+
+  resetFormControls() {
+    this.lastNameFormControl.reset();
+    this.emailFormControl.reset();
+    this.firstNameFormControl.reset();
+    this.typeFormControl.reset();
   }
 
 }
