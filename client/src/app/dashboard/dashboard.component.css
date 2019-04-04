@@ -61,7 +61,7 @@
 .searchBarFieldAuteur .mat-form-field-wrapper,
 .searchBarField .mat-form-field-wrapper,
 .searchBarDate .mat-form-field-wrapper {
-  padding-bottom: 9px;
+  padding-bottom: 10px;
 }
 
 #a-completer-ligne {
