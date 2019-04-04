@@ -1,47 +1,56 @@
 
 <mat-toolbar class="searchBar">
   <div>
-    
-    <mat-form-field floatLabel="never" class="searchBarField">
-      <input matInput [(ngModel)]="searchName" placeholder="Auteur..." [formControl]="form" [matAutocomplete]="auto">
-      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
-        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-          {{option.firstName}} {{option.lastName}}: {{option.email}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
+    <div class="searchBarDiv">
+      <mat-form-field floatLabel="never" class="searchBarFieldAuteur">
+        <input matInput [(ngModel)]="searchName" placeholder="Auteur..." [formControl]="form" [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{option.firstName}} {{option.lastName}}: {{option.email}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
   
-    <mat-form-field floatLabel="never" class="searchBarField">
-      <mat-select placeholder="Statut..." [(value)]="searchStatus">
-        <mat-option >-</mat-option>
-        <mat-option value="IN_PROGRESS">en cours</mat-option>
-        <mat-option value="COMPLETED">complété</mat-option>
-        <mat-option value="ARCHIVED">archivé</mat-option>
-        <mat-option value="CANCELED">annulé</mat-option>
-      </mat-select>
-    </mat-form-field>
+    <div class="searchBarDiv">
+      <mat-form-field floatLabel="never" class="searchBarField">
+        <mat-select placeholder="Statut..." [(value)]="searchStatus">
+          <mat-option >-</mat-option>
+          <mat-option value="IN_PROGRESS">en cours</mat-option>
+          <mat-option value="COMPLETED">complété</mat-option>
+          <mat-option value="ARCHIVED">archivé</mat-option>
+          <mat-option value="CANCELED">annulé</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
   
-    <mat-form-field floatLabel="never" class="searchBarField">
-      <mat-select placeholder="Patron..." [(value)]="searchPatron">
-        <mat-option >-</mat-option>
-        <mat-option value="Aide financière">aide financière</mat-option>
-        <mat-option value="Avance de voyage">avance de voyage</mat-option>
-        <mat-option value="Demande d’achat">demande d'achat</mat-option>
-        <mat-option value="Demande de paiement">demande de paiement</mat-option>
-        <mat-option value="Rapport de déplacement">rapport de déplacement</mat-option>
-      </mat-select>
-    </mat-form-field>
+    <div class="searchBarDiv">
+      <mat-form-field floatLabel="never" class="searchBarField">
+        <mat-select placeholder="Patron..." [(value)]="searchPatron">
+          <mat-option >-</mat-option>
+          <mat-option value="Aide financière">aide financière</mat-option>
+          <mat-option value="Avance de voyage">avance de voyage</mat-option>
+          <mat-option value="Demande d’achat">demande d'achat</mat-option>
+          <mat-option value="Demande de paiement">demande de paiement</mat-option>
+          <mat-option value="Rapport de déplacement">rapport de déplacement</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
   
-    <mat-form-field floatLabel="never" class="searchBarDate">
-      <input matInput [matDatepicker]="pickerEntre" placeholder="Entre le" [(ngModel)]="dateFrom">
-      <mat-datepicker-toggle matSuffix [for]="pickerEntre"></mat-datepicker-toggle>
-      <mat-datepicker #pickerEntre></mat-datepicker>
-    </mat-form-field>
-    <mat-form-field floatLabel="never" class="searchBarDate">
-      <input matInput [matDatepicker]="pickerEtLe" placeholder="et le" [(ngModel)]="dateTo">
-      <mat-datepicker-toggle matSuffix [for]="pickerEtLe"></mat-datepicker-toggle>
-      <mat-datepicker #pickerEtLe></mat-datepicker>
-    </mat-form-field>
+    <div class="searchBarDiv">
+      <mat-form-field floatLabel="never" class="searchBarDate">
+        <input matInput [matDatepicker]="pickerEntre" placeholder="Entre le" [(ngModel)]="dateFrom">
+        <mat-datepicker-toggle matSuffix [for]="pickerEntre"></mat-datepicker-toggle>
+        <mat-datepicker #pickerEntre></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="searchBarLastDiv">
+      <mat-form-field floatLabel="never" class="searchBarDate">
+        <input matInput [matDatepicker]="pickerEtLe" placeholder="et le" [(ngModel)]="dateTo">
+        <mat-datepicker-toggle matSuffix [for]="pickerEtLe"></mat-datepicker-toggle>
+        <mat-datepicker #pickerEtLe></mat-datepicker>
+      </mat-form-field>
+    </div>
 
     <button mat-icon-button (click)="search()">
       <i class="material-icons" id="searchIcon">search</i>
