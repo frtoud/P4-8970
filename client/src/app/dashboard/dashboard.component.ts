@@ -101,6 +101,13 @@ export class DashboardComponent implements OnInit {
     
   }
   
+  toggleVueCarte() {
+    this.vueCarte = 'true';
+  }
+  toggleVueListe() {
+    this.vueCarte = 'false';
+  }
+
   displayFn(user?: User): string | undefined {
     return user ? user.firstName + ' ' + user.lastName + ': ' + user.email : undefined;
   }
