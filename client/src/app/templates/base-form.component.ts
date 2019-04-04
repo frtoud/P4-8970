@@ -1,7 +1,7 @@
 import { AfterViewInit, AfterContentInit } from '@angular/core';
 import { Signature, ISignature, ISection } from './fields';
 import { User } from '../services/users.service';
-import { strictEqual } from 'assert';
+import { AbstractControl, FormGroup } from '@angular/forms';
 
 export abstract class BaseFormComponent implements AfterViewInit, AfterContentInit {
 
@@ -197,6 +197,31 @@ export abstract class BaseFormComponent implements AfterViewInit, AfterContentIn
         const key = 'fg_' + s.id;
         if (this[key]) { Object.assign(s, this[key].value); }
       });
-      console.log("DIAGNOSTIC", this);
+    }
+
+    getFormValidation(user: User, ignoreRequired: boolean = false): boolean {
+      // TODO: get all sections, check with assignedID
+      const id = user._id;
+      const allErrors = new Set<string>();
+
+      this.sections.forEach(s => {
+        if ( false /*USER IS AUTHOR*/ || s.assigneA === id) {
+          // get le FormGroup correspondant
+          const key = 'fg_' + s.id;
+          if (this[key]) {
+            const fg = this[key] as FormGroup;
+            // get child control's errors too!!
+            Object.keys(fg.errors).forEach(k => allErrors.add(k));
+          }
+        }
+      });
+
+      if (ignoreRequired)
+      {
+        allErrors.delete('required');
+      }
+      // TODO: test signatures on their own.
+
+      return allErrors.size === 0;
     }
 }
