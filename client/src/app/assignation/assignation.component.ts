@@ -170,7 +170,6 @@ export class AssignationComponent implements OnInit, OnDestroy {
     this.router.navigate(['/newForm']);
   }
 
-
   testParticipants() {
     // vérifier si la liste de participants actuelle existe
     // IE. on peut mettre des participants tant qu'on veux on peut pas send tant qu'il y a pas au moins un assigned
@@ -178,6 +177,11 @@ export class AssignationComponent implements OnInit, OnDestroy {
     const ids: Set<string> = this.formInstance.getAssignations();
     this.usedParticipants = this.participants.filter(user => ids.has(user._id));
     this.participantInsuffisants = this.usedParticipants.length === 0;
+  }
+  deleteParticipant(participant) {
+    this.formInstance.removeAssignation(participant._id);
+    this.participants = this.participants.filter((v) => v._id !== participant._id);
+    this.loseFocus();
   }
 }
 

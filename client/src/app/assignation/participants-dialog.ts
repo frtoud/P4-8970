@@ -1,6 +1,6 @@
-import {Component, Inject } from '@angular/core';
+import {Component, Inject, OnInit } from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {FormBuilder, FormControl} from '@angular/forms';
+import {FormBuilder, FormControl, ValidationErrors} from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
 
 import { User } from '../services/users.service';
@@ -14,8 +14,24 @@ import { Observable } from 'rxjs';
     templateUrl: 'participants-dialog.html',
     styleUrls: ['./assignation.component.css']
   })
-  export class ParticipantsDialog {
-    form: FormControl = new FormControl();
+// tslint:disable-next-line: component-class-suffix
+  export class ParticipantsDialog implements OnInit {
+    form: FormControl = new FormControl('', (control): ValidationErrors | null => {
+      let hasError = false;
+      const errors: any = {};
+
+      if (control.value) {
+        if (!control.value._id) {
+          errors.invalid = true;
+          hasError = true;
+        } else if (this.data.participants.find(value => value._id === control.value._id)) {
+          errors.exists = true;
+          hasError = true;
+        }
+      }
+
+      return hasError ? errors : null;
+    });
 
     filteredOptions: Observable<User[]>;
 
@@ -25,7 +41,6 @@ import { Observable } from 'rxjs';
       @Inject(MAT_DIALOG_DATA) public data: any) {}
 
     ngOnInit() {
-
       this.filteredOptions = this.form.valueChanges
         .pipe(
           startWith<string | User>(''),
@@ -48,9 +63,8 @@ import { Observable } from 'rxjs';
       ));
     }
 
-    submit(form, event) {
-      // event.preventDefault;
-      if (form.value
+    submit(form) {
+      if (form.value && form.value._id
     && !this.data.participants.find(value => value._id === form.value._id)) {
         this.data.participants.push(form.value);
         form.reset();

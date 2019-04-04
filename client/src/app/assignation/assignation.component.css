@@ -13,8 +13,7 @@
   width: 20%;
 }*/
 
-.mat-chip-list-stacked,
-.participant{
+.mat-chip-list-stacked {
   width: 100%;
 }
 .cdk-drag-placeholder {
@@ -32,15 +31,12 @@
 }
 #envoyer {
   width: 100px;
-  align: left;
 }
 #annuler {
   width: 100px;
-  align: left;
 }
 #envoie-ult {
   width: 200px;
-  align: left;
 }
 
 #metadata {
@@ -64,4 +60,23 @@ mat-dialog-actions {
 
 #cancel-btn {
   background: linear-gradient(to bottom, #eeeeee 0%,#cccccc 100%);
+}
+
+mat-chip {
+  display: flex;
+  justify-content: space-between;
+}
+
+mat-chip:hover .deleteParticipant {
+  visibility: visible;
+}
+
+.deleteParticipant {
+  height: 16px;
+  width: 16px;
+  visibility: hidden;
+}
+.delX {
+  position: relative;
+  top: -25px;
 }
