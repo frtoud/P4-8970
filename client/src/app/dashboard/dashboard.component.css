@@ -19,6 +19,8 @@
   width: 100%;
 }
 
+/* --------------- DÉBUT SEARCHBAR ---------------- */
+
 .searchBar {
   background: linear-gradient(#f3f3f3, #acacac);
   color: black;
@@ -28,7 +30,7 @@
 
 .searchBarDiv {
   display: inline-block;
-  padding-right: 25px;
+  padding-right: 40px;
 }
 .searchBarLastDiv {
   display: inline-block;
@@ -68,7 +70,7 @@
   width: 50%;
 }
 
-/* ---------------   Début cartes   -------------- */
+/* ---------------   DÉBUT cartes   -------------- */
 
 #toggleViewButton {
   float: right;
