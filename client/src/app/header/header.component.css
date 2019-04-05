@@ -33,6 +33,9 @@
   flex-direction: row;
 }
 
+.active{
+  color: #41AAE6 !important;
+}
 
 #link{
   margin: 20px;
@@ -61,4 +64,7 @@ body {
     visibility: hidden;
   }
 }
+
+
+
 

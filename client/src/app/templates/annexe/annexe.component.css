@@ -157,7 +157,7 @@ mat-form-field {
 
 #ventilation-table
 {
-    width: 100%;
+    /*width: 100%;*/
 }
 
 #ventilation-table mat-form-field {
@@ -180,8 +180,11 @@ mat-form-field {
     
     #tout {
         
+        width: 95% !important;
         /*display:none !important;*/
     }
+
+
 
 
     #tableau-totaux mat-form-field {
@@ -196,5 +199,11 @@ mat-form-field {
         width: 50px !important;
         text-align: left;
     }
+
+    #ventilation-table {transform: scale(.7);
+        float:center !important;
+    }
+
+    #form-header{float:center;}
 
   }
