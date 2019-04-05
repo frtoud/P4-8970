@@ -19,7 +19,7 @@
 #tableau-totaux {
     border-collapse: collapse; 
     border: 2px solid black;
-    font-family: 'Roboto';
+    /* font-family: 'Roboto'; */
 }
 
 #cellule-monetaire {
@@ -137,7 +137,7 @@ h6 {
 
 h4 {
     margin: 0;
-    font-family: 'Roboto';
+    /* font-family: 'Roboto'; */
     font-size: 0.9em;
 }
 

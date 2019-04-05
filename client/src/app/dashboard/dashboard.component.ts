@@ -235,8 +235,10 @@ export class DashboardComponent implements OnInit {
   }
 
   private search() {
-    if (this.searchName === '' && this.searchStatus === '' &&
-        this.searchPatron === '' && this.dateFrom == null && this.dateTo == null) {
+    if ((this.searchName === '' || this.searchName == undefined) &&
+        (this.searchStatus === '' || this.searchStatus == undefined) &&
+        (this.searchPatron === '' || this.searchPatron == undefined) &&
+        this.dateFrom == null && this.dateTo == null) {
       this.desactivateSearch();
       return;
     }

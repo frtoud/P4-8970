@@ -18,7 +18,7 @@
           </mat-chip>
         </mat-chip-list>
         <br>
-    <button mat-mini-fab color="primary"
+    <button mat-mini-fab color="primary" id="addCollab"
             (click)="openDialog()">+</button>
     <br>
     <app-file-uploader></app-file-uploader>
@@ -29,7 +29,7 @@
         [disabled]="participantInsuffisants">ENVOYER</button>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="tiles[1].cols" [rowspan]="tiles[1].rows">
-        <button id="annuler" mat-raised-button color="primary" (click)="onReturn()" >RETOUR</button>
+        <button id="annuler" mat-raised-button color="primary" (click)="onReturn()" >ANNULER</button>
       </mat-grid-tile>
     </mat-grid-list>
     
