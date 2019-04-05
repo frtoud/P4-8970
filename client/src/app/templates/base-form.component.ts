@@ -1,7 +1,7 @@
 import { AfterViewInit, AfterContentInit } from '@angular/core';
 import { Signature, ISignature, ISection } from './fields';
 import { User } from '../services/users.service';
-import { AbstractControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormGroup, FormArray } from '@angular/forms';
 
 export abstract class BaseFormComponent implements AfterViewInit, AfterContentInit {
 
@@ -15,6 +15,7 @@ export abstract class BaseFormComponent implements AfterViewInit, AfterContentIn
 
     public sections: any[];
     public signatures: Signature[];
+    public controls: FormArray = new FormArray([]);
 
     public static getHighestId(table: { id: number }[]): number {
       let n = 0;
@@ -189,8 +190,12 @@ export abstract class BaseFormComponent implements AfterViewInit, AfterContentIn
         sig.date = null;
       });
     }
+
+    // Tache: remplir this.sections avec les sections pour assignation
     abstract setSections();
+    // Tache: initialiser les valeurs calculées lors du chargement du formulaire
     abstract initCalculs();
+    // Tache: remplir this.controls avec les controleurs du formulaire
     buildFormGroups() { }
     getFormValues() {
       this.sections.forEach(s => {
@@ -199,29 +204,28 @@ export abstract class BaseFormComponent implements AfterViewInit, AfterContentIn
       });
     }
 
-    getFormValidation(user: User, ignoreRequired: boolean = false): boolean {
-      // TODO: get all sections, check with assignedID
+    getFormValidation(user: User, isAuthor = false): boolean {
       const id = user._id;
-      const allErrors = new Set<string>();
+      let result = true; // Innocent until proven guilty
 
       this.sections.forEach(s => {
-        if ( false /*USER IS AUTHOR*/ || s.assigneA === id) {
+        if ( isAuthor || s.assigneA === id) {
           // get le FormGroup correspondant
           const key = 'fg_' + s.id;
           if (this[key]) {
-            const fg = this[key] as FormGroup;
-            // get child control's errors too!!
-            Object.keys(fg.errors).forEach(k => allErrors.add(k));
+            const fg = this[key] as AbstractControl;
+            result = result && fg.valid;
           }
         }
       });
 
-      if (ignoreRequired)
-      {
-        allErrors.delete('required');
-      }
       // TODO: test signatures on their own.
+      this.signatures.forEach(s => {
+        if ( isAuthor || s.assigneA === id) {
+          result = result && s.validated;
+        }
+      });
 
-      return allErrors.size === 0;
+      return result;
     }
 }

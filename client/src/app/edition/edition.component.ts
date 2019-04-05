@@ -27,6 +27,8 @@ export class EditionComponent implements OnInit {
   state: string; // modify, view, validate
   displaying = true;
 
+  canSubmit = false;
+  canValidate = false;
   canCopy = false;
   canCancel = false;
 
@@ -97,7 +99,14 @@ export class EditionComponent implements OnInit {
       this.formInstance.setInterface(form.data);
     this.loginService.getUser().then(user => {
       this.formInstance.setUserEdition(user, this.state !== 'view');
-      if (user.type !== 'USER' && this.metadata.auteur.idAuteur === user._id) {
+      const isAuthor = user.type !== 'USER' && this.metadata.auteur.idAuteur === user._id;
+      this.formInstance.controls.statusChanges.subscribe(() => {
+        const validationcheck = this.formInstance.getFormValidation(user, isAuthor);
+        this.canSubmit = validationcheck || isAuthor;
+        this.canValidate = validationcheck && isAuthor;
+        console.log(this.canSubmit);
+      });
+      if (isAuthor) {
         this.canCopy = this.metadata.statut === 'ARCHIVED' || this.metadata.statut === 'CANCELED';
         this.canCancel = this.metadata.statut !== 'CANCELED';
       }
@@ -105,10 +114,6 @@ export class EditionComponent implements OnInit {
   }
 
   onSend() {
-    // TODO: Validation & Disable
-    // Validation: form-by-form basis
-    // Disable button: get property "isValid" section par section
-
     console.log('SENT');
     const newData = this.formInstance.getInterface();
     console.log(newData);

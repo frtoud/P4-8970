@@ -198,6 +198,10 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       <tr mat-footer-row *matFooterRowDef="['total','addRow']"></tr>
     </table>
+    <form [formGroup]="fg_ventilation">
+      <p *ngIf="fg_ventilation.hasError('incomplete')">Une ou plusieur lignes de ventilation sont incomplètes.</p>
+      <p *ngIf="fg_ventilation.hasError('total')">le total de la ventilation ne corresponds pas au montant spécifié.</p>
+    </form>
   </div>
 </div>
 

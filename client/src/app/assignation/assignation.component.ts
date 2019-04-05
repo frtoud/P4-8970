@@ -177,8 +177,6 @@ export class AssignationComponent implements OnInit, OnDestroy {
     const ids: Set<string> = this.formInstance.getAssignations();
     this.usedParticipants = this.participants.filter(user => ids.has(user._id));
     this.participantInsuffisants = this.usedParticipants.length === 0;
-    console.log("!!!");
-    this.formInstance.getFormValidation(this.participants[0]);
   }
   deleteParticipant(participant) {
     this.formInstance.removeAssignation(participant._id);

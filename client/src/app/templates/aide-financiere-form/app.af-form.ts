@@ -174,6 +174,7 @@ export class AFFormComponent extends BaseFormComponent implements IAideFinancier
     this.ventilation.tableau.forEach(element => {
       this.ventilationTotal += element.montant;
     });
+    this.fg_ventilation.updateValueAndValidity();
   }
   onCreate() {
     const id = BaseFormComponent.getHighestId(this.ventilation.tableau) + 1;
@@ -250,6 +251,38 @@ export class AFFormComponent extends BaseFormComponent implements IAideFinancier
         montant: new FormControl(this.details.montant, Validators.required),
         subventionnaire: new FormControl(this.details.subventionnaire, Validators.required),
       });
+      this.fg_ventilation = new FormGroup({}, (form) => {
+        const res: any = {};
+        let valid = true;
+        let error = false;
+        this.ventilation.tableau.forEach(line => {
+          valid = valid && line.montant === 0 || !(line.ubr === '' || line.unite === '' || line.compte === '');
+        });
+        // Total égal au montant précédemment spécifié
+        console.log("VENTILATION CHECKER!", this.ventilationTotal, this.fg_details.value);
+        if (this.ventilationTotal !== this.fg_details.value.montant) {
+          res.total = true;
+          error = true;
+        }
+        if (!valid) {
+          res.incomplete = true;
+          error = true;
+        }
+        if (error) {
+          return res;
+        } else {
+          return null;
+        }
+      });
+
+      // Fill the control array
+      while (this.controls.length !== 0) { this.controls.controls.pop(); }
+      this.controls.push(this.fg_demandeur);
+      this.controls.push(this.fg_beneficiaire);
+      this.controls.push(this.fg_cycle);
+      this.controls.push(this.fg_ventilation);
+      this.controls.push(this.fg_details);
+      // this.controls.push(this.fg_remarques);
     }
 
 }

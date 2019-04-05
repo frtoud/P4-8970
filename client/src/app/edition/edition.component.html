@@ -34,10 +34,10 @@
         <button mat-raised-button id="print"  (click)="printDiv()" ><mat-icon>print</mat-icon></button>
       </mat-grid-tile>
       <mat-grid-tile *ngIf="state === 'validate'">
-        <button id="valider" mat-raised-button (click)="onValidate()">VALIDER</button>
+        <button id="valider" mat-raised-button (click)="onValidate()" [disabled]="!canValidate">VALIDER</button>
       </mat-grid-tile>
       <mat-grid-tile *ngIf="state === 'modify'">
-        <button id="soumettre" mat-raised-button (click)="onSend()" color="primary">SOUMETTRE</button>
+        <button id="soumettre" mat-raised-button (click)="onSend()" [disabled]="!canSubmit" color="primary">SOUMETTRE</button>
       </mat-grid-tile>
       <mat-grid-tile >
         <button id="annuler" mat-raised-button (click)="onReturn()">RETOUR</button>
