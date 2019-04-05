@@ -27,6 +27,7 @@ export class DashboardComponent implements OnInit {
   cardCollaborateurs: string[] = ['collaborateursList'];
   vueListeColumns: string[] = ['idForm', 'auteur', 'collaborateurs', 'statut', 'modifieLe', 'creeLe', 'modifier'];
 
+  searchAutocompleteName: User;
   searchName = '';
   searchStatus = '';
   searchPatron = '';
@@ -109,7 +110,7 @@ export class DashboardComponent implements OnInit {
   }
 
   displayFn(user?: User): string | undefined {
-    return user ? user.firstName + ' ' + user.lastName + ': ' + user.email : undefined;
+    return user ? user.firstName + ' ' + user.lastName : undefined;
   }
 
   private filtrer(name: string): User[] {
@@ -235,6 +236,7 @@ export class DashboardComponent implements OnInit {
   }
 
   private search() {
+    this.searchName = this.displayFn(this.searchAutocompleteName);
     if ((this.searchName === '' || this.searchName == undefined) &&
         (this.searchStatus === '' || this.searchStatus == undefined) &&
         (this.searchPatron === '' || this.searchPatron == undefined) &&
