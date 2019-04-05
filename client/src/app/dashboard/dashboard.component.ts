@@ -98,13 +98,36 @@ export class DashboardComponent implements OnInit {
         map(user => user ? this.filtrer(user) : this.listCollaborateurs.slice())
       );
     });
+
+    let vue = localStorage.getItem("vue");
+
+    /*
+    if(vue){
+      if(vue==="true"){
+        this.vueCarte = true;}
+        else{
+          this.vueCarte = false;}
+      }
+
+    console.log("vueCarte: " + vue, typeof vue);
+    */
+    
   }
   
   toggleVueCarte() {
     this.vueCarte = 'true';
+    /*
+    localStorage.setItem("vue", "true");
+    console.log("vueCarte: " + vueCarte);
+    */
   }
   toggleVueListe() {
     this.vueCarte = 'false';
+    /*
+    localStorage.setItem("vue", "false");
+    console.log("vueCarte: " + vueCarte);
+    */
+
   }
 
   displayFn(user?: User): string | undefined {
