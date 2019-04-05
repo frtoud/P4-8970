@@ -3,7 +3,7 @@
   <div>
     <div class="searchBarDiv">
       <mat-form-field floatLabel="never" class="searchBarFieldAuteur">
-        <input matInput [(ngModel)]="searchAutocompleteName" placeholder="Auteur..." [formControl]="form" [matAutocomplete]="auto">
+        <input matInput placeholder="Auteur..." [formControl]="form" [matAutocomplete]="auto">
         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
           <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
             {{option.firstName}} {{option.lastName}}

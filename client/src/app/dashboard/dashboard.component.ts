@@ -98,8 +98,6 @@ export class DashboardComponent implements OnInit {
         map(user => user ? this.filtrer(user) : this.listCollaborateurs.slice())
       );
     });
-
-    
   }
   
   toggleVueCarte() {
@@ -119,7 +117,6 @@ export class DashboardComponent implements OnInit {
     return this.listCollaborateurs.filter(option => ( //TODOkete: filtrer sur tout le string
          option.firstName.toLowerCase().indexOf(filterValue) === 0
       || option.lastName.toLowerCase().indexOf(filterValue) === 0
-      || option.email.toLowerCase().indexOf(filterValue) === 0
     )
     );
   }
@@ -236,7 +233,9 @@ export class DashboardComponent implements OnInit {
   }
 
   private search() {
-    this.searchName = this.displayFn(this.searchAutocompleteName);
+    let searchString = this.form.value;
+    this.searchName = typeof searchString === 'string' ? searchString : this.displayFn(searchString);
+
     if ((this.searchName === '' || this.searchName == undefined) &&
         (this.searchStatus === '' || this.searchStatus == undefined) &&
         (this.searchPatron === '' || this.searchPatron == undefined) &&
@@ -248,7 +247,7 @@ export class DashboardComponent implements OnInit {
     this.searchResult = this.dashboardForms;
     // à ajouter la maniere de gérer les combinaisons de filtres!!!
     if (this.searchName) {
-      this.searchResult = this.searchAuthor();
+        this.searchResult = this.searchAuthor();
     }
 
     if (this.searchStatus === 'COMPLETED') {
