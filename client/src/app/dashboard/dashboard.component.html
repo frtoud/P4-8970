@@ -1,6 +1,6 @@
 
 <mat-toolbar class="searchBar">
-  <div>
+  <div id="center-searchbar">
     <div class="searchBarDiv">
       <mat-form-field floatLabel="never" class="searchBarFieldAuteur">
         <input matInput [(ngModel)]="searchName" placeholder="Auteur..." [formControl]="form" [matAutocomplete]="auto">
@@ -70,7 +70,7 @@
     </div>
       
     <hr id="a-completer-ligne">
-    
+  <div id="centering-array">
     <div id = "card-array">
       <div *ngFor="let card of aCompleterCards" id="card">
         <mat-card class="dashboard-card">
@@ -188,6 +188,7 @@
         </mat-card>
       </div>
     </div>
+  </div>
     <br><br>
   </div>
   <!-------------------------------FIN cartes A Completer---------------------------------->
@@ -197,7 +198,7 @@
     Autres ({{autresCards.length}})
     
     <hr id="a-completer-ligne">
-
+    <div id="centering-array">
     <div id = "card-array">
       <div *ngFor="let card of autresCards" id="card">
         <mat-card class="dashboard-card">
@@ -322,6 +323,7 @@
       </div>
     </div>
   </div>
+  </div>
   <!-------------------------------FIN cartes Autres ------------------------------------------->
 
   <!-------------------------------cartes recherche------------------------------------------->
@@ -329,7 +331,7 @@
     Résultats de la recherche ({{displayedCards.length}})
     
     <hr id="a-completer-ligne">
-    
+    <div id="centering-array">
     <div id = "card-array">
       <div *ngFor="let card of displayedCards" id="card">
         <mat-card class="dashboard-card">
@@ -453,6 +455,7 @@
         </mat-card>
       </div>
     </div>
+  </div>
   </div>
   <!-------------------------------FIN cartes recherche------------------------------------------->
 

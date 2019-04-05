@@ -21,11 +21,13 @@
 
 /* --------------- DÉBUT SEARCHBAR ---------------- */
 
+
 .searchBar {
   background: linear-gradient(#f3f3f3, #acacac);
   color: black;
   font-size: 14px;
   height: 40px;
+  justify-content:center;
 }
 
 .searchBarDiv {
@@ -109,11 +111,15 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  
+ }
+
+ #centering-array {
+   margin-left:8%;
+   margin-right:8%;
  }
 
  #cards-container {
-  align-content: center;
+  float: center;
  }
 
 .inProgress.mat-progress-bar,
