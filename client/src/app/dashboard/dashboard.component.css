@@ -74,9 +74,11 @@
 
 /* ---------------   DÉBUT cartes   -------------- */
 
-#toggleViewButton {
-  background: linear-gradient(#bbdeea, #367ec1);
+.toggleViewDiv {
   float: right;
+}
+.toggleViewButton {
+  background: linear-gradient(#bbdeea, #367ec1);
 }
 
 #card-titleAndType {
