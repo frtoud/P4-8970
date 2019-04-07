@@ -3,9 +3,9 @@
     <h6>COMMANDE</h6>
       <mat-grid-list cols="1" rowHeight="4em">
         <mat-grid-tile>
-              <mat-checkbox [(ngModel)]="commande.standard">Standard</mat-checkbox>
+              <mat-checkbox [(ngModel)]="commande.standard" color="primary">Standard</mat-checkbox>
           <br>
-              <mat-checkbox [(ngModel)]="commande.entente">Entente</mat-checkbox>
+              <mat-checkbox [(ngModel)]="commande.entente" color="primary">Entente</mat-checkbox>
           <br>
         </mat-grid-tile>
       </mat-grid-list>
@@ -316,7 +316,7 @@
           [(ngModel)]="sig.check"
           [(indeterminate)]="indeterminate"
           [labelPosition]="labelPosition"
-          [disabled]="sig.lock || sig.validated">
+          [disabled]="sig.lock || sig.validated" color="primary">
           Je confirme et j'accepte la véracité des informations ci-dessus.
           </mat-checkbox>
           <br>
