@@ -45,28 +45,28 @@
     <p>Identifier le cycle de l'étudiant(e):</p>
     <div class="section-row">
       <p class="checkbox-label">BACCALAURÉAT:</p>
-      <mat-checkbox [(ngModel)]="cycle.bac" class="checkbox-field">
+      <mat-checkbox [(ngModel)]="cycle.bac" class="checkbox-field" color="primary">
         Obtenu
       </mat-checkbox>
-      <mat-checkbox [(ngModel)]="cycle.bacec" class="checkbox-field">
+      <mat-checkbox [(ngModel)]="cycle.bacec" class="checkbox-field" color="primary">
         En cours
       </mat-checkbox>
     </div>
     <div class="section-row">
       <p class="checkbox-label">MAITRISE:</p>
-      <mat-checkbox [(ngModel)]="cycle.mai" class="checkbox-field">
+      <mat-checkbox [(ngModel)]="cycle.mai" class="checkbox-field" color="primary">
         Obtenu
       </mat-checkbox>
-      <mat-checkbox [(ngModel)]="cycle.maiec" class="checkbox-field">
+      <mat-checkbox [(ngModel)]="cycle.maiec" class="checkbox-field" color="primary">
         En cours
       </mat-checkbox>
     </div>
     <div class="section-row">
       <p class="checkbox-label">DOCTORAT:</p>
-      <mat-checkbox [(ngModel)]="cycle.doc" class="checkbox-field">
+      <mat-checkbox [(ngModel)]="cycle.doc" class="checkbox-field" color="primary">
         Obtenu
       </mat-checkbox>
-      <mat-checkbox [(ngModel)]="cycle.docec" class="checkbox-field">
+      <mat-checkbox [(ngModel)]="cycle.docec" class="checkbox-field" color="primary">
         En cours
       </mat-checkbox>
     </div>
@@ -98,9 +98,9 @@
     </mat-form-field>
     <div class="end full">
       <mat-radio-group [(ngModel)]="details.statutVersement" class="large">
-        <mat-radio-button value="UNIQUE">Versement unique</mat-radio-button>
-        <mat-radio-button value="NEW">Nouveau versement</mat-radio-button>
-        <mat-radio-button value="CHANGE">Changement</mat-radio-button>
+        <mat-radio-button value="UNIQUE" color="primary">Versement unique</mat-radio-button>
+        <mat-radio-button value="NEW" color="primary">Nouveau versement</mat-radio-button>
+        <mat-radio-button value="CHANGE" color="primary">Changement</mat-radio-button>
       </mat-radio-group>
     <mat-form-field floatLabel="auto" class="short">
       <input matInput placeholder="Numéro de référence"
@@ -230,7 +230,7 @@
           [(ngModel)]="sig.check"
           [(indeterminate)]="indeterminate"
           [labelPosition]="labelPosition"
-          [disabled]="sig.lock || sig.validated">
+          [disabled]="sig.lock || sig.validated" color="primary">
           Je confirme et j'accepte la véracité des informations ci-dessus.
         </mat-checkbox>
         <br>
