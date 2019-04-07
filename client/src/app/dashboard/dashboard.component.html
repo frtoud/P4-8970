@@ -517,8 +517,8 @@
         <h4 class="header-title">Formulaires à compléter ({{aCompleterCards.length}})</h4>
         <table mat-table [dataSource]="aCompleterCards" id="forms-table">  
           <ng-container matColumnDef="idForm">
-            <th mat-header-cell *matHeaderCellDef> Id </th>
-            <td mat-cell *matCellDef="let element"> {{element.idForm}} </td>
+            <th mat-header-cell *matHeaderCellDef class="vueListeTh"> Identifiant </th>
+            <td mat-cell *matCellDef="let element" class="vueListeTd"> {{element.idForm}} </td>
           </ng-container>
           <ng-container matColumnDef="auteur">
             <th mat-header-cell *matHeaderCellDef> Auteur </th>

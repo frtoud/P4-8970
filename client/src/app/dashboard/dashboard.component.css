@@ -14,6 +14,10 @@
   text-align: center;
 }
 
+.vueListeTh.mat-header-cell, .vueListeTd {
+  text-align: center;
+}
+
 .dashboard-card mat-expansion-panel {
   background: linear-gradient(#f3f3f3, #acacac);
   width: 100%;
