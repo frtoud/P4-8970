@@ -74,7 +74,7 @@
 
 /* ---------------   DÉBUT cartes   -------------- */
 
-#toggleViewButton {
+.toggleViewButton {
   background: linear-gradient(#bbdeea, #367ec1);
   float: right;
 }
