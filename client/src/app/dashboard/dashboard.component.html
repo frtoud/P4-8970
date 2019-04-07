@@ -3,7 +3,7 @@
   <div id="center-searchbar">
     <div class="searchBarDiv">
       <mat-form-field floatLabel="never" class="searchBarFieldAuteur">
-        <input matInput placeholder="Auteur..." [formControl]="form" [matAutocomplete]="auto">
+        <input matInput placeholder="Auteur..." (keyup.enter)="search()" [formControl]="form" [matAutocomplete]="auto">
         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
           <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
             {{option.firstName}} {{option.lastName}}
@@ -14,7 +14,7 @@
   
     <div class="searchBarDiv">
       <mat-form-field floatLabel="never" class="searchBarField">
-        <mat-select placeholder="Statut..." [(value)]="searchStatus">
+        <mat-select placeholder="Statut..." (keyup.enter)="search()" [(value)]="searchStatus">
           <mat-option >-</mat-option>
           <mat-option value="IN_PROGRESS">en cours</mat-option>
           <mat-option value="COMPLETED">complété</mat-option>
@@ -26,7 +26,7 @@
   
     <div class="searchBarDiv">
       <mat-form-field floatLabel="never" class="searchBarField">
-        <mat-select placeholder="Patron..." [(value)]="searchPatron">
+        <mat-select placeholder="Patron..." (keyup.enter)="search()" [(value)]="searchPatron">
           <mat-option >-</mat-option>
           <mat-option value="Aide financière">aide financière</mat-option>
           <mat-option value="Avance de voyage">avance de voyage</mat-option>
@@ -39,14 +39,14 @@
   
     <div class="searchBarDiv">
       <mat-form-field floatLabel="never" class="searchBarDate">
-        <input matInput [matDatepicker]="pickerEntre" placeholder="Entre le" [(ngModel)]="dateFrom">
+        <input matInput [matDatepicker]="pickerEntre" (keyup.enter)="search()" placeholder="Entre le" [(ngModel)]="dateFrom">
         <mat-datepicker-toggle matSuffix [for]="pickerEntre"></mat-datepicker-toggle>
         <mat-datepicker #pickerEntre></mat-datepicker>
       </mat-form-field>
     </div>
     <div class="searchBarLastDiv">
       <mat-form-field floatLabel="never" class="searchBarDate">
-        <input matInput [matDatepicker]="pickerEtLe" placeholder="et le" [(ngModel)]="dateTo">
+        <input matInput [matDatepicker]="pickerEtLe" (keyup.enter)="search()" placeholder="et le" [(ngModel)]="dateTo">
         <mat-datepicker-toggle matSuffix [for]="pickerEtLe"></mat-datepicker-toggle>
         <mat-datepicker #pickerEtLe></mat-datepicker>
       </mat-form-field>
@@ -60,7 +60,7 @@
 
 <div class="grid-container">
 
-  <!-------------------------------cartes A Completer---------------------------------->
+  <!-------------------------------DÉBUT cartes A Completer---------------------------------->
   <div *ngIf="vueCarte == 'true' && !searchActivated" id="cards-container">
     À compléter ({{aCompleterCards.length}})
     <div id="toggleViewButton">
@@ -193,7 +193,7 @@
   </div>
   <!-------------------------------FIN cartes A Completer---------------------------------->
 
-  <!-------------------------------cartes Autres ------------------------------------------->
+  <!-------------------------------DÉBUT cartes Autres ------------------------------------------->
   <div *ngIf="vueCarte == 'true' && !searchActivated" id="cards-container">
     Autres ({{autresCards.length}})
     
@@ -326,7 +326,7 @@
   </div>
   <!-------------------------------FIN cartes Autres ------------------------------------------->
 
-  <!-------------------------------cartes recherche------------------------------------------->
+  <!-------------------------------DÉBUT cartes recherche------------------------------------------->
   <div *ngIf="vueCarte == 'true' && searchActivated" id="cards-container">
     Résultats de la recherche ({{displayedCards.length}})
     
@@ -463,7 +463,7 @@
 
 
 
-  <!---------------------liste A completer ------------------------->
+  <!---------------------DÉBUT liste A completer ------------------------->
   <div *ngIf="vueCarte == 'false' && !searchActivated">
     <div id="toggleViewButton">
       <button mat-icon-button (click)="toggleVueCarte()">
@@ -555,7 +555,7 @@
   <!---------------------FIN liste A completer ------------------------->
 
   
-  <!---------------------liste Autres ------------------------->
+  <!---------------------DÉBUT liste Autres ------------------------->
   <div *ngIf="vueCarte == 'false' && !searchActivated">
 
     <h4 class="header-title">Autres formulaires ({{autresCards.length}})</h4>
@@ -637,7 +637,7 @@
   </div>
   <!---------------------FIN liste Autres ------------------------->
 
-  <!---------------------liste recherche ------------------------->
+  <!---------------------DÉBUT liste recherche ------------------------->
   <div *ngIf="vueCarte == 'false' && searchActivated">
   
     <h4 class="header-title">Résultats de la recherche ({{displayedCards.length}})</h4>
