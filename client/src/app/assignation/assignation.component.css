@@ -54,7 +54,10 @@
 #metadata {
   display: flex;
   flex: row;
-  justify-content: space-between;
+}
+
+#form-title {
+  margin-left: 30%;
 }
 
 mat-form-field {

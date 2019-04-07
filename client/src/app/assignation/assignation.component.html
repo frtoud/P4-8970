@@ -2,7 +2,7 @@
   <div>
       <div id="metadata" *ngIf="currentForm">
         <img src="assets/img/logo-POLY-forms.png" width=180 height=80>
-          <h4>{{currentForm.name | uppercase}}</h4>
+          <h4 id="form-title">{{currentForm.name | uppercase}}</h4>
       </div>
       <ng-template formhost></ng-template>
   </div>
