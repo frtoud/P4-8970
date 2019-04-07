@@ -33,6 +33,7 @@ export class NewAccountComponent {
 
   typeFormControl = new FormControl();
   errorMessage: string;
+  displaySpinner: boolean = false;
 
   constructor(private accountsService: AccountsService,
               public dialog: MatDialog,
@@ -65,8 +66,10 @@ export class NewAccountComponent {
       email : this.emailFormControl.value,
       type: this.typeFormControl.value
     };
+    this.displaySpinner = true;
     this.accountsService.addAccount(account)
     .then(() => {
+      this.displaySpinner = false;
       this.openDialog();
       this.resetFormControls();
     })
@@ -77,7 +80,6 @@ export class NewAccountComponent {
     const dialogRef = this.dialog.open(SuccessDialog, {
       width: '250px',
     });
-
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });

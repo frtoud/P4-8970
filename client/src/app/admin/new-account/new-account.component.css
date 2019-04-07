@@ -44,3 +44,7 @@ button {
     color: red;
     text-align: center;
 }
+
+.mat-progress-spinner /deep/circle, .mat-spinner /deep/circle {
+    stroke: #066dab;
+}
