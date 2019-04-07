@@ -1,5 +1,6 @@
 #preview {
   pointer-events: none;
+  background-color: #f7f7f7;
 }
 
 .selection-table button {
@@ -40,4 +41,12 @@
   width: 80%;
   margin: 10%;
   background-image: linear-gradient(to bottom, #e8f2db, #8dc83e);
+}
+
+#preview-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+  color: #B81E32;
 }
