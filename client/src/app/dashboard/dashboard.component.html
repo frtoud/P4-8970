@@ -3,7 +3,7 @@
   <div id="center-searchbar">
     <div class="searchBarDiv">
       <mat-form-field floatLabel="never" class="searchBarFieldAuteur">
-        <input matInput placeholder="Auteur..." [formControl]="form" [matAutocomplete]="auto">
+        <input matInput placeholder="Auteur..." (keyup.enter)="search()" [formControl]="form" [matAutocomplete]="auto">
         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
           <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
             {{option.firstName}} {{option.lastName}}
@@ -14,7 +14,7 @@
   
     <div class="searchBarDiv">
       <mat-form-field floatLabel="never" class="searchBarField">
-        <mat-select placeholder="Statut..." [(value)]="searchStatus">
+        <mat-select placeholder="Statut..." (keyup.enter)="search()" [(value)]="searchStatus">
           <mat-option >-</mat-option>
           <mat-option value="IN_PROGRESS">en cours</mat-option>
           <mat-option value="COMPLETED">complété</mat-option>
@@ -26,7 +26,7 @@
   
     <div class="searchBarDiv">
       <mat-form-field floatLabel="never" class="searchBarField">
-        <mat-select placeholder="Patron..." [(value)]="searchPatron">
+        <mat-select placeholder="Patron..." (keyup.enter)="search()" [(value)]="searchPatron">
           <mat-option >-</mat-option>
           <mat-option value="Aide financière">aide financière</mat-option>
           <mat-option value="Avance de voyage">avance de voyage</mat-option>
@@ -39,14 +39,14 @@
   
     <div class="searchBarDiv">
       <mat-form-field floatLabel="never" class="searchBarDate">
-        <input matInput [matDatepicker]="pickerEntre" placeholder="Entre le" [(ngModel)]="dateFrom">
+        <input matInput [matDatepicker]="pickerEntre" (keyup.enter)="search()" placeholder="Entre le" [(ngModel)]="dateFrom">
         <mat-datepicker-toggle matSuffix [for]="pickerEntre"></mat-datepicker-toggle>
         <mat-datepicker #pickerEntre></mat-datepicker>
       </mat-form-field>
     </div>
     <div class="searchBarLastDiv">
       <mat-form-field floatLabel="never" class="searchBarDate">
-        <input matInput [matDatepicker]="pickerEtLe" placeholder="et le" [(ngModel)]="dateTo">
+        <input matInput [matDatepicker]="pickerEtLe" (keyup.enter)="search()" placeholder="et le" [(ngModel)]="dateTo">
         <mat-datepicker-toggle matSuffix [for]="pickerEtLe"></mat-datepicker-toggle>
         <mat-datepicker #pickerEtLe></mat-datepicker>
       </mat-form-field>
@@ -60,7 +60,7 @@
 
 <div class="grid-container">
 
-  <!-------------------------------cartes A Completer---------------------------------->
+  <!-------------------------------DÉBUT cartes A Completer---------------------------------->
   <div *ngIf="vueCarte == 'true' && !searchActivated" id="cards-container">
     À compléter ({{aCompleterCards.length}})
     <div id="toggleViewButton">
@@ -70,392 +70,397 @@
     </div>
       
     <hr id="a-completer-ligne">
-  <div id="centering-array">
-    <div id = "card-array">
-      <div *ngFor="let card of aCompleterCards" id="card">
-        <mat-card class="dashboard-card">
-          <mat-card-content class="dashboard-card-content">
-            <ng-container id="card-header">
-              
-              <span id="card-titleAndType">
-                  {{card.nomFormulaire}}
-              </span>
-              <span id="card-dateAndAuthor">
-                  Créé le: {{card.creeLe|date:'dd/MM/yyyy HH:mm'}}
-              </span> <br>
-              
-              <span id="carte-date-auteur">
-                  Auteur: {{card.auteur.nom}}
-              </span>
-            </ng-container>
-            <ng-container id="expansible">
-              <mat-expansion-panel>
+    <div id="centering-array">
+      <div id = "card-array">
+        <div *ngFor="let card of aCompleterCards" id="card">
+          <mat-card class="dashboard-card">
+            <mat-card-content class="dashboard-card-content">
+              <ng-container id="card-header">
+                
+                <span id="card-titleAndType">
+                    {{card.nomFormulaire}}
+                </span>
+                <span id="card-dateAndAuthor">
+                    Créé le: {{card.creeLe|date:'dd/MM/yyyy HH:mm'}}
+                </span> <br>
+                
+                <span id="carte-date-auteur">
+                    Auteur: {{card.auteur.nom}}
+                </span>
+              </ng-container>
+              <ng-container id="expansible">
+                <mat-expansion-panel>
 
-                <mat-expansion-panel-header [ngSwitch]="card.statut">
-                  <ng-container *ngSwitchCase="'IN_PROGRESS'">
-                    <i class="material-icons" id="inProgresIcon"> radio_button_unchecked </i>
-                    <mat-progress-bar class="inProgress" [mode]="determinate"
-                      [value]="calculateCompletionRate(card.collaborateurs)">
-                    </mat-progress-bar>
-                  </ng-container>
-                  <ng-container *ngSwitchCase="'COMPLETED'">
-                    <i class="material-icons" id="completedIcon"> check_circle </i>
-                    <mat-progress-bar class="completed"
-                      [mode]="determinate" [value]="100">
-                    </mat-progress-bar>
-                  </ng-container>
-                  <ng-container *ngSwitchCase="'ARCHIVED'">
-                    <i class="material-icons" id="archivedIcon"> check_box </i>
-                    <mat-progress-bar class="archived"
-                      [mode]="determinate" [value]="100">
-                    </mat-progress-bar>
-                  </ng-container>
-                  <ng-container *ngSwitchCase="'CANCELED'">
-                    <i class="material-icons" id="canceledIcon"> indeterminate_check_box </i>
-                    <mat-progress-bar class="canceled" [mode]="determinate"
-                      [value]="calculateCompletionRate(card.collaborateurs)">
-                    </mat-progress-bar>
-                  </ng-container>
-                </mat-expansion-panel-header>
-            
-                <!-- liste de collaborateurs dans la carte -->
-                <mat-table [dataSource]="card.collaborateurs" id="collaborateursList">
-                  <ng-container matColumnDef="collaborateursList">
-                    <td mat-cell *matCellDef="let collaborateur"> 
-                      <ng-container [ngSwitch]="collaborateur.acces"> <!-- another container for making switch work -->
-                        <div *ngSwitchCase="'COMPLETED'" class="collaborateurCompleted">
-                          <p>
-                            {{collaborateur.nom}}
-                          </p>
-                        </div>
-                        <div *ngSwitchCase="'PREVIEW'" class="collaborateurCompleted">
-                          <p>
-                            {{collaborateur.nom}}
-                          </p>
-                        </div>
-                        <div *ngSwitchCase="'EDITION'" class="collaborateurEdition">
-                          <p>
-                            {{collaborateur.nom}}
-                          </p>
-                        </div>
-                        
-                        <div *ngSwitchCase="'WAITING'" class="collaborateurWaiting">
-                          <p>
-                            {{collaborateur.nom}}
-                          </p>
-                        </div>
-                        <div *ngSwitchDefault class="collaborateurWaiting">
-                          <p>
-                            {{collaborateur.nom}}
-                          </p>
-                        </div>
-                      </ng-container>
-                    </td>
-                  </ng-container>
-                  <mat-row *matRowDef="let row; columns: cardCollaborateurs;"></mat-row>
-                </mat-table>
-                <!-- FIN liste de collaborateurs dans la carte -->
-                
-                <ng-container [ngSwitch]="determineState(card)">
-                  <div *ngSwitchCase="'EDIT'">
-                      
-                    <button mat-raised-button id="modifier" (click)="redirectTo(['/edit', card._id, 'modify'])">
-                      MODIFIER
-                    </button>
+                  <mat-expansion-panel-header [ngSwitch]="card.statut">
+                    <ng-container *ngSwitchCase="'IN_PROGRESS'">
+                      <i class="material-icons" id="inProgresIcon"> radio_button_unchecked </i>
+                      <mat-progress-bar class="inProgress" [mode]="determinate"
+                        [value]="calculateCompletionRate(card.collaborateurs)">
+                      </mat-progress-bar>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'COMPLETED'">
+                      <i class="material-icons" id="completedIcon"> check_circle </i>
+                      <mat-progress-bar class="completed"
+                        [mode]="determinate" [value]="100">
+                      </mat-progress-bar>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'ARCHIVED'">
+                      <i class="material-icons" id="archivedIcon"> check_box </i>
+                      <mat-progress-bar class="archived"
+                        [mode]="determinate" [value]="100">
+                      </mat-progress-bar>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'CANCELED'">
+                      <i class="material-icons" id="canceledIcon"> indeterminate_check_box </i>
+                      <mat-progress-bar class="canceled" [mode]="determinate"
+                        [value]="calculateCompletionRate(card.collaborateurs)">
+                      </mat-progress-bar>
+                    </ng-container>
+                  </mat-expansion-panel-header>
+              
+                  <!-- liste de collaborateurs dans la carte -->
+                  <mat-table [dataSource]="card.collaborateurs" id="collaborateursList">
+                    <ng-container matColumnDef="collaborateursList">
+                      <td mat-cell *matCellDef="let collaborateur"> 
+                        <ng-container [ngSwitch]="collaborateur.acces"> <!-- another container for making switch work -->
+                          <div *ngSwitchCase="'COMPLETED'" class="collaborateurCompleted">
+                            <p>
+                              {{collaborateur.nom}}
+                            </p>
+                          </div>
+                          <div *ngSwitchCase="'PREVIEW'" class="collaborateurCompleted">
+                            <p>
+                              {{collaborateur.nom}}
+                            </p>
+                          </div>
+                          <div *ngSwitchCase="'EDITION'" class="collaborateurEdition">
+                            <p>
+                              {{collaborateur.nom}}
+                            </p>
+                          </div>
+                          
+                          <div *ngSwitchCase="'WAITING'" class="collaborateurWaiting">
+                            <p>
+                              {{collaborateur.nom}}
+                            </p>
+                          </div>
+                          <div *ngSwitchDefault class="collaborateurWaiting">
+                            <p>
+                              {{collaborateur.nom}}
+                            </p>
+                          </div>
+                        </ng-container>
+                      </td>
+                    </ng-container>
+                    <mat-row *matRowDef="let row; columns: cardCollaborateurs;"></mat-row>
+                  </mat-table>
+                  <!-- FIN liste de collaborateurs dans la carte -->
                   
+                  <ng-container [ngSwitch]="determineState(card)">
+                    <div *ngSwitchCase="'EDIT'">
+                        
+                      <button mat-raised-button id="modifier" (click)="redirectTo(['/edit', card._id, 'modify'])">
+                        MODIFIER
+                      </button>
                     
-                  </div>
-                  <div *ngSwitchCase="'VALIDATE'">
                       
-                    <button mat-raised-button id="modifier" (click)="redirectTo(['/edit', card._id, 'validate'])">
-                      VALIDER
-                    </button>
-                   
-                  </div>
-                  <div *ngSwitchCase="'VIEW'">
-                      
-                    <button mat-raised-button id="modifier" (click)="redirectTo(['/edit', card._id, 'view'])">
-                      VISUALISER
-                    </button>
+                    </div>
+                    <div *ngSwitchCase="'VALIDATE'">
+                        
+                      <button mat-raised-button id="modifier" (click)="redirectTo(['/edit', card._id, 'validate'])">
+                        VALIDER
+                      </button>
                     
-                  </div>
-                </ng-container>
-                
-                
-              </mat-expansion-panel>
-            </ng-container>
-          </mat-card-content>
-        </mat-card>
+                    </div>
+                    <div *ngSwitchCase="'VIEW'">
+                        
+                      <button mat-raised-button id="modifier" (click)="redirectTo(['/edit', card._id, 'view'])">
+                        VISUALISER
+                      </button>
+                      
+                    </div>
+                  </ng-container>
+                  
+                  
+                </mat-expansion-panel>
+              </ng-container>
+            </mat-card-content>
+          </mat-card>
+        </div>
       </div>
     </div>
-  </div>
     <br><br>
+  </div>
+  <div *ngIf="vueCarte == 'true' && !searchActivated">
+    <h1>
+
+    </h1>
   </div>
   <!-------------------------------FIN cartes A Completer---------------------------------->
 
-  <!-------------------------------cartes Autres ------------------------------------------->
+  <!-------------------------------DÉBUT cartes Autres ------------------------------------------->
   <div *ngIf="vueCarte == 'true' && !searchActivated" id="cards-container">
     Autres ({{autresCards.length}})
     
     <hr id="a-completer-ligne">
     <div id="centering-array">
-    <div id = "card-array">
-      <div *ngFor="let card of autresCards" id="card">
-        <mat-card class="dashboard-card">
-          <mat-card-content class="dashboard-card-content">
-            <ng-container id="card-header">
-              
-              <span id="card-titleAndType">
-                  {{card.nomFormulaire}}
-              </span>
-              <span id="card-dateAndAuthor">
-                  Créé le: {{card.creeLe|date:'dd/MM/yyyy HH:mm'}}
-              </span> <br>
-              
-              <span id="carte-date-auteur">
-                  Auteur: {{card.auteur.nom}}
-              </span>
-            </ng-container>
-            <ng-container id="expansible">
-              <mat-expansion-panel>
+      <div id = "card-array">
+        <div *ngFor="let card of autresCards" id="card">
+          <mat-card class="dashboard-card">
+            <mat-card-content class="dashboard-card-content">
+              <ng-container id="card-header">
+                
+                <span id="card-titleAndType">
+                    {{card.nomFormulaire}}
+                </span>
+                <span id="card-dateAndAuthor">
+                    Créé le: {{card.creeLe|date:'dd/MM/yyyy HH:mm'}}
+                </span> <br>
+                
+                <span id="carte-date-auteur">
+                    Auteur: {{card.auteur.nom}}
+                </span>
+              </ng-container>
+              <ng-container id="expansible">
+                <mat-expansion-panel>
 
-                <mat-expansion-panel-header [ngSwitch]="card.statut">
-                  <ng-container *ngSwitchCase="'IN_PROGRESS'">
-                    <div>
-                      <i *ngIf="calculateCompletionRate(card.collaborateurs) == 100 ; else unchecked"
-                        class="material-icons"> radio_button_checked </i>
-                      <ng-template #unchecked>
-                        <i class="material-icons"> radio_button_unchecked </i>
-                      </ng-template>
-                    </div>
-                    <mat-progress-bar class="inProgress" [mode]="determinate"
-                      [value]="calculateCompletionRate(card.collaborateurs)">
-                    </mat-progress-bar>
-                  </ng-container>
-                  <ng-container *ngSwitchCase="'COMPLETED'">
-                    <i class="material-icons" id="completedIcon"> check_circle </i>
-                    <mat-progress-bar class="completed"
-                    [mode]="determinate" [value]="100">
-                    </mat-progress-bar>
-                  </ng-container>
-                  <ng-container *ngSwitchCase="'ARCHIVED'">
-                    <i class="material-icons" id="archivedIcon"> check_box </i>
-                    <mat-progress-bar class="archived"
-                    [mode]="determinate" [value]="100">
-                    </mat-progress-bar>
-                  </ng-container>
-                  <ng-container *ngSwitchCase="'CANCELED'">
-                    <i class="material-icons" id="canceledIcon"> indeterminate_check_box </i>
-                    <mat-progress-bar class="canceled"
-                    [mode]="determinate" [value]="calculateCompletionRate(card.collaborateurs)">
-                    </mat-progress-bar>
-                  </ng-container>
-                </mat-expansion-panel-header>
-            
-                <!-- liste de collaborateurs dans la carte -->
-                <mat-table [dataSource]="card.collaborateurs" id="collaborateursList">
-                  <ng-container matColumnDef="collaborateursList">
-                    <td mat-cell *matCellDef="let collaborateur"> 
-                      <ng-container [ngSwitch]="collaborateur.acces"> <!-- another container for making switch work -->
-                        <div *ngSwitchCase="'COMPLETED'" class="collaborateurCompleted">
-                          <p>
-                            {{collaborateur.nom}}
-                          </p>
-                        </div>
-                        <div *ngSwitchCase="'PREVIEW'" class="collaborateurCompleted">
-                          <p>
-                            {{collaborateur.nom}}
-                          </p>
-                        </div>
-                        <div *ngSwitchCase="'EDITION'" class="collaborateurEdition">
-                          <p>
-                            {{collaborateur.nom}}
-                          </p>
-                        </div>
-                        
-                        <div *ngSwitchCase="'WAITING'" class="collaborateurWaiting">
-                          <p>
-                            {{collaborateur.nom}}
-                          </p>
-                        </div>
-                        <div *ngSwitchDefault class="collaborateurWaiting">
-                          <p>
-                            {{collaborateur.nom}}
-                          </p>
-                        </div>
-                      </ng-container>
-                    </td>
-                  </ng-container>
-                  <mat-row *matRowDef="let row; columns: cardCollaborateurs;"></mat-row>
-                </mat-table>
-                <!-- FIN liste de collaborateurs dans la carte -->
-                
-                <ng-container [ngSwitch]="determineState(card)">
-                  <div *ngSwitchCase="'EDIT'">
-                      
-                    <button mat-raised-button id="modifier" (click)="redirectTo(['/edit', card._id, 'modify'])">
-                      MODIFIER
-                    </button>
+                  <mat-expansion-panel-header [ngSwitch]="card.statut">
+                    <ng-container *ngSwitchCase="'IN_PROGRESS'">
+                      <div>
+                        <i *ngIf="calculateCompletionRate(card.collaborateurs) == 100 ; else unchecked"
+                          class="material-icons"> radio_button_checked </i>
+                        <ng-template #unchecked>
+                          <i class="material-icons"> radio_button_unchecked </i>
+                        </ng-template>
+                      </div>
+                      <mat-progress-bar class="inProgress" [mode]="determinate"
+                        [value]="calculateCompletionRate(card.collaborateurs)">
+                      </mat-progress-bar>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'COMPLETED'">
+                      <i class="material-icons" id="completedIcon"> check_circle </i>
+                      <mat-progress-bar class="completed"
+                      [mode]="determinate" [value]="100">
+                      </mat-progress-bar>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'ARCHIVED'">
+                      <i class="material-icons" id="archivedIcon"> check_box </i>
+                      <mat-progress-bar class="archived"
+                      [mode]="determinate" [value]="100">
+                      </mat-progress-bar>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'CANCELED'">
+                      <i class="material-icons" id="canceledIcon"> indeterminate_check_box </i>
+                      <mat-progress-bar class="canceled"
+                      [mode]="determinate" [value]="calculateCompletionRate(card.collaborateurs)">
+                      </mat-progress-bar>
+                    </ng-container>
+                  </mat-expansion-panel-header>
+              
+                  <!-- liste de collaborateurs dans la carte -->
+                  <mat-table [dataSource]="card.collaborateurs" id="collaborateursList">
+                    <ng-container matColumnDef="collaborateursList">
+                      <td mat-cell *matCellDef="let collaborateur"> 
+                        <ng-container [ngSwitch]="collaborateur.acces"> <!-- another container for making switch work -->
+                          <div *ngSwitchCase="'COMPLETED'" class="collaborateurCompleted">
+                            <p>
+                              {{collaborateur.nom}}
+                            </p>
+                          </div>
+                          <div *ngSwitchCase="'PREVIEW'" class="collaborateurCompleted">
+                            <p>
+                              {{collaborateur.nom}}
+                            </p>
+                          </div>
+                          <div *ngSwitchCase="'EDITION'" class="collaborateurEdition">
+                            <p>
+                              {{collaborateur.nom}}
+                            </p>
+                          </div>
+                          
+                          <div *ngSwitchCase="'WAITING'" class="collaborateurWaiting">
+                            <p>
+                              {{collaborateur.nom}}
+                            </p>
+                          </div>
+                          <div *ngSwitchDefault class="collaborateurWaiting">
+                            <p>
+                              {{collaborateur.nom}}
+                            </p>
+                          </div>
+                        </ng-container>
+                      </td>
+                    </ng-container>
+                    <mat-row *matRowDef="let row; columns: cardCollaborateurs;"></mat-row>
+                  </mat-table>
+                  <!-- FIN liste de collaborateurs dans la carte -->
                   
+                  <ng-container [ngSwitch]="determineState(card)">
+                    <div *ngSwitchCase="'EDIT'">
+                        
+                      <button mat-raised-button id="modifier" (click)="redirectTo(['/edit', card._id, 'modify'])">
+                        MODIFIER
+                      </button>
                     
-                  </div>
-                  <div *ngSwitchCase="'VALIDATE'">
                       
-                    <button mat-raised-button id="modifier" (click)="redirectTo(['/edit', card._id, 'validate'])">
-                      VALIDER
-                    </button>
-                    
-                  </div>
-                  <div *ngSwitchCase="'VIEW'">
+                    </div>
+                    <div *ngSwitchCase="'VALIDATE'">
+                        
+                      <button mat-raised-button id="modifier" (click)="redirectTo(['/edit', card._id, 'validate'])">
+                        VALIDER
+                      </button>
                       
-                    <button mat-raised-button id="modifier" (click)="redirectTo(['/edit', card._id, 'view'])">
-                      VISUALISER
-                    </button>
-                    
-                  </div>
-                </ng-container>
-                
-                
-              </mat-expansion-panel>
-            </ng-container>
-          </mat-card-content>
-        </mat-card>
+                    </div>
+                    <div *ngSwitchCase="'VIEW'">
+                        
+                      <button mat-raised-button id="modifier" (click)="redirectTo(['/edit', card._id, 'view'])">
+                        VISUALISER
+                      </button>
+                      
+                    </div>
+                  </ng-container>
+                  
+                  
+                </mat-expansion-panel>
+              </ng-container>
+            </mat-card-content>
+          </mat-card>
+        </div>
       </div>
     </div>
   </div>
-  </div>
   <!-------------------------------FIN cartes Autres ------------------------------------------->
 
-  <!-------------------------------cartes recherche------------------------------------------->
+  <!-------------------------------DÉBUT cartes recherche------------------------------------------->
   <div *ngIf="vueCarte == 'true' && searchActivated" id="cards-container">
     Résultats de la recherche ({{displayedCards.length}})
     
     <hr id="a-completer-ligne">
     <div id="centering-array">
-    <div id = "card-array">
-      <div *ngFor="let card of displayedCards" id="card">
-        <mat-card class="dashboard-card">
-          <mat-card-content class="dashboard-card-content">
-            <ng-container id="card-header">
-              
-              <span id="card-titleAndType">
-                  {{card.nomFormulaire}}
-              </span>
-              <span id="card-dateAndAuthor">
-                  Créé le: {{card.creeLe|date:'dd/MM/yyyy HH:mm'}}
-              </span> <br>
-              
-              <span id="carte-date-auteur">
-                  Auteur: {{card.auteur.nom}}
-              </span>
-            </ng-container>
-            <ng-container id="expansible">
-              <mat-expansion-panel>
+      <div id = "card-array">
+        <div *ngFor="let card of displayedCards" id="card">
+          <mat-card class="dashboard-card">
+            <mat-card-content class="dashboard-card-content">
+              <ng-container id="card-header">
+                
+                <span id="card-titleAndType">
+                    {{card.nomFormulaire}}
+                </span>
+                <span id="card-dateAndAuthor">
+                    Créé le: {{card.creeLe|date:'dd/MM/yyyy HH:mm'}}
+                </span> <br>
+                
+                <span id="carte-date-auteur">
+                    Auteur: {{card.auteur.nom}}
+                </span>
+              </ng-container>
+              <ng-container id="expansible">
+                <mat-expansion-panel>
 
-                <mat-expansion-panel-header [ngSwitch]="card.statut">
-                  <ng-container *ngSwitchCase="'IN_PROGRESS'">
-                    <div>
-                      <i *ngIf="calculateCompletionRate(card.collaborateurs) == 100 ; else unchecked"
-                        class="material-icons"> radio_button_checked </i>
-                      <ng-template #unchecked>
-                        <i class="material-icons"> radio_button_unchecked </i>
-                      </ng-template>
-                    </div>
-                    <mat-progress-bar class="inProgress" [mode]="determinate"
-                      [value]="calculateCompletionRate(card.collaborateurs)">
-                    </mat-progress-bar>
-                  </ng-container>
-                  <ng-container *ngSwitchCase="'COMPLETED'">
-                    <i class="material-icons" id="completedIcon"> check_circle </i>
-                    <mat-progress-bar class="completed"
-                    [mode]="determinate" [value]="100">
-                    </mat-progress-bar>
-                  </ng-container>
-                  <ng-container *ngSwitchCase="'ARCHIVED'">
-                    <i class="material-icons" id="archivedIcon"> check_box </i>
-                    <mat-progress-bar class="archived"
-                    [mode]="determinate" [value]="100">
-                    </mat-progress-bar>
-                  </ng-container>
-                  <ng-container *ngSwitchCase="'CANCELED'">
-                    <i class="material-icons" id="canceledIcon"> indeterminate_check_box </i>
-                    <mat-progress-bar class="canceled"
-                    [mode]="determinate" [value]="calculateCompletionRate(card.collaborateurs)">
-                    </mat-progress-bar>
-                  </ng-container>
-                </mat-expansion-panel-header>
-            
-                <!-- liste de collaborateurs dans la carte -->
-                <mat-table [dataSource]="card.collaborateurs" id="collaborateursList">
-                  <ng-container matColumnDef="collaborateursList">
-                    <td mat-cell *matCellDef="let collaborateur"> 
-                      <ng-container [ngSwitch]="collaborateur.acces"> <!-- another container for making switch work -->
-                        <div *ngSwitchCase="'COMPLETED'" class="collaborateurCompleted">
-                          <p>
-                            {{collaborateur.nom}}
-                          </p>
-                        </div>
-                        <div *ngSwitchCase="'PREVIEW'" class="collaborateurCompleted">
-                          <p>
-                            {{collaborateur.nom}}
-                          </p>
-                        </div>
-                        <div *ngSwitchCase="'EDITION'" class="collaborateurEdition">
-                          <p>
-                            {{collaborateur.nom}}
-                          </p>
-                        </div>
-                        
-                        <div *ngSwitchCase="'WAITING'" class="collaborateurWaiting">
-                          <p>
-                            {{collaborateur.nom}}
-                          </p>
-                        </div>
-                        <div *ngSwitchDefault class="collaborateurWaiting">
-                          <p>
-                            {{collaborateur.nom}}
-                          </p>
-                        </div>
-                      </ng-container>
-                    </td>
-                  </ng-container>
-                  <mat-row *matRowDef="let row; columns: cardCollaborateurs;"></mat-row>
-                </mat-table>
-                <!-- FIN liste de collaborateurs dans la carte -->
-                
-                <ng-container [ngSwitch]="determineState(card)">
-                  <div *ngSwitchCase="'EDIT'">
-                      
-                    <button mat-raised-button id="modifier" (click)="redirectTo(['/edit', card._id, 'modify'])">
-                      MODIFIER
-                    </button>
+                  <mat-expansion-panel-header [ngSwitch]="card.statut">
+                    <ng-container *ngSwitchCase="'IN_PROGRESS'">
+                      <div>
+                        <i *ngIf="calculateCompletionRate(card.collaborateurs) == 100 ; else unchecked"
+                          class="material-icons"> radio_button_checked </i>
+                        <ng-template #unchecked>
+                          <i class="material-icons"> radio_button_unchecked </i>
+                        </ng-template>
+                      </div>
+                      <mat-progress-bar class="inProgress" [mode]="determinate"
+                        [value]="calculateCompletionRate(card.collaborateurs)">
+                      </mat-progress-bar>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'COMPLETED'">
+                      <i class="material-icons" id="completedIcon"> check_circle </i>
+                      <mat-progress-bar class="completed"
+                      [mode]="determinate" [value]="100">
+                      </mat-progress-bar>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'ARCHIVED'">
+                      <i class="material-icons" id="archivedIcon"> check_box </i>
+                      <mat-progress-bar class="archived"
+                      [mode]="determinate" [value]="100">
+                      </mat-progress-bar>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'CANCELED'">
+                      <i class="material-icons" id="canceledIcon"> indeterminate_check_box </i>
+                      <mat-progress-bar class="canceled"
+                      [mode]="determinate" [value]="calculateCompletionRate(card.collaborateurs)">
+                      </mat-progress-bar>
+                    </ng-container>
+                  </mat-expansion-panel-header>
+              
+                  <!-- liste de collaborateurs dans la carte -->
+                  <mat-table [dataSource]="card.collaborateurs" id="collaborateursList">
+                    <ng-container matColumnDef="collaborateursList">
+                      <td mat-cell *matCellDef="let collaborateur"> 
+                        <ng-container [ngSwitch]="collaborateur.acces"> <!-- another container for making switch work -->
+                          <div *ngSwitchCase="'COMPLETED'" class="collaborateurCompleted">
+                            <p>
+                              {{collaborateur.nom}}
+                            </p>
+                          </div>
+                          <div *ngSwitchCase="'PREVIEW'" class="collaborateurCompleted">
+                            <p>
+                              {{collaborateur.nom}}
+                            </p>
+                          </div>
+                          <div *ngSwitchCase="'EDITION'" class="collaborateurEdition">
+                            <p>
+                              {{collaborateur.nom}}
+                            </p>
+                          </div>
+                          
+                          <div *ngSwitchCase="'WAITING'" class="collaborateurWaiting">
+                            <p>
+                              {{collaborateur.nom}}
+                            </p>
+                          </div>
+                          <div *ngSwitchDefault class="collaborateurWaiting">
+                            <p>
+                              {{collaborateur.nom}}
+                            </p>
+                          </div>
+                        </ng-container>
+                      </td>
+                    </ng-container>
+                    <mat-row *matRowDef="let row; columns: cardCollaborateurs;"></mat-row>
+                  </mat-table>
+                  <!-- FIN liste de collaborateurs dans la carte -->
                   
+                  <ng-container [ngSwitch]="determineState(card)">
+                    <div *ngSwitchCase="'EDIT'">
+                        
+                      <button mat-raised-button id="modifier" (click)="redirectTo(['/edit', card._id, 'modify'])">
+                        MODIFIER
+                      </button>
                     
-                  </div>
-                  <div *ngSwitchCase="'VALIDATE'">
                       
-                    <button mat-raised-button id="modifier" (click)="redirectTo(['/edit', card._id, 'validate'])">
-                      VALIDER
-                    </button>
-                   
-                  </div>
-                  <div *ngSwitchCase="'VIEW'">
-                      
-                    <button mat-raised-button id="modifier" (click)="redirectTo(['/edit', card._id, 'view'])">
-                      VISUALISER
-                    </button>
+                    </div>
+                    <div *ngSwitchCase="'VALIDATE'">
+                        
+                      <button mat-raised-button id="modifier" (click)="redirectTo(['/edit', card._id, 'validate'])">
+                        VALIDER
+                      </button>
                     
-                  </div>
-                </ng-container>
-                
-                
-              </mat-expansion-panel>
-            </ng-container>
-          </mat-card-content>
-        </mat-card>
+                    </div>
+                    <div *ngSwitchCase="'VIEW'">
+                        
+                      <button mat-raised-button id="modifier" (click)="redirectTo(['/edit', card._id, 'view'])">
+                        VISUALISER
+                      </button>
+                      
+                    </div>
+                  </ng-container>
+                  
+                  
+                </mat-expansion-panel>
+              </ng-container>
+            </mat-card-content>
+          </mat-card>
+        </div>
       </div>
     </div>
-  </div>
   </div>
   <!-------------------------------FIN cartes recherche------------------------------------------->
 
@@ -463,7 +468,7 @@
 
 
 
-  <!---------------------liste A completer ------------------------->
+  <!---------------------DÉBUT liste A completer ------------------------->
   <div *ngIf="vueCarte == 'false' && !searchActivated">
     <div id="toggleViewButton">
       <button mat-icon-button (click)="toggleVueCarte()">
@@ -555,7 +560,7 @@
   <!---------------------FIN liste A completer ------------------------->
 
   
-  <!---------------------liste Autres ------------------------->
+  <!---------------------DÉBUT liste Autres ------------------------->
   <div *ngIf="vueCarte == 'false' && !searchActivated">
 
     <h4 class="header-title">Autres formulaires ({{autresCards.length}})</h4>
@@ -637,7 +642,7 @@
   </div>
   <!---------------------FIN liste Autres ------------------------->
 
-  <!---------------------liste recherche ------------------------->
+  <!---------------------DÉBUT liste recherche ------------------------->
   <div *ngIf="vueCarte == 'false' && searchActivated">
   
     <h4 class="header-title">Résultats de la recherche ({{displayedCards.length}})</h4>
