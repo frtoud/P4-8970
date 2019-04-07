@@ -55,8 +55,14 @@
   top: 0;
   
 }
+
 body {
   margin: 0;
+}
+
+#userName {
+  font-size: 15px;
+  font-weight: lighter;
 }
 
 @media print{
