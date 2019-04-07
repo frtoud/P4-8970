@@ -13,40 +13,40 @@
     
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Utilisateur 
-          <i class="material-icons" *ngIf="currentCriteria.nameAsc" (click)="sortByName(true)">arrow_drop_down</i> 
-          <i class="material-icons" *ngIf="!currentCriteria.nameAsc" (click)="sortByName(false)">arrow_drop_up</i>
+          <!-- <i class="material-icons" *ngIf="currentCriteria.nameAsc" (click)="sortByName(true)">arrow_drop_down</i> 
+          <i class="material-icons" *ngIf="!currentCriteria.nameAsc" (click)="sortByName(false)">arrow_drop_up</i> -->
         </th>
         <td mat-cell *matCellDef="let element"> {{element.lastName + ", " + element.firstName}} </td>
       </ng-container>
     
       <ng-container matColumnDef="type">
         <th mat-header-cell *matHeaderCellDef> Type 
-            <i class="material-icons" *ngIf="currentCriteria.typeAsc">arrow_drop_down</i> 
-            <i class="material-icons" *ngIf="!currentCriteria.typeAsc">arrow_drop_up</i>
+            <!-- <i class="material-icons" *ngIf="currentCriteria.typeAsc">arrow_drop_down</i> 
+            <i class="material-icons" *ngIf="!currentCriteria.typeAsc">arrow_drop_up</i> -->
         </th>
         <td mat-cell *matCellDef="let element"> {{element.type | accountType}} </td>
       </ng-container>
     
       <ng-container matColumnDef="email">
         <th mat-header-cell *matHeaderCellDef> Adresse e-mail 
-            <i class="material-icons" *ngIf="currentCriteria.emailAsc">arrow_drop_down</i> 
-            <i class="material-icons" *ngIf="!currentCriteria.emailAsc">arrow_drop_up</i>
+            <!-- <i class="material-icons" *ngIf="currentCriteria.emailAsc">arrow_drop_down</i> 
+            <i class="material-icons" *ngIf="!currentCriteria.emailAsc">arrow_drop_up</i> -->
         </th>
         <td mat-cell *matCellDef="let element"> {{element.email}} </td>
       </ng-container>
 
       <ng-container matColumnDef="createdAt">
         <th mat-header-cell *matHeaderCellDef> Date de création 
-            <i class="material-icons" *ngIf="currentCriteria.createdAtAsc">arrow_drop_down</i> 
-            <i class="material-icons" *ngIf="!currentCriteria.createdAtAsc">arrow_drop_up</i>
+            <!-- <i class="material-icons" *ngIf="currentCriteria.createdAtAsc">arrow_drop_down</i> 
+            <i class="material-icons" *ngIf="!currentCriteria.createdAtAsc">arrow_drop_up</i> -->
         </th>
         <td mat-cell *matCellDef="let element"> {{element.createdAt | date:"dd-MM-yyyy"}} </td>
       </ng-container>
 
       <ng-container matColumnDef="updatedAt">
           <th mat-header-cell *matHeaderCellDef> Date de modification 
-              <i class="material-icons" *ngIf="currentCriteria.updatedAtAsc">arrow_drop_down</i> 
-              <i class="material-icons" *ngIf="!currentCriteria.updatedAtAsc">arrow_drop_up</i>
+              <!-- <i class="material-icons" *ngIf="currentCriteria.updatedAtAsc">arrow_drop_down</i> 
+              <i class="material-icons" *ngIf="!currentCriteria.updatedAtAsc">arrow_drop_up</i> -->
           </th>
           <td mat-cell *matCellDef="let element"> {{element.updatedAt | date:"dd-MM-yyyy"}} </td>
         </ng-container>
