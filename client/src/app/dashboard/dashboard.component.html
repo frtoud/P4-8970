@@ -357,7 +357,6 @@
           <i class="material-icons">view_list</i>
         </button>
       </div>
-      <hr id="a-completer-ligne">
         
       <div id="centering-array">
         <div id = "card-array">
@@ -493,7 +492,6 @@
           <i class="material-icons">view_list</i>
         </button>
       </div>
-      <hr id="a-completer-ligne">
 
       <h4 class="noResult">
         Aucun résultat trouvé
@@ -507,14 +505,14 @@
 
   <div *ngIf="vueCarte == 'false'" id="divList">
     <!---------------------DÉBUT liste A completer ------------------------->
-    <div id="toggleViewButton">
-      <button mat-icon-button (click)="toggleVueCarte()">
-        <i class="material-icons">view_module</i>
-      </button>
-    </div>
-    <br><br>
-  
     <div *ngIf="!searchActivated && aCompleterCards.length != 0">
+      <div id="toggleViewButton">
+        <button mat-icon-button (click)="toggleVueCarte()">
+          <i class="material-icons">view_module</i>
+        </button>
+      </div>
+      <br><br>
+      
       <div>
         <h4 class="header-title">Formulaires à compléter ({{aCompleterCards.length}})</h4>
         <table mat-table [dataSource]="aCompleterCards" id="forms-table">  
@@ -596,6 +594,13 @@
     </div>
 
     <div *ngIf="!searchActivated && aCompleterCards.length == 0">
+      <div id="toggleViewButton">
+        <button mat-icon-button (click)="toggleVueCarte()">
+          <i class="material-icons">view_module</i>
+        </button>
+      </div>
+      <br><br>
+
       <h4 class="noResult">
         Aucun formulaire en cours
       </h4>
@@ -605,7 +610,6 @@
     
     <!---------------------DÉBUT liste Autres ------------------------->
     <div *ngIf="!searchActivated && autresCards.length != 0">
-
       <h4 class="header-title">Autres formulaires ({{autresCards.length}})</h4>
       <table mat-table [dataSource]="autresCards" id="forms-table">  
         <ng-container matColumnDef="idForm">
@@ -692,9 +696,15 @@
     <!---------------------FIN liste Autres ------------------------->
 
     <!---------------------DÉBUT liste recherche ------------------------->
-    <div *ngIf="searchActivated">
+    <div *ngIf="searchActivated && displayedCards.length != 0">
+      Résultats de la recherche ({{displayedCards.length}})
+      <div id="toggleViewButton">
+        <button mat-icon-button (click)="toggleVueCarte()">
+          <i class="material-icons">view_module</i>
+        </button>
+      </div>
+      <br><br>
 
-      <h4 class="header-title">Résultats de la recherche ({{displayedCards.length}})</h4>
       <table mat-table [dataSource]="displayedCards" id="forms-table">  
         <ng-container matColumnDef="idForm">
           <th mat-header-cell *matHeaderCellDef> Id </th>
@@ -773,6 +783,14 @@
     </div>
 
     <div *ngIf="searchActivated && displayedCards.length == 0">
+      Résultats de la recherche ({{displayedCards.length}})
+      <div id="toggleViewButton">
+        <button mat-icon-button (click)="toggleVueCarte()">
+          <i class="material-icons">view_module</i>
+        </button>
+      </div>
+      <br><br>
+      
       <h4 class="noResult">
         Aucun résultat trouvé
       </h4>
