@@ -4,12 +4,12 @@
       <div id="metadata" *ngIf="metadata">
         <img src="assets/img/logo-POLY-forms.png" width=180 height=80>
         <div class="flex-column">
-          <h4>Auteur: {{metadata.auteur.nom}}</h4>
           <h4>{{metadata.nomFormulaire | uppercase}}</h4>
+          <h4>Auteur: {{metadata.auteur.nom}}</h4>
         </div>
         <div class="flex-column">
-          <h4>Créé le: {{metadata.creeLe | date:"dd-MM-yyyy"}}</h4>
-          <h4>Dernière Modification: {{metadata.modifieLe | date:"dd-MM-yyyy hh:mm"}} </h4>
+          <h4>Créé le: {{metadata.creeLe | date:"dd-MM-yyyy à hh:mm"}}</h4>
+          <h4>Dernière Modification: {{metadata.modifieLe | date:"dd-MM-yyyy à hh:mm"}} </h4>
         </div>
       </div>
       <ng-template formhost></ng-template>
