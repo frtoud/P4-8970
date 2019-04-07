@@ -27,6 +27,7 @@ export class DashboardComponent implements OnInit {
   cardCollaborateurs: string[] = ['collaborateursList'];
   vueListeColumns: string[] = ['idForm', 'auteur', 'collaborateurs', 'statut', 'modifieLe', 'creeLe', 'modifier'];
 
+  searchAutocompleteName: User;
   searchName = '';
   searchStatus = '';
   searchPatron = '';
@@ -98,18 +99,39 @@ export class DashboardComponent implements OnInit {
       );
     });
 
+    let vue = localStorage.getItem("vue");
+
+    /*
+    if(vue){
+      if(vue==="true"){
+        this.vueCarte = true;}
+        else{
+          this.vueCarte = false;}
+      }
+
+    console.log("vueCarte: " + vue, typeof vue);
+    */
     
   }
   
   toggleVueCarte() {
     this.vueCarte = 'true';
+    /*
+    localStorage.setItem("vue", "true");
+    console.log("vueCarte: " + vueCarte);
+    */
   }
   toggleVueListe() {
     this.vueCarte = 'false';
+    /*
+    localStorage.setItem("vue", "false");
+    console.log("vueCarte: " + vueCarte);
+    */
+
   }
 
   displayFn(user?: User): string | undefined {
-    return user ? user.firstName + ' ' + user.lastName + ': ' + user.email : undefined;
+    return user ? user.firstName + ' ' + user.lastName : undefined;
   }
 
   private filtrer(name: string): User[] {
@@ -118,7 +140,6 @@ export class DashboardComponent implements OnInit {
     return this.listCollaborateurs.filter(option => ( //TODOkete: filtrer sur tout le string
          option.firstName.toLowerCase().indexOf(filterValue) === 0
       || option.lastName.toLowerCase().indexOf(filterValue) === 0
-      || option.email.toLowerCase().indexOf(filterValue) === 0
     )
     );
   }
@@ -235,8 +256,13 @@ export class DashboardComponent implements OnInit {
   }
 
   private search() {
-    if (this.searchName === '' && this.searchStatus === '' &&
-        this.searchPatron === '' && this.dateFrom == null && this.dateTo == null) {
+    let searchString = this.form.value;
+    this.searchName = typeof searchString === 'string' ? searchString : this.displayFn(searchString);
+
+    if ((this.searchName === '' || this.searchName == undefined) &&
+        (this.searchStatus === '' || this.searchStatus == undefined) &&
+        (this.searchPatron === '' || this.searchPatron == undefined) &&
+        this.dateFrom == null && this.dateTo == null) {
       this.desactivateSearch();
       return;
     }
@@ -244,7 +270,7 @@ export class DashboardComponent implements OnInit {
     this.searchResult = this.dashboardForms;
     // à ajouter la maniere de gérer les combinaisons de filtres!!!
     if (this.searchName) {
-      this.searchResult = this.searchAuthor();
+        this.searchResult = this.searchAuthor();
     }
 
     if (this.searchStatus === 'COMPLETED') {

@@ -1,15 +1,16 @@
-<mat-toolbar color="primary" *ngIf="currentUser" id="toolbar">
+
+<mat-toolbar color="primary" *ngIf="currentUser" id="toolbar" >
     
     <span id="bar"><img src="assets/img/logo-poly.PNG"></span>
     <div id="navbar-links" >
-        <button mat-button id="link" routerLink="/dashboard">Tableau de bord</button>
-        <button mat-button id="link" routerLink="/newForm" *ngIf="isGestionnaire()">Nouveau formulaire</button>
+        <button mat-button id="link" routerLink="/dashboard" routerLinkActive="active">Tableau de bord</button>
+        <button mat-button id="link" routerLink="/newForm"  routerLinkActive="active" *ngIf="isGestionnaire()">Nouveau formulaire</button>
     </div>
     <div id="userName" >
         {{currentUser.firstName}} {{currentUser.lastName}}
     </div>
     <div id="settings" >
-            <button button mat-icon-button routerLink="/admin" *ngIf="isAdmin()" > <mat-icon> settings </mat-icon></button>
+            <button button mat-icon-button routerLink="/admin" routerLinkActive="active" *ngIf="isAdmin()" > <mat-icon> settings </mat-icon></button>
     </div>
     <div id="logOut" >
         <button button mat-icon-button   (click)="logOut()"> <mat-icon> exit_to_app</mat-icon></button>
@@ -17,4 +18,3 @@
     
     
 </mat-toolbar>
-  

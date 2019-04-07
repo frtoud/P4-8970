@@ -11,7 +11,6 @@
 }
 
 .mat-toolbar.mat-primary {
-  position: sticky;
   top: 0;
   z-index: 1;
   background-color: #262627;
@@ -34,9 +33,30 @@
   flex-direction: row;
 }
 
+.active{
+  color: #41AAE6 !important;
+}
+
 #link{
   margin: 20px;
   color:white
+}
+
+/*
+#container{
+  width:100.97% !important;
+  margin-left: -10px;
+  margin-top: -10px;
+}
+*/
+
+#toolbar{
+  position:sticky;
+  top: 0;
+  
+}
+body {
+  margin: 0;
 }
 
 @media print{
@@ -44,3 +64,7 @@
     visibility: hidden;
   }
 }
+
+
+
+
