@@ -75,6 +75,7 @@
 /* ---------------   DÉBUT cartes   -------------- */
 
 #toggleViewButton {
+  background: linear-gradient(#bbdeea, #367ec1);
   float: right;
 }
 
