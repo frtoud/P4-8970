@@ -245,27 +245,32 @@ export class DashboardComponent implements OnInit {
     return nCollaborateursCompleted * 100 / collaborateurs.length;
   }
 
-  private searchAuthor(): Form[] {
-    const results: Form[] = [];
-    this.dashboardForms.forEach(form => {
-      if (form.auteur.nom === this.searchName) {
-          results.push(form);
-        }
-    });
-    return(results);
+  private activateSearch() {
+    this.displayedCards = this.searchResult;
+    this.searchActivated = true;
+  }
+
+  private desactivateSearch() {
+    this.searchName === null;
+    this.searchStatus === null
+    this.searchPatron === null;
+    this.dateFrom == null;
+    this.dateTo == null;
+    this.displayedCards = this.dashboardForms;
+    this.searchActivated = false;
   }
 
   private search() {
     let searchString = this.form.value;
     this.searchName = typeof searchString === 'string' ? searchString : this.displayFn(searchString);
 
-    if ((this.searchName === '' || this.searchName == undefined) &&
-        (this.searchStatus === '' || this.searchStatus == undefined) &&
-        (this.searchPatron === '' || this.searchPatron == undefined) &&
-        this.dateFrom == null && this.dateTo == null) {
-      this.desactivateSearch();
-      return;
-    }
+    // if ((this.searchName === '' || this.searchName == undefined) &&
+    //     (this.searchStatus === '' || this.searchStatus == undefined) &&
+    //     (this.searchPatron === '' || this.searchPatron == undefined) &&
+    //     this.dateFrom == null && this.dateTo == null) {
+    //   this.desactivateSearch();
+    //   return;
+    // }
 
     this.searchResult = this.dashboardForms;
     // à ajouter la maniere de gérer les combinaisons de filtres!!!
@@ -304,16 +309,6 @@ export class DashboardComponent implements OnInit {
     this.activateSearch();
   }
 
-  private activateSearch() {
-    this.displayedCards = this.searchResult;
-    this.searchActivated = true;
-  }
-
-  private desactivateSearch() {
-    this.displayedCards = this.dashboardForms;
-    this.searchActivated = false;
-  }
-
   private searchCompleted(): Form[] {
     const results: Form[] = [];
 
@@ -325,7 +320,15 @@ export class DashboardComponent implements OnInit {
     return(results);
   }
 
-
+  private searchAuthor(): Form[] {
+    const results: Form[] = [];
+    this.dashboardForms.forEach(form => {
+      if (form.auteur.nom === this.searchName) {
+          results.push(form);
+        }
+    });
+    return(results);
+  }
 
   private searchActive(): Form[] {
     const results: Form[] = [];
