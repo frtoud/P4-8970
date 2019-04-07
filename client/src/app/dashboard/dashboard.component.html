@@ -63,8 +63,8 @@
     <!-------------------------------DÉBUT cartes A Completer---------------------------------->
     <div *ngIf="!searchActivated && aCompleterCards.length != 0" id="cards-container">
       À compléter ({{aCompleterCards.length}})
-      <div id="toggleViewButton">
-        <button mat-icon-button (click)="toggleVueListe()">
+      <div class="toggleViewDiv">
+        <button mat-icon-button (click)="toggleVueListe()" class="toggleViewButton">
           <i class="material-icons">view_list</i>
         </button>
       </div>
@@ -194,8 +194,8 @@
 
     <div *ngIf="!searchActivated && aCompleterCards.length == 0">
       À compléter ({{aCompleterCards.length}})
-      <div id="toggleViewButton">
-        <button mat-icon-button (click)="toggleVueListe()">
+      <div class="toggleViewDiv">
+        <button mat-icon-button (click)="toggleVueListe()" class="toggleViewButton">
           <i class="material-icons">view_list</i>
         </button>
       </div>
@@ -352,8 +352,8 @@
     <!-------------------------------DÉBUT cartes recherche------------------------------------------->
     <div *ngIf="searchActivated && displayedCards.length != 0" id="cards-container">
       Résultats de la recherche ({{displayedCards.length}})
-      <div id="toggleViewButton">
-        <button mat-icon-button (click)="toggleVueListe()">
+      <div class="toggleViewDiv">
+        <button mat-icon-button (click)="toggleVueListe()" class="toggleViewButton">
           <i class="material-icons">view_list</i>
         </button>
       </div>
@@ -487,8 +487,8 @@
 
     <div *ngIf="searchActivated && displayedCards.length == 0">
       Résultats de la recherche ({{displayedCards.length}})
-      <div id="toggleViewButton">
-        <button mat-icon-button (click)="toggleVueListe()">
+      <div class="toggleViewDiv">
+        <button mat-icon-button (click)="toggleVueListe()" class="toggleViewButton">
           <i class="material-icons">view_list</i>
         </button>
       </div>
@@ -506,8 +506,8 @@
   <div *ngIf="vueCarte == 'false'" id="divList">
     <!---------------------DÉBUT liste A completer ------------------------->
     <div *ngIf="!searchActivated && aCompleterCards.length != 0">
-      <div id="toggleViewButton">
-        <button mat-icon-button (click)="toggleVueCarte()">
+      <div class="toggleViewDiv">
+        <button mat-icon-button (click)="toggleVueCarte()" class="toggleViewButton">
           <i class="material-icons">view_module</i>
         </button>
       </div>
@@ -595,8 +595,8 @@
 
     <div *ngIf="!searchActivated && aCompleterCards.length == 0">
       À compléter ({{aCompleterCards.length}})
-      <div id="toggleViewButton">
-        <button mat-icon-button (click)="toggleVueCarte()">
+      <div class="toggleViewDiv">
+        <button mat-icon-button (click)="toggleVueCarte()" class="toggleViewButton">
           <i class="material-icons">view_module</i>
         </button>
       </div>
@@ -701,8 +701,8 @@
     <!---------------------DÉBUT liste recherche ------------------------->
     <div *ngIf="searchActivated && displayedCards.length != 0">
       Résultats de la recherche ({{displayedCards.length}})
-      <div id="toggleViewButton">
-        <button mat-icon-button (click)="toggleVueCarte()">
+      <div class="toggleViewDiv">
+        <button mat-icon-button (click)="toggleVueCarte()" class="toggleViewButton">
           <i class="material-icons">view_module</i>
         </button>
       </div>
@@ -787,8 +787,8 @@
 
     <div *ngIf="searchActivated && displayedCards.length == 0">
       Résultats de la recherche ({{displayedCards.length}})
-      <div id="toggleViewButton">
-        <button mat-icon-button (click)="toggleVueCarte()">
+      <div class="toggleViewDiv">
+        <button mat-icon-button (click)="toggleVueCarte()" class="toggleViewButton">
           <i class="material-icons">view_module</i>
         </button>
       </div>
