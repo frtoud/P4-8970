@@ -7,10 +7,13 @@ h6 {
   background-color: #CCD4DF;
 }
 
-div {
+.section-rectangle {
   margin: 5px;
-  font-size: 13px;
   border: 2px solid black;
+}
+
+div {
+  font-size: 13px;
 }
 
 .titre{
@@ -52,11 +55,6 @@ div {
   min-width: 100px;
 }
 
-.ventilation_autres {
-  padding-right: 50%;
-  min-width: 100px;
-}
-
 #signatures {
   margin: 5px;
   display: flex;
@@ -75,5 +73,39 @@ width:480px;
 
 .signature mat-form-field {
 width: 100%;
+}
+
+#commande mat-checkbox {
+  margin-right: 15px;
+}
+
+#items table, #ventilation table {
+  width: 100%;
+}
+
+#ventilation /deep/.mat-form-field-wrapper:nth-last-child(-n+2) {
+  width: 20%;
+}
+
+#service-finances {
+  background-color: #CCD4DF;
+  width: 250px;
+}
+
+#service-finances p {
+  margin-left: 1em;
+}
+
+.finance {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+#service-finances /deep/.mat-form-field-wrapper:nth-last-child(-n+2) {
+  width: 200px;
+}
+
+#ventilation p {
+  margin-left: 1em;
 }
 
