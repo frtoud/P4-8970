@@ -594,6 +594,7 @@
     </div>
 
     <div *ngIf="!searchActivated && aCompleterCards.length == 0">
+      À compléter ({{aCompleterCards.length}})
       <div id="toggleViewButton">
         <button mat-icon-button (click)="toggleVueCarte()">
           <i class="material-icons">view_module</i>
@@ -689,6 +690,8 @@
     </div>
 
     <div *ngIf="!searchActivated && autresCards.length == 0">
+      Autres ({{autresCards.length}})
+
       <h4 class="noResult">
         Aucun formulaire complété, archivé ou annulé
       </h4>
