@@ -41,7 +41,6 @@ export class DashboardComponent implements OnInit {
   aCompleterCards: Form[] = [];
   autresCards: Form[] = [];
 
-  position = new FormControl('above');
   vueCarte = 'true';
   currentUser: AuthenticatedUser;
   
@@ -251,11 +250,12 @@ export class DashboardComponent implements OnInit {
   }
 
   private desactivateSearch() {
-    this.searchName === null;
-    this.searchStatus === null
-    this.searchPatron === null;
-    this.dateFrom == null;
-    this.dateTo == null;
+    this.searchName = null;
+    this.form.setValue(null);
+    this.searchStatus = null;
+    this.searchPatron = null;
+    this.dateFrom = null;
+    this.dateTo = null;
     this.displayedCards = this.dashboardForms;
     this.searchActivated = false;
   }
