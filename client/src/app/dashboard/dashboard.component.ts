@@ -1,12 +1,10 @@
-import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { map, startWith } from 'rxjs/operators';
-import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { FormControl, NgForm } from '@angular/forms';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, TooltipPosition } from '@angular/material';
-import { Time } from '@angular/common';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material';
 import { DashboardService, Form, Collaborateur } from '../services/dashboard.service';
 import { LoginService, AuthenticatedUser } from '../services/login.service';
-import { StatePipe } from '../pipes/account-type.pipe';
 import { Router } from '@angular/router';
 
 import { UserService, User } from '../services/users.service';
