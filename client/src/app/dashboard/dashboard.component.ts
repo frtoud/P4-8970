@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit {
   vueListeColumns: string[] = ['idForm', 'auteur', 'collaborateurs', 'statut', 'modifieLe', 'creeLe', 'modifier'];
 
   searchAutocompleteName: User;
-  searchName = '';
+  searchName = null;
   searchStatus = '';
   searchPatron = '';
   dateFrom: Date;
@@ -262,14 +262,16 @@ export class DashboardComponent implements OnInit {
   private search() {
     let searchString = this.form.value;
     this.searchName = typeof searchString === 'string' ? searchString : this.displayFn(searchString);
-
-    // if ((this.searchName === '' || this.searchName == undefined) &&
-    //     (this.searchStatus === '' || this.searchStatus == undefined) &&
-    //     (this.searchPatron === '' || this.searchPatron == undefined) &&
-    //     this.dateFrom == null && this.dateTo == null) {
-    //   this.desactivateSearch();
-    //   return;
-    // }
+    
+    if ((this.searchName === '' || this.searchName == undefined) &&
+        (this.searchStatus === '' || this.searchStatus == undefined) &&
+        (this.searchPatron === '' || this.searchPatron == undefined) &&
+         this.dateFrom == null &&
+         this.dateTo == null) {
+        this.searchResult = [];
+        this.activateSearch();
+        return;
+    }
 
     this.searchResult = this.dashboardForms;
     // à ajouter la maniere de gérer les combinaisons de filtres!!!
@@ -304,8 +306,19 @@ export class DashboardComponent implements OnInit {
     if (this.dateTo) {
       this.searchResult = this.searchDateTo();
     }
-
+    console.log(this.dateFrom);
+    console.log(this.dateTo);
     this.activateSearch();
+  }
+
+  private searchAuthor(): Form[] {
+    const results: Form[] = [];
+    this.dashboardForms.forEach(form => {
+      if (form.auteur.nom === this.searchName) {
+          results.push(form);
+        }
+    });
+    return(results);
   }
 
   private searchCompleted(): Form[] {
@@ -315,16 +328,6 @@ export class DashboardComponent implements OnInit {
       if (form.statut === 'COMPLETED') {
         results.push(form);
       }
-    });
-    return(results);
-  }
-
-  private searchAuthor(): Form[] {
-    const results: Form[] = [];
-    this.dashboardForms.forEach(form => {
-      if (form.auteur.nom === this.searchName) {
-          results.push(form);
-        }
     });
     return(results);
   }
