@@ -27,7 +27,7 @@
   color: black;
   font-size: 14px;
   height: 40px;
-  justify-content:center;
+  justify-content: center;
 }
 
 .searchBarDiv {
@@ -228,6 +228,7 @@
 .vueListeTd.mat-cell:last-of-type {
   padding-right: 0px;
 }
+
 .collabSelect.mat-option {
   padding: 0px;
 }
@@ -266,6 +267,15 @@
   font-weight: normal;
   padding: 5px;
   margin: 0;
+}
+
+.spinnerDiv {
+  padding-bottom: 70px;
+  padding-left: 50%;
+  padding-top: 70px;
+}
+.loadingFormsSpinner circle {
+  stroke: #367ec1;
 }
 
 .noResult {

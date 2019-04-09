@@ -64,7 +64,7 @@
 <div class="grid-container">
   <div *ngIf="vueCarte == 'true'" id="divCards">
     <!-------------------------------DÉBUT cartes A Completer---------------------------------->
-    <div *ngIf="!searchActivated && aCompleterCards.length != 0" id="cards-container">
+    <div *ngIf="!loadingForms && !searchActivated && aCompleterCards.length != 0" id="cards-container">
       À compléter ({{aCompleterCards.length}})
       <div class="toggleViewDiv">
         <button mat-icon-button (click)="toggleVueListe()" class="toggleViewButton">
@@ -195,7 +195,7 @@
       <br><br>
     </div>
 
-    <div *ngIf="!searchActivated && aCompleterCards.length == 0">
+    <div *ngIf="!loadingForms && !searchActivated && aCompleterCards.length == 0">
       À compléter ({{aCompleterCards.length}})
       <div class="toggleViewDiv">
         <button mat-icon-button (click)="toggleVueListe()" class="toggleViewButton">
@@ -208,10 +208,19 @@
         Aucun formulaire en cours
       </h4>
     </div>
+
+    <div *ngIf="loadingForms">
+      À compléter
+      <hr id="a-completer-ligne">
+      <div class="spinnerDiv">
+        <mat-spinner class="loadingFormsSpinner">
+        </mat-spinner>
+      </div>
+    </div>
     <!-------------------------------FIN cartes A Completer---------------------------------->
 
     <!-------------------------------DÉBUT cartes Autres ------------------------------------------->
-    <div *ngIf="!searchActivated && autresCards.length != 0" id="cards-container">
+    <div *ngIf="!loadingForms && !searchActivated && autresCards.length != 0" id="cards-container">
       Autres ({{autresCards.length}})
       <hr id="a-completer-ligne">
 
@@ -342,7 +351,7 @@
       </div>
     </div>
 
-    <div *ngIf="!searchActivated && autresCards.length == 0">
+    <div *ngIf="!loadingForms && !searchActivated && autresCards.length == 0">
       Autres ({{autresCards.length}})
       <hr id="a-completer-ligne">
     
@@ -350,10 +359,19 @@
         Aucun formulaire complété, annulé ou archivé
       </h4>
     </div>
+
+    <div *ngIf="loadingForms">
+      Autres
+      <hr id="a-completer-ligne">
+      <div class="spinnerDiv">
+        <mat-spinner class="loadingFormsSpinner">
+        </mat-spinner>
+      </div>
+    </div>
     <!-------------------------------FIN cartes Autres ------------------------------------------->
 
     <!-------------------------------DÉBUT cartes recherche------------------------------------------->
-    <div *ngIf="searchActivated && displayedCards.length != 0" id="cards-container">
+    <div *ngIf="!loadingForms && searchActivated && displayedCards.length != 0" id="cards-container">
       Résultats de la recherche ({{displayedCards.length}})
       <div class="toggleViewDiv">
         <button mat-icon-button (click)="toggleVueListe()" class="toggleViewButton">
@@ -488,7 +506,7 @@
       </div>
     </div>
 
-    <div *ngIf="searchActivated && displayedCards.length == 0">
+    <div *ngIf="!loadingForms && searchActivated && displayedCards.length == 0">
       Résultats de la recherche ({{displayedCards.length}})
       <div class="toggleViewDiv">
         <button mat-icon-button (click)="toggleVueListe()" class="toggleViewButton">
@@ -509,7 +527,7 @@
 
   <div *ngIf="vueCarte == 'false'" id="divList">
     <!---------------------DÉBUT liste A completer ------------------------->
-    <div *ngIf="!searchActivated && aCompleterCards.length != 0">
+    <div *ngIf="!loadingForms && !searchActivated && aCompleterCards.length != 0">
       <div class="toggleViewDiv">
         <button mat-icon-button (click)="toggleVueCarte()" class="toggleViewButton">
           <i class="material-icons">view_module</i>
@@ -597,7 +615,7 @@
       </div>
     </div>
 
-    <div *ngIf="!searchActivated && aCompleterCards.length == 0">
+    <div *ngIf="!loadingForms && !searchActivated && aCompleterCards.length == 0">
       À compléter ({{aCompleterCards.length}})
       <div class="toggleViewDiv">
         <button mat-icon-button (click)="toggleVueCarte()" class="toggleViewButton">
@@ -610,11 +628,20 @@
         Aucun formulaire en cours
       </h4>
     </div>
+    
+    <div *ngIf="loadingForms">
+      À compléter
+      <hr id="a-completer-ligne">
+      <div class="spinnerDiv">
+        <mat-spinner class="loadingFormsSpinner">
+        </mat-spinner>
+      </div>
+    </div>
     <!---------------------FIN liste A completer ------------------------->
 
     
     <!---------------------DÉBUT liste Autres ------------------------->
-    <div *ngIf="!searchActivated && autresCards.length != 0">
+    <div *ngIf="!loadingForms && !searchActivated && autresCards.length != 0">
       <h4 class="header-title">Autres formulaires ({{autresCards.length}})</h4>
       <table mat-table [dataSource]="autresCards" class="forms-table">  
         <ng-container matColumnDef="idForm">
@@ -693,17 +720,26 @@
       </table>
     </div>
 
-    <div *ngIf="!searchActivated && autresCards.length == 0">
+    <div *ngIf="!loadingForms && !searchActivated && autresCards.length == 0">
       Autres ({{autresCards.length}})
 
       <h4 class="noResult">
         Aucun formulaire complété, annulé ou archivé
       </h4>
     </div>
+
+    <div *ngIf="loadingForms">
+      Autres
+      <hr id="a-completer-ligne">
+      <div class="spinnerDiv">
+        <mat-spinner class="loadingFormsSpinner">
+        </mat-spinner>
+      </div>
+    </div>
     <!---------------------FIN liste Autres ------------------------->
 
     <!---------------------DÉBUT liste recherche ------------------------->
-    <div *ngIf="searchActivated && displayedCards.length != 0">
+    <div *ngIf="!loadingForms && searchActivated && displayedCards.length != 0">
       Résultats de la recherche ({{displayedCards.length}})
       <div class="toggleViewDiv">
         <button mat-icon-button (click)="toggleVueCarte()" class="toggleViewButton">
@@ -789,7 +825,7 @@
       </table>
     </div>
 
-    <div *ngIf="searchActivated && displayedCards.length == 0">
+    <div *ngIf="!loadingForms && searchActivated && displayedCards.length == 0">
       Résultats de la recherche ({{displayedCards.length}})
       <div class="toggleViewDiv">
         <button mat-icon-button (click)="toggleVueCarte()" class="toggleViewButton">
