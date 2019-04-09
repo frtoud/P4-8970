@@ -306,8 +306,7 @@ export class DashboardComponent implements OnInit {
     if (this.dateTo) {
       this.searchResult = this.searchDateTo();
     }
-    console.log(this.dateFrom);
-    console.log(this.dateTo);
+    
     this.activateSearch();
   }
 
