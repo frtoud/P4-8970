@@ -14,10 +14,6 @@
   text-align: center;
 }
 
-.vueListeTh.mat-header-cell, .vueListeTd {
-  text-align: center;
-}
-
 .dashboard-card mat-expansion-panel {
   background: linear-gradient(#f3f3f3, #acacac);
   width: 100%;
@@ -213,13 +209,25 @@
 
 /* --------------------- VUE LISTE ---------------- */
 
-#forms-table {
+.forms-table {
   border-bottom-left-radius: 4px; /* TODO : (low priority) the bottom radius aren't effective */
   border-bottom-right-radius: 4px;
   overflow: auto;
   width: 100%;
 }
 
+.vueListeTh.mat-header-cell, .vueListeTd {
+  padding: 0px;
+  text-align: center;
+}
+.vueListeTh.mat-header-cell:first-of-type,
+.vueListeTd.mat-cell:first-of-type {
+  padding-left: 0px;
+}
+.vueListeTh.mat-header-cell:last-of-type,
+.vueListeTd.mat-cell:last-of-type {
+  padding-right: 0px;
+}
 .collabSelect.mat-option {
   padding: 0px;
 }
@@ -266,12 +274,12 @@
   text-align: center;
 }
 
-#forms-table .mat-cell {
+.forms-table .mat-cell {
   border: 1px solid #acacac;
   border-collapse: collapse;
 }
 
-#forms-table th.mat-header-cell {
+.forms-table th.mat-header-cell {
   border: 1px solid #acacac;
   background: linear-gradient(to bottom, #f3f3f3 0%,#acacac 100%);
   color: black;
@@ -279,11 +287,11 @@
   vertical-align: middle;
 }
 
-#forms-table .mat-row:nth-child(odd){
+.forms-table .mat-row:nth-child(odd){
   background-color:white;
 }
 
-#forms-table .mat-row:nth-child(even){
+.forms-table .mat-row:nth-child(even){
   background-color: #ebebeb;
 }
 
