@@ -211,7 +211,13 @@
 
     <div *ngIf="loadingForms">
       À compléter
+      <div class="toggleViewDiv">
+        <button mat-icon-button (click)="toggleVueListe()" class="toggleViewButton">
+          <i class="material-icons">view_module</i>
+        </button>
+      </div>
       <hr id="a-completer-ligne">
+
       <div class="spinnerDiv">
         <mat-spinner class="loadingFormsSpinner">
         </mat-spinner>
@@ -631,7 +637,12 @@
     
     <div *ngIf="loadingForms">
       À compléter
-      <hr id="a-completer-ligne">
+      <div class="toggleViewDiv">
+        <button mat-icon-button (click)="toggleVueCarte()" class="toggleViewButton">
+          <i class="material-icons">view_module</i>
+        </button>
+      </div>
+      
       <div class="spinnerDiv">
         <mat-spinner class="loadingFormsSpinner">
         </mat-spinner>
@@ -730,7 +741,6 @@
 
     <div *ngIf="loadingForms">
       Autres
-      <hr id="a-completer-ligne">
       <div class="spinnerDiv">
         <mat-spinner class="loadingFormsSpinner">
         </mat-spinner>
