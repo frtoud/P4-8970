@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit {
   aCompleterCards: Form[] = [];
   autresCards: Form[] = [];
 
-  vueCarte = 'true';
+  vueCarte = 'false';
   currentUser: AuthenticatedUser;
   
   // ------ autocomplete ------
@@ -57,7 +57,6 @@ export class DashboardComponent implements OnInit {
     this.loginService.getUser().then(login => {
 
       this.currentUser = login;
-
 
       switch (this.currentUser.type) {
         case 'ADMIN':

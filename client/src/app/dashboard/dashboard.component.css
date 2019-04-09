@@ -220,7 +220,7 @@
   width: 100%;
 }
 
-.collabSelect .mat-option {
+.collabSelect.mat-option {
   padding: 0px;
 }
 
@@ -229,7 +229,9 @@
   border: .5px solid #323030;        
 }  */
 
-
+.mat-select-option {
+  padding: none;
+}
 /* .viewListOption.mat-option {
   padding: none;
 }
