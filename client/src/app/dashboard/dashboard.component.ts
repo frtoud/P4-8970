@@ -26,12 +26,15 @@ export class DashboardComponent implements OnInit {
   vueListeColumns: string[] = ['idForm', 'auteur', 'collaborateurs', 'statut', 'modifieLe', 'creeLe', 'modifier'];
 
   searchAutocompleteName: User;
-  searchName = null;
-  searchStatus = '';
-  searchPatron = '';
+  searchName: string = null;
+  searchStatus: string = '';
+  searchPatron: string = '';
+  vueCarte: string = 'true';
+  loadingForms: boolean = true;
+  searchActivated: boolean = false;
+
   dateFrom: Date;
   dateTo: Date;
-  searchActivated = false;
 
   searchResult: Form[] = [];
   dashboardForms: Form[] = [];
@@ -39,7 +42,6 @@ export class DashboardComponent implements OnInit {
   aCompleterCards: Form[] = [];
   autresCards: Form[] = [];
 
-  vueCarte = 'false';
   currentUser: AuthenticatedUser;
   
   // ------ autocomplete ------
@@ -62,7 +64,8 @@ export class DashboardComponent implements OnInit {
             this.sortCardsDecreasingDate(forms);
             this.dashboardForms = forms;
             this.displayedCards = forms;
-            this.sortACompleterAutres();
+            this.separateACompleterAndAutres();
+            this.loadingForms = false;
           }).catch(err => console.log(err.error));
           break;
         case 'MANAGER':
@@ -70,7 +73,8 @@ export class DashboardComponent implements OnInit {
             this.sortCardsDecreasingDate(forms);
             this.dashboardForms = forms;
             this.displayedCards = forms;
-            this.sortACompleterAutres();
+            this.separateACompleterAndAutres();
+            this.loadingForms = false;
           }).catch(err => console.log(err.error));
           break;
         case 'USER':
@@ -79,7 +83,8 @@ export class DashboardComponent implements OnInit {
             const collaborationForms: Form[] = this.searchUserAccesCollaborations(forms);
             this.dashboardForms = collaborationForms;
             this.displayedCards = collaborationForms;
-            this.sortACompleterAutres();
+            this.separateACompleterAndAutres();
+            this.loadingForms = false;
           }).catch(err => console.log(err.error));
           break;
       }
@@ -219,7 +224,7 @@ export class DashboardComponent implements OnInit {
     return res;
   }
 
-  private sortACompleterAutres() {
+  private separateACompleterAndAutres() {
     this.dashboardForms.forEach(form => {
       if (form.statut === 'IN_PROGRESS') {
         this.aCompleterCards.push(form);
