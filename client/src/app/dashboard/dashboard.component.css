@@ -51,10 +51,6 @@
   width: 100px;
 }
 
-#searchIcon {
-  font-size: 18px;
-}
-
 .searchBarFieldAuteur .mat-form-field-infix,
 .searchBarField .mat-form-field-infix,
 .searchBarDate .mat-form-field-infix {
