@@ -10,6 +10,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material';
 import { MatChipsModule } from '@angular/material/chips';
+import { MAT_DATE_LOCALE } from '@angular/material';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -112,6 +113,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatNativeDateModule,
     DragDropModule
   ],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'fr-FR'},
+ ],
 })
 
 export class MaterialModule { }
