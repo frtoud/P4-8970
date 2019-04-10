@@ -99,17 +99,19 @@ export class EditionComponent implements OnInit {
       this.formInstance.setInterface(form.data);
     this.loginService.getUser().then(user => {
       this.formInstance.setUserEdition(user, this.state !== 'view');
-      const isAuthor = user.type !== 'USER'; // && this.metadata.auteur.idAuteur === user._id;
+      const isAuthor = user.type !== 'USER' ; // && this.metadata.auteur.idAuteur === user._id;
       this.formInstance.controls.statusChanges.subscribe(() => {
         const validationcheck = this.formInstance.getFormValidation(user, isAuthor);
         this.canSubmit = validationcheck || isAuthor;
         this.canValidate = validationcheck && isAuthor;
-        console.log(this.canSubmit);
+        console.log("S:", this.canSubmit, " V:", this.canValidate);
       });
       if (isAuthor) {
         this.canCopy = this.metadata.statut === 'ARCHIVED' || this.metadata.statut === 'CANCELED';
         this.canCancel = this.metadata.statut !== 'CANCELED';
       }
+      //Todokete: delet this (or maybe not)
+      this.formInstance.controls.updateValueAndValidity();
     });
   }
 
