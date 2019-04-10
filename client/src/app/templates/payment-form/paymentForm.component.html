@@ -270,7 +270,7 @@
             </div>
             </mat-checkbox>
             <br>
-            <button mat-raised-button [disabled]="sig.value.length <= 0 || sig.lock || !sig.check" (click)="sig.onButtonClick()">{{sig.buttonMessage()}}</button>
+            <button mat-raised-button [disabled]="sig.value.length <= 0 || sig.lock || !sig.check" (click)="sig.onButtonClick(); controls.updateValueAndValidity()">{{sig.buttonMessage()}}</button>
         </div>
     </div>
 </div>
