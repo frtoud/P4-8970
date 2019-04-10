@@ -45,4 +45,5 @@
     [disabled]="!enableAddAccount()">AJOUTER</button>
   </div>
   <p id="message" *ngIf="errorMessage">{{ errorMessage }}</p>
+  <mat-spinner *ngIf="displaySpinner"></mat-spinner>
 </form>

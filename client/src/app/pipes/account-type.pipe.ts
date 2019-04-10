@@ -24,16 +24,16 @@ export class AccountTypePipe implements PipeTransform {
 export class StatePipe implements PipeTransform {
     transform(value: string): string {
         if (value === "IN_PROGRESS") {
-            return "en cours";
+            return "En cours";
         }
         else if (value === "COMPLETED") {
-            return "complété";
+            return "Complété";
         }
         else if (value === "ARCHIVED") {
-            return "archivé";
+            return "Archivé";
         }
         else if (value === "CANCELED") {
-            return "annulé";
+            return "Annulé";
         }
         return "";
     }

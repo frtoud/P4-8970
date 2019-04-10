@@ -6,19 +6,26 @@
         {{file.nomOriginal}}
       </mat-chip>
     </mat-chip-list>
-    <label id="label" for="files">
+
+   
+    <label id="label" for="files" *ngIf="state!=='view'">
       Ajouter une pièce jointe... &nbsp;
       <i class="material-icons"> attachment </i>
     </label>
-    <input id="files" type="file" (change)="fileChangeEvent($event)" multiple>
-    <mat-chip-list class="files-to-upload">
+    <input id="files" type="file" (change)="fileChangeEvent($event)" multiple *ngIf="state!=='view'">
+    <mat-chip-list class="files-to-upload" *ngIf="state!=='view'">
       <mat-chip *ngFor="let file of filesToUpload">
         {{file.name}}
       </mat-chip>
     </mat-chip-list>
-
-  <button mat-button (click)="upload($event)">
+    
+  <button mat-button (click)="upload($event)" *ngIf="state!=='view'">
     CONFIRMER
   </button>
+
+
+<div *ngIf="state==='view'">
+  ajout de pièces jointes bloqué
+</div>
 
 </div>

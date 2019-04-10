@@ -4,12 +4,12 @@
       <div id="metadata" *ngIf="metadata">
         <img src="assets/img/logo-POLY-forms.png" width=180 height=80>
         <div class="flex-column">
-          <h4>Auteur: {{metadata.auteur.nom}}</h4>
           <h4>{{metadata.nomFormulaire | uppercase}}</h4>
+          <h4>Auteur: {{metadata.auteur.nom}}</h4>
         </div>
         <div class="flex-column">
-          <h4>Créé le: {{metadata.creeLe | date:"dd-MM-yyyy"}}</h4>
-          <h4>Dernière Modification: {{metadata.modifieLe | date:"dd-MM-yyyy hh:mm"}} </h4>
+          <h4>Créé le: {{metadata.creeLe | date:"dd-MM-yyyy à hh:mm"}}</h4>
+          <h4>Dernière Modification: {{metadata.modifieLe | date:"dd-MM-yyyy à hh:mm"}} </h4>
         </div>
       </div>
       <ng-template formhost></ng-template>
@@ -24,7 +24,7 @@
           </mat-chip>
         </mat-chip-list>
         <br>
-        <app-file-uploader></app-file-uploader>
+        <app-file-uploader [state]=state></app-file-uploader>
         <br>
     <mat-grid-list cols="2" rowHeight="40px">
      <!--  <mat-grid-tile [colspan]="tiles[0].cols" [rowspan]="tiles[0].rows">
@@ -40,7 +40,7 @@
         <button id="soumettre" mat-raised-button (click)="onSend()" [disabled]="!canSubmit" color="primary">SOUMETTRE</button>
       </mat-grid-tile>
       <mat-grid-tile >
-        <button id="annuler" mat-raised-button (click)="onReturn()">RETOUR</button>
+        <button id="annuler" mat-raised-button (click)="onReturn()">ANNULER</button>
       </mat-grid-tile>
       <mat-grid-tile *ngIf="canCopy">
         <button id="copier" mat-raised-button (click)="onCopy()">COPIER</button>

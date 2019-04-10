@@ -1,18 +1,13 @@
-
 import { Injectable } from '@angular/core';
-
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Config } from '../config';
-
-import { User, UserService } from './users.service';
- 
+import { User } from './users.service';
 import { IDemandeAchat } from '../templates/demande-achat/demande-achat.component';
 import { IPaymentForm } from '../templates/payment-form/paymentForm.component';
 import { IAideFinanciere } from '../templates/aide-financiere-form/app.af-form';
 import { IDeplacementForm } from '../templates/form-deplacement/form-deplacement.component';
 import { IVoyageForm } from '../templates/voyage-form/voyage-form.component';
 import { LoginService } from './login.service';
-
 
 export interface Collaborateur {
     idCollaborateur: String;

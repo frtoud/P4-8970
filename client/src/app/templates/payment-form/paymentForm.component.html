@@ -108,7 +108,7 @@
                 <th mat-header-cell *matHeaderCellDef></th>
                 <td mat-cell *matCellDef="let element">
                     <button mat-icon-button color="warn"
-                    (click)="onDelete(element)">x</button>
+                    (click)="onDelete(element)"><mat-icon>delete_outline</mat-icon></button>
                 </td>
             </ng-container>
             <ng-container matColumnDef="totalFacture">
@@ -223,7 +223,7 @@
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element">
                 <button mat-icon-button color="warn"
-                (click)="onDeleteVentilation(element)">x</button>
+                (click)="onDeleteVentilation(element)"><mat-icon>delete_outline</mat-icon></button>
             </td>
         </ng-container>
         <ng-container matColumnDef="addVRow" id="addVRow">
@@ -253,7 +253,7 @@
             [(ngModel)]="sig.check"
             [(indeterminate)]="indeterminate"
             [labelPosition]="labelPosition"
-            [disabled]="sig.lock || sig.validated">
+            [disabled]="sig.lock || sig.validated" color="primary">
             <div id="signature-text">
             Je confirme et j'accepte la véracité des informations ci-dessus.
             </div>

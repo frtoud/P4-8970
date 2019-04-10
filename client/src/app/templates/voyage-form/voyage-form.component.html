@@ -29,17 +29,6 @@
           [(ngModel)]="beneficiaire.nom">
       </mat-form-field>
   </div>
-  <!-- <div id="demandeur" hidden>
-      <h6>DEMANDEUR</h6>
-      <mat-form-field>
-          <input matInput type="text" placeholder="NOM DU DEMANDEUR"
-          [(ngModel)]="demandeur.nom">
-      </mat-form-field>
-      <mat-form-field>
-          <input matInput type="text" placeholder="TÉLÉPHONE"
-          [(ngModel)]="demandeur.telephone">
-      </mat-form-field>
-  </div> -->
 </div>
 
 <div id="fournisseur">
@@ -94,14 +83,14 @@
                 </td>
                 <td id="du">
                     <mat-form-field>
-                        <input #DateDu matInput [matDatepicker]="pickerDU" placeholder="DU" (click)="pickerDU.open()" [ngModel]="endroit_deplacement.du" (ngModelChange)="duChange($event)">
+                        <input matInput [matDatepicker]="pickerDU" placeholder="DU" (click)="pickerDU.open()" [ngModel]="endroit_deplacement.du" (ngModelChange)="duChange($event)">
                         <mat-datepicker-toggle matSuffix [for]="pickerDU"></mat-datepicker-toggle>
                         <mat-datepicker #pickerDU></mat-datepicker>
                     </mat-form-field>
                 </td>
                 <td id="au">
                     <mat-form-field>
-                        <input #DateAu matInput [matDatepicker]="pickerAU" placeholder="AU" (click)="pickerAU.open()" [ngModel]="endroit_deplacement.au" (ngModelChange)="auChange($event)">
+                        <input matInput [matDatepicker]="pickerAU" placeholder="AU" (click)="pickerAU.open()" [ngModel]="endroit_deplacement.au" (ngModelChange)="auChange($event)">
                         <mat-datepicker-toggle matSuffix [for]="pickerAU"></mat-datepicker-toggle>
                         <mat-datepicker #pickerAU></mat-datepicker>
                     </mat-form-field>
@@ -206,7 +195,7 @@
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element">
                 <button mat-icon-button color="warn"
-                (click)="onDelete(element.id)">x</button>
+                (click)="onDelete(element.id)"><mat-icon>delete_outline</mat-icon></button>
             </td>
         </ng-container>
 
@@ -303,7 +292,7 @@
             [(ngModel)]="sig.check"
             [(indeterminate)]="indeterminate"
             [labelPosition]="labelPosition"
-            [disabled]="sig.lock || sig.validated">
+            [disabled]="sig.lock || sig.validated" color="primary">
             Je confirme et j'accepte la véracité des informations ci-dessus.
             </mat-checkbox>
             <br>

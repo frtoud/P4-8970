@@ -165,7 +165,7 @@
                         <th mat-header-cell *matHeaderCellDef></th>
                         <td mat-cell *matCellDef="let element">
                             <button mat-icon-button color="warn"
-                            (click)="onDelete(element.id)">x</button>
+                            (click)="onDelete(element.id)"><mat-icon>delete_outline</mat-icon></button>
                         </td>
                     </ng-container>
             
@@ -232,7 +232,7 @@
                 [(ngModel)]="sig.check"
                 [(indeterminate)]="indeterminate"
                 [labelPosition]="labelPosition"
-                [disabled]="sig.lock || sig.validated">
+                [disabled]="sig.lock || sig.validated" color="primary">
                 Je confirme et j'accepte la véracité des informations ci-dessus.
                 </mat-checkbox>
                 <br>

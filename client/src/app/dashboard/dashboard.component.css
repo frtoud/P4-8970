@@ -19,16 +19,20 @@
   width: 100%;
 }
 
+/* --------------- DÉBUT SEARCHBAR ---------------- */
+
+
 .searchBar {
   background: linear-gradient(#f3f3f3, #acacac);
   color: black;
   font-size: 14px;
   height: 40px;
+  justify-content: center;
 }
 
 .searchBarDiv {
   display: inline-block;
-  padding-right: 25px;
+  padding-right: 40px;
 }
 .searchBarLastDiv {
   display: inline-block;
@@ -61,20 +65,21 @@
 .searchBarFieldAuteur .mat-form-field-wrapper,
 .searchBarField .mat-form-field-wrapper,
 .searchBarDate .mat-form-field-wrapper {
-  padding-bottom: 12px;
+  padding-bottom: 10px;
 }
-/* .searchBarFieldAuteur .mat-form-field-underline,
-.searchBarField .mat-form-field-underline,
-.searchBarDate .mat-form-field-underline {
-  padding-top: 6px;
-  margin: 0px;
-} */
 
 #a-completer-ligne {
-  width: 50%;
+  width: 45%;
 }
 
-/* ---------------   Début cartes   -------------- */
+/* ---------------   DÉBUT cartes   -------------- */
+
+.toggleViewDiv {
+  float: right;
+}
+.toggleViewButton {
+  background: linear-gradient(#bbdeea, #367ec1);
+}
 
 #card-titleAndType {
   float: left;
@@ -109,11 +114,15 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  
+ }
+
+ #centering-array {
+   margin-left:8%;
+   margin-right:8%;
  }
 
  #cards-container {
-  align-content: center;
+  float: center;
  }
 
 .inProgress.mat-progress-bar,
@@ -200,39 +209,25 @@
 
 /* --------------------- VUE LISTE ---------------- */
 
-#forms-table {
+.forms-table {
   border-bottom-left-radius: 4px; /* TODO : (low priority) the bottom radius aren't effective */
   border-bottom-right-radius: 4px;
   overflow: auto;
   width: 100%;
 }
 
-.collabSelect .mat-option {
+.vueListeTh.mat-header-cell, .vueListeTd {
   padding: 0px;
+  text-align: center;
 }
-
-/* .my-panel-class .mat-select-content {
-  background: black;
-  border: .5px solid #323030;        
-}  */
-
-
-/* .viewListOption.mat-option {
-  padding: none;
+.vueListeTh.mat-header-cell:first-of-type,
+.vueListeTd.mat-cell:first-of-type {
+  padding-left: 0px;
 }
-
-.mat-option.ng-star-inserted {
-  padding: none;
+.vueListeTh.mat-header-cell:last-of-type,
+.vueListeTd.mat-cell:last-of-type {
+  padding-right: 0px;
 }
-
-.mat-option#mat-option-15.mat-option.ng-star-inserted.mat-active {
-  padding: none;
-} */
-
-/* TODO fix the padding of the mat-option
-.mat-option{
-  padding: none !important;
-} */
 
 .header-title {
   background: linear-gradient(to bottom, #f3f3f3 0%,#acacac 100%);
@@ -245,12 +240,27 @@
   margin: 0;
 }
 
-#forms-table .mat-cell {
+.spinnerDiv {
+  padding-bottom: 70px;
+  padding-left: 50%;
+  padding-top: 70px;
+}
+.loadingFormsSpinner circle {
+  stroke: #367ec1;
+}
+
+.noResult {
+  color: #acacac;
+  font-weight: normal;
+  text-align: center;
+}
+
+.forms-table .mat-cell {
   border: 1px solid #acacac;
   border-collapse: collapse;
 }
 
-#forms-table th.mat-header-cell {
+.forms-table th.mat-header-cell {
   border: 1px solid #acacac;
   background: linear-gradient(to bottom, #f3f3f3 0%,#acacac 100%);
   color: black;
@@ -258,31 +268,33 @@
   vertical-align: middle;
 }
 
-#forms-table .mat-row:nth-child(odd){
+.forms-table .mat-row:nth-child(odd){
   background-color:white;
 }
 
-#forms-table .mat-row:nth-child(even){
+.forms-table .mat-row:nth-child(even){
   background-color: #ebebeb;
 }
 
+/* https://stackoverflow.com/questions/55601005/how-to-remove-mat-option-padding?noredirect=1#comment97897983_55601005 */
+.collabOption {
+  padding: 0 !important;
+}
+
 .selectCollaborateurCompleted {
-  padding-left: 4px;
-  text-align: left;
+  text-align: center;
   width: 100%;
   background-color: #8cc83c;
 }
 
 .selectCollaborateurEdition {
-  padding-left: 4px;
-  text-align: left;
+  text-align: center;
   width: 100%;
   background-color: #ffff00;
 }
 
 .selectCollaborateurWaiting {
-  padding-left: 4px;
-  text-align: left;
+  text-align: center;
   width: 100%;
   background-color: white;
 }

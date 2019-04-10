@@ -5,10 +5,9 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { RouterModule, Routes, Router } from '@angular/router';
-
 import { AFFormComponent } from './templates/aide-financiere-form/app.af-form';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import {ScrollDispatchModule} from '@angular/cdk/scrolling';
+import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 import { AnnexeComponent } from './templates/annexe/annexe.component';
 import { FormDeplacementComponent } from './templates/form-deplacement/form-deplacement.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -45,8 +44,6 @@ import { UploadService } from './services/upload.service';
 const appRoutes: Routes = [
   { path: 'new', component: NouveauFormulaireComponent, canActivate: [AuthGuard] },
   { path: 'new/:id', component: AssignationComponent, canActivate: [AuthGuard] },
-  /*{ path: 'edit/:id', component: EditionComponent, canActivate: [AuthGuard] },
-  { path: 'view/:id', component: EditionComponent, canActivate: [AuthGuard] },*/
   { path: 'edit/:id/:state', component: EditionComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'admin', component: ProfileComponent, canActivate: [RoleGuard]},
@@ -54,13 +51,11 @@ const appRoutes: Routes = [
   { path: 'admin/accounts/new', component: NewAccountComponent, canActivate: [RoleGuard] },
   { path: 'admin/accounts/:id', component: EditAccountComponent, canActivate: [RoleGuard] },
   { path: 'password/:id', component: SetPasswordComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]  },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'archive', component: ArchiveComponent, canActivate: [AuthGuard] },
   { path: 'userSettings', component: UserSettingsComponent, canActivate: [AuthGuard] },
   { path: 'newForm', component: NouveauFormulaireComponent, canActivate: [AuthGuard] },
-  { path: '', component: LoginComponent },
-  //For testing purposes, to remove
-  { path: 'upload', component: FileUploaderComponent }
+  { path: '', component: LoginComponent }
 ]
 
 @NgModule({
@@ -106,13 +101,13 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   entryComponents: [
-     ParticipantsDialog,
-     SuccessDialog,
-     NewAccountComponent,
-     ConfirmationDialog,
-     ErrorDialog,
-     NotifDialog,
-     AccountsComponent,
+    ParticipantsDialog,
+    SuccessDialog,
+    NewAccountComponent,
+    ConfirmationDialog,
+    ErrorDialog,
+    NotifDialog,
+    AccountsComponent,
     AFFormComponent,
     VoyageFormComponent,
     DemandeAchatComponent,
@@ -130,8 +125,6 @@ const appRoutes: Routes = [
     ],
   bootstrap: [AppComponent]
 })
-
-
 
 export class AppModule { }
 

@@ -54,28 +54,28 @@
     <p>Identifier le cycle de l'étudiant(e):</p>
     <div class="section-row">
       <p class="checkbox-label">BACCALAURÉAT:</p>
-      <mat-checkbox formControlName="bac" class="checkbox-field">
+      <mat-checkbox formControlName="bac" class="checkbox-field" color="primary">
         Obtenu
       </mat-checkbox>
-      <mat-checkbox formControlName="bacec" class="checkbox-field">
+      <mat-checkbox formControlName="bacec" class="checkbox-field" color="primary">
         En cours
       </mat-checkbox>
     </div>
     <div class="section-row">
       <p class="checkbox-label">MAITRISE:</p>
-      <mat-checkbox formControlName="mai" class="checkbox-field">
+      <mat-checkbox formControlName="mai" class="checkbox-field" color="primary">
         Obtenu
       </mat-checkbox>
-      <mat-checkbox formControlName="maiec" class="checkbox-field">
+      <mat-checkbox formControlName="maiec" class="checkbox-field" color="primary">
         En cours
       </mat-checkbox>
     </div>
     <div class="section-row">
       <p class="checkbox-label">DOCTORAT:</p>
-      <mat-checkbox formControlName="doc" class="checkbox-field">
+      <mat-checkbox formControlName="doc" class="checkbox-field" color="primary">
         Obtenu
       </mat-checkbox>
-      <mat-checkbox formControlName="docec" class="checkbox-field">
+      <mat-checkbox formControlName="docec" class="checkbox-field" color="primary">
         En cours
       </mat-checkbox>
     </div>
@@ -109,9 +109,9 @@
     </mat-form-field>
     <div class="end full">
       <mat-radio-group formControlName="statutVersement" class="large">
-        <mat-radio-button value="UNIQUE">Versement unique</mat-radio-button>
-        <mat-radio-button value="NEW">Nouveau versement</mat-radio-button>
-        <mat-radio-button value="CHANGE">Changement</mat-radio-button>
+        <mat-radio-button value="UNIQUE" color="primary">Versement unique</mat-radio-button>
+        <mat-radio-button value="NEW" color="primary">Nouveau versement</mat-radio-button>
+        <mat-radio-button value="CHANGE" color="primary">Changement</mat-radio-button>
       </mat-radio-group>
     <mat-form-field floatLabel="auto" class="short">
       <input matInput placeholder="Numéro de référence"
@@ -179,7 +179,7 @@
           <th mat-header-cell *matHeaderCellDef></th>
           <td mat-cell *matCellDef="let element">
               <button mat-icon-button color="warn"
-              (click)="onDelete(element)">x</button>
+              (click)="onDelete(element)"><mat-icon>delete_outline</mat-icon></button>
           </td>
       </ng-container>
       <ng-container matColumnDef="total">
@@ -248,7 +248,7 @@
           [(ngModel)]="sig.check"
           [(indeterminate)]="indeterminate"
           [labelPosition]="labelPosition"
-          [disabled]="sig.lock || sig.validated">
+          [disabled]="sig.lock || sig.validated" color="primary">
           Je confirme et j'accepte la véracité des informations ci-dessus.
         </mat-checkbox>
         <br>

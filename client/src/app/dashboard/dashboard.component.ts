@@ -1,12 +1,10 @@
-import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { map, startWith } from 'rxjs/operators';
-import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { FormControl, NgForm } from '@angular/forms';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, TooltipPosition } from '@angular/material';
-import { Time } from '@angular/common';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material';
 import { DashboardService, Form, Collaborateur } from '../services/dashboard.service';
 import { LoginService, AuthenticatedUser } from '../services/login.service';
-import { StatePipe } from '../pipes/account-type.pipe';
 import { Router } from '@angular/router';
 
 import { UserService, User } from '../services/users.service';
@@ -27,12 +25,16 @@ export class DashboardComponent implements OnInit {
   cardCollaborateurs: string[] = ['collaborateursList'];
   vueListeColumns: string[] = ['idForm', 'auteur', 'collaborateurs', 'statut', 'modifieLe', 'creeLe', 'modifier'];
 
-  searchName = '';
-  searchStatus = '';
-  searchPatron = '';
+  searchAutocompleteName: User;
+  searchName: string = null;
+  searchStatus: string = '';
+  searchPatron: string = '';
+  vueCarte: string = 'false';
+  loadingForms: boolean = true;
+  searchActivated: boolean = false;
+
   dateFrom: Date;
   dateTo: Date;
-  searchActivated = false;
 
   searchResult: Form[] = [];
   dashboardForms: Form[] = [];
@@ -40,8 +42,6 @@ export class DashboardComponent implements OnInit {
   aCompleterCards: Form[] = [];
   autresCards: Form[] = [];
 
-  position = new FormControl('above');
-  vueCarte = 'true';
   currentUser: AuthenticatedUser;
   
   // ------ autocomplete ------
@@ -58,14 +58,14 @@ export class DashboardComponent implements OnInit {
 
       this.currentUser = login;
 
-
       switch (this.currentUser.type) {
         case 'ADMIN':
           this.dashboardService.getAllForms().then(forms => {
             this.sortCardsDecreasingDate(forms);
             this.dashboardForms = forms;
             this.displayedCards = forms;
-            this.sortACompleterAutres();
+            this.separateACompleterAndAutres();
+            this.loadingForms = false;
           }).catch(err => console.log(err.error));
           break;
         case 'MANAGER':
@@ -73,7 +73,8 @@ export class DashboardComponent implements OnInit {
             this.sortCardsDecreasingDate(forms);
             this.dashboardForms = forms;
             this.displayedCards = forms;
-            this.sortACompleterAutres();
+            this.separateACompleterAndAutres();
+            this.loadingForms = false;
           }).catch(err => console.log(err.error));
           break;
         case 'USER':
@@ -82,7 +83,8 @@ export class DashboardComponent implements OnInit {
             const collaborationForms: Form[] = this.searchUserAccesCollaborations(forms);
             this.dashboardForms = collaborationForms;
             this.displayedCards = collaborationForms;
-            this.sortACompleterAutres();
+            this.separateACompleterAndAutres();
+            this.loadingForms = false;
           }).catch(err => console.log(err.error));
           break;
       }
@@ -98,11 +100,39 @@ export class DashboardComponent implements OnInit {
       );
     });
 
+    let vue = localStorage.getItem("vue");
+
+    /*
+    if(vue){
+      if(vue==="true"){
+        this.vueCarte = true;}
+        else{
+          this.vueCarte = false;}
+      }
+
+    console.log("vueCarte: " + vue, typeof vue);
+    */
     
   }
   
+  toggleVueCarte() {
+    this.vueCarte = 'true';
+    /*
+    localStorage.setItem("vue", "true");
+    console.log("vueCarte: " + vueCarte);
+    */
+  }
+  toggleVueListe() {
+    this.vueCarte = 'false';
+    /*
+    localStorage.setItem("vue", "false");
+    console.log("vueCarte: " + vueCarte);
+    */
+
+  }
+
   displayFn(user?: User): string | undefined {
-    return user ? user.firstName + ' ' + user.lastName + ': ' + user.email : undefined;
+    return user ? user.firstName + ' ' + user.lastName : undefined;
   }
 
   private filtrer(name: string): User[] {
@@ -111,7 +141,6 @@ export class DashboardComponent implements OnInit {
     return this.listCollaborateurs.filter(option => ( //TODOkete: filtrer sur tout le string
          option.firstName.toLowerCase().indexOf(filterValue) === 0
       || option.lastName.toLowerCase().indexOf(filterValue) === 0
-      || option.email.toLowerCase().indexOf(filterValue) === 0
     )
     );
   }
@@ -195,7 +224,7 @@ export class DashboardComponent implements OnInit {
     return res;
   }
 
-  private sortACompleterAutres() {
+  private separateACompleterAndAutres() {
     this.dashboardForms.forEach(form => {
       if (form.statut === 'IN_PROGRESS') {
         this.aCompleterCards.push(form);
@@ -217,27 +246,38 @@ export class DashboardComponent implements OnInit {
     return nCollaborateursCompleted * 100 / collaborateurs.length;
   }
 
-  private searchAuthor(): Form[] {
-    const results: Form[] = [];
-    this.dashboardForms.forEach(form => {
-      if (form.auteur.nom === this.searchName) {
-          results.push(form);
-        }
-    });
-    return(results);
+  private activateSearch() {
+    this.displayedCards = this.searchResult;
+    this.searchActivated = true;
+  }
+
+  private desactivateSearch() {
+    this.searchName = null;
+    this.form.setValue(null);
+    this.searchStatus = null;
+    this.searchPatron = null;
+    this.dateFrom = null;
+    this.dateTo = null;
+    this.displayedCards = this.dashboardForms;
+    this.searchActivated = false;
   }
 
   private search() {
-    if (this.searchName === '' && this.searchStatus === '' &&
-        this.searchPatron === '' && this.dateFrom == null && this.dateTo == null) {
-      this.desactivateSearch();
-      return;
+    let searchString = this.form.value;
+    this.searchName = typeof searchString === 'string' ? searchString : this.displayFn(searchString);
+    
+    if ((this.searchName === '' || this.searchName == undefined) &&
+        (this.searchStatus === '' || this.searchStatus == undefined) &&
+        (this.searchPatron === '' || this.searchPatron == undefined) &&
+         this.dateFrom == null &&
+         this.dateTo == null) {
+        return;
     }
 
     this.searchResult = this.dashboardForms;
     // à ajouter la maniere de gérer les combinaisons de filtres!!!
     if (this.searchName) {
-      this.searchResult = this.searchAuthor();
+        this.searchResult = this.searchAuthor();
     }
 
     if (this.searchStatus === 'COMPLETED') {
@@ -267,18 +307,18 @@ export class DashboardComponent implements OnInit {
     if (this.dateTo) {
       this.searchResult = this.searchDateTo();
     }
-
+    
     this.activateSearch();
   }
 
-  private activateSearch() {
-    this.displayedCards = this.searchResult;
-    this.searchActivated = true;
-  }
-
-  private desactivateSearch() {
-    this.displayedCards = this.dashboardForms;
-    this.searchActivated = false;
+  private searchAuthor(): Form[] {
+    const results: Form[] = [];
+    this.dashboardForms.forEach(form => {
+      if (form.auteur.nom === this.searchName) {
+          results.push(form);
+        }
+    });
+    return(results);
   }
 
   private searchCompleted(): Form[] {
@@ -291,8 +331,6 @@ export class DashboardComponent implements OnInit {
     });
     return(results);
   }
-
-
 
   private searchActive(): Form[] {
     const results: Form[] = [];

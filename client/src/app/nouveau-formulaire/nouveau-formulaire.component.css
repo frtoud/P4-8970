@@ -1,35 +1,32 @@
-
-
 #preview {
   pointer-events: none;
+  background-color: #f7f7f7;
 }
 
-.selection-table button
-{
+.selection-table button {
   width: 100%;
   border-radius: 0;
 }
-.selection-table
-{
+
+.selection-table {
   min-width: 200px;
   width: 200px;
 }
-.fixed
-{
-  position: fixed;
+
+.fixed {
   width: 200px;
 }
-#nouv-form-container
-{
+
+#nouv-form-container {
   display: flex;
   flex: row;
 }
-.selected
-{
+
+.selected {
   background-color: #bbdeea;
 }
-#titre
-{
+
+#titre {
   background-color: #41aae6;
   color: #ffffff;
 }
@@ -40,10 +37,16 @@
   z-index: 1;
 }
 
-.selection-table #creer
-{
+.selection-table #creer {
   width: 80%;
   margin: 10%;
-  height: 4em;
   background-image: linear-gradient(to bottom, #e8f2db, #8dc83e);
+}
+
+#preview-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+  color: #B81E32;
 }

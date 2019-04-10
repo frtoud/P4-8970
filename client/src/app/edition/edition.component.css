@@ -1,29 +1,48 @@
-#edit-form-container
-{
+#edit-form-container {
   display: flex;
   flex-direction: row;
 }
-.flex-column
-{
+
+.flex-column {
   display: flex;
   flex-direction: column;
-  align-content: center;
+  justify-content: center;
+}
+
+.flex-column:first-of-type {
+  align-items: center;
+}
+
+.flex-column h4:nth-of-type(2), .flex-column:nth-of-type(2) h4 {
+  font-weight: lighter;
+}
+
+.flex-column:nth-of-type(2) {
+  font-size: 12px;
+  align-self: flex-end;
+  padding-right: 8px;
+}
+
+.flex-column h4 {
+  padding: 0;
+  margin: 0;
 }
 
 #metadata {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 
-.participants{
+.participants {
     float:right;
     margin-right: 1em;
     margin-top: 1em;
     width: 20%;
-    min-width: 15%;
+    min-width: 15%; 
   }
 
-  .disabled{
+  .disabled {
     pointer-events: none;
   }
 
@@ -31,22 +50,32 @@
     background-color: #aedd94
   }
 
-  button {
-    width: 95%;
+  #annuler, #print {
+    background: linear-gradient(to bottom, #eeeeee 0%,#cccccc 100%);
   }
+
+  #valider, #soumettre {
+    color: black;
+    background: linear-gradient(to bottom, #e8f2db, #8dc83e);
+  }
+
+  #copier {
+    background: linear-gradient(to bottom, rgba(169,3,41,1) 0%,rgba(143,2,34,1) 44%,rgba(109,0,25,1) 100%);
+    color: white;
+  }
+
   .mat-chip-list-stacked,
-  .participant{
+  .participant {
     width: 100%;
   }
 
-  @media print{
+  @media print {
 
-
-    #edit-form-container{
+    #edit-form-container {
       visibility: hidden;
     }
 
-    #printableArea{
+    #printableArea {
       visibility: visible;
       width:115%;
     }

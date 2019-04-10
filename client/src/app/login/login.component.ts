@@ -28,6 +28,7 @@ export class LoginComponent {
         this.router.navigate(["/dashboard"]);
       }
     }).catch(function(error) {
+      console.log("error in login page constructor")
     });
   }
 

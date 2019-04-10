@@ -1,6 +1,4 @@
-
 import { Injectable } from '@angular/core';
-
 import { DemandeAchatComponent } from '../templates/demande-achat/demande-achat.component';
 import { PaymentFormComponent } from '../templates/payment-form/paymentForm.component';
 import { AFFormComponent } from '../templates/aide-financiere-form/app.af-form';
