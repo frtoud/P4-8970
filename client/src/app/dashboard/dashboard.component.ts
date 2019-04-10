@@ -100,34 +100,35 @@ export class DashboardComponent implements OnInit {
       );
     });
 
-    let vue = localStorage.getItem("vue");
+    let vue = sessionStorage.getItem("vue");
 
-    /*
-    if(vue){
+    
       if(vue==="true"){
-        this.vueCarte = true;}
-        else{
-          this.vueCarte = false;}
+        this.vueCarte = 'true';
       }
+        else if(vue===false){
+          this.vueCarte = 'false';
+        }
+      
 
-    console.log("vueCarte: " + vue, typeof vue);
-    */
+    //console.log("vueCarte: " + vue, typeof vue);
+    
     
   }
   
   toggleVueCarte() {
     this.vueCarte = 'true';
-    /*
-    localStorage.setItem("vue", "true");
+    
+    sessionStorage.setItem("vue", "true");
     console.log("vueCarte: " + vueCarte);
-    */
+    
   }
   toggleVueListe() {
     this.vueCarte = 'false';
-    /*
-    localStorage.setItem("vue", "false");
+    
+    sessionStorage.setItem("vue", "false");
     console.log("vueCarte: " + vueCarte);
-    */
+    
 
   }
 
