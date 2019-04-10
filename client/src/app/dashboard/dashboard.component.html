@@ -254,13 +254,7 @@
 
                     <mat-expansion-panel-header [ngSwitch]="card.statut" class="cardHeader">
                       <ng-container *ngSwitchCase="'IN_PROGRESS'">
-                        <div>
-                          <i *ngIf="calculateCompletionRate(card.collaborateurs) == 100 ; else unchecked"
-                            class="material-icons"> radio_button_checked </i>
-                          <ng-template #unchecked>
-                            <i class="material-icons"> radio_button_unchecked </i>
-                          </ng-template>
-                        </div>
+                        <i class="material-icons"> radio_button_unchecked </i>
                         <mat-progress-bar class="inProgress" [mode]="determinate"
                           [value]="calculateCompletionRate(card.collaborateurs)">
                         </mat-progress-bar>
@@ -409,13 +403,7 @@
 
                     <mat-expansion-panel-header [ngSwitch]="card.statut" class="cardHeader">
                       <ng-container *ngSwitchCase="'IN_PROGRESS'">
-                        <div>
-                          <i *ngIf="calculateCompletionRate(card.collaborateurs) == 100 ; else unchecked"
-                            class="material-icons"> radio_button_checked </i>
-                          <ng-template #unchecked>
-                            <i class="material-icons"> radio_button_unchecked </i>
-                          </ng-template>
-                        </div>
+                        <i class="material-icons"> radio_button_unchecked </i>
                         <mat-progress-bar class="inProgress" [mode]="determinate"
                           [value]="calculateCompletionRate(card.collaborateurs)">
                         </mat-progress-bar>
