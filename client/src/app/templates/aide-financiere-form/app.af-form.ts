@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {MatFormFieldModule, MatGridListModule, MatTableDataSource} from '@angular/material';
-import { FormsModule, ReactiveFormsModule, FormControl, Validators} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormControl, Validators, FormGroup} from '@angular/forms';
 import { checkAndUpdateBinding } from '@angular/core/src/view/util';
 import { Signature, ISignature } from '../fields';
 import { BaseFormComponent } from '../base-form.component';
@@ -166,14 +166,20 @@ export class AFFormComponent extends BaseFormComponent implements IAideFinancier
 
   matriculesValide = false;
 
-  onChangeStatus(value) {
-    this.details.statutVersement = value;
+  onChangeStatus() {
+    let control = this.fg_details.get('num_ref')
+    if (this.fg_details.get('statutVersement').value === 'CHANGE') {
+      control.enable();
+    } else {
+      control.disable();
+    }
   }
   updateTotal() {
     this.ventilationTotal = 0;
     this.ventilation.tableau.forEach(element => {
       this.ventilationTotal += element.montant;
     });
+    this.fg_ventilation.updateValueAndValidity();
   }
   onCreate() {
     const id = BaseFormComponent.getHighestId(this.ventilation.tableau) + 1;
@@ -196,9 +202,11 @@ export class AFFormComponent extends BaseFormComponent implements IAideFinancier
     this.matriculesValide = this.beneficiaire.mat_enseignant.length === 0 && this.beneficiaire.mat_etudiant.length === 0;
   }
 
+  // BASECLASS FUNCTIONS
+
   setSections() {
   this.sections = [
-      this.beneficiaire, this.cycle, this.details, this.ventilation, this.demandeur, this.remarques
+      this.demandeur, this.beneficiaire, this.cycle, this.details, this.ventilation, this.remarques
     ];
     this.dSventilation = new MatTableDataSource(this.ventilation.tableau);
   }
@@ -207,4 +215,81 @@ export class AFFormComponent extends BaseFormComponent implements IAideFinancier
     this.updateTotal();
     this.testMatricule();
     }
+
+    fg_demandeur :FormGroup;
+    fg_beneficiaire :FormGroup;
+    fg_cycle :FormGroup;
+    fg_details :FormGroup;
+    fg_ventilation :FormGroup;
+    fg_remarques :FormGroup;
+
+    buildFormGroups() {
+      this.fg_demandeur = new FormGroup({
+        nom: new FormControl(this.demandeur.nom, Validators.required),
+        telephone: new FormControl(this.demandeur.telephone, Validators.required),
+        centre: new FormControl(this.demandeur.centre, Validators.required),
+        admin: new FormControl(this.demandeur.admin, Validators.required),
+      });
+      this.fg_beneficiaire = new FormGroup({
+        nom: new FormControl(this.beneficiaire.nom, Validators.required),
+        prenom: new FormControl(this.beneficiaire.prenom, Validators.required),
+        mat_enseignant: new FormControl(this.beneficiaire.mat_enseignant),
+        mat_etudiant: new FormControl(this.beneficiaire.mat_etudiant),
+      });
+      this.fg_cycle = new FormGroup({
+        bac: new FormControl(this.cycle.bac),
+        bacec: new FormControl(this.cycle.bacec),
+        mai: new FormControl(this.cycle.mai),
+        maiec: new FormControl(this.cycle.maiec),
+        doc: new FormControl(this.cycle.doc),
+        docec: new FormControl(this.cycle.docec),
+      }, (form) => { // At least one
+         return form.value.bac || form.value.bacec
+             || form.value.mai || form.value.maiec
+             || form.value.doc || form.value.docec ? null : { invalid: true };
+        });
+      this.fg_details = new FormGroup({
+        date_debut: new FormControl(this.details.date_debut),
+        date_fin: new FormControl(this.details.date_fin),
+        statutVersement: new FormControl(this.details.statutVersement, Validators.required),
+        num_ref: new FormControl({value: this.details.num_ref, disabled: this.details.statutVersement !== 'CHANGE'}, Validators.required),
+        montant: new FormControl(this.details.montant, Validators.required),
+        subventionnaire: new FormControl(this.details.subventionnaire, Validators.required),
+      });
+      this.fg_ventilation = new FormGroup({}, (form) => {
+        const res: any = {};
+        let valid = true;
+        let error = false;
+        this.ventilation.tableau.forEach(line => {
+          valid = valid && line.montant === 0 || !(line.ubr === '' || line.unite === '' || line.compte === '');
+        });
+        // Total égal au montant précédemment spécifié
+        if (this.ventilationTotal !== this.fg_details.value.montant) {
+          res.total = true;
+          error = true;
+        }
+        if (!valid) {
+          res.incomplete = true;
+          error = true;
+        }
+        if (error) {
+          return res;
+        } else {
+          return null;
+        }
+      });
+      this.fg_remarques = new FormGroup({
+        value: new FormControl(this.remarques.value),
+      });
+
+      // Fill the control array
+      while (this.controls.length !== 0) { this.controls.controls.pop(); }
+      this.controls.push(this.fg_demandeur);
+      this.controls.push(this.fg_beneficiaire);
+      this.controls.push(this.fg_cycle);
+      this.controls.push(this.fg_ventilation);
+      this.controls.push(this.fg_details);
+      this.controls.push(this.fg_remarques);
+    }
+
 }

@@ -3,7 +3,7 @@ import { MatTableDataSource } from '@angular/material';
 import { ExchangeRateService } from '../../services/exchangeRate.service';
 import { BaseFormComponent } from '../base-form.component';
 import { ISignature, Signature } from '../fields';
-import { identifierModuleUrl } from '@angular/compiler';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 export interface IPaymentForm {
 
@@ -251,6 +251,103 @@ export class PaymentFormComponent extends BaseFormComponent implements IPaymentF
   initCalculs() {
     this.updateTotal();
     this.updateVentilationTotal();
+  }
+
+
+  fg_entite_employe :FormGroup;
+  fg_entite_fournisseur :FormGroup;
+  fg_beneficiaire :FormGroup;
+  fg_demandeur :FormGroup;
+  fg_fournisseur :FormGroup;
+  fg_description_facture :FormGroup;
+  fg_ventilation_budgetaire :FormGroup;
+
+  buildFormGroups() {
+    this.fg_entite_employe = new FormGroup({
+      matricule: new FormControl(this.entite_employe.matricule, Validators.required),
+    });
+    this.fg_entite_fournisseur = new FormGroup({
+      numero: new FormControl(this.entite_fournisseur.numero, Validators.required),
+      adresse: new FormControl(this.entite_fournisseur.adresse, Validators.required),
+    });
+    this.fg_beneficiaire = new FormGroup({
+      nom: new FormControl(this.beneficiaire.nom, Validators.required),
+    });
+    this.fg_demandeur = new FormGroup({
+      nom: new FormControl(this.demandeur.nom, Validators.required),
+      telephone: new FormControl(this.demandeur.telephone, Validators.required),
+    });
+    this.fg_fournisseur = new FormGroup({
+      adresse: new FormControl(this.fournisseur.adresse),
+      telephone: new FormControl(this.fournisseur.telephone),
+      fax: new FormControl(this.fournisseur.fax),
+      ville: new FormControl(this.fournisseur.ville),
+      province: new FormControl(this.fournisseur.province),
+      postal: new FormControl(this.fournisseur.postal),
+    }, (form) => {
+      if (form.value.fax === '' &&
+          form.value.ville === '' &&
+          form.value.postal === '' &&
+          form.value.adresse === '' &&
+          form.value.province === '' &&
+          form.value.telephone === ''
+          ||
+          form.value.fax !== '' &&
+          form.value.ville !== '' &&
+          form.value.postal !== '' &&
+          form.value.adresse !== '' &&
+          form.value.province !== '' &&
+          form.value.telephone !== '') {
+            // Soit complètement vide ou complètement plein, OK.
+            return null;
+          } else {
+            return { incomplete: true };
+          }
+    });
+    this.fg_description_facture = new FormGroup({}, (form) => {
+      const res: any = {};
+      let valid = true;
+      let error = false;
+      this.description_facture.tableau.forEach(line => {
+        valid = valid && line.total === 0 || !(line.reference === '' || line.num === '' || line.description === '');
+      });
+      if (!valid) {
+        res.incomplete = true;
+        error = true;
+      }
+      if (error) {
+        return res;
+      } else {
+        return null;
+      }
+    });
+    this.fg_ventilation_budgetaire = new FormGroup({}, (form) => {
+      const res: any = {};
+      let valid = true;
+      let error = false;
+      this.ventilation_budgetaire.tableau.forEach(line => {
+        valid = valid && line.montant === 0 || !(line.ubr === '' || line.unite === '' || line.compte === '');
+      });
+      if (!valid) {
+        res.incomplete = true;
+        error = true;
+      }
+      if (error) {
+        return res;
+      } else {
+        return null;
+      }
+    });
+
+    // Fill the control array
+    while (this.controls.length !== 0) { this.controls.controls.pop(); }
+    this.controls.push(this.fg_entite_employe);
+    this.controls.push(this.fg_entite_fournisseur);
+    this.controls.push(this.fg_beneficiaire);
+    this.controls.push(this.fg_demandeur);
+    this.controls.push(this.fg_fournisseur);
+    this.controls.push(this.fg_description_facture);
+    this.controls.push(this.fg_ventilation_budgetaire);
   }
 }
 
