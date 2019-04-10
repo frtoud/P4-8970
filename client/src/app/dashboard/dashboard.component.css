@@ -122,7 +122,7 @@
  }
 
  #cards-container {
-  float: center;
+  margin: auto;
  }
 
 .inProgress.mat-progress-bar,
