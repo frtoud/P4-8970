@@ -16,7 +16,7 @@ export interface AuthenticatedUser {
 @Injectable()
 export class LoginService {
   constructor(private http: HttpClient, private router: Router) {
-    this.currentUserSubject = new BehaviorSubject<AuthenticatedUser>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUserSubject = new BehaviorSubject<AuthenticatedUser>(JSON.parse(sessionStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
    }
   
@@ -39,8 +39,8 @@ export class LoginService {
     return this.http.post<AuthenticatedUser>(`${Config.apiUrl}/users/login`, body, httpOptions).toPromise()
     .then(user => {
       this.loggedIn.next(true);
-      localStorage.setItem("acc_tkn", user.token);
-      localStorage.setItem("currentUser", JSON.stringify(user));
+      sessionStorage.setItem("acc_tkn", user.token);
+      sessionStorage.setItem("currentUser", JSON.stringify(user));
       this.currentUserSubject.next(user);
       return user;
     })
@@ -53,14 +53,14 @@ export class LoginService {
       resolve(this.currentUserSubject.value);
       } 
       else {
-        console.log("Error in loginService: getUser()")
+        console.log("Error found in loginService: getUser()")
         reject('No user in loginService');
       }});
   }
 
   getUserOldVersion():Promise<AuthenticatedUser> {
     return new Promise<AuthenticatedUser>((resolve, reject) => {
-    let user = JSON.parse(localStorage.getItem('currentUser'));
+    let user = JSON.parse(sessionStorage.getItem('currentUser'));
       
       if (user) {
         resolve(user);
@@ -73,8 +73,8 @@ export class LoginService {
 
   logout(){
     this.loggedIn.next(false);
-    localStorage.removeItem("acc_tkn");
-    localStorage.removeItem('currentUser');
+    sessionStorage.removeItem("acc_tkn");
+    sessionStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
     this.router.navigate(['/login']);
   }

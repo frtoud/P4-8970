@@ -9,9 +9,9 @@ export class RoleGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    let token = localStorage.getItem("acc_tkn");
+    let token = sessionStorage.getItem("acc_tkn");
     if (token) {
-    let user = JSON.parse(localStorage.getItem('currentUser'));
+    let user = JSON.parse(sessionStorage.getItem('currentUser'));
       if (user.type == "ADMIN") {
         return true;
       } else {

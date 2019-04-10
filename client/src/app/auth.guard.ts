@@ -11,7 +11,7 @@ export class AuthGuard implements CanActivate {
   constructor(private router: Router, private loginService: LoginService){}
 
   canActivate(): boolean  {
-    let token = localStorage.getItem("acc_tkn");
+    let token = sessionStorage.getItem("acc_tkn");
 
    if (token) {
     return true;
