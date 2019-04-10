@@ -50,7 +50,7 @@
     background-color: #aedd94
   }
 
-  #annuler, #print {
+  #annuler, #print, #copier {
     background: linear-gradient(to bottom, #eeeeee 0%,#cccccc 100%);
   }
 
@@ -58,8 +58,14 @@
     color: black;
     background: linear-gradient(to bottom, #e8f2db, #8dc83e);
   }
+  button {
+    width: 100%;
+  }
+  button:disabled {
+    color: gray;
+  }
 
-  #copier {
+  #invalider {
     background: linear-gradient(to bottom, rgba(169,3,41,1) 0%,rgba(143,2,34,1) 44%,rgba(109,0,25,1) 100%);
     color: white;
   }
