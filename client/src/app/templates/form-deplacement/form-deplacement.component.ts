@@ -190,11 +190,14 @@ export class FormDeplacementComponent extends BaseFormComponent implements IDepl
   }
 
   private updateDuree(): void {
-    this.endroit_duree.au = new Date(this.endroit_duree.au);
-    this.endroit_duree.du = new Date(this.endroit_duree.du);
-    console.log(this.bothFilled, this.endroit_duree);
+    if (this.endroit_duree.au == null && this.endroit_duree.du == null) {
+      return;
+    }
+
     this.bothFilled = (this.endroit_duree.au !== null && this.endroit_duree.du !== null);
     if (this.bothFilled) {
+      this.endroit_duree.au = new Date(this.endroit_duree.au);
+      this.endroit_duree.du = new Date(this.endroit_duree.du);
       this.dureeDeplacement = this.endroit_duree.au.valueOf() - this.endroit_duree.du.valueOf();
       this.dureeDeplacement = Math.round((((this.dureeDeplacement / 60) / 60) / 24) / 1000);
     }
