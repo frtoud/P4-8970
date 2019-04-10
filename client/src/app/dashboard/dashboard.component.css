@@ -276,6 +276,7 @@
   background-color: #ebebeb;
 }
 
+/* https://stackoverflow.com/questions/55601005/how-to-remove-mat-option-padding?noredirect=1#comment97897983_55601005 */
 .collabOption {
   padding: 0 !important;
 }
