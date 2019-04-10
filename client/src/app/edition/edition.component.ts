@@ -99,7 +99,7 @@ export class EditionComponent implements OnInit {
       this.formInstance.setInterface(form.data);
     this.loginService.getUser().then(user => {
       this.formInstance.setUserEdition(user, this.state !== 'view');
-      const isAuthor = user.type !== 'USER' && this.metadata.auteur.idAuteur === user._id;
+      const isAuthor = user.type !== 'USER'; // && this.metadata.auteur.idAuteur === user._id;
       this.formInstance.controls.statusChanges.subscribe(() => {
         const validationcheck = this.formInstance.getFormValidation(user, isAuthor);
         this.canSubmit = validationcheck || isAuthor;
