@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
   searchName: string = null;
   searchStatus: string = '';
   searchPatron: string = '';
-  vueCarte: string = 'false';
+  vueCarte: string = 'true';
   loadingForms: boolean = true;
   searchActivated: boolean = false;
 
