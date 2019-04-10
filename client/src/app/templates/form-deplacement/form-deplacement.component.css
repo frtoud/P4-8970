@@ -259,12 +259,14 @@ input {
 @media print{
 
         * {
-          max-width: 85% !important;
+          max-width: 95% !important;
         }
 
         #annexe {
+            max-width: 85% !important;
             float: left;
             /*transform: scale(.7);*/
+            margin: auto;
         }
         
         
