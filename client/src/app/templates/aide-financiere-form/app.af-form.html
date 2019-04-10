@@ -207,14 +207,16 @@
 
 <div class="sectionheader">
   <h6>REMARQUES</h6>
+  <form [formGroup]="fg_remarques">
   <div class="section" id="remarques">
     <mat-form-field hideRequiredMarker=true floatLabel="auto">
-      <textarea matInput [(ngModel)]="remarques.value"
+      <textarea matInput formControlName="value"
               cdkTextareaAutosize
               #autosize="cdkTextareaAutosize"
               cdkAutosizeMinRows="1"></textarea>
     </mat-form-field>
   </div>
+</form>
 </div>
 
 <div class="sectionheader">

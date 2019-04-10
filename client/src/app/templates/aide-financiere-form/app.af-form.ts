@@ -259,7 +259,6 @@ export class AFFormComponent extends BaseFormComponent implements IAideFinancier
           valid = valid && line.montant === 0 || !(line.ubr === '' || line.unite === '' || line.compte === '');
         });
         // Total égal au montant précédemment spécifié
-        console.log("VENTILATION CHECKER!", this.ventilationTotal, this.fg_details.value);
         if (this.ventilationTotal !== this.fg_details.value.montant) {
           res.total = true;
           error = true;
@@ -274,6 +273,9 @@ export class AFFormComponent extends BaseFormComponent implements IAideFinancier
           return null;
         }
       });
+      this.fg_remarques = new FormGroup({
+        value: new FormControl(this.remarques.value),
+      });
 
       // Fill the control array
       while (this.controls.length !== 0) { this.controls.controls.pop(); }
@@ -282,7 +284,7 @@ export class AFFormComponent extends BaseFormComponent implements IAideFinancier
       this.controls.push(this.fg_cycle);
       this.controls.push(this.fg_ventilation);
       this.controls.push(this.fg_details);
-      // this.controls.push(this.fg_remarques);
+      this.controls.push(this.fg_remarques);
     }
 
 }
