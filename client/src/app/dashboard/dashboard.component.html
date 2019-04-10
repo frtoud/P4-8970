@@ -95,7 +95,7 @@
                 <ng-container id="expansible">
                   <mat-expansion-panel>
 
-                    <mat-expansion-panel-header [ngSwitch]="card.statut">
+                    <mat-expansion-panel-header [ngSwitch]="card.statut" class="cardHeader">
                       <ng-container *ngSwitchCase="'IN_PROGRESS'">
                         <i class="material-icons" id="inProgresIcon"> radio_button_unchecked </i>
                         <mat-progress-bar class="inProgress" [mode]="determinate"
@@ -252,7 +252,7 @@
                 <ng-container id="expansible">
                   <mat-expansion-panel>
 
-                    <mat-expansion-panel-header [ngSwitch]="card.statut">
+                    <mat-expansion-panel-header [ngSwitch]="card.statut" class="cardHeader">
                       <ng-container *ngSwitchCase="'IN_PROGRESS'">
                         <div>
                           <i *ngIf="calculateCompletionRate(card.collaborateurs) == 100 ; else unchecked"
@@ -407,7 +407,7 @@
                 <ng-container id="expansible">
                   <mat-expansion-panel>
 
-                    <mat-expansion-panel-header [ngSwitch]="card.statut">
+                    <mat-expansion-panel-header [ngSwitch]="card.statut" class="cardHeader">
                       <ng-container *ngSwitchCase="'IN_PROGRESS'">
                         <div>
                           <i *ngIf="calculateCompletionRate(card.collaborateurs) == 100 ; else unchecked"

@@ -93,6 +93,10 @@
   float: right;
 }
 
+.cardHeader {
+  padding: 0 15px !important;
+}
+
 #completedIcon {
   color: #8cc83c;
 }
@@ -130,7 +134,8 @@
 .completed.mat-progress-bar,
 .archived.mat-progress-bar {
   height: 24px;
-  padding-left: 3px;
+  margin-left: 15px;
+  margin-right: 15px;
   width: 230px;
 }
 
