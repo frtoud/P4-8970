@@ -166,8 +166,13 @@ export class AFFormComponent extends BaseFormComponent implements IAideFinancier
 
   matriculesValide = false;
 
-  onChangeStatus(value) {
-    this.details.statutVersement = value;
+  onChangeStatus() {
+    let control = this.fg_details.get('num_ref')
+    if (this.fg_details.get('statutVersement').value === 'CHANGE') {
+      control.enable();
+    } else {
+      control.disable();
+    }
   }
   updateTotal() {
     this.ventilationTotal = 0;
@@ -247,7 +252,7 @@ export class AFFormComponent extends BaseFormComponent implements IAideFinancier
         date_debut: new FormControl(this.details.date_debut),
         date_fin: new FormControl(this.details.date_fin),
         statutVersement: new FormControl(this.details.statutVersement, Validators.required),
-        num_ref: new FormControl(this.details.num_ref),
+        num_ref: new FormControl({value: this.details.num_ref, disabled: this.details.statutVersement !== 'CHANGE'}, Validators.required),
         montant: new FormControl(this.details.montant, Validators.required),
         subventionnaire: new FormControl(this.details.subventionnaire, Validators.required),
       });

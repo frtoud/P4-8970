@@ -108,14 +108,14 @@
       <mat-datepicker #fin></mat-datepicker>
     </mat-form-field>
     <div class="end full">
-      <mat-radio-group formControlName="statutVersement" class="large">
+      <mat-radio-group formControlName="statutVersement" class="large" (change)=onChangeStatus()>
         <mat-radio-button value="UNIQUE" color="primary">Versement unique</mat-radio-button>
         <mat-radio-button value="NEW" color="primary">Nouveau versement</mat-radio-button>
         <mat-radio-button value="CHANGE" color="primary">Changement</mat-radio-button>
       </mat-radio-group>
     <mat-form-field floatLabel="auto" class="short">
       <input matInput placeholder="Numéro de référence"
-      [disabled]="details.statutVersement != 'CHANGE'" formControlName="num_ref">
+      formControlName="num_ref">
     </mat-form-field></div>
     <mat-form-field floatLabel="auto" class="short">
       <mat-label>Montant de l'aide financière</mat-label>
