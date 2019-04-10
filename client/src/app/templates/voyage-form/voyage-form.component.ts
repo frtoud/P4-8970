@@ -273,6 +273,9 @@ export class VoyageFormComponent extends BaseFormComponent implements IVoyageFor
   }
 
   private updateDuree(): void {
+    if (this.endroit_deplacement.au == null && this.endroit_deplacement.du == null) {
+      return;
+    }
     this.endroit_deplacement.au = new Date(this.endroit_deplacement.au);
     this.endroit_deplacement.du = new Date(this.endroit_deplacement.du);
     this.bothFilled = (this.endroit_deplacement.au !== null && this.endroit_deplacement.du !== null);
