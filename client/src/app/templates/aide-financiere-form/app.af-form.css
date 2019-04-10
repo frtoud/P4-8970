@@ -17,6 +17,9 @@ div {
   font-size: 13px;
 }
 
+form {
+  width: 100%;
+}
 div.sectionheader {
   display: flex;
   align-content: flex-start;

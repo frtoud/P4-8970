@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import {MatTableDataSource} from '@angular/material';
 import { ISignature, Signature } from '../fields';
 import { BaseFormComponent } from '../base-form.component';
@@ -37,7 +37,7 @@ export interface IDemandeAchat {
     adresse: string;
     numero2: string;
     ville: string;
-    provice: string;
+    province: string;
     postal: string;
     pays: string;
   };
@@ -55,7 +55,7 @@ export interface IDemandeAchat {
     assigneA: string;
 
     numero: string;
-    echeance: string;
+    echeance: Date;
   };
   livraison: {
     id: string;
@@ -77,17 +77,15 @@ export interface IDemandeAchat {
     id: string;
     assigneA: string;
 
-    frais_transport: number;
-    frais_autres: number;
     tableau: IItem[];
+    transport: number;
+    autres: number;
   };
   ventilation: {
     id: string;
     assigneA: string;
 
     tableau: IVentilationDA[];
-    transport: number;
-    autres: number;
   };
   commentaire: {
     id: string;
@@ -151,7 +149,7 @@ export class DemandeAchatComponent extends BaseFormComponent implements IDemande
     adresse: '',
     numero2: '',
     ville: '',
-    provice: '',
+    province: '',
     postal: '',
     pays: '',
   };
@@ -169,7 +167,7 @@ export class DemandeAchatComponent extends BaseFormComponent implements IDemande
     assigneA: null,
 
     numero: '',
-    echeance: '',
+    echeance: null,
   };
   livraison = {
     id: 'livraison',
@@ -191,11 +189,11 @@ export class DemandeAchatComponent extends BaseFormComponent implements IDemande
     id: 'items',
     assigneA: null,
 
-    frais_transport: 0,
-    frais_autres: 0,
     tableau: [
       {id: 0, ref: 0, descr: '', quant: 0, prixUnit: 0},
     ],
+    transport: 0,
+    autres: 0,
   };
   ventilation = {
     id: 'ventilation',
@@ -204,8 +202,6 @@ export class DemandeAchatComponent extends BaseFormComponent implements IDemande
     tableau: [
       {id: 0, ubr: '', compte: '', unite: '', percent: 0, montant: 0},
     ],
-    transport: 0,
-    autres: 0,
   };
   commentaire = {
     id: 'commentaire',
@@ -220,16 +216,16 @@ export class DemandeAchatComponent extends BaseFormComponent implements IDemande
     new Signature('sig-finances', 'SERVICE DES FINANCES', null, '', false, false, false),
   ];
 
-  ventilationSTotal = 0;
   ventilationTotal = 0;
-  taxeTPS = 0;
-  taxeTVQ = 0;
-  engagement = 0;
   dSventilation = new MatTableDataSource(this.ventilation.tableau);
   dSitems = new MatTableDataSource(this.items.tableau);
   displayedColumnsVentilation: string[] = ['ubr', 'compte', 'unite', 'percent', 'montant', 'action'];
   displayedColumnsItems: string[] = ['ref', 'descr', 'quant', 'prixUnit', 'totalItems', 'action'];
   itemsTotal = 0;
+  itemsSTotal = 0;
+  taxeTPS = 0;
+  taxeTVQ = 0;
+  engagement = 0;
 
   onCreate() {
     const id = BaseFormComponent.getHighestId(this.ventilation.tableau) + 1;
@@ -269,22 +265,22 @@ export class DemandeAchatComponent extends BaseFormComponent implements IDemande
   }
 
   updateTotal() {
-    this.ventilationSTotal = 0;
+    this.ventilationTotal = 0;
     this.ventilation.tableau.forEach(element => {
-      this.ventilationSTotal += element.montant;
+      this.ventilationTotal += element.montant;
     });
-    const pretax = this.ventilationSTotal + this.ventilation.transport + this.ventilation.autres;
-    this.taxeTPS = pretax * 0.05; // Todokete: constante?
-    this.taxeTVQ = pretax * 0.09975; // Todokete: constante?
-    this.engagement = pretax + this.taxeTPS * 0.33 + this.taxeTVQ * 0.53;
-    this.ventilationTotal = pretax + this.taxeTPS + this.taxeTVQ;
   }
 
   updateTotalItems() {
-    this.itemsTotal = 0;
+    this.itemsSTotal = 0;
     this.items.tableau.forEach(element => {
-      this.itemsTotal += element.prixUnit * element.quant;
+      this.itemsSTotal += element.prixUnit * element.quant;
     });
+    const pretax = this.itemsSTotal + this.items.transport + this.items.autres;
+    this.taxeTPS = pretax * 0.05; // Todokete: constante?
+    this.taxeTVQ = pretax * 0.09975; // Todokete: constante?
+    this.engagement = pretax + this.taxeTPS * 0.33 + this.taxeTVQ * 0.53;
+    this.itemsTotal = pretax + this.taxeTPS + this.taxeTVQ;
   }
 
   setSections(): void {
@@ -301,6 +297,117 @@ export class DemandeAchatComponent extends BaseFormComponent implements IDemande
   initCalculs() {
     this.updateTotal();
     this.updateTotalItems();
+  }
+
+  fg_commande :FormGroup;
+  fg_finances :FormGroup;
+  fg_demandeur :FormGroup;
+  fg_fournisseur :FormGroup;
+  fg_contact :FormGroup;
+  fg_soumission :FormGroup;
+  fg_livraison :FormGroup;
+  fg_termes :FormGroup;
+  fg_items :FormGroup;
+  fg_ventilation :FormGroup;
+  fg_commentaire :FormGroup;
+
+  buildFormGroups() {
+    this.fg_commande = new FormGroup({
+      entente: new FormControl(this.commande.entente, Validators.required),
+      standard: new FormControl(this.commande.standard, Validators.required),
+    });
+    this.fg_finances = new FormGroup({
+      technique: new FormControl(this.finances.technique, Validators.required),
+      commande: new FormControl(this.finances.commande, Validators.required),
+    });
+    this.fg_demandeur = new FormGroup({
+      nom: new FormControl(this.demandeur.nom, Validators.required),
+      telephone: new FormControl(this.demandeur.telephone, Validators.required),
+      departement: new FormControl(this.demandeur.departement, Validators.required),
+    });
+    this.fg_fournisseur = new FormGroup({
+      nom: new FormControl(this.fournisseur.nom, Validators.required),
+      numero: new FormControl(this.fournisseur.numero, Validators.required),
+      adresse: new FormControl(this.fournisseur.adresse, Validators.required),
+      numero2: new FormControl(this.fournisseur.numero2, Validators.required),
+      ville: new FormControl(this.fournisseur.ville, Validators.required),
+      province: new FormControl(this.fournisseur.province, Validators.required),
+      postal: new FormControl(this.fournisseur.postal, Validators.required),
+      pays: new FormControl(this.fournisseur.pays, Validators.required),
+    });
+    this.fg_contact = new FormGroup({
+      nom: new FormControl(this.contact.nom, Validators.required),
+      courriel: new FormControl(this.contact.courriel),
+      telephone: new FormControl(this.contact.telephone),
+      fax: new FormControl(this.contact.fax),
+    });
+    this.fg_soumission = new FormGroup({
+      numero: new FormControl(this.soumission.numero, Validators.required),
+      echeance: new FormControl(this.soumission.echeance, Validators.required),
+    });
+    this.fg_livraison = new FormGroup({
+      date: new FormControl(this.livraison.date, Validators.required),
+      lieu: new FormControl(this.livraison.lieu, Validators.required),
+      incoterms: new FormControl(this.livraison.incoterms /*!!??*/),
+    });
+    this.fg_termes = new FormGroup({
+      conditions: new FormControl(this.termes.conditions, Validators.required),
+      moyens: new FormControl(this.termes.moyens, Validators.required),
+      precisions: new FormControl(this.termes.precisions, Validators.required),
+    });
+    this.fg_items = new FormGroup({}, (form) => {
+      const res: any = {};
+      let valid = true;
+      let error = false;
+      this.items.tableau.forEach(line => {
+        // valid = valid && line.quant === 0 || !(line.ubr === '' || line.unite === '' || line.compte === '');
+        // TODO-kete how to test a line?
+      });
+      if (!valid) {
+        res.incomplete = true;
+        error = true;
+      }
+      if (error) {
+        return res;
+      } else {
+        return null;
+      }
+    });
+    this.fg_ventilation = new FormGroup({}, (form) => {
+      const res: any = {};
+      let valid = true;
+      let error = false;
+      this.ventilation.tableau.forEach(line => {
+        valid = valid && line.montant === 0 || !(line.ubr === '' || line.unite === '' || line.compte === '');
+      });
+      if (!valid) {
+        res.incomplete = true;
+        error = true;
+      }
+      if (error) {
+        return res;
+      } else {
+        return null;
+      }
+    });
+    this.fg_commentaire = new FormGroup({
+      value: new FormControl(this.commentaire.value),
+    });
+
+    // Fill the control array
+    while (this.controls.length !== 0) { this.controls.controls.pop(); }
+    this.controls.push(this.fg_commande);
+    this.controls.push(this.fg_finances);
+    this.controls.push(this.fg_demandeur);
+    this.controls.push(this.fg_fournisseur);
+    this.controls.push(this.fg_contact);
+    this.controls.push(this.fg_soumission);
+    this.controls.push(this.fg_livraison);
+    this.controls.push(this.fg_termes);
+    this.controls.push(this.fg_items);
+    this.controls.push(this.fg_ventilation);
+    this.controls.push(this.fg_commentaire);
+    // this.controls.push(this.fg_remarques);
   }
 }
 

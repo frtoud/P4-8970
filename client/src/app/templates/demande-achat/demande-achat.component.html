@@ -1,160 +1,203 @@
   <!--Commande-->
  <div class="section-rectangle" id="commande">
+  <form [formGroup]="fg_commande">
     <h6>COMMANDE</h6>
-      <mat-grid-list cols="1" rowHeight="4em">
-        <mat-grid-tile>
-              <mat-checkbox [(ngModel)]="commande.standard" color="primary">Standard</mat-checkbox>
-          <br>
-              <mat-checkbox [(ngModel)]="commande.entente" color="primary">Entente</mat-checkbox>
-          <br>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </div>
+    <mat-grid-list cols="1" rowHeight="4em">
+      <mat-grid-tile>
+            <mat-checkbox formControlName="standard" color="primary">Standard</mat-checkbox>
+        <br>
+            <mat-checkbox formControlName="entente" color="primary">Entente</mat-checkbox>
+        <br>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+ </div>
 
  <!--Service des finances-->
  <div class="section-rectangle" id="finances">
+  <form [formGroup]="fg_finances">
   <h6>Réservé au Service des finances</h6>
     <mat-grid-list cols="1" rowHeight="4em">
       <mat-grid-tile>
         <mat-form-field>
-          <input matInput placeholder="Technique de réception" [(ngModel)]="finances.technique">
+          <input matInput placeholder="Technique de réception"
+          formControlName="technique">
         </mat-form-field>
         <br>
         <mat-form-field>
-          <input matInput placeholder="No. Bon de commande" [(ngModel)]="finances.commande">
+          <input matInput placeholder="No. Bon de commande"
+          formControlName="commande">
         </mat-form-field>
         <br>
       </mat-grid-tile>
     </mat-grid-list>
+    </form>
   </div>
 
   <!--Demandeur-->
   <div class="section-rectangle" id="demandeur">
+    <form [formGroup]="fg_demandeur">
     <h6>DEMANDEUR</h6>
       <mat-grid-list cols="1" rowHeight="4em">
         <mat-grid-tile>
           <mat-form-field>
-            <input matInput placeholder="Nom du demandeur" [(ngModel)]="demandeur.nom">
+            <input matInput placeholder="Nom du demandeur"
+            formControlName="nom">
           </mat-form-field>
           <br>
           <mat-form-field>
-            <input matInput placeholder="Département" [(ngModel)]="demandeur.departement">
+            <input matInput placeholder="Département"
+            formControlName="departement">
           </mat-form-field>
           <br>
           <mat-form-field>
-            <input matInput placeholder="Téléphone" [(ngModel)]="demandeur.telephone">
+            <input matInput placeholder="Téléphone"
+            formControlName="telephone">
           </mat-form-field>
           <br>
         </mat-grid-tile>
       </mat-grid-list>
+      </form>
     </div>
   <!--Fournisseur suggéré-->
   <div class="section-rectangle" id="fournisseur">
+    <form [formGroup]="fg_fournisseur">
       <h6>FOURNISSEUR SUGGÉRÉ</h6>
       <mat-grid-list cols="1" rowHeight="4em">
       <mat-grid-tile>
         <mat-form-field>
-          <input matInput placeholder="Nom" [(ngModel)]="fournisseur.nom">
+          <input matInput placeholder="Nom"
+          formControlName="nom">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="No" [(ngModel)]="fournisseur.numero">
-        </mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <mat-form-field>
-          <input matInput placeholder="Adresse" [(ngModel)]="fournisseur.adresse">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="No" [(ngModel)]="fournisseur.numero2">
+          <input matInput placeholder="No"
+          formControlName="numero">
         </mat-form-field>
       </mat-grid-tile>
       <mat-grid-tile>
         <mat-form-field>
-          <input matInput placeholder="Ville" [(ngModel)]="fournisseur.ville">
+          <input matInput placeholder="Adresse"
+          formControlName="adresse">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Province/État" [(ngModel)]="fournisseur.province">
+          <input matInput placeholder="No"
+          formControlName="numero2">
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field>
+          <input matInput placeholder="Ville"
+          formControlName="ville">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Code postal" [(ngModel)]="fournisseur.postal">
+          <input matInput placeholder="Province/État"
+          formControlName="province">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Pays" [(ngModel)]="fournisseur.pays">
+          <input matInput placeholder="Code postal"
+          formControlName="postal">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Pays"
+          formControlName="pays">
         </mat-form-field>
       </mat-grid-tile>
     </mat-grid-list>
+    </form>
     </div>
   <!--Contact-->
   <div class="section-rectangle" id="contact">
-    
+    <form [formGroup]="fg_contact">
       <h6>CONTACT</h6>
       <mat-grid-list cols="1" rowHeight="4em">
     <mat-grid-tile>
       <mat-form-field>
-        <input matInput placeholder="Nom" [(ngModel)]="contact.nom">
+        <input matInput placeholder="Nom"
+        formControlName="nom">
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Courriel" [(ngModel)]="contact.courriel">
+        <input matInput placeholder="Courriel"
+        formControlName="courriel">
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Tél." [(ngModel)]="contact.telephone">
+        <input matInput placeholder="Tél."
+        formControlName="telephone">
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Fax" [(ngModel)]="contact.fax">
+        <input matInput placeholder="Fax"
+        formControlName="fax">
       </mat-form-field>
     </mat-grid-tile>
     </mat-grid-list>
+  </form>
     </div>
   <!--Soumission-->
   <div class="section-rectangle" id="soumission">
+    <form [formGroup]="fg_soumission">
     <h6>SOUMISSION</h6>
       <mat-grid-list cols="1" rowHeight="4em">
     <mat-grid-tile>
       <mat-form-field>
-        <input matInput placeholder="No" [(ngModel)]="soumission.numero">
+        <input matInput placeholder="No"
+        formControlName="numero">
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Échéance" [(ngModel)]="soumission.echeance">
+        <input matInput [matDatepicker]="PickerEcheance"
+         placeholder="Date convenue"
+         formControlName="echeance" (click)="PickerEcheance.open()">
+         <mat-datepicker-toggle matSuffix [for]="PickerEcheance"></mat-datepicker-toggle>
+         <mat-datepicker #PickerEcheance></mat-datepicker>
       </mat-form-field>
     </mat-grid-tile>
     </mat-grid-list>
+  </form>
     </div>
   <!--Livraison-->
   <div class="section-rectangle" id="livraison">
+    <form [formGroup]="fg_livraison">
     <h6>LIVRAISON</h6>
     <mat-grid-list cols="1" rowHeight="4em">
   <mat-grid-tile>
     <mat-form-field>
       <input matInput [matDatepicker]="PickerConvenu"
-       placeholder="Date convenue" [(ngModel)]="livraison.date" (click)="PickerConvenu.open()">
+       placeholder="Date convenue"
+       formControlName="date" (click)="PickerConvenu.open()">
        <mat-datepicker-toggle matSuffix [for]="PickerConvenu"></mat-datepicker-toggle>
        <mat-datepicker #PickerConvenu></mat-datepicker>
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Lieu convenu" [(ngModel)]="livraison.lieu">
+      <input matInput placeholder="Lieu convenu"
+      formControlName="lieu">
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Incoterms" [(ngModel)]="livraison.incoterms">
+      <input matInput placeholder="Incoterms"
+      formControlName="incoterms">
     </mat-form-field>
   </mat-grid-tile>
     </mat-grid-list>
+    </form>
   </div>
   <!--Termes de paiement-->
   <div class="section-rectangle" id="termes">
+    <form [formGroup]="fg_termes">
       <h6>TERMES DE PAIEMENT</h6>
     <mat-grid-list cols="1" rowHeight="4em">
     <mat-grid-tile>
     <mat-form-field>
-      <input matInput placeholder="Conditions" [(ngModel)]="termes.conditions">
+      <input matInput placeholder="Conditions"
+      formControlName="conditions">
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Moyens" [(ngModel)]="termes.moyens">
+      <input matInput placeholder="Moyens"
+      formControlName="moyens">
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Précisions" [(ngModel)]="termes.precisions">
+      <input matInput placeholder="Précisions"
+      formControlName="precisions">
     </mat-form-field>
     </mat-grid-tile>
     </mat-grid-list>
+  </form>
   </div>
   <!--Description des items-->
   <div class="section-rectangle" id="items">
@@ -201,7 +244,7 @@
         </ng-container>
         <ng-container matColumnDef="total">
           <td mat-footer-cell *matFooterCellDef colspan="5">
-            <p>TOTAL: {{ itemsTotal | currency}}</p>
+            <p>TOTAL: {{ itemsSTotal | currency}}</p>
           </td>
         </ng-container>
         <ng-container matColumnDef="addRow">
@@ -214,6 +257,21 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumnsItems;"></tr>
         <tr mat-footer-row *matFooterRowDef="['total','addRow']"></tr>
       </table>
+      
+      <mat-form-field class="ventilation_autres">
+        <input matInput class="ventilation_autres" 
+        [(ngModel)]="items.transport" placeholder="Frais de transport"
+        (ngModelChange)="updateTotal()" type="number">
+      </mat-form-field>
+      <mat-form-field>
+          <input matInput class="ventilation_autres" 
+          [(ngModel)]="items.autres" placeholder="Autres frais"
+          (ngModelChange)="updateTotal()" type="number">
+      </mat-form-field>
+      <p><b>TPS: </b> {{ taxeTPS | currency }}</p>
+      <p><b>TVQ: </b> {{ taxeTVQ | currency }}</p>
+      <p><b>Total: </b> {{ itemsTotal | currency }}</p>
+      <p><b>Engagement réel: </b>{{ engagement | currency }}</p>
     </div>
   </div>
   <!--Ventilation budgétaire-->
@@ -262,7 +320,7 @@
           </ng-container>
           <ng-container matColumnDef="total">
             <td mat-footer-cell *matFooterCellDef colspan="5">
-              <p>SOUS-TOTAL: {{ ventilationSTotal | currency}}</p>
+              <p>TOTAL: {{ ventilationTotal | currency}}</p>
             </td>
           </ng-container>
           <ng-container matColumnDef="addRow">
@@ -275,18 +333,6 @@
           <tr mat-row *matRowDef="let row; columns: displayedColumnsVentilation;"></tr>
           <tr mat-footer-row *matFooterRowDef="['total','addRow']"></tr>
         </table>
-        <mat-form-field class="ventilation_autres">
-            <input matInput class="ventilation_autres" 
-            [(ngModel)]="ventilation.transport" placeholder="Frais de transport"
-            (ngModelChange)="updateTotal()" type="number">
-          </mat-form-field>
-          <mat-form-field>
-              <input matInput class="ventilation_autres" 
-              [(ngModel)]="ventilation.autres" placeholder="Autres frais"
-              (ngModelChange)="updateTotal()" type="number">
-          </mat-form-field>
-          <p><b>Total: </b> {{ ventilationTotal | currency }}</p>
-          <p><b>Engagement réel: </b>{{ engagement | currency }}</p>
     </div>
 </div>
     <!-- Commentaires et precision -->
@@ -320,7 +366,7 @@
           Je confirme et j'accepte la véracité des informations ci-dessus.
           </mat-checkbox>
           <br>
-          <button mat-raised-button [disabled]="sig.value.length <= 0 || sig.lock || !sig.check" (click)="sig.onButtonClick()">{{sig.buttonMessage()}}</button>
+          <button mat-raised-button [disabled]="sig.value.length <= 0 || sig.lock || !sig.check" (click)="sig.onButtonClick(); controls.updateValueAndValidity()">{{sig.buttonMessage()}}</button>
       </div>
   </span>
 </div>

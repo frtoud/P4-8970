@@ -1,7 +1,7 @@
 import { AfterViewInit, AfterContentInit } from '@angular/core';
 import { Signature, ISignature, ISection } from './fields';
 import { User } from '../services/users.service';
-import { strictEqual } from 'assert';
+import { AbstractControl, FormGroup, FormArray } from '@angular/forms';
 
 export abstract class BaseFormComponent implements AfterViewInit, AfterContentInit {
 
@@ -15,6 +15,7 @@ export abstract class BaseFormComponent implements AfterViewInit, AfterContentIn
 
     public sections: any[];
     public signatures: Signature[];
+    public controls: FormArray = new FormArray([]);
 
     public static getHighestId(table: { id: number }[]): number {
       let n = 0;
@@ -119,6 +120,9 @@ export abstract class BaseFormComponent implements AfterViewInit, AfterContentIn
   ngAfterContentInit(): void {
     this.initCalculs();
   }
+  ngOnInit() {
+    this.buildFormGroups();
+  }
 
     captureAssignation(event, section) {
       if (this.captureActive) {
@@ -157,6 +161,7 @@ export abstract class BaseFormComponent implements AfterViewInit, AfterContentIn
     }
 
     getInterface() {
+      this.getFormValues();
       const obj: any = {};
       this.sections.forEach(s => {
         obj[s.id] = s;
@@ -175,6 +180,7 @@ export abstract class BaseFormComponent implements AfterViewInit, AfterContentIn
       }
       console.log(this.signatures);
       this.setSections();
+      this.buildFormGroups();
     }
 
     clearSignatures(): void {
@@ -184,6 +190,42 @@ export abstract class BaseFormComponent implements AfterViewInit, AfterContentIn
         sig.date = null;
       });
     }
+
+    // Tache: remplir this.sections avec les sections pour assignation
     abstract setSections();
+    // Tache: initialiser les valeurs calculées lors du chargement du formulaire
     abstract initCalculs();
+    // Tache: remplir this.controls avec les controleurs du formulaire
+    buildFormGroups() { }
+    getFormValues() {
+      this.sections.forEach(s => {
+        const key = 'fg_' + s.id;
+        if (this[key]) { Object.assign(s, this[key].value); }
+      });
+    }
+
+    getFormValidation(user: User, isAuthor = false): boolean {
+      const id = user._id;
+      let result = true; // Innocent until proven guilty
+
+      this.sections.forEach(s => {
+        if ( isAuthor || s.assigneA === id) {
+          // get le FormGroup correspondant
+          const key = 'fg_' + s.id;
+          if (this[key]) {
+            const fg = this[key] as AbstractControl;
+            result = result && fg.valid;
+          }
+        }
+      });
+
+      // TODO: test signatures on their own.
+      this.signatures.forEach(s => {
+        if ( isAuthor || s.assigneA === id) {
+          result = result && s.validated;
+        }
+      });
+
+      return result;
+    }
 }

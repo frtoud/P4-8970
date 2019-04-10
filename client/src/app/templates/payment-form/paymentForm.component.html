@@ -1,77 +1,88 @@
 <div id="entite-externe">
     <h6>ENTITÉ EXTERNE</h6>
     <div id="entite_employe">
-    <mat-form-field>
-        <input matInput type="text" placeholder="EMPLOYÉ (matricule)"
-        [(ngModel)]="entite_employe.matricule">
-    </mat-form-field>
-    <br>
+        <form [formGroup]="fg_entite_employe">
+        <mat-form-field>
+            <input matInput type="text" placeholder="EMPLOYÉ (matricule)"
+            formControlName="matricule">
+        </mat-form-field>
+        <br>
+        </form>
     </div>
     <div id="entite_fournisseur">
+    <form [formGroup]="fg_entite_fournisseur">
     <mat-form-field>
         <input matInput type="text" placeholder="FOURNISSEUR (numéro)"
-        [(ngModel)]="entite_fournisseur.numero">
+        formControlName="numero">
     </mat-form-field>
 
     <mat-form-field>
         <input matInput type="text" placeholder="Code adresse"
-        [(ngModel)]="entite_fournisseur.adresse">
+        formControlName="adresse">
     </mat-form-field> 
+    </form>
 </div>
 </div>
 
 <div id="beneficiaire-demandeur">
     <div id="beneficiaire">
+            <form [formGroup]="fg_beneficiaire">
         <h6>BÉNÉFICIAIRE</h6>
         <mat-form-field>
             <input matInput type="text" placeholder="NOM DE L'EMPLOYÉ ou DU FOURNISSEUR à payer"
-            [(ngModel)]="beneficiaire.nom">
+            formControlName="nom">
         </mat-form-field>
+    </form>
     </div>
     <div id="demandeur">
+            <form [formGroup]="fg_demandeur">
         <h6>DEMANDEUR</h6>
         <mat-form-field>
             <input matInput type="text" placeholder="NOM DU DEMANDEUR"
-            [(ngModel)]="demandeur.nom">
+            formControlName="nom">
         </mat-form-field>
         <mat-form-field>
             <input matInput type="text" placeholder="TÉLÉPHONE"
-            [(ngModel)]="demandeur.telephone">
+            formControlName="telephone">
         </mat-form-field>
+    </form>
     </div>
 </div>
 
 <div id="fournisseur">
+   <form [formGroup]="fg_fournisseur">
    <h6>NOUVEAU FOURNISSEUR</h6>
     <mat-form-field>
         <input matInput type="text" placeholder="ADRESSE DE L'EMPLOYÉ ou DU FOURNISSEUR"
-        [(ngModel)]="fournisseur.adresse">
+        formControlName="adresse">
     </mat-form-field>
 
     <mat-form-field>
         <input matInput type="text" placeholder="TÉLÉPHONE"
-        [(ngModel)]="fournisseur.telephone">
+        formControlName="telephone">
     </mat-form-field>
 
     <mat-form-field>
         <input matInput type="text" placeholder="FAX"
-        [(ngModel)]="fournisseur.fax">
+        formControlName="fax">
     </mat-form-field>
     <br>
     <mat-form-field>
         <input matInput type="text" placeholder="VILLE"
-        [(ngModel)]="fournisseur.ville">
+        formControlName="ville">
     </mat-form-field>
 
     <mat-form-field>
         <input matInput type="text" placeholder="PROVINCE"
-        [(ngModel)]="fournisseur.province">
+        formControlName="province">
     </mat-form-field>
 
     <mat-form-field>
         <input matInput type="text" placeholder="CODE POSTAL"
-        [(ngModel)]="fournisseur.postal">
+        formControlName="postal">
     </mat-form-field>
+    <p class="error_msg" *ngIf="fg_fournisseur.hasError('incomplete')">*Incomplet: remplir ou vider complètement cette section.</p>
+    </form>
 </div>
 
 <div id="description_facture">
@@ -259,7 +270,7 @@
             </div>
             </mat-checkbox>
             <br>
-            <button mat-raised-button [disabled]="sig.value.length <= 0 || sig.lock || !sig.check" (click)="sig.onButtonClick()">{{sig.buttonMessage()}}</button>
+            <button mat-raised-button [disabled]="sig.value.length <= 0 || sig.lock || !sig.check" (click)="sig.onButtonClick(); controls.updateValueAndValidity()">{{sig.buttonMessage()}}</button>
         </div>
     </div>
 </div>
