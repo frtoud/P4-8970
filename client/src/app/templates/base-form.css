@@ -21,7 +21,7 @@ div.assignation_selected {
   @media print{
     
         * {
-          max-width: 95%;
+          max-width: 100%;
           page-break-inside : avoid;
         }
 

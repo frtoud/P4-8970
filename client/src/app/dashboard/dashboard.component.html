@@ -71,6 +71,7 @@
           <i class="material-icons">view_list</i>
         </button>
       </div>
+      
       <hr id="a-completer-ligne">
       
       <div id="centering-array">
@@ -94,7 +95,7 @@
                 <ng-container id="expansible">
                   <mat-expansion-panel>
 
-                    <mat-expansion-panel-header [ngSwitch]="card.statut">
+                    <mat-expansion-panel-header [ngSwitch]="card.statut" class="cardHeader">
                       <ng-container *ngSwitchCase="'IN_PROGRESS'">
                         <i class="material-icons" id="inProgresIcon"> radio_button_unchecked </i>
                         <mat-progress-bar class="inProgress" [mode]="determinate"
@@ -251,7 +252,7 @@
                 <ng-container id="expansible">
                   <mat-expansion-panel>
 
-                    <mat-expansion-panel-header [ngSwitch]="card.statut">
+                    <mat-expansion-panel-header [ngSwitch]="card.statut" class="cardHeader">
                       <ng-container *ngSwitchCase="'IN_PROGRESS'">
                         <div>
                           <i *ngIf="calculateCompletionRate(card.collaborateurs) == 100 ; else unchecked"
@@ -406,7 +407,7 @@
                 <ng-container id="expansible">
                   <mat-expansion-panel>
 
-                    <mat-expansion-panel-header [ngSwitch]="card.statut">
+                    <mat-expansion-panel-header [ngSwitch]="card.statut" class="cardHeader">
                       <ng-container *ngSwitchCase="'IN_PROGRESS'">
                         <div>
                           <i *ngIf="calculateCompletionRate(card.collaborateurs) == 100 ; else unchecked"
@@ -532,6 +533,7 @@
 
 
   <div *ngIf="vueCarte == 'false'" id="divList">
+    
     <!---------------------DÉBUT liste A completer ------------------------->
     <div *ngIf="!loadingForms && !searchActivated && aCompleterCards.length != 0">
       <div class="toggleViewDiv">
@@ -540,7 +542,7 @@
         </button>
       </div>
       <br><br>
-      
+      <br>
       <div>
         <h4 class="header-title">Formulaires à compléter ({{aCompleterCards.length}})</h4>
         <table mat-table [dataSource]="aCompleterCards" class="forms-table">  
@@ -756,7 +758,7 @@
           <i class="material-icons">view_module</i>
         </button>
       </div>
-      <br><br>
+      <br><br><br>
 
       <table mat-table [dataSource]="displayedCards" class="forms-table">  
         <ng-container matColumnDef="idForm">

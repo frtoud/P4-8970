@@ -84,5 +84,6 @@
     #printableArea {
       visibility: visible;
       width:115%;
+      margin:auto;
     }
   }

@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
   searchName: string = null;
   searchStatus: string = '';
   searchPatron: string = '';
-  vueCarte: string = 'false';
+  vueCarte: string = 'true';
   loadingForms: boolean = true;
   searchActivated: boolean = false;
 
@@ -100,35 +100,27 @@ export class DashboardComponent implements OnInit {
       );
     });
 
-    let vue = localStorage.getItem("vue");
+    let vue = sessionStorage.getItem("vue");
 
-    /*
-    if(vue){
-      if(vue==="true"){
-        this.vueCarte = true;}
-        else{
-          this.vueCarte = false;}
-      }
-
-    console.log("vueCarte: " + vue, typeof vue);
-    */
     
+    if(vue==="true") {
+      this.vueCarte = 'true';
+    }
+    else if(vue==="false") {
+      this.vueCarte = 'false';
+    }
   }
   
   toggleVueCarte() {
     this.vueCarte = 'true';
-    /*
-    localStorage.setItem("vue", "true");
-    console.log("vueCarte: " + vueCarte);
-    */
+    
+    sessionStorage.setItem("vue", "true");
+    
   }
   toggleVueListe() {
     this.vueCarte = 'false';
-    /*
-    localStorage.setItem("vue", "false");
-    console.log("vueCarte: " + vueCarte);
-    */
-
+    
+    sessionStorage.setItem("vue", "false");
   }
 
   displayFn(user?: User): string | undefined {
