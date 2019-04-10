@@ -5,6 +5,10 @@ div.assignation_selected {
     background-color: #aedd94;
   }
 
+  .error_msg {
+    color: red;
+  }
+
   .mat-table {
     background: inherit;
   }
