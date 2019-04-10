@@ -229,35 +229,6 @@
   padding-right: 0px;
 }
 
-.collabSelect.mat-option {
-  padding: 0px;
-}
-
-/* .my-panel-class .mat-select-content {
-  background: black;
-  border: .5px solid #323030;        
-}  */
-
-.mat-select-option {
-  padding: none;
-}
-/* .viewListOption.mat-option {
-  padding: none;
-}
-
-.mat-option.ng-star-inserted {
-  padding: none;
-}
-
-.mat-option#mat-option-15.mat-option.ng-star-inserted.mat-active {
-  padding: none;
-} */
-
-/* TODO fix the padding of the mat-option
-.mat-option{
-  padding: none !important;
-} */
-
 .header-title {
   background: linear-gradient(to bottom, #f3f3f3 0%,#acacac 100%);
   border: 1px solid #acacac;
@@ -305,23 +276,24 @@
   background-color: #ebebeb;
 }
 
+.collabOption {
+  padding: 0 !important;
+}
+
 .selectCollaborateurCompleted {
-  padding-left: 4px;
-  text-align: left;
+  text-align: center;
   width: 100%;
   background-color: #8cc83c;
 }
 
 .selectCollaborateurEdition {
-  padding-left: 4px;
-  text-align: left;
+  text-align: center;
   width: 100%;
   background-color: #ffff00;
 }
 
 .selectCollaborateurWaiting {
-  padding-left: 4px;
-  text-align: left;
+  text-align: center;
   width: 100%;
   background-color: white;
 }
