@@ -176,37 +176,4 @@ mat-form-field {
     text-align: right;
 }
 
-@media print{
-    
-    #tout {
-        
-        max-width:90% !important;
-        /*display:none !important;*/
-        
-    }
 
-    
-
-
-
-    #tableau-totaux mat-form-field {
-        width: 25px !important;
-    }
-
-    #tableau-totaux cellule-code {
-        padding: 0px !important;
-    }
-
-    #ventilation-table mat-form-field {
-        width: 50px !important;
-        text-align: left;
-    }
-
-    #ventilation-table {
-        
-        float:center !important;
-    }
-
-    #form-header{float:center;}
-
-  }

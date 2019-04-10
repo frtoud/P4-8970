@@ -31,7 +31,7 @@
 #paiement-ci-joint,
 #remboursement{
     border: 2px solid black;
-    margin: 5px;
+    margin: 2px;
 }
 
 #signatures {
@@ -259,15 +259,21 @@ input {
 @media print{
 
         * {
-          max-width: 95% !important;
+          max-width: 85% !important;
         }
 
         #annexe {
-            max-width: 85% !important;
-            float: left;
-            /*transform: scale(.7);*/
-            margin: auto;
+            /*max-width: 90% !important;*/
+           float: left;
+           margin-left: 0px;
+            transform: scale(.7);
+            
         }
         
+        /*
+        @page {
+            margin: 0.5cm;
+            }
+            */
         
   }

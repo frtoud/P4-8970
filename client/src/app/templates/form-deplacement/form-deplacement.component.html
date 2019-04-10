@@ -1,4 +1,4 @@
-<div id="form_total">
+
 <div id="entite-date">
 <div id="entite_externe">
   <h6>ENTITÉ EXTERNE</h6>
@@ -94,21 +94,7 @@
 <div id="ventilation">
     <h6>Ventilation budgétaire à débiter (compléter et annexer au formulaire SF-3C)</h6>
 
-    <div id="payment-demande">
-            <h3>
-            <mat-form-field>
-                    <mat-select placeholder="Devise:">
-                            <mat-option value="CAN">CAN</mat-option>
-                            <mat-option value="EUR">EUR</mat-option>
-                            <mat-option value="USD">USD</mat-option>
-                    </mat-select>
-             </mat-form-field>
-            
-        <mat-form-field>
-            <input matInput type="number" placeholder="précisez">
-        </mat-form-field>
-        </h3>
-    </div>
+    
     <div id=table>
             <table mat-table [dataSource]="dSventilation" id="ventilation-table">  
                     <ng-container matColumnDef="ubr">
@@ -256,4 +242,3 @@
     <app-annexe></app-annexe>
 </div>
     
-</div>
