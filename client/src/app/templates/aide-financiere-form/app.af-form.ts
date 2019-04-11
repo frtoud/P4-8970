@@ -252,19 +252,27 @@ export class AFFormComponent extends BaseFormComponent implements IAideFinancier
              || form.value.doc || form.value.docec ? null : { invalid: true };
         });
       this.fg_details = new FormGroup({
-        date_debut: new FormControl(this.details.date_debut),
-        date_fin: new FormControl(this.details.date_fin),
+        date_debut: new FormControl(this.details.date_debut, Validators.required),
+        date_fin: new FormControl(this.details.date_fin, Validators.required),
         statutVersement: new FormControl(this.details.statutVersement, Validators.required),
         num_ref: new FormControl({value: this.details.num_ref, disabled: this.details.statutVersement !== 'CHANGE'}, Validators.required),
         montant: new FormControl(this.details.montant, [Validators.required, TestPositive]),
         subventionnaire: new FormControl(this.details.subventionnaire, Validators.required),
+      }, (form) => {
+        if (form.value.date_debut && form.value.date_fin && form.value.date_fin < form.value.date_debut){
+          return { dates: true };
+        } else {
+          return null;
+        }
       });
       this.fg_ventilation = new FormGroup({}, (form) => {
         const res: any = {};
         let valid = true;
+        let negative = false;
         let error = false;
         this.ventilation.tableau.forEach(line => {
           valid = valid && line.montant === 0 || !(line.ubr === '' || line.unite === '' || line.compte === '');
+          negative = negative || line.montant < 0;
         });
         // Total égal au montant précédemment spécifié
         if (this.ventilationTotal !== this.fg_details.value.montant) {
@@ -273,6 +281,10 @@ export class AFFormComponent extends BaseFormComponent implements IAideFinancier
         }
         if (!valid) {
           res.incomplete = true;
+          error = true;
+        }
+        if (negative) {
+          res.negative = true;
           error = true;
         }
         if (error) {
