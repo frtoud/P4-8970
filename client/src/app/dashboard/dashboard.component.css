@@ -27,30 +27,46 @@
   color: black;
   font-size: 14px;
   justify-content: center;
+  width: 100%;
 }
 .searchBar.mat-toolbar-single-row {
   height: 50px !important;
 }
 
-.searchBarDiv {
+/* .searchBarDiv {
   display: inline-block;
-  padding-right: 40px;
-}
-.searchBarLastDiv {
+  margin-right: 3%;
+} */
+.searchBarDiv-Auteur {
   display: inline-block;
+  margin-right: 3%;
+  width: 24%;
+}
+.searchBarDiv-Statut {
+  display: inline-block;
+  margin-right: 3%;
+  width: 6%;
+}
+.searchBarDiv-Patron {
+  display: inline-block;
+  margin-right: 3%;
+  width: 12%;
+}
+.searchBarDiv-DateFrom {
+  display: inline-block;
+  margin-right: 3%;
+  width: 12%;
+}
+.searchBarDiv-DateTo {
+  display: inline-block;
+  margin-right: 3%;
+  width: 12%;
 }
 
-.searchBarFieldAuteur {
+.searchBarDate, .searchBarField, .searchBarFieldAuteur {
+  display: inline-block;
   font-size: inherit;
-  width: 345px;
-}
-
-.searchBarField, .searchBarDate {
-  font-size: inherit;
-}
-
-.searchBarDate {
-  width: 100px;
+  width: 100%;
 }
 
 .searchBarFieldAuteur .mat-form-field-infix,
@@ -91,6 +107,7 @@
   display: flex;
   flex-direction: column;
   text-align: right;
+  width: 60%;
 }
 
 .expansionHeader {

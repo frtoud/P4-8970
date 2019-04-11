@@ -4,6 +4,7 @@ import { ExchangeRateService } from '../../services/exchangeRate.service';
 import { BaseFormComponent } from '../base-form.component';
 import { ISignature, Signature } from '../fields';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { PhoneRegex } from '../common_validator';
 
 export interface IPaymentForm {
 
@@ -177,7 +178,7 @@ export class PaymentFormComponent extends BaseFormComponent implements IPaymentF
       }
 
       this.dsVentilation._updateChangeSubscription();
-      this.updateTotal();
+      this.updateVentilationTotal();
     }
     onDelete(value) {
       const index: number = this.description_facture.tableau.findIndex((el: any) => el.id === value.id);
@@ -204,7 +205,7 @@ export class PaymentFormComponent extends BaseFormComponent implements IPaymentF
 
     updateTotal() {
       this.total = 0;
-        this.description_facture.tableau.map(bill => this.total += bill.total);
+      this.description_facture.tableau.map(bill => this.total += bill.total);
     }
 
     updateVentilationTotal() {
@@ -254,13 +255,13 @@ export class PaymentFormComponent extends BaseFormComponent implements IPaymentF
   }
 
 
-  fg_entite_employe :FormGroup;
-  fg_entite_fournisseur :FormGroup;
-  fg_beneficiaire :FormGroup;
-  fg_demandeur :FormGroup;
-  fg_fournisseur :FormGroup;
-  fg_description_facture :FormGroup;
-  fg_ventilation_budgetaire :FormGroup;
+  fg_entite_employe: FormGroup;
+  fg_entite_fournisseur: FormGroup;
+  fg_beneficiaire: FormGroup;
+  fg_demandeur: FormGroup;
+  fg_fournisseur: FormGroup;
+  fg_description_facture: FormGroup;
+  fg_ventilation_budgetaire: FormGroup;
 
   buildFormGroups() {
     this.fg_entite_employe = new FormGroup({
@@ -275,24 +276,22 @@ export class PaymentFormComponent extends BaseFormComponent implements IPaymentF
     });
     this.fg_demandeur = new FormGroup({
       nom: new FormControl(this.demandeur.nom, Validators.required),
-      telephone: new FormControl(this.demandeur.telephone, Validators.required),
+      telephone: new FormControl(this.demandeur.telephone, [Validators.required, Validators.pattern(PhoneRegex)]),
     });
     this.fg_fournisseur = new FormGroup({
       adresse: new FormControl(this.fournisseur.adresse),
-      telephone: new FormControl(this.fournisseur.telephone),
+      telephone: new FormControl(this.fournisseur.telephone, Validators.pattern(PhoneRegex)),
       fax: new FormControl(this.fournisseur.fax),
       ville: new FormControl(this.fournisseur.ville),
       province: new FormControl(this.fournisseur.province),
       postal: new FormControl(this.fournisseur.postal),
     }, (form) => {
-      if (form.value.fax === '' &&
-          form.value.ville === '' &&
+      if (form.value.ville === '' &&
           form.value.postal === '' &&
           form.value.adresse === '' &&
           form.value.province === '' &&
           form.value.telephone === ''
           ||
-          form.value.fax !== '' &&
           form.value.ville !== '' &&
           form.value.postal !== '' &&
           form.value.adresse !== '' &&
@@ -307,12 +306,18 @@ export class PaymentFormComponent extends BaseFormComponent implements IPaymentF
     this.fg_description_facture = new FormGroup({}, (form) => {
       const res: any = {};
       let valid = true;
+      let negative = false;
       let error = false;
       this.description_facture.tableau.forEach(line => {
         valid = valid && line.total === 0 || !(line.reference === '' || line.num === '' || line.description === '');
+        negative = negative || line.total < 0;
       });
       if (!valid) {
         res.incomplete = true;
+        error = true;
+      }
+      if (negative) {
+        res.negative = true;
         error = true;
       }
       if (error) {
@@ -324,12 +329,18 @@ export class PaymentFormComponent extends BaseFormComponent implements IPaymentF
     this.fg_ventilation_budgetaire = new FormGroup({}, (form) => {
       const res: any = {};
       let valid = true;
+      let negative = false;
       let error = false;
       this.ventilation_budgetaire.tableau.forEach(line => {
         valid = valid && line.montant === 0 || !(line.ubr === '' || line.unite === '' || line.compte === '');
+        negative = negative || line.montant < 0;
       });
       if (!valid) {
         res.incomplete = true;
+        error = true;
+      }
+      if (negative) {
+        res.negative = true;
         error = true;
       }
       if (error) {

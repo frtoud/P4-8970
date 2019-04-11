@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import {MatTableDataSource} from '@angular/material';
 import { ISignature, Signature } from '../fields';
 import { BaseFormComponent } from '../base-form.component';
+import { PhoneRegex } from '../common_validator';
 
 
 export interface IDemandeAchat {
@@ -33,9 +34,9 @@ export interface IDemandeAchat {
     assigneA: string;
 
     nom: string;
-    numero: string;
+    telephone: string;
     adresse: string;
-    numero2: string;
+    fax: string;
     ville: string;
     province: string;
     postal: string;
@@ -145,9 +146,9 @@ export class DemandeAchatComponent extends BaseFormComponent implements IDemande
     assigneA: null,
 
     nom: '',
-    numero: '',
+    telephone: '',
     adresse: '',
-    numero2: '',
+    fax: '',
     ville: '',
     province: '',
     postal: '',
@@ -299,17 +300,17 @@ export class DemandeAchatComponent extends BaseFormComponent implements IDemande
     this.updateTotalItems();
   }
 
-  fg_commande :FormGroup;
-  fg_finances :FormGroup;
-  fg_demandeur :FormGroup;
-  fg_fournisseur :FormGroup;
-  fg_contact :FormGroup;
-  fg_soumission :FormGroup;
-  fg_livraison :FormGroup;
-  fg_termes :FormGroup;
-  fg_items :FormGroup;
-  fg_ventilation :FormGroup;
-  fg_commentaire :FormGroup;
+  fg_commande: FormGroup;
+  fg_finances: FormGroup;
+  fg_demandeur: FormGroup;
+  fg_fournisseur: FormGroup;
+  fg_contact: FormGroup;
+  fg_soumission: FormGroup;
+  fg_livraison: FormGroup;
+  fg_termes: FormGroup;
+  fg_items: FormGroup;
+  fg_ventilation: FormGroup;
+  fg_commentaire: FormGroup;
 
   buildFormGroups() {
     this.fg_commande = new FormGroup({
@@ -322,14 +323,14 @@ export class DemandeAchatComponent extends BaseFormComponent implements IDemande
     });
     this.fg_demandeur = new FormGroup({
       nom: new FormControl(this.demandeur.nom, Validators.required),
-      telephone: new FormControl(this.demandeur.telephone, Validators.required),
+      telephone: new FormControl(this.demandeur.telephone, [Validators.required, Validators.pattern(PhoneRegex)]),
       departement: new FormControl(this.demandeur.departement, Validators.required),
     });
     this.fg_fournisseur = new FormGroup({
       nom: new FormControl(this.fournisseur.nom, Validators.required),
-      numero: new FormControl(this.fournisseur.numero, Validators.required),
+      telephone: new FormControl(this.fournisseur.telephone, [Validators.required, Validators.pattern(PhoneRegex)]),
       adresse: new FormControl(this.fournisseur.adresse, Validators.required),
-      numero2: new FormControl(this.fournisseur.numero2, Validators.required),
+      fax: new FormControl(this.fournisseur.fax, Validators.pattern(PhoneRegex)),
       ville: new FormControl(this.fournisseur.ville, Validators.required),
       province: new FormControl(this.fournisseur.province, Validators.required),
       postal: new FormControl(this.fournisseur.postal, Validators.required),
@@ -337,9 +338,9 @@ export class DemandeAchatComponent extends BaseFormComponent implements IDemande
     });
     this.fg_contact = new FormGroup({
       nom: new FormControl(this.contact.nom, Validators.required),
-      courriel: new FormControl(this.contact.courriel),
-      telephone: new FormControl(this.contact.telephone),
-      fax: new FormControl(this.contact.fax),
+      courriel: new FormControl(this.contact.courriel, Validators.email),
+      telephone: new FormControl(this.contact.telephone, Validators.pattern(PhoneRegex)),
+      fax: new FormControl(this.contact.fax, Validators.pattern(PhoneRegex)),
     });
     this.fg_soumission = new FormGroup({
       numero: new FormControl(this.soumission.numero, Validators.required),

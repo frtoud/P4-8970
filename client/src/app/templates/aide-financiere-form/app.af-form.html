@@ -37,13 +37,14 @@
       <mat-form-field floatLabel="auto" class="short">
         <input matInput placeholder="Matricule (Employé)"
         formControlName="mat_enseignant">
-        <mat-error *ngIf="matriculesValide">Au moins un matricule est obligatoire.</mat-error>
       </mat-form-field>
       <mat-form-field floatLabel="auto" class="short">
         <input matInput placeholder="Matricule (Étudiant)"
         formControlName="mat_etudiant">
-        <mat-error *ngIf="matriculesValide"></mat-error>
       </mat-form-field>
+      <p class="error_msg" *ngIf="fg_beneficiaire.get('mat_enseignant').touched && 
+                                  fg_beneficiaire.get('mat_etudiant').touched && 
+                                  fg_beneficiaire.hasError('matricules')">Au moins un matricule est obligatoire.</p>
     </form>
   </div>
 </div>
@@ -51,7 +52,7 @@
   <h6>CYCLE DE L'ÉTUDIANT</h6>
   <div class="section section-column" id="cycle">
     <form [formGroup]="fg_cycle">
-    <p>Identifier le cycle de l'étudiant(e):</p>
+    <p [ngClass]="{'error_msg': fg_cycle.invalid && fg_cycle.touched}">Identifier le cycle de l'étudiant(e):</p>
     <div class="section-row">
       <p class="checkbox-label">BACCALAURÉAT:</p>
       <mat-checkbox formControlName="bac" class="checkbox-field" color="primary">
@@ -96,17 +97,18 @@
     <p>Les versements sont faits aux quize jours, selon le cycle de la paie.</p>
     <p>PÉRIODE D'ENGAGEMENT:</p>
     <mat-form-field class="short">
-      <input matInput [matDatepicker]="debut" placeholder="Date de début"
+      <input matInput [matDatepicker]="debut" placeholder="Date de début" (click)="debut.open()"
       formControlName="date_debut">
       <mat-datepicker-toggle matSuffix [for]="debut"></mat-datepicker-toggle>
       <mat-datepicker #debut></mat-datepicker>
     </mat-form-field>
     <mat-form-field class="short">
-      <input matInput [matDatepicker]="fin" placeholder="Date de fin"
+      <input matInput [matDatepicker]="fin" placeholder="Date de fin" (click)="fin.open()"
       formControlName="date_fin">
       <mat-datepicker-toggle matSuffix [for]="fin"></mat-datepicker-toggle>
       <mat-datepicker #fin></mat-datepicker>
     </mat-form-field>
+    <p class="error_msg" *ngIf="fg_details.hasError('dates')">La fin d'une période doit être après son début.</p>
     <div class="end full">
       <mat-radio-group formControlName="statutVersement" class="large" (change)=onChangeStatus()>
         <mat-radio-button value="UNIQUE" color="primary">Versement unique</mat-radio-button>
@@ -121,6 +123,7 @@
       <mat-label>Montant de l'aide financière</mat-label>
       <input class="monetaire" matInput
       formControlName="montant"  type=number/>
+      <mat-error *ngIf="fg_details.get('montant').hasError('negative')">Doit être positif.</mat-error>
     </mat-form-field>
     <mat-form-field floatLabel="auto" class="medium">
       <input matInput placeholder="Organisme subventionnaire"
@@ -138,7 +141,7 @@
           <th mat-header-cell *matHeaderCellDef class="short"> UBR. </th>
           <td mat-cell *matCellDef="let element" class="short">
             <mat-form-field hideRequiredMarker=true floatLabel="auto">
-              <input matInput [(ngModel)]="element.ubr">
+              <input matInput [(ngModel)]="element.ubr" (ngModelChange)="fg_ventilation.updateValueAndValidity()">
             </mat-form-field>
           </td>
       </ng-container>
@@ -146,7 +149,7 @@
           <th mat-header-cell *matHeaderCellDef> Compte </th>
           <td mat-cell *matCellDef="let element">
             <mat-form-field hideRequiredMarker=true floatLabel="auto">
-              <input matInput [(ngModel)]="element.compte">
+              <input matInput [(ngModel)]="element.compte" (ngModelChange)="fg_ventilation.updateValueAndValidity()">
             </mat-form-field>
         </td>
       </ng-container>
@@ -154,7 +157,7 @@
           <th mat-header-cell *matHeaderCellDef> Unité administrative </th>
           <td mat-cell *matCellDef="let element">
             <mat-form-field hideRequiredMarker=true floatLabel="auto">
-              <input matInput [(ngModel)]="element.unite">
+              <input matInput [(ngModel)]="element.unite" (ngModelChange)="fg_ventilation.updateValueAndValidity()">
             </mat-form-field>
         </td>
       </ng-container>
@@ -199,8 +202,9 @@
       <tr mat-footer-row *matFooterRowDef="['total','addRow']"></tr>
     </table>
     <form [formGroup]="fg_ventilation">
-      <p *ngIf="fg_ventilation.hasError('incomplete')">Une ou plusieur lignes de ventilation sont incomplètes.</p>
-      <p *ngIf="fg_ventilation.hasError('total')">le total de la ventilation ne corresponds pas au montant spécifié.</p>
+      <p class="error_msg" *ngIf="fg_ventilation.hasError('incomplete')">Une ou plusieur lignes de ventilation sont incomplètes.</p>
+      <p class="error_msg" *ngIf="fg_ventilation.hasError('total')">Le total de la ventilation ne corresponds pas au montant spécifié plus haut.</p>
+      <p class="error_msg" *ngIf="fg_ventilation.hasError('negative')">La ventilation contient des montants négatifs.</p>
     </form>
   </div>
 </div>
