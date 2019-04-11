@@ -212,7 +212,8 @@
         <!-- <tr mat-header-row *matHeaderRowDef="displayedColumnsTotaux"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumnsTotaux;"></tr>
     </table> -->
-          
+      
+    <div id="tableau-depenses">
     <table mat-table [dataSource]="dSventilation" id="ventilation-table">  
             <ng-container matColumnDef="date">
                 <th mat-header-cell *matHeaderCellDef id="date"> date </th>
@@ -401,6 +402,7 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             <tr mat-footer-row *matFooterRowDef="['addRow']" class="footer-adder"></tr>
     </table>
+</div>
 
 </div>
 </div>
