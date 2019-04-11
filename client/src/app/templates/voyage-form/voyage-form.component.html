@@ -107,7 +107,8 @@
                     </mat-form-field>
                 </td>
                 <td id="duree">
-                    <p *ngIf="bothFilled && endroit_deplacement.du < endroit_deplacement.au">{{ dureeDeplacement }}</p>
+                    <p *ngIf="bothFilled && endroit_deplacement.du <= endroit_deplacement.au">{{ dureeDeplacement }}</p>
+                    <p class="error_msg" *ngIf="fg_endroit_deplacement.hasError('duree')">La durée du déplacement est négative.</p>
                 </td>
             </tr>
         </tbody>
@@ -232,6 +233,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         <tr mat-footer-row *matFooterRowDef="['total','addRow']"></tr>
     </table>
+    <p class="error_msg" *ngIf="fg_ventilation.hasError('incomplete')">Une ou plusieur lignes de ventilation sont incomplètes.</p>
 </div>
 
 <div id="avances">

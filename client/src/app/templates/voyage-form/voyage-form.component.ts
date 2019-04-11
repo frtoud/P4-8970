@@ -245,6 +245,7 @@ export class VoyageFormComponent extends BaseFormComponent implements IVoyageFor
     this.ventilation.tableau.forEach(element => {
       this.ventilationTotal += element.montant;
     });
+    this.fg_ventilation.updateValueAndValidity();
   }
 
   onCreate() {
@@ -363,6 +364,12 @@ export class VoyageFormComponent extends BaseFormComponent implements IVoyageFor
       endroit: new FormControl(this.endroit_deplacement.endroit, Validators.required),
       du: new FormControl(this.endroit_deplacement.du, Validators.required),
       au: new FormControl(this.endroit_deplacement.au, Validators.required),
+    }, (form) => {
+      this.endroit_deplacement.du = form.value.du;
+      this.endroit_deplacement.au = form.value.au;
+      this.updateDuree();
+      if (this.dureeDeplacement < 0) { return { duree : true};
+      } else { return null; }
     });
     this.fg_but_deplacement = new FormGroup({
       raison: new FormControl(this.but_deplacement.raison),
