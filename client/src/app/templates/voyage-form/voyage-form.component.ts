@@ -356,7 +356,7 @@ export class VoyageFormComponent extends BaseFormComponent implements IVoyageFor
     this.fg_fournisseur = new FormGroup({
       adresse: new FormControl(this.fournisseur.adresse, Validators.required),
       telephone: new FormControl(this.fournisseur.telephone, Validators.required),
-      fax: new FormControl(this.fournisseur.fax, Validators.required),
+      fax: new FormControl(this.fournisseur.fax),
       ville: new FormControl(this.fournisseur.ville, Validators.required),
       province: new FormControl(this.fournisseur.province, Validators.required),
       postal: new FormControl(this.fournisseur.postal, Validators.required),
@@ -384,12 +384,18 @@ export class VoyageFormComponent extends BaseFormComponent implements IVoyageFor
     this.fg_ventilation = new FormGroup({}, (form) => {
       const res: any = {};
       let valid = true;
+      let negative = false;
       let error = false;
       this.ventilation.tableau.forEach(line => {
         valid = valid && line.montant === 0 || !(line.ubr === '' || line.unite === '' || line.compte === '');
+        negative = negative || line.montant < 0;
       });
       if (!valid) {
         res.incomplete = true;
+        error = true;
+      }
+      if (negative) {
+        res.negative = true;
         error = true;
       }
       if (error) {
