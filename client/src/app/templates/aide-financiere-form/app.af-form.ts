@@ -167,7 +167,7 @@ export class AFFormComponent extends BaseFormComponent implements IAideFinancier
   matriculesValide = false;
 
   onChangeStatus() {
-    let control = this.fg_details.get('num_ref')
+    const control = this.fg_details.get('num_ref');
     if (this.fg_details.get('statutVersement').value === 'CHANGE') {
       control.enable();
     } else {
@@ -216,12 +216,12 @@ export class AFFormComponent extends BaseFormComponent implements IAideFinancier
     this.testMatricule();
     }
 
-    fg_demandeur :FormGroup;
-    fg_beneficiaire :FormGroup;
-    fg_cycle :FormGroup;
-    fg_details :FormGroup;
-    fg_ventilation :FormGroup;
-    fg_remarques :FormGroup;
+    fg_demandeur: FormGroup;
+    fg_beneficiaire: FormGroup;
+    fg_cycle: FormGroup;
+    fg_details: FormGroup;
+    fg_ventilation: FormGroup;
+    fg_remarques: FormGroup;
 
     buildFormGroups() {
       this.fg_demandeur = new FormGroup({

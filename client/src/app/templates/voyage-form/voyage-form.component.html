@@ -1,70 +1,79 @@
 <div id="entite-externe">
     <h6>ENTITÉ EXTERNE</h6>
     <div id="entite_employe">
+        <form [formGroup]="fg_entite_employe">
     <mat-form-field>
         <span matPrefix>P &nbsp;</span>
         <input matInput type="text" placeholder="EMPLOYÉ (matricule)"
-        [(ngModel)]="entite_employe.matricule">
+        formControlName="matricule">
     </mat-form-field>
+</form>
     <br>
     </div>
     <div id="entite_fournisseur">
+        <form [formGroup]="fg_entite_fournisseur">
     <mat-form-field>
         <span matPrefix>F &nbsp;</span>
         <input matInput type="text" placeholder="FOURNISSEUR (numéro)"
-        [(ngModel)]="entite_fournisseur.numero">
+        formControlName="numero">
     </mat-form-field> 
     <mat-form-field>
         <input matInput type="text" placeholder="Code adresse"
-        [(ngModel)]="entite_fournisseur.adresse">
+        formControlName="adresse">
     </mat-form-field>
+</form>
     </div>
 </div>
 
 <div id="beneficiaire-demandeur">
   <div id="beneficiaire">
+    <form [formGroup]="fg_beneficiaire">
       <h6>BÉNÉFICIAIRE</h6>
       <mat-form-field>
           <input matInput type="text" placeholder="NOM DE L'EMPLOYÉ"
-          [(ngModel)]="beneficiaire.nom">
+          formControlName="nom">
       </mat-form-field>
+</form>
   </div>
 </div>
 
 <div id="fournisseur">
+    <form [formGroup]="fg_fournisseur">
   <mat-form-field>
       <input matInput type="text" placeholder="ADRESSE DE L'EMPLOYÉ ou DU FOURNISSEUR"
-      [(ngModel)]="fournisseur.adresse">
+      formControlName="adresse">
   </mat-form-field>
 
   <mat-form-field>
       <input matInput type="text" placeholder="TÉLÉPHONE"
-      [(ngModel)]="fournisseur.telephone">
+      formControlName="telephone">
   </mat-form-field>
 
   <mat-form-field>
       <input matInput type="text" placeholder="FAX"
-      [(ngModel)]="fournisseur.fax">
+      formControlName="fax">
   </mat-form-field>
   <br>
   <mat-form-field>
       <input matInput type="text" placeholder="VILLE"
-      [(ngModel)]="fournisseur.ville">
+      formControlName="ville">
   </mat-form-field>
 
   <mat-form-field>
       <input matInput type="text" placeholder="PROVINCE"
-      [(ngModel)]="fournisseur.provine">
+      formControlName="province">
   </mat-form-field>
 
   <mat-form-field>
       <input matInput type="text" placeholder="CODE POSTAL"
-      [(ngModel)]="fournisseur.postal">
+      formControlName="postal">
   </mat-form-field>
+</form>
 </div>
 
 
 <div id="endroit_deplacement">
+    <form [formGroup]="fg_endroit_deplacement">
     <table width="100%">
         <thead>
             <tr>
@@ -78,19 +87,21 @@
                 <td id="endroit">
                     <mat-form-field>
                         <input matInput type="text"
-                        [(ngModel)]="endroit_deplacement.endroit">
+                        formControlName="endroit">
                     </mat-form-field>
                 </td>
                 <td id="du">
                     <mat-form-field>
-                        <input matInput [matDatepicker]="pickerDU" placeholder="DU" (click)="pickerDU.open()" [ngModel]="endroit_deplacement.du" (ngModelChange)="duChange($event)">
+                        <input matInput [matDatepicker]="pickerDU" placeholder="DU" (click)="pickerDU.open()"
+                        formControlName="du" (ngModelChange)="duChange($event)">
                         <mat-datepicker-toggle matSuffix [for]="pickerDU"></mat-datepicker-toggle>
                         <mat-datepicker #pickerDU></mat-datepicker>
                     </mat-form-field>
                 </td>
                 <td id="au">
                     <mat-form-field>
-                        <input matInput [matDatepicker]="pickerAU" placeholder="AU" (click)="pickerAU.open()" [ngModel]="endroit_deplacement.au" (ngModelChange)="auChange($event)">
+                        <input matInput [matDatepicker]="pickerAU" placeholder="AU" (click)="pickerAU.open()"
+                        formControlName="au" (ngModelChange)="auChange($event)">
                         <mat-datepicker-toggle matSuffix [for]="pickerAU"></mat-datepicker-toggle>
                         <mat-datepicker #pickerAU></mat-datepicker>
                     </mat-form-field>
@@ -101,20 +112,24 @@
             </tr>
         </tbody>
     </table>
+</form>
 </div>
 
 
 <div id="but_deplacement">
   <h6>BUT DU DÉPLACEMENT</h6>
+  <form [formGroup]="fg_but_deplacement">
   <mat-form-field>
         <input matInput type="text"
-        [(ngModel)]="but_deplacement.raison">
+        formControlName="raison">
   </mat-form-field>
+</form>
 
 </div>
 
 <div id="estimation">
   <h6>ESTIMATION DES DÉPENSES (EN DOLLARS CANADIENS)</h6>
+  <form [formGroup]="fg_estimation">
   <table width="100%" id="tableau-estimation-depenses">
         <thead>
             <tr>
@@ -129,22 +144,22 @@
             <tr>
                 <td>
                     <mat-form-field>
-                        <input matInput type="number" [ngModel]="estimation.fraisInscription" (ngModelChange)="updateFraisInscription($event)">
+                        <input matInput type="number" formControlName="fraisInscription" (ngModelChange)="updateFraisInscription($event)">
                     </mat-form-field>
                 </td>
                 <td>
                     <mat-form-field>
-                        <input matInput type="number" [ngModel]="estimation.transport" (ngModelChange)="updateTransport($event)">
+                        <input matInput type="number" formControlName="transport" (ngModelChange)="updateTransport($event)">
                     </mat-form-field>
                 </td>
                 <td>
                     <mat-form-field>
-                        <input matInput type="number" [ngModel]="estimation.sejour" (ngModelChange)="updateSejour($event)">
+                        <input matInput type="number" formControlName="sejour" (ngModelChange)="updateSejour($event)">
                     </mat-form-field>
                 </td>
                 <td>
                     <mat-form-field>
-                        <input matInput type="number" [ngModel]="estimation.autres" (ngModelChange)="updateAutres($event)">
+                        <input matInput type="number" formControlName="autres" (ngModelChange)="updateAutres($event)">
                     </mat-form-field>
                 </td>
                 <td>
@@ -153,6 +168,7 @@
             </tr>
         </tbody>
   </table>
+</form>
 </div>
 
 <div id="ventilation">
@@ -162,7 +178,7 @@
             <th mat-header-cell *matHeaderCellDef> UBR </th>
             <td mat-cell *matCellDef="let element">
                 <mat-form-field>
-                    <input matInput type="text" [(ngModel)]="element.ubr">
+                    <input matInput type="text" [(ngModel)]="element.ubr" (ngModelChange)="fg_ventilation.updateValueAndValidity()">
                 </mat-form-field>
             </td>
         </ng-container>
@@ -170,7 +186,7 @@
             <th mat-header-cell *matHeaderCellDef id="compte-colonne"> COMPTE </th>
             <td mat-cell *matCellDef="let element">
                 <mat-form-field id="compte-cell">
-                    <input matInput type="text" [(ngModel)]="element.compte">
+                    <input matInput type="text" [(ngModel)]="element.compte" (ngModelChange)="fg_ventilation.updateValueAndValidity()">
                 </mat-form-field>
             </td>
         </ng-container>
@@ -178,7 +194,7 @@
             <th mat-header-cell *matHeaderCellDef id="unite-colonne"> UNITÉ <br> ADM. </th>
             <td mat-cell *matCellDef="let element">
                 <mat-form-field id="unite-cell">
-                    <input matInput type="text" [(ngModel)]="element.unite">
+                    <input matInput type="text" [(ngModel)]="element.unite" (ngModelChange)="fg_ventilation.updateValueAndValidity()">
                 </mat-form-field>
             </td>
         </ng-container>
@@ -195,7 +211,7 @@
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element">
                 <button mat-icon-button color="warn"
-                (click)="onDelete(element.id)"><mat-icon>delete_outline</mat-icon></button>
+                (click)="onDelete(element)"><mat-icon>delete_outline</mat-icon></button>
             </td>
         </ng-container>
 
@@ -220,6 +236,7 @@
 
 <div id="avances">
   <h6>AVANCES DEMANDÉES</h6>
+  <form [formGroup]="fg_avances">
   <table width="100%" id="tableau-avances-demandees">
         <tbody>
             <tr>
@@ -228,7 +245,8 @@
                 </td>
                 <td>
                     <mat-form-field>
-                        <input matInput type="number" [(ngModel)]="avances.avance1" (ngModelChange)="updateAvanceTotal()">
+                        <input matInput type="number"
+                        formControlName="avance1" (ngModelChange)="updateAvanceTotal()">
                     </mat-form-field>
                 </td>
                 <td id="pour-1">
@@ -237,7 +255,7 @@
                 <td>
                     <mat-form-field>
                         <input #DateDu matInput [matDatepicker]="pickerPour1" placeholder="POUR" (click)="pickerPour1.open()"
-                        [(ngModel)]="avances.date1" >
+                        formControlName="date1" >
                         <mat-datepicker-toggle matSuffix [for]="pickerPour1"></mat-datepicker-toggle>
                         <mat-datepicker #pickerPour1></mat-datepicker>
                     </mat-form-field>
@@ -250,7 +268,8 @@
                 </td>
                 <td>
                     <mat-form-field>
-                        <input matInput type="number" [(ngModel)]="avances.avance2" (ngModelChange)="updateAvanceTotal()">
+                        <input matInput type="number"
+                        formControlName="avance2" (ngModelChange)="updateAvanceTotal()">
                     </mat-form-field>
                 </td>
                 <td id="pour-2">
@@ -259,7 +278,7 @@
                 <td>
                     <mat-form-field>
                         <input #DateAu matInput [matDatepicker]="pickerPour2" placeholder="POUR" (click)="pickerPour1.open()"
-                        [(ngModel)]="avances.date2" >
+                        formControlName="date2" >
                         <mat-datepicker-toggle matSuffix [for]="pickerPour2"></mat-datepicker-toggle>
                         <mat-datepicker #pickerPour2></mat-datepicker>
                     </mat-form-field>
@@ -276,6 +295,7 @@
             </tr>
         </tbody>
     </table>
+    </form>
   </div>
 
   <div id="signatures">
