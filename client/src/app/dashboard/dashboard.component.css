@@ -79,22 +79,24 @@
   background: linear-gradient(#bbdeea, #367ec1);
 }
 
-#card-titleAndType {
-  float: left;
-}
-
-#card-dateAndAuthor {
-  float: right;
-}
-
-#carte-date-auteur{
-  float: right;
-}
-
 .cardHeader {
+  display: flex;
+  justify-content: space-between;
+}
+.card-type {
+  text-align: left;
+}
+.card-dateAndAuthor {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.expansionHeader {
   padding: 0 15px !important;
 }
-.cardHeader .mat-expansion-indicator::after {
+.expansionHeader .mat-expansion-indicator::after {
   border-width: 0 4px 4px 0 !important;
   margin-top: -10px !important;
   padding: 4px !important;

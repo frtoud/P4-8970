@@ -79,23 +79,19 @@
           <div *ngFor="let card of aCompleterCards" id="card">
             <mat-card class="dashboard-card">
               <mat-card-content class="dashboard-card-content">
-                <ng-container id="card-header">
-                  
-                  <span id="card-titleAndType">
+                <div class="cardHeader">
+                  <div class="card-type">
                       {{card.nomFormulaire}}
-                  </span>
-                  <span id="card-dateAndAuthor">
-                      Créé le: {{card.creeLe|date:'dd-MM-yyyy à HH:mm'}}
-                  </span> <br>
-                  
-                  <span id="carte-date-auteur">
+                  </div>
+                  <div class="card-dateAndAuthor">
+                      Créé le: {{card.creeLe|date:'dd-MM-yyyy à HH:mm'}} <br>
                       Auteur: {{card.auteur.nom}}
-                  </span>
-                </ng-container>
+                  </div>
+                </div>
+
                 <ng-container id="expansible">
                   <mat-expansion-panel>
-
-                    <mat-expansion-panel-header [ngSwitch]="card.statut" class="cardHeader">
+                    <mat-expansion-panel-header [ngSwitch]="card.statut" class="expansionHeader">
                       <ng-container *ngSwitchCase="'IN_PROGRESS'">
                         <i class="material-icons" id="inProgresIcon"> radio_button_unchecked </i>
                         <mat-progress-bar class="inProgress" [mode]="determinate"
@@ -188,6 +184,7 @@
                     
                   </mat-expansion-panel>
                 </ng-container>
+
               </mat-card-content>
             </mat-card>
           </div>
@@ -236,23 +233,19 @@
           <div *ngFor="let card of autresCards" id="card">
             <mat-card class="dashboard-card">
               <mat-card-content class="dashboard-card-content">
-                <ng-container id="card-header">
-                  
-                  <span id="card-titleAndType">
+                <div class="cardHeader">
+                  <div class="card-type">
                       {{card.nomFormulaire}}
-                  </span>
-                  <span id="card-dateAndAuthor">
-                      Créé le: {{card.creeLe|date:'dd-MM-yyyy à HH:mm'}}
-                  </span> <br>
-                  
-                  <span id="carte-date-auteur">
+                  </div>
+                  <div class="card-dateAndAuthor">
+                      Créé le: {{card.creeLe|date:'dd-MM-yyyy à HH:mm'}} <br>
                       Auteur: {{card.auteur.nom}}
-                  </span>
-                </ng-container>
+                  </div>
+                </div>
                 <ng-container id="expansible">
                   <mat-expansion-panel>
 
-                    <mat-expansion-panel-header [ngSwitch]="card.statut" class="cardHeader">
+                    <mat-expansion-panel-header [ngSwitch]="card.statut" class="expansionHeader">
                       <ng-container *ngSwitchCase="'IN_PROGRESS'">
                         <i class="material-icons"> radio_button_unchecked </i>
                         <mat-progress-bar class="inProgress" [mode]="determinate"
@@ -385,23 +378,19 @@
           <div *ngFor="let card of displayedCards" id="card">
             <mat-card class="dashboard-card">
               <mat-card-content class="dashboard-card-content">
-                <ng-container id="card-header">
-                  
-                  <span id="card-titleAndType">
+                <div class="cardHeader">
+                  <div class="card-type">
                       {{card.nomFormulaire}}
-                  </span>
-                  <span id="card-dateAndAuthor">
-                      Créé le: {{card.creeLe|date:'dd-MM-yyyy à HH:mm'}}
-                  </span> <br>
-                  
-                  <span id="carte-date-auteur">
+                  </div>
+                  <div class="card-dateAndAuthor">
+                      Créé le: {{card.creeLe|date:'dd-MM-yyyy à HH:mm'}} <br>
                       Auteur: {{card.auteur.nom}}
-                  </span>
-                </ng-container>
+                  </div>
+                </div>
                 <ng-container id="expansible">
                   <mat-expansion-panel>
 
-                    <mat-expansion-panel-header [ngSwitch]="card.statut" class="cardHeader">
+                    <mat-expansion-panel-header [ngSwitch]="card.statut" class="expansionHeader">
                       <ng-container *ngSwitchCase="'IN_PROGRESS'">
                         <i class="material-icons"> radio_button_unchecked </i>
                         <mat-progress-bar class="inProgress" [mode]="determinate"
