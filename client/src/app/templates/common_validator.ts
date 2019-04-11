@@ -11,3 +11,5 @@ export function TestPositive(form: AbstractControl) {
         return { nan: true };
     }
 }
+
+export let PhoneRegex = '\\d?([.-\\s]?\\d){10}\.*';

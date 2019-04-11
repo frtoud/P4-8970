@@ -4,6 +4,7 @@ import { ExchangeRateService } from '../../services/exchangeRate.service';
 import { BaseFormComponent } from '../base-form.component';
 import { ISignature, Signature } from '../fields';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { PhoneRegex } from '../common_validator';
 
 export interface IPaymentForm {
 
@@ -275,11 +276,11 @@ export class PaymentFormComponent extends BaseFormComponent implements IPaymentF
     });
     this.fg_demandeur = new FormGroup({
       nom: new FormControl(this.demandeur.nom, Validators.required),
-      telephone: new FormControl(this.demandeur.telephone, Validators.required),
+      telephone: new FormControl(this.demandeur.telephone, [Validators.required, Validators.pattern(PhoneRegex)]),
     });
     this.fg_fournisseur = new FormGroup({
       adresse: new FormControl(this.fournisseur.adresse),
-      telephone: new FormControl(this.fournisseur.telephone),
+      telephone: new FormControl(this.fournisseur.telephone, Validators.pattern(PhoneRegex)),
       fax: new FormControl(this.fournisseur.fax),
       ville: new FormControl(this.fournisseur.ville),
       province: new FormControl(this.fournisseur.province),

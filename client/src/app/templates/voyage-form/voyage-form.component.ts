@@ -5,7 +5,7 @@ import { DataSource } from '@angular/cdk/table';
 import { Signature, ISignature } from '../fields';
 import { BaseFormComponent } from '../base-form.component';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { TestPositive } from '../common_validator';
+import { TestPositive, PhoneRegex } from '../common_validator';
 
 export interface IVoyageForm {
   entite_employe:
@@ -355,7 +355,7 @@ export class VoyageFormComponent extends BaseFormComponent implements IVoyageFor
     });
     this.fg_fournisseur = new FormGroup({
       adresse: new FormControl(this.fournisseur.adresse, Validators.required),
-      telephone: new FormControl(this.fournisseur.telephone, Validators.required),
+      telephone: new FormControl(this.fournisseur.telephone, [Validators.required, Validators.pattern(PhoneRegex)]),
       fax: new FormControl(this.fournisseur.fax),
       ville: new FormControl(this.fournisseur.ville, Validators.required),
       province: new FormControl(this.fournisseur.province, Validators.required),
