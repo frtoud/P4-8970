@@ -37,6 +37,9 @@
   background: linear-gradient(to bottom, #eeeeee 0%,#cccccc 100%);
 }
 
+#collab {
+  align-self: flex-end;
+}
 #addCollab {
   background: linear-gradient(to bottom, rgba(184,198,223,1) 0%,rgba(109,136,183,1) 100%);
   align-self: flex-end;
