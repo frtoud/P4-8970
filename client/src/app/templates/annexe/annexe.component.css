@@ -9,10 +9,8 @@
 }
 
 #tables{
-    margin: 5px;
-    overflow: auto;
-    width: 95%;
-    max-width: 1500px;
+    margin: 2px;
+    width: 100% !important;
 }
 
 /* tableau totaux */
@@ -32,7 +30,7 @@
 
 .output,
 #cellule-monetaire mat-form-field {
-    width: 60px;
+   
     text-align: center;
 }
 
@@ -146,22 +144,22 @@ div {
 }
 
 mat-form-field {
-    padding: 0px 5px;
+    
 }
 
 
 #table mat-form-field {
-    width: 50px;
+    
     text-align: left;
 }
 
-#ventilation-table
+#tableau-depenses
 {
-    /*width: 100%;*/
+    width: 95%;
 }
 
 #ventilation-table mat-form-field {
-    width: 100px;
+    width: 75px;
     text-align: left;
 }
 
@@ -177,3 +175,28 @@ mat-form-field {
 }
 
 
+
+
+@media print{
+            
+            #tout-desactive{
+
+                transform: scale(0.7);
+                margin-left: -150px;
+                max-width: 90% !important;
+            
+            }
+
+            #ventilation-table mat-form-field {
+                width: 32px !important;
+                text-align: left;
+            }
+
+            button {
+                display: none !important;
+              }
+
+
+
+
+}

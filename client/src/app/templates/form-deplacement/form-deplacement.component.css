@@ -9,11 +9,7 @@
     padding: 5px;
 }
 
-#annexe {
-    
-    max-width: 100%;
-    border: solid;
-}
+
 
 #entite_externe, 
 #beneficiaire,  
@@ -32,6 +28,7 @@
 #remboursement{
     border: 2px solid black;
     margin: 2px;
+    max-width: 100% !important;
 }
 
 #signatures {
@@ -256,20 +253,30 @@ input {
     background-color: #CCD4DF;
 }
 
+
+
+
+
+
 @media print{
 
+    #annexe{
+        
+        }
+    /*
         * {
           max-width: 85% !important;
         }
 
-        #annexe {
-            /*max-width: 90% !important;*/
-           float: left;
-           margin-left: 0px;
-            transform: scale(.7);
-            
-        }
+        */
+
+    #protective-container{
+        
+    }
+        
         
         
         
   }
+
+

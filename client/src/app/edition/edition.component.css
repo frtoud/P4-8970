@@ -90,6 +90,12 @@
     
         @page {
             margin: 0.5cm;
+            size: A4;
             }
             
+    #edit-form-container{
+      width:100% !important;
+    }
+
+    
   }
