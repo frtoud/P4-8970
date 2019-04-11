@@ -37,12 +37,11 @@
       <mat-form-field floatLabel="auto" class="short">
         <input matInput placeholder="Matricule (Employé)"
         formControlName="mat_enseignant">
-        <mat-error *ngIf="matriculesValide">Au moins un matricule est obligatoire.</mat-error>
+        <mat-hint *ngIf="fg_beneficiaire.hasError('matricules')">Au moins un matricule est obligatoire.</mat-hint>
       </mat-form-field>
       <mat-form-field floatLabel="auto" class="short">
         <input matInput placeholder="Matricule (Étudiant)"
         formControlName="mat_etudiant">
-        <mat-error *ngIf="matriculesValide"></mat-error>
       </mat-form-field>
     </form>
   </div>

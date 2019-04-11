@@ -5,6 +5,7 @@ import { DataSource } from '@angular/cdk/table';
 import { Signature, ISignature } from '../fields';
 import { BaseFormComponent } from '../base-form.component';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { TestPositive } from '../common_validator';
 
 export interface IVoyageForm {
   entite_employe:
@@ -375,10 +376,10 @@ export class VoyageFormComponent extends BaseFormComponent implements IVoyageFor
       raison: new FormControl(this.but_deplacement.raison),
     });
     this.fg_estimation = new FormGroup({
-      fraisInscription: new FormControl(this.estimation.fraisInscription, Validators.required),
-      transport: new FormControl(this.estimation.transport, Validators.required),
-      sejour: new FormControl(this.estimation.sejour, Validators.required),
-      autres: new FormControl(this.estimation.autres, Validators.required),
+      fraisInscription: new FormControl(this.estimation.fraisInscription, [Validators.required, TestPositive]),
+      transport: new FormControl(this.estimation.transport, [Validators.required, TestPositive]),
+      sejour: new FormControl(this.estimation.sejour, [Validators.required, TestPositive]),
+      autres: new FormControl(this.estimation.autres, [Validators.required, TestPositive]),
     });
     this.fg_ventilation = new FormGroup({}, (form) => {
       const res: any = {};
@@ -398,9 +399,9 @@ export class VoyageFormComponent extends BaseFormComponent implements IVoyageFor
       }
     });
     this.fg_avances = new FormGroup({
-      avance1: new FormControl(this.avances.avance1, Validators.required),
+      avance1: new FormControl(this.avances.avance1, [Validators.required, TestPositive]),
       date1: new FormControl(this.avances.date1, Validators.required),
-      avance2: new FormControl(this.avances.avance2, Validators.required),
+      avance2: new FormControl(this.avances.avance2, [Validators.required, TestPositive]),
       date2: new FormControl(this.avances.date2, Validators.required),
     });
 

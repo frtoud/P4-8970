@@ -146,21 +146,25 @@
                 <td>
                     <mat-form-field>
                         <input matInput type="number" formControlName="fraisInscription" (ngModelChange)="updateFraisInscription($event)">
+                        <mat-error *ngIf="fg_estimation.get('fraisInscription').hasError('negative')">Doit être positif.</mat-error>
                     </mat-form-field>
                 </td>
                 <td>
                     <mat-form-field>
                         <input matInput type="number" formControlName="transport" (ngModelChange)="updateTransport($event)">
+                        <mat-error *ngIf="fg_estimation.get('transport').hasError('negative')">Doit être positif.</mat-error>
                     </mat-form-field>
                 </td>
                 <td>
                     <mat-form-field>
                         <input matInput type="number" formControlName="sejour" (ngModelChange)="updateSejour($event)">
+                        <mat-error *ngIf="fg_estimation.get('sejour').hasError('negative')">Doit être positif.</mat-error>
                     </mat-form-field>
                 </td>
                 <td>
                     <mat-form-field>
                         <input matInput type="number" formControlName="autres" (ngModelChange)="updateAutres($event)">
+                        <mat-error *ngIf="fg_estimation.get('autres').hasError('negative')">Doit être positif.</mat-error>
                     </mat-form-field>
                 </td>
                 <td>
@@ -249,6 +253,7 @@
                     <mat-form-field>
                         <input matInput type="number"
                         formControlName="avance1" (ngModelChange)="updateAvanceTotal()">
+                        <mat-error *ngIf="fg_avances.get('avance1').hasError('negative')">Doit être positif.</mat-error>
                     </mat-form-field>
                 </td>
                 <td id="pour-1">
@@ -272,6 +277,7 @@
                     <mat-form-field>
                         <input matInput type="number"
                         formControlName="avance2" (ngModelChange)="updateAvanceTotal()">
+                        <mat-error *ngIf="fg_avances.get('avance2').hasError('negative')">Doit être positif.</mat-error>
                     </mat-form-field>
                 </td>
                 <td id="pour-2">
