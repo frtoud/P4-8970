@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule, FormControl, Validators, FormGroup} f
 import { checkAndUpdateBinding } from '@angular/core/src/view/util';
 import { Signature, ISignature } from '../fields';
 import { BaseFormComponent } from '../base-form.component';
+import { TestPositive } from '../common_validator';
 
 export interface IAideFinanciere {
 
@@ -167,7 +168,7 @@ export class AFFormComponent extends BaseFormComponent implements IAideFinancier
   matriculesValide = false;
 
   onChangeStatus() {
-    let control = this.fg_details.get('num_ref')
+    const control = this.fg_details.get('num_ref');
     if (this.fg_details.get('statutVersement').value === 'CHANGE') {
       control.enable();
     } else {
@@ -216,12 +217,12 @@ export class AFFormComponent extends BaseFormComponent implements IAideFinancier
     this.testMatricule();
     }
 
-    fg_demandeur :FormGroup;
-    fg_beneficiaire :FormGroup;
-    fg_cycle :FormGroup;
-    fg_details :FormGroup;
-    fg_ventilation :FormGroup;
-    fg_remarques :FormGroup;
+    fg_demandeur: FormGroup;
+    fg_beneficiaire: FormGroup;
+    fg_cycle: FormGroup;
+    fg_details: FormGroup;
+    fg_ventilation: FormGroup;
+    fg_remarques: FormGroup;
 
     buildFormGroups() {
       this.fg_demandeur = new FormGroup({
@@ -235,7 +236,9 @@ export class AFFormComponent extends BaseFormComponent implements IAideFinancier
         prenom: new FormControl(this.beneficiaire.prenom, Validators.required),
         mat_enseignant: new FormControl(this.beneficiaire.mat_enseignant),
         mat_etudiant: new FormControl(this.beneficiaire.mat_etudiant),
-      });
+      }, (form) => { // At least one
+        return (form.value.mat_enseignant !== '' || form.value.mat_etudiant !== '') ? null : { matricules: true };
+       });
       this.fg_cycle = new FormGroup({
         bac: new FormControl(this.cycle.bac),
         bacec: new FormControl(this.cycle.bacec),
@@ -253,7 +256,7 @@ export class AFFormComponent extends BaseFormComponent implements IAideFinancier
         date_fin: new FormControl(this.details.date_fin),
         statutVersement: new FormControl(this.details.statutVersement, Validators.required),
         num_ref: new FormControl({value: this.details.num_ref, disabled: this.details.statutVersement !== 'CHANGE'}, Validators.required),
-        montant: new FormControl(this.details.montant, Validators.required),
+        montant: new FormControl(this.details.montant, [Validators.required, TestPositive]),
         subventionnaire: new FormControl(this.details.subventionnaire, Validators.required),
       });
       this.fg_ventilation = new FormGroup({}, (form) => {

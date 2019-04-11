@@ -4,6 +4,8 @@ import { MatTableModule } from '@angular/material/table';
 import { DataSource } from '@angular/cdk/table';
 import { Signature, ISignature } from '../fields';
 import { BaseFormComponent } from '../base-form.component';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { TestPositive } from '../common_validator';
 
 export interface IVoyageForm {
   entite_employe:
@@ -230,7 +232,13 @@ export class VoyageFormComponent extends BaseFormComponent implements IVoyageFor
   dSventilation = new MatTableDataSource(this.ventilation.tableau);
 
   updateAvanceTotal() {
-    this.avanceTotal = this.avances.avance1 + this.avances.avance2;
+    const a1 = this.fg_avances.get('avance1');
+    const a2 = this.fg_avances.get('avance2');
+    const d1 = this.fg_avances.get('date1');
+    const d2 = this.fg_avances.get('date2');
+    this.avanceTotal = a1.value + a2.value;
+    if (a1.value <= 0 ) { d1.disable(); } else { d1.enable(); }
+    if (a2.value <= 0 ) { d2.disable(); } else { d2.enable(); }
   }
 
   updateTotal() {
@@ -238,6 +246,7 @@ export class VoyageFormComponent extends BaseFormComponent implements IVoyageFor
     this.ventilation.tableau.forEach(element => {
       this.ventilationTotal += element.montant;
     });
+    this.fg_ventilation.updateValueAndValidity();
   }
 
   onCreate() {
@@ -250,16 +259,13 @@ export class VoyageFormComponent extends BaseFormComponent implements IVoyageFor
   }
 
   onDelete(value) {
-    for (let i = 0; i < this.ventilation.tableau.length; i++) {
-      if (this.ventilation[i].id === value) {
-          this.ventilation.tableau.splice(i, 1);
-      }
+    const index: number = this.ventilation.tableau.findIndex((el: any) => el.id === value.id);
+    if (index >= 0) {
+      this.ventilation.tableau.splice(index, 1);
     }
+
     this.dSventilation._updateChangeSubscription();
     this.updateTotal();
-  }
-
-  ngOnInit() {
   }
 
   private duChange(str: any): void {
@@ -276,7 +282,7 @@ export class VoyageFormComponent extends BaseFormComponent implements IVoyageFor
     if (this.endroit_deplacement.au == null && this.endroit_deplacement.du == null) {
       return;
     }
-    
+
     this.bothFilled = (this.endroit_deplacement.au !== null && this.endroit_deplacement.du !== null);
     if (this.bothFilled) {
       this.endroit_deplacement.au = new Date(this.endroit_deplacement.au);
@@ -324,5 +330,91 @@ export class VoyageFormComponent extends BaseFormComponent implements IVoyageFor
     this.updateAvanceTotal();
     this.updateEstimationTotal();
     this.updateTotal();
+  }
+
+  fg_entite_employe: FormGroup;
+  fg_entite_fournisseur: FormGroup;
+  fg_beneficiaire: FormGroup;
+  fg_fournisseur: FormGroup;
+  fg_endroit_deplacement: FormGroup;
+  fg_but_deplacement: FormGroup;
+  fg_estimation: FormGroup;
+  fg_ventilation: FormGroup;
+  fg_avances: FormGroup;
+
+  buildFormGroups() {
+    this.fg_entite_employe = new FormGroup({
+      matricule: new FormControl(this.entite_employe.matricule, Validators.required),
+    });
+    this.fg_entite_fournisseur = new FormGroup({
+      numero: new FormControl(this.entite_fournisseur.numero, Validators.required),
+      adresse: new FormControl(this.entite_fournisseur.adresse, Validators.required),
+    });
+    this.fg_beneficiaire = new FormGroup({
+      nom: new FormControl(this.beneficiaire.nom, Validators.required),
+    });
+    this.fg_fournisseur = new FormGroup({
+      adresse: new FormControl(this.fournisseur.adresse, Validators.required),
+      telephone: new FormControl(this.fournisseur.telephone, Validators.required),
+      fax: new FormControl(this.fournisseur.fax, Validators.required),
+      ville: new FormControl(this.fournisseur.ville, Validators.required),
+      province: new FormControl(this.fournisseur.province, Validators.required),
+      postal: new FormControl(this.fournisseur.postal, Validators.required),
+    });
+    this.fg_endroit_deplacement = new FormGroup({
+      endroit: new FormControl(this.endroit_deplacement.endroit, Validators.required),
+      du: new FormControl(this.endroit_deplacement.du, Validators.required),
+      au: new FormControl(this.endroit_deplacement.au, Validators.required),
+    }, (form) => {
+      this.endroit_deplacement.du = form.value.du;
+      this.endroit_deplacement.au = form.value.au;
+      this.updateDuree();
+      if (this.dureeDeplacement < 0) { return { duree : true};
+      } else { return null; }
+    });
+    this.fg_but_deplacement = new FormGroup({
+      raison: new FormControl(this.but_deplacement.raison),
+    });
+    this.fg_estimation = new FormGroup({
+      fraisInscription: new FormControl(this.estimation.fraisInscription, [Validators.required, TestPositive]),
+      transport: new FormControl(this.estimation.transport, [Validators.required, TestPositive]),
+      sejour: new FormControl(this.estimation.sejour, [Validators.required, TestPositive]),
+      autres: new FormControl(this.estimation.autres, [Validators.required, TestPositive]),
+    });
+    this.fg_ventilation = new FormGroup({}, (form) => {
+      const res: any = {};
+      let valid = true;
+      let error = false;
+      this.ventilation.tableau.forEach(line => {
+        valid = valid && line.montant === 0 || !(line.ubr === '' || line.unite === '' || line.compte === '');
+      });
+      if (!valid) {
+        res.incomplete = true;
+        error = true;
+      }
+      if (error) {
+        return res;
+      } else {
+        return null;
+      }
+    });
+    this.fg_avances = new FormGroup({
+      avance1: new FormControl(this.avances.avance1, [Validators.required, TestPositive]),
+      date1: new FormControl(this.avances.date1, Validators.required),
+      avance2: new FormControl(this.avances.avance2, [Validators.required, TestPositive]),
+      date2: new FormControl(this.avances.date2, Validators.required),
+    });
+
+    // Fill the control array
+    while (this.controls.length !== 0) { this.controls.controls.pop(); }
+    this.controls.push(this.fg_entite_employe);
+    this.controls.push(this.fg_entite_fournisseur);
+    this.controls.push(this.fg_beneficiaire);
+    this.controls.push(this.fg_fournisseur);
+    this.controls.push(this.fg_endroit_deplacement);
+    this.controls.push(this.fg_but_deplacement);
+    this.controls.push(this.fg_estimation);
+    this.controls.push(this.fg_avances);
+    this.controls.push(this.fg_ventilation);
   }
 }

@@ -254,13 +254,13 @@ export class PaymentFormComponent extends BaseFormComponent implements IPaymentF
   }
 
 
-  fg_entite_employe :FormGroup;
-  fg_entite_fournisseur :FormGroup;
-  fg_beneficiaire :FormGroup;
-  fg_demandeur :FormGroup;
-  fg_fournisseur :FormGroup;
-  fg_description_facture :FormGroup;
-  fg_ventilation_budgetaire :FormGroup;
+  fg_entite_employe: FormGroup;
+  fg_entite_fournisseur: FormGroup;
+  fg_beneficiaire: FormGroup;
+  fg_demandeur: FormGroup;
+  fg_fournisseur: FormGroup;
+  fg_description_facture: FormGroup;
+  fg_ventilation_budgetaire: FormGroup;
 
   buildFormGroups() {
     this.fg_entite_employe = new FormGroup({

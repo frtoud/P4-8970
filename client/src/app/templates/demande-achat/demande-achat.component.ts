@@ -299,17 +299,17 @@ export class DemandeAchatComponent extends BaseFormComponent implements IDemande
     this.updateTotalItems();
   }
 
-  fg_commande :FormGroup;
-  fg_finances :FormGroup;
-  fg_demandeur :FormGroup;
-  fg_fournisseur :FormGroup;
-  fg_contact :FormGroup;
-  fg_soumission :FormGroup;
-  fg_livraison :FormGroup;
-  fg_termes :FormGroup;
-  fg_items :FormGroup;
-  fg_ventilation :FormGroup;
-  fg_commentaire :FormGroup;
+  fg_commande: FormGroup;
+  fg_finances: FormGroup;
+  fg_demandeur: FormGroup;
+  fg_fournisseur: FormGroup;
+  fg_contact: FormGroup;
+  fg_soumission: FormGroup;
+  fg_livraison: FormGroup;
+  fg_termes: FormGroup;
+  fg_items: FormGroup;
+  fg_ventilation: FormGroup;
+  fg_commentaire: FormGroup;
 
   buildFormGroups() {
     this.fg_commande = new FormGroup({
