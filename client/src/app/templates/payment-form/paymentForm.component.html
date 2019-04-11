@@ -63,7 +63,7 @@
     </mat-form-field>
 
     <mat-form-field>
-        <input matInput type="text" placeholder="FAX"
+        <input matInput type="text" placeholder="FAX (Optionnel)"
         formControlName="fax">
     </mat-form-field>
     <br>
@@ -81,18 +81,18 @@
         <input matInput type="text" placeholder="CODE POSTAL"
         formControlName="postal">
     </mat-form-field>
-    <p class="error_msg" *ngIf="fg_fournisseur.hasError('incomplete')">*Incomplet: remplir ou vider complètement cette section.</p>
+    <p class="error_msg" *ngIf="fg_fournisseur.hasError('incomplete')">Incomplet: remplir ou vider complètement cette section.</p>
     </form>
 </div>
 
 <div id="description_facture">
    <h6>DESCRIPTION DE LA FACTURE</h6>
-    <table mat-table [dataSource]="dsFactures" class="mat-elevation-z8">  
+    <table mat-table [dataSource]="dsFactures">  
             <ng-container matColumnDef="numFacture">
               <th mat-header-cell *matHeaderCellDef> Numéro de la facture <br> (numéro de référence) </th>
               <td mat-cell *matCellDef="let facture" class="nbFacture">
                     <mat-form-field>
-                        <input matInput type="text" [(ngModel)]="facture.num">
+                        <input matInput type="text" [(ngModel)]="facture.num" (ngModelChange)="fg_description_facture.updateValueAndValidity()">
                     </mat-form-field>
               </td>
             </ng-container>
@@ -101,7 +101,7 @@
               <th mat-header-cell *matHeaderCellDef> DESCRIPTION DE LA DÉPENSE </th>
               <td mat-cell *matCellDef="let facture" class="desc"> 
                     <mat-form-field class="descField">
-                        <input matInput type="text" [(ngModel)]="facture.description">
+                        <input matInput type="text" [(ngModel)]="facture.description" (ngModelChange)="fg_description_facture.updateValueAndValidity()">
                     </mat-form-field>
               </td>
             </ng-container>
@@ -110,7 +110,7 @@
               <th mat-header-cell *matHeaderCellDef> Référence <a href="#ref">(1)</a> </th>
               <td mat-cell *matCellDef="let facture" class="refFact"> 
                     <mat-form-field>
-                        <input matInput type="text" [(ngModel)]="facture.reference">
+                        <input matInput type="text" [(ngModel)]="facture.reference" (ngModelChange)="fg_description_facture.updateValueAndValidity()">
                     </mat-form-field>
               </td>
             </ng-container>
@@ -128,7 +128,7 @@
                   <div class ="totalFactureDevise">
                     <mat-form-field>
                         <!-- TODO: change data binding -->
-                        <input matInput type="number" [(ngModel)]="facture.total" (ngModelChange)="updateTotal()">
+                        <input matInput type="number" [(ngModel)]="facture.total" (ngModelChange)="updateTotal(); fg_description_facture.updateValueAndValidity()">
                     </mat-form-field>
 
                     <!--<mat-select placeholder="Devise" [(ngModel)]="selectedCurrency" (selectionChange)="calculateAmount()">
@@ -142,7 +142,7 @@
 
             <ng-container matColumnDef="total">
                 <td mat-footer-cell *matFooterCellDef colspan="4">
-                    <strong>TOTAL: {{ total }}</strong>
+                    <strong>TOTAL: {{ total | currency }}</strong>
                 </td>
             </ng-container>
 
@@ -157,16 +157,18 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             <tr mat-footer-row *matFooterRowDef="['total','addRow']"></tr>
         </table>
+        <p class="error_msg" *ngIf="fg_description_facture.hasError('incomplete')">Une ou plusieur lignes de ventilation sont incomplètes.</p>
+        <p class="error_msg" *ngIf="fg_description_facture.hasError('negative')">La ventilation contient des montants négatifs.</p>
 </div>
 
 <div id="ventilation_budgetaire">
   <h6>VENTILATION BUDGÉTAIRE</h6>
-    <table mat-table [dataSource]="dsVentilation" class="mat-elevation-z8"> 
+    <table mat-table [dataSource]="dsVentilation"> 
         <ng-container matColumnDef="ubr">
             <th mat-header-cell *matHeaderCellDef> UBR </th>
             <td mat-cell *matCellDef="let ventilation">
                 <mat-form-field>
-                    <input matInput type="text" [(ngModel)]="ventilation.ubr">
+                    <input matInput type="text" [(ngModel)]="ventilation.ubr" (ngModelChange)="fg_ventilation_budgetaire.updateValueAndValidity()">
                 </mat-form-field>
             </td>
         </ng-container>
@@ -175,7 +177,7 @@
             <th mat-header-cell *matHeaderCellDef> COMPTE </th>
             <td mat-cell *matCellDef="let ventilation"> 
                 <mat-form-field class="">
-                    <input matInput type="text" [(ngModel)]="ventilation.compte">
+                    <input matInput type="text" [(ngModel)]="ventilation.compte" (ngModelChange)="fg_ventilation_budgetaire.updateValueAndValidity()">
                 </mat-form-field>
             </td>
         </ng-container>
@@ -183,7 +185,7 @@
             <th mat-header-cell *matHeaderCellDef> UNITÉ ADMINISTRATIVE </th>
             <td mat-cell *matCellDef="let ventilation"> 
                 <mat-form-field>
-                    <input matInput type="text" [(ngModel)]="ventilation.unite">
+                    <input matInput type="text" [(ngModel)]="ventilation.unite" (ngModelChange)="fg_ventilation_budgetaire.updateValueAndValidity()">
                 </mat-form-field>
             </td>
         </ng-container>
@@ -192,7 +194,7 @@
             <th mat-header-cell *matHeaderCellDef> Code de taxes </th>
             <td mat-cell *matCellDef="let ventilation" class="code">
                 <mat-form-field>
-                    <input matInput type="number" [(ngModel)]="ventilation.code">
+                    <input matInput type="number" [(ngModel)]="ventilation.code" (ngModelChange)="fg_ventilation_budgetaire.updateValueAndValidity()">
                 </mat-form-field>
             </td>
         </ng-container>
@@ -201,7 +203,7 @@
             <th mat-header-cell *matHeaderCellDef> T4A </th>
             <td mat-cell *matCellDef="let ventilation" class="t4a">
                 <mat-form-field>
-                    <input matInput type="number" [(ngModel)]="ventilation.t4a">
+                    <input matInput type="number" [(ngModel)]="ventilation.t4a" (ngModelChange)="fg_ventilation_budgetaire.updateValueAndValidity()">
                 </mat-form-field>
             </td>
         </ng-container>
@@ -210,7 +212,7 @@
             <th mat-header-cell *matHeaderCellDef> RÉFÉRENCE </th>
             <td mat-cell *matCellDef="let ventilation">
                 <mat-form-field>
-                    <input matInput type="number" [(ngModel)]="ventilation.reference">
+                    <input matInput type="number" [(ngModel)]="ventilation.reference" (ngModelChange)="fg_ventilation_budgetaire.updateValueAndValidity()">
                 </mat-form-field>
             </td>
         </ng-container>
@@ -219,14 +221,14 @@
             <th mat-header-cell *matHeaderCellDef> MONTANT APRÈS TAXE </th>
             <td mat-cell *matCellDef="let ventilation">
                 <mat-form-field>
-                    <input matInput type="number" [(ngModel)]="ventilation.montant">
+                    <input matInput type="number" [(ngModel)]="ventilation.montant" (ngModelChange)="updateVentilationTotal(); fg_ventilation_budgetaire.updateValueAndValidity()">
                 </mat-form-field>
             </td>
         </ng-container>
 
         <ng-container matColumnDef="totalV">
             <td mat-footer-cell *matFooterCellDef colspan="6">
-                <strong>TOTAL: {{ totalVentilation }} CAN</strong>
+                <strong>TOTAL: {{ totalVentilation | currency }} CAN</strong>
             </td>
         </ng-container>
 
@@ -248,6 +250,8 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumnsV;"></tr>
         <tr mat-footer-row *matFooterRowDef="['totalV','addVRow']"></tr>
     </table>
+        <p class="error_msg" *ngIf="fg_ventilation_budgetaire.hasError('incomplete')">Une ou plusieur lignes de ventilation sont incomplètes.</p>
+        <p class="error_msg" *ngIf="fg_ventilation_budgetaire.hasError('negative')">La ventilation contient des montants négatifs.</p>
 </div>
 
 <div id="signatures">
