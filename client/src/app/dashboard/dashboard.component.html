@@ -1,7 +1,7 @@
 
-<mat-toolbar class="searchBar">
+<div class="searchBar">
   <div id="center-searchbar">
-    <div class="searchBarDiv">
+    <div class="searchBarDiv-Auteur">
       <mat-form-field floatLabel="never" class="searchBarFieldAuteur">
         <input matInput placeholder="Auteur..." (keyup.enter)="search()" [formControl]="form" [matAutocomplete]="auto">
         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
@@ -12,7 +12,7 @@
       </mat-form-field>
     </div>
   
-    <div class="searchBarDiv">
+    <div class="searchBarDiv-Statut">
       <mat-form-field floatLabel="never" class="searchBarField">
         <mat-select placeholder="Statut..." (keyup.enter)="search()" [(value)]="searchStatus">
           <mat-option >-</mat-option>
@@ -24,7 +24,7 @@
       </mat-form-field>
     </div>
   
-    <div class="searchBarDiv">
+    <div class="searchBarDiv-Patron">
       <mat-form-field floatLabel="never" class="searchBarField">
         <mat-select placeholder="Patron..." (keyup.enter)="search()" [(value)]="searchPatron">
           <mat-option >-</mat-option>
@@ -37,14 +37,14 @@
       </mat-form-field>
     </div>
   
-    <div class="searchBarDiv">
+    <div class="searchBarDiv-DateFrom">
       <mat-form-field floatLabel="never" class="searchBarDate">
         <input matInput [matDatepicker]="pickerEntre" (keyup.enter)="search()" placeholder="Entre le" [(ngModel)]="dateFrom">
         <mat-datepicker-toggle matSuffix [for]="pickerEntre"></mat-datepicker-toggle>
         <mat-datepicker #pickerEntre></mat-datepicker>
       </mat-form-field>
     </div>
-    <div class="searchBarLastDiv">
+    <div class="searchBarDiv-DateTo">
       <mat-form-field floatLabel="never" class="searchBarDate">
         <input matInput [matDatepicker]="pickerEtLe" (keyup.enter)="search()" placeholder="et le" [(ngModel)]="dateTo">
         <mat-datepicker-toggle matSuffix [for]="pickerEtLe"></mat-datepicker-toggle>
@@ -59,7 +59,7 @@
       <i class="material-icons">backspace</i>
     </button>
   </div>
-</mat-toolbar>
+</div>
 
 <div class="grid-container">
   <div *ngIf="vueCarte == 'true'" id="divCards">
