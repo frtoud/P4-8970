@@ -86,4 +86,10 @@
       width:116%;
       margin:auto;
     }
+
+    
+        @page {
+            margin: 0.5cm;
+            }
+            
   }
