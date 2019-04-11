@@ -66,6 +66,7 @@
 .searchBarDate, .searchBarField, .searchBarFieldAuteur {
   display: inline-block;
   font-size: inherit;
+  width: 100%;
 }
 
 .searchBarFieldAuteur .mat-form-field-infix,

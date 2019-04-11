@@ -38,14 +38,14 @@
     </div>
   
     <div class="searchBarDiv-DateFrom">
-      <mat-form-field floatLabel="never">
+      <mat-form-field floatLabel="never" class="searchBarDate">
         <input matInput [matDatepicker]="pickerEntre" (keyup.enter)="search()" placeholder="Entre le" [(ngModel)]="dateFrom">
         <mat-datepicker-toggle matSuffix [for]="pickerEntre"></mat-datepicker-toggle>
         <mat-datepicker #pickerEntre></mat-datepicker>
       </mat-form-field>
     </div>
     <div class="searchBarDiv-DateTo">
-      <mat-form-field floatLabel="never">
+      <mat-form-field floatLabel="never" class="searchBarDate">
         <input matInput [matDatepicker]="pickerEtLe" (keyup.enter)="search()" placeholder="et le" [(ngModel)]="dateTo">
         <mat-datepicker-toggle matSuffix [for]="pickerEtLe"></mat-datepicker-toggle>
         <mat-datepicker #pickerEtLe></mat-datepicker>
