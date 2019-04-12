@@ -2,7 +2,7 @@
     <h6>ENTITÉ EXTERNE</h6>
     <div id="entite_employe">
         <form [formGroup]="fg_entite_employe">
-    <mat-form-field>
+    <mat-form-field matTooltip="Matricule d'employé à 6 caractères." [matTooltipShowDelay]="1000">
         <span matPrefix>P &nbsp;</span>
         <input matInput type="text" placeholder="EMPLOYÉ (matricule)"
         formControlName="matricule" id="employe-matricule">

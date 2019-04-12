@@ -86,25 +86,25 @@
 
 <div class="sectionheader">
   <h6>MODE DE PAIEMENT</h6>
-  <div class="section">
-  <p>Veuillez joindre un spécimen de chèque pour les nouvelles demandes ou pour changement au mode de paiement.</p>
+  <div class="section" matTooltip="Pour tout changement fournir un nouveau spécimen de chèque." [matTooltipShowDelay]="1000">
+  <p>Veuillez joindre un spécimen de chèque. </p>
   </div>
 </div>
 <div class="sectionheader">
   <h6>DÉTAIL DE L'AIDE FINANCIÈRE</h6>
-  <div class="section section-row" id="details">
+  <div class="section section-row" id="details" >
     <form [formGroup]="fg_details">
     <p>Les versements sont faits aux quize jours, selon le cycle de la paie.</p>
     <p>PÉRIODE D'ENGAGEMENT:</p>
     <mat-form-field class="short">
       <input matInput [matDatepicker]="debut" placeholder="Date de début" (click)="debut.open()"
-      formControlName="date_debut">
+      formControlName="date_debut" matTooltip="La semaine de début d'emploi doit correspondre au dimanche." [matTooltipShowDelay]="1000" >
       <mat-datepicker-toggle matSuffix [for]="debut"></mat-datepicker-toggle>
       <mat-datepicker #debut></mat-datepicker>
     </mat-form-field>
     <mat-form-field class="short">
       <input matInput [matDatepicker]="fin" placeholder="Date de fin" (click)="fin.open()"
-      formControlName="date_fin">
+      formControlName="date_fin" matTooltip="La semaine de fin d'emploi doit correspondre au samedi." [matTooltipShowDelay]="1000">
       <mat-datepicker-toggle matSuffix [for]="fin"></mat-datepicker-toggle>
       <mat-datepicker #fin></mat-datepicker>
     </mat-form-field>

@@ -6,10 +6,6 @@
   width: 100%;
 }
 
-.header .mat-toolbar {
-  background: inherit;
-}
-
 .toolbar{
   height: 60px;
   display: flex;
@@ -25,27 +21,37 @@
 }
 
 #logo {
-  display: inline-block;
   color: #acacac;
   font-size: 18px;
+
+  display: flex;
+  flex-direction: row;
+
   margin-left: 1.5%;
+  width: 25%;
   white-space: nowrap;
 }
 #poly-squares {
+  margin-top: 6px;
+  margin-left: 15px;
   height: 10px;
-  width: 69px; /* yin yang ? */
-  vertical-align: middle;
+  width: 69px;
 }
 
 #navbar-links {
   display: flex;
   flex-direction: row;
+  float: right;
   color:white;
+
+  width: 17%;
 }
 #userName {
   color:white;
   font-size: 15px;
   font-weight: lighter;
+
+  width: 17%;
 }
 #settings {
   color:white;
