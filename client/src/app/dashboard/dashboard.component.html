@@ -1,6 +1,5 @@
 
 <div class="searchBar">
-  <div id="center-searchbar">
     <div class="searchBarDiv-Auteur">
       <mat-form-field floatLabel="never" class="searchBarFieldAuteur">
         <input matInput placeholder="Auteur..." (keyup.enter)="search()" [formControl]="form" [matAutocomplete]="auto">
@@ -58,7 +57,6 @@
     <button mat-icon-button (click)="desactivateSearch()">
       <i class="material-icons">backspace</i>
     </button>
-  </div>
 </div>
 
 <div class="grid-container">
