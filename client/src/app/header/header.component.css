@@ -30,12 +30,10 @@
   margin-left: 1.5%;
   width: 25%;
   white-space: nowrap;
-  /* white-space: nowrap; */
 }
 #poly-squares {
   margin-top: 6px;
-  /* margin-bottom: 5%; */
-  /* margin-left: 20%; */
+  margin-left: 15px;
   height: 10px;
   width: 69px;
 }
