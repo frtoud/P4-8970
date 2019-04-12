@@ -85,6 +85,8 @@
       visibility: visible;
       width:116%;
       margin:auto;
+      -webkit-print-color-adjust: exact;
+      /*color-adjust: exact;*/
     }
 
     

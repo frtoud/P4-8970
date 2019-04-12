@@ -58,18 +58,24 @@ div {
     width: max-content;
 }
 
+#employe-matricule{
+    width: 300px;
+}
+
 mat-form-field {
     padding: 0px 5px;
 }
+
 
 #entite-externe mat-form-field {
     width: 150px;
 }
 
-#entite-externe mat-form-field:last-child {
-    width: 90px;
-    margin: 0px 20px;
+#entite-adresse{
+    width:100px;
 }
+
+
 
 #beneficiaire-demandeur {
     display: flex;
@@ -238,7 +244,7 @@ th {
 
 @media print{
     
-        * {
+    #entite-externe, #entite_fournisseur, #beneficiaire-demandeur, #fournisseur, #endroit_deplacement, #but_deplacement, #estimation, #ventilation, #avances, #signatures, #references{
           max-width: 91%;
           
         }

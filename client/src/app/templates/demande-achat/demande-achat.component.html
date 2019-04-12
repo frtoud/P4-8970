@@ -261,17 +261,19 @@
       <mat-form-field class="ventilation_autres">
         <input matInput class="ventilation_autres" 
         [(ngModel)]="items.transport" placeholder="Frais de transport"
-        (ngModelChange)="updateTotal()" type="number">
+        (ngModelChange)="updateTotal()" type="number" id="ventilation-autre-input">
       </mat-form-field>
-      <mat-form-field>
-          <input matInput class="ventilation_autres" 
+      <mat-form-field class="ventilation_autres">
+          <input matInput  
           [(ngModel)]="items.autres" placeholder="Autres frais"
-          (ngModelChange)="updateTotal()" type="number">
+          (ngModelChange)="updateTotal()" type="number" id="ventilation-autre-input">
       </mat-form-field>
+      <div id="ventilation-totaux">
       <p><b>TPS: </b> {{ taxeTPS | currency }}</p>
       <p><b>TVQ: </b> {{ taxeTVQ | currency }}</p>
       <p><b>Total: </b> {{ itemsTotal | currency }}</p>
       <p><b>Engagement réel: </b>{{ engagement | currency }}</p>
+    </div>
     </div>
   </div>
   <!--Ventilation budgétaire-->
@@ -378,7 +380,6 @@
         </mat-form-field>
     </div>
 </div>
-<p>Référence/no. doc. physique <b>DA-012944</b></p>
 
 
 
