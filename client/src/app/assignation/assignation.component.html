@@ -10,23 +10,23 @@
     <div class="fixed">
         <mat-chip-list class="mat-chip-list-stacked" cdkDropList (cdkDropListDropped)="dropParticipant($event)">
           <mat-chip *ngFor="let participant of participants" (click)="getFocus(participant)"
-          [ngClass]="{'assignation_selected': participant._id === collaboratorID}" cdkDrag>
+          [ngClass]="{'assignation_selected': participant._id === collaboratorID}" cdkDrag matTooltip="Sélectionner le participant pour lui assigner des sections de formulaire en cliquant sur celles-ci." [matTooltipShowDelay]="1500">
             <p>{{participant.firstName}} {{participant.lastName}}</p> 
-            <button class="deleteParticipant" mat-mini-fab color="warn" (click)="deleteParticipant(participant)">
+            <button class="deleteParticipant" mat-mini-fab color="warn" (click)="deleteParticipant(participant)" >
               <p class="delX">x</p>
             </button>
           </mat-chip>
         </mat-chip-list>
         <br>
     <div id="collab">Ajouter un collaborateur
-      <button mat-mini-fab color="primary" id="addCollab" (click)="openDialog()">+</button>
+      <button mat-mini-fab color="primary" id="addCollab" (click)="openDialog()" matTooltip="Cliquer pour ajouter un participant au formulaire." [matTooltipShowDelay]="1500">+</button>
     </div>
     <br>
     <app-file-uploader></app-file-uploader>
     <br>
     <mat-grid-list cols="2" rowHeight="40px">
       <mat-grid-tile [colspan]="tiles[0].cols" [rowspan]="tiles[0].rows">
-        <button id="envoyer" mat-raised-button (click)="onSend()" color="primary"
+        <button id="envoyer" mat-raised-button (click)="onSend()" color="primary" matTooltip="Envoyer le formulaire aux personnes assignées." [matTooltipShowDelay]="1500"
         [disabled]="participantInsuffisants">ENVOYER</button>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="tiles[1].cols" [rowspan]="tiles[1].rows">
