@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { MatTableModule } from '@angular/material/table';
 import { DataSource } from '@angular/cdk/table';
 import { Signature, ISignature } from '../fields';
 import { BaseFormComponent } from '../base-form.component';
+import { IAnnexRow, AnnexeComponent, AnnexRowData } from '../annexe/annexe.component';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { PhoneRegex, TestPositive } from '../common_validator';
 
 export interface IVentilationRD {
   id: number;
@@ -21,6 +24,7 @@ export interface IDeplacementForm {
     id:  string;
     assigneA:  string;
 
+    nom: string;
     matricule:  string;
     statut:  string;
     adresse:  string;
@@ -63,7 +67,7 @@ export interface IDeplacementForm {
     id: string;
     assigneA: string;
 
-    // ???
+    tableau: IAnnexRow[];
   };
 }
 
@@ -73,6 +77,7 @@ export interface IDeplacementForm {
   styleUrls: ['./form-deplacement.component.css']
 })
 export class FormDeplacementComponent extends BaseFormComponent implements IDeplacementForm, OnInit {
+  @ViewChild(AnnexeComponent) annexeComp: AnnexeComponent;
 
   currency = ['CAD', 'USD', 'EUR', 'GBP', 'CHF', 'BRL'];
 
@@ -81,6 +86,7 @@ export class FormDeplacementComponent extends BaseFormComponent implements IDepl
     id: 'entite_externe',
     assigneA: null,
 
+    nom: '',
     matricule: '',
     statut: '',
     adresse: '',
@@ -132,7 +138,13 @@ export class FormDeplacementComponent extends BaseFormComponent implements IDepl
     id: 'annexe',
     assigneA: null,
 
-    // ???
+    tableau: [
+      { id: 0, date: null, description: '', ref: '',
+        perdiem: 0, nbKm: 0, pers: false, fraisKm: 0,
+        chambreST: 0, fraisRecMoins: 0, fraisRecPlus: 0,
+        fourniture: 0, inscription: 0, qcHqc: '',
+        montant: 0, fournitureMateriel: false, plusDeCinq: false,}
+    ],
   };
 
   private dureeDeplacement = 0;
@@ -155,6 +167,7 @@ export class FormDeplacementComponent extends BaseFormComponent implements IDepl
     this.ventilation.tableau.forEach(element => {
       this.ventilationTotal += element.montant;
     });
+    this.fg_ventilation.updateValueAndValidity();
   }
 
   onCreate() {
@@ -174,9 +187,6 @@ export class FormDeplacementComponent extends BaseFormComponent implements IDepl
     }
     this.dSventilation._updateChangeSubscription();
     this.updateTotal();
-  }
-
-  ngOnInit() {
   }
 
   private duChange(str: any): void {
@@ -204,6 +214,9 @@ export class FormDeplacementComponent extends BaseFormComponent implements IDepl
   }
 
     setSections(): void {
+      // Sent to annex by reference (I hope)
+      this.annexeComp.setVentilation(this.annexe.tableau);
+
       this.sections = [
       this.entite_externe, this.ventilation,
       this.annexe, this.endroit_duree, this.but,
@@ -215,4 +228,71 @@ export class FormDeplacementComponent extends BaseFormComponent implements IDepl
       this.updateDuree();
       this.updateTotal();
     }
+
+  fg_entite_externe: FormGroup;
+  fg_endroit_duree: FormGroup;
+  fg_but: FormGroup;
+  fg_ventilation: FormGroup;
+  fg_annexe: FormGroup;
+
+  buildFormGroups() {
+    this.fg_entite_externe = new FormGroup({
+      nom: new FormControl(this.entite_externe.nom, Validators.required),
+      matricule: new FormControl(this.entite_externe.matricule, Validators.required),
+      adresse: new FormControl(this.entite_externe.adresse, Validators.required),
+      telephone: new FormControl(this.entite_externe.telephone, [Validators.required, Validators.pattern(PhoneRegex)]),
+      institut: new FormControl(this.entite_externe.institut, Validators.required),
+      statut: new FormControl(this.entite_externe.statut, Validators.required),
+    });
+    this.fg_endroit_duree = new FormGroup({
+      endroit: new FormControl(this.endroit_duree.endroit, Validators.required),
+      du: new FormControl(this.endroit_duree.du, Validators.required),
+      au: new FormControl(this.endroit_duree.au, Validators.required),
+    }, (form) => {
+      this.endroit_duree.du = form.value.du;
+      this.endroit_duree.au = form.value.au;
+      this.updateDuree();
+      if (this.dureeDeplacement < 0) { return { duree : true};
+      } else { return null; }
+    });
+    this.fg_but = new FormGroup({
+      valeur: new FormControl(this.but.valeur, Validators.required),
+    });
+    this.fg_ventilation = new FormGroup({
+      recu: new FormControl(this.ventilation.recu, [Validators.required, TestPositive]),
+      paiement: new FormControl(this.ventilation.paiement, [Validators.required, TestPositive]),
+      remboursement: new FormControl(this.ventilation.remboursement, [Validators.required, TestPositive]),
+    }, [(form) => {
+      const res: any = {};
+      let negative = false;
+      let valid = true;
+      let error = false;
+      this.ventilation.tableau.forEach(line => {
+        valid = valid && line.montant === 0 || !(line.ubr === '' || line.code === '' || line.unite === '' || line.compte === '');
+        negative = negative || line.montant < 0;
+      });
+      if (!valid) {
+        res.incomplete = true;
+        error = true;
+      }
+      if (negative) {
+        res.negative = true;
+        error = true;
+      }
+      if (error) {
+        return res;
+      } else {
+        return null;
+      }
+    }]);
+    this.fg_annexe = new FormGroup({});
+
+    // Fill the control array
+    while (this.controls.length !== 0) { this.controls.controls.pop(); }
+    this.controls.push(this.fg_entite_externe);
+    this.controls.push(this.fg_endroit_duree);
+    this.controls.push(this.fg_but);
+    this.controls.push(this.fg_ventilation);
+    this.controls.push(this.fg_annexe);
+  }
 }

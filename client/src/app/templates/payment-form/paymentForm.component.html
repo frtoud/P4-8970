@@ -157,7 +157,7 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             <tr mat-footer-row *matFooterRowDef="['total','addRow']"></tr>
         </table>
-        <p class="error_msg" *ngIf="fg_description_facture.hasError('incomplete')">Une ou plusieur lignes de description sont incomplètes.</p>
+        <p class="error_msg" *ngIf="fg_description_facture.hasError('incomplete')">Une ou plusieurs lignes de description sont incomplètes.</p>
         <p class="error_msg" *ngIf="fg_description_facture.hasError('negative')">La description contient des montants négatifs.</p>
 </div>
 

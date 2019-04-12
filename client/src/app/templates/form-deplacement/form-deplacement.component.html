@@ -2,16 +2,17 @@
 <div id="entite-date">
 <div id="entite_externe">
   <h6>ENTITÉ EXTERNE</h6>
+  <form [formGroup]="fg_entite_externe">
   <mat-form-field id = "nom">
-      <input matInput type="text" placeholder="NOM" [(ngModel)]="entite_externe.nom">
+      <input matInput type="text" placeholder="NOM" formControlName="nom">
   </mat-form-field>
   
   <mat-form-field >
-      <input matInput type="text" placeholder="MATRICULE" [(ngModel)]="entite_externe.matricule">
+      <input matInput type="text" placeholder="MATRICULE" formControlName="matricule">
   </mat-form-field>
   <br>
   <mat-form-field>
-        <mat-select [(ngModel)]="entite_externe.statut" placeholder="STATUT">
+        <mat-select formControlName="statut" placeholder="STATUT">
                 <mat-option value="employe">Employé</mat-option>
                 <mat-option value="etudiantPoly">Étudiant Poly</mat-option>
                 <mat-option value="etudiantExterieur">Étudiant Extérieur</mat-option>
@@ -22,16 +23,17 @@
  </mat-form-field> 
  <br>
  <mat-form-field id = "nom">
-    <input matInput type="text" placeholder="Adresse" [(ngModel)]="entite_externe.adresse">
+    <input matInput type="text" placeholder="Adresse" formControlName="adresse">
 </mat-form-field>
 <br>
 <mat-form-field id = "nom">
-    <input matInput type="text" placeholder="Téléphone" [(ngModel)]="entite_externe.telephone">
+    <input matInput type="text" placeholder="Téléphone" formControlName="telephone">
 </mat-form-field>
 <br>
 <mat-form-field id = "nom">
-    <input matInput type="text" [(ngModel)]="entite_externe.institut" placeholder="	Centre, département, institut ou service">
+    <input matInput type="text" formControlName="institut" placeholder="	Centre, département, institut ou service">
 </mat-form-field>
+</form>
 </div>
 </div>
 
@@ -39,12 +41,13 @@
 
 
 
+    <form [formGroup]="fg_endroit_duree">
 <div id="endroit_duree">
     <div id="endroit">
         <h6>Endroit de déplacement / de la réception</h6>
         <br>
         <mat-form-field>
-        <input matInput type="text" placeholder="" [(ngModel)]="endroit_duree.endroit">
+        <input matInput type="text" placeholder="" formControlName="endroit">
         </mat-form-field>
     </div>
     
@@ -55,7 +58,7 @@
                 <div class="duree-section">
                     <mat-form-field>
                             <input matInput [matDatepicker]="pickerDu" placeholder="Du:"
-                            [(ngModel)]="endroit_duree.du" (ngModelChange)="duChange($event)" (click)="pickerDu.open()">
+                            formControlName="du" (ngModelChange)="duChange($event)" (click)="pickerDu.open()">
                             <mat-datepicker-toggle matSuffix [for]="pickerDu"></mat-datepicker-toggle>
                             <mat-datepicker #pickerDu></mat-datepicker>
                     </mat-form-field>  
@@ -63,7 +66,7 @@
                 <div class="duree-section">
                     <mat-form-field>
                             <input matInput [matDatepicker]="pickerAu" placeholder="Au:"
-                            [(ngModel)]="endroit_duree.au" (ngModelChange)="auChange($event)" (click)="pickerAu.open()">
+                            formControlName="au" (ngModelChange)="auChange($event)" (click)="pickerAu.open()">
                             <mat-datepicker-toggle matSuffix [for]="pickerAu"></mat-datepicker-toggle>
                             <mat-datepicker #pickerAu></mat-datepicker>
                     </mat-form-field>  
@@ -71,19 +74,23 @@
                 <div class="duree-section">
                         Nombre de jours:
                         <p *ngIf="bothFilled && endroit_duree.du < endroit_duree.au">{{ dureeDeplacement }}</p>
+                        <p class="error_msg" *ngIf="fg_endroit_duree.hasError('duree')">La durée du déplacement est négative.</p>
                 </div>
         </div>
     </div>
 </div>
+</form>
     
 
 <div id="but">
+    <form [formGroup]="fg_but">
     <h6>Buts de déplacement / de la réception (Expliquer le lien avec la recherche si imputé dans un compte de recherche)</h6>
     <mat-form-field>
-        <input matInput type="text" placeholder="" [(ngModel)]="but.valeur">
+        <input matInput type="text" placeholder="" formControlName="valeur">
     </mat-form-field>
     <br>
     <br>
+</form>
 </div>
 
 
@@ -101,7 +108,7 @@
                         <th mat-header-cell *matHeaderCellDef id="ubr"> UBR </th>
                         <td mat-cell *matCellDef="let element">
                             <mat-form-field>
-                                <input matInput type="text" [(ngModel)]="element.ubr">
+                                <input matInput type="text" [(ngModel)]="element.ubr" (ngModelChange)="fg_ventilation.updateValueAndValidity()">
                             </mat-form-field>
                         </td>
                     </ng-container>
@@ -109,7 +116,7 @@
                         <th mat-header-cell *matHeaderCellDef id="compte-colonne"> COMPTE </th>
                         <td mat-cell *matCellDef="let element">
                             <mat-form-field id="compte-cell">
-                                <input matInput type="text" [(ngModel)]="element.compte">
+                                <input matInput type="text" [(ngModel)]="element.compte" (ngModelChange)="fg_ventilation.updateValueAndValidity()">
                             </mat-form-field>
                         </td>
                     </ng-container>
@@ -117,7 +124,7 @@
                         <th mat-header-cell *matHeaderCellDef id="unite-colonne"> UNITÉ <br> ADM. </th>
                         <td mat-cell *matCellDef="let element">
                             <mat-form-field id="unite-cell">
-                                <input matInput type="text" [(ngModel)]="element.unite">
+                                <input matInput type="text" [(ngModel)]="element.unite" (ngModelChange)="fg_ventilation.updateValueAndValidity()">
                             </mat-form-field>
                         </td>
                     </ng-container>
@@ -125,7 +132,7 @@
                         <th mat-header-cell *matHeaderCellDef id="montant-colonne"> MONTANT </th>
                         <td mat-cell *matCellDef="let element" id="montant-cell">
                             <mat-form-field>
-                                <input matInput type="number" [(ngModel)]="element.montant" (ngModelChange)="updateTotal()">
+                                <input matInput type="number" [(ngModel)]="element.montant" min=0 (ngModelChange)="updateTotal(); fg_ventilation.updateValueAndValidity()">
                             </mat-form-field>
                         </td>
                     </ng-container>
@@ -133,7 +140,7 @@
                             <th mat-header-cell *matHeaderCellDef id="code-colonne"> CODE-TAXE </th>
                             <td mat-cell *matCellDef="let element">
                                 <mat-form-field>
-                                    <input matInput type="string" [(ngModel)]="element.code">
+                                    <input matInput type="string" [(ngModel)]="element.code" (ngModelChange)="fg_ventilation.updateValueAndValidity()">
                                 </mat-form-field>
                             </td>
                     </ng-container>
@@ -173,32 +180,36 @@
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                     <tr mat-footer-row *matFooterRowDef="['total','addRow']"></tr>
                 </table>
+                <p class="error_msg" *ngIf="fg_ventilation.hasError('incomplete')">Une ou plusieurs lignes de ventilation sont incomplètes.</p>
+                <p class="error_msg" *ngIf="fg_ventilation.hasError('negative')">La ventilation contient des montants négatifs.</p>
             </div>
+            <form [formGroup]="fg_ventilation">
                 <div id="bas-ventilation">
                 <div id="Moins"> 
+                    <h6>Moins Avance(s) Reçue(s)</h6>
                         <mat-form-field>
-                            <input matInput type="number" placeholder="MOINS: avance(s) reçue(s):"
-                            [(ngModel)]="ventilation.recu">
+                            <input matInput type="number" min=0 placeholder=""
+                            formControlName="recu">
                         </mat-form-field>
                         <div id="solde">
-                        <h3>SOLDE:{{ventilationTotal-ventilation.recu}}</h3>
+                        <h3>SOLDE:{{ventilationTotal - ventilation.recu | currency}}</h3>
                         </div>
                 </div>
                 <div id="paiement-ci-joint">
                     <h6>Paiement ci-joint</h6>
                     <mat-form-field>
-                            <input matInput type="number" placeholder=""
-                            [(ngModel)]="ventilation.paiement">
+                            <input matInput type="number" placeholder="" min=0
+                            formControlName="paiement">
                     </mat-form-field>
                 </div>
                 <div id="remboursement">
                     <h6>Remboursement demandé</h6>
                     <mat-form-field>
-                            <input matInput type="number" placeholder=""
-                            [(ngModel)]="ventilation.remboursement">
+                            <input matInput type="number" placeholder="" min=0
+                            formControlName="remboursement">
                     </mat-form-field>
                 </div>
-            </div>
+            </div></form>
 
     
 </div>
