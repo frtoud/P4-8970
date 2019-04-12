@@ -40,7 +40,13 @@ div {
 .logo-poly{
   display: inline-block;
 }
+.ventilation_autres{
+  width: 95% !important;
+}
 
+#ventilation-totaux{
+  margin: 5px;
+}
 #form-header {
   display: flex;
   flex-direction: row;

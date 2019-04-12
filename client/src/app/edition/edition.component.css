@@ -85,6 +85,8 @@
       visibility: visible;
       width:116%;
       margin:auto;
+      -webkit-print-color-adjust: exact;
+      /*color-adjust: exact;*/
     }
 
     
@@ -92,6 +94,7 @@
             margin: 0.5cm;
             size: A4;
             }
+            
             
     #edit-form-container{
       width:100% !important;
