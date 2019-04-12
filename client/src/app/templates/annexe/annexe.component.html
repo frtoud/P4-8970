@@ -203,7 +203,7 @@
                     <h6>TOTAL DU RAPPORT:</h6>
                 </td>
                 <td id="total-rapport-droite">
-                    {{ totalDuRapport }}
+                    {{ totalDuRapport | currency }}
                 </td>
             </tr>
         </tbody>
@@ -245,7 +245,7 @@
                 <th mat-header-cell *matHeaderCellDef id="perdiem-colonne"> per diem <br> repas </th>
                 <td mat-cell *matCellDef="let element" id="perdiem-cell">
                     <mat-form-field>
-                        <input matInput type="number" [(ngModel)]="element.perdiem" (ngModelChange)="updateTotal()">
+                        <input matInput type="number" [(ngModel)]="element.perdiem" (ngModelChange)="updateTotal()" min=0>
                     </mat-form-field>
                 </td>
             </ng-container>
@@ -253,19 +253,16 @@
                 <th mat-header-cell *matHeaderCellDef id="nbKm-colonne"> nb Km </th>
                 <td mat-cell *matCellDef="let element" id="nbKm-cell">
                     <mat-form-field>
-                        <input matInput type="number" [(ngModel)]="element.nbKm" (ngModelChange)="updateTotal()">
+                        <input matInput type="number" [(ngModel)]="element.nbKm" (ngModelChange)="updateTotal()" min=0>
                     </mat-form-field>
                 </td>
             </ng-container>
             <ng-container matColumnDef="pers">
                 <th mat-header-cell *matHeaderCellDef id="pers-colonne"> 3 personnes <br> ou plus </th>
                 <td mat-cell *matCellDef="let element" id="pers-cell">
-            <mat-form-field floatLabel="never">
-                <mat-select [(value)]="element.pers" placeholder="Non" (selectionChange)="updateTotal()">
-                        <mat-option value="false">Non</mat-option>
-                        <mat-option value="true">Oui</mat-option>
-                </mat-select>
-            </mat-form-field>
+                <mat-checkbox
+                    [(ngModel)]="element.pers" color="primary" (ngModelChange)="updateTotal()">
+                </mat-checkbox>
             </td>
             </ng-container>
             <ng-container matColumnDef="fraisKm" id="fraisKm-cell">
@@ -280,7 +277,7 @@
                 <th mat-header-cell *matHeaderCellDef id="chambreST-colonne"> chambre <br> stationnement <br> transport </th>
                 <td mat-cell *matCellDef="let element" id="chambreST-cell">
                     <mat-form-field>
-                        <input matInput type="number" [(ngModel)]="element.chambreST" (ngModelChange)="updateTotal()">
+                        <input matInput type="number" [(ngModel)]="element.chambreST" (ngModelChange)="updateTotal()" min=0>
                     </mat-form-field>
                 </td>
             </ng-container>
@@ -288,7 +285,7 @@
                 <th mat-header-cell *matHeaderCellDef id="fraisRecMoins-colonne"> frais réception <br> 5 pers. et moins </th>
                 <td mat-cell *matCellDef="let element" id="fraisRecMoins-cell">
                     <mat-form-field>
-                        <input matInput type="number" [(ngModel)]="element.fraisRecMoins" (ngModelChange)="updateTotal()">
+                        <input matInput type="number" [(ngModel)]="element.fraisRecMoins" (ngModelChange)="updateTotal()" min=0>
                     </mat-form-field>
                 </td>
             </ng-container>
@@ -296,7 +293,7 @@
                 <th mat-header-cell *matHeaderCellDef id="fraisRecPlus-colonne"> frais réception <br> plus de 5 pers. </th>
                 <td mat-cell *matCellDef="let element" id="fraisRecPlus-cell">
                     <mat-form-field>
-                        <input matInput type="number" [(ngModel)]="element.fraisRecPlus" (ngModelChange)="updateTotal()">
+                        <input matInput type="number" [(ngModel)]="element.fraisRecPlus" (ngModelChange)="updateTotal()" min=0>
                     </mat-form-field>
                 </td>
             </ng-container>
@@ -304,7 +301,7 @@
                 <th mat-header-cell *matHeaderCellDef id="fourniture-colonne"> fourniture et matériel </th>
                 <td mat-cell *matCellDef="let element" id="fraisRecPlus-cell">
                     <mat-form-field>
-                        <input matInput type="number" [(ngModel)]="element.fourniture" (ngModelChange)="updateTotal()">
+                        <input matInput type="number" [(ngModel)]="element.fourniture" (ngModelChange)="updateTotal()" min=0>
                     </mat-form-field>
                 </td>
             </ng-container>
@@ -312,7 +309,7 @@
                 <th mat-header-cell *matHeaderCellDef id="fourniture-colonne"> inscription et autre </th>
                 <td mat-cell *matCellDef="let element" id="inscription-cell">
                     <mat-form-field>
-                        <input matInput type="number" [(ngModel)]="element.inscription" (ngModelChange)="updateTotal()">
+                        <input matInput type="number" [(ngModel)]="element.inscription" (ngModelChange)="updateTotal()" min=0>
                     </mat-form-field>
                 </td>
             </ng-container>
@@ -336,11 +333,10 @@
                     </mat-form-field>
                 </td>
             </ng-container>
-            <ng-container matColumnDef="devise">
+            <!-- <ng-container matColumnDef="devise">
                 <th mat-header-cell *matHeaderCellDef id="devise-colonne"> devise </th>
                 <td mat-cell *matCellDef="let element" id="devise-cell">
                     <mat-form-field floatLabel="never">
-                        <!--TODOKETE: use Hiba's currency conversion-->
                         <mat-select placeholder="CAN">
                                 <mat-option >CAN</mat-option>
                                 <mat-option >EUR</mat-option>
@@ -354,26 +350,20 @@
                 <td mat-cell *matCellDef="let element" id="deviseCAN-cell">
                     <p class="output">{{ element.deviseCAN | currency }}</p>
                 </td>
-            </ng-container>
+            </ng-container> -->
             <ng-container matColumnDef="fournitureMateriel">
                 <th mat-header-cell *matHeaderCellDef id="fournitureMateriel-colonne"> fourniture et materiel </th>
                 <td mat-cell *matCellDef="let element" id="fournitureMateriel-cell">
-            <mat-form-field floatLabel="never">
-                <mat-select [(value)]="selected" placeholder="non" (ngModelChange)="updateTotal()">
-                        <mat-option value="false">non</mat-option>
-                        <mat-option value="true">oui</mat-option>
-                </mat-select>
-            </mat-form-field>
+                    <mat-checkbox
+                    [(ngModel)]="element.fournitureMateriel" color="primary" (ngModelChange)="updateTotal()">
+                </mat-checkbox>
             </ng-container>
             <ng-container matColumnDef="plusDeCinq">
                 <th mat-header-cell *matHeaderCellDef id="plusDeCinq-colonne"> plus de cinq personne </th>
                 <td mat-cell *matCellDef="let element" id="plusDeCinq-cell">
-            <mat-form-field floatLabel="never">
-                <mat-select [(value)]="selected" placeholder="non" (ngModelChange)="updateTotal()">
-                        <mat-option value="false">Non</mat-option>
-                        <mat-option value="true">Oui</mat-option>
-                </mat-select>
-            </mat-form-field>
+                <mat-checkbox
+                    [(ngModel)]="element.plusDeCinq" color="primary" (ngModelChange)="updateTotal()">
+                </mat-checkbox>
             </ng-container>
             <ng-container matColumnDef="action">
                 <th mat-header-cell *matHeaderCellDef></th>

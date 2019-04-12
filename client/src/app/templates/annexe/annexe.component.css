@@ -26,6 +26,7 @@
     border-right: 2px solid black;
     border-bottom: 1px solid black;
     padding: 0px 5px;
+    min-width: 60px;
 }
 
 .output,
@@ -52,6 +53,7 @@
     border-right: 1px solid black;
     border-bottom: 1px solid black;
     padding: 0px 5px;
+    min-width: 60px;
 }
 
 #cellule-monetaire-avantVide2 mat-form-field {
