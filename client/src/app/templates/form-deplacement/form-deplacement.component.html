@@ -101,7 +101,10 @@
 <div id="ventilation">
     <h6>Ventilation budgétaire à débiter (compléter et annexer au formulaire SF-3C)</h6>
 
-    
+    <div id="calculatorButton">
+        <button mat-raised-button color="primary" (click)="onRecalcul()">RECALCULER</button>
+         <p>Remaining</p>
+    </div>
     <div id=table>
             <table mat-table [dataSource]="dSventilation" id="ventilation-table">  
                     <ng-container matColumnDef="ubr">

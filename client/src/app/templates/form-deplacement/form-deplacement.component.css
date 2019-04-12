@@ -9,8 +9,6 @@
     padding: 5px;
 }
 
-
-
 #entite_externe, 
 #beneficiaire,  
 #demandeur,
@@ -257,6 +255,14 @@ form {
     width: 100%;
 }
 
+#calculatorButton {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+#calculatorButton * {
+    margin: 10px;
+}
 
 
 
