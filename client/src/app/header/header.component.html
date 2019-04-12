@@ -1,22 +1,22 @@
 
-<div *ngIf="currentUser" class="toolbar" >
+<div *ngIf="currentUser" class="toolbar">
     
     <div id="logo">
         POLYTECHNIQUE MONTRÉAL
         <img src="assets/img/poly-squares.png" id="poly-squares">
     </div>
-    <div id="navbar-links" >
+    <div id="navbar-links">
         <button mat-button id="link" routerLink="/dashboard" routerLinkActive="active">Tableau de bord</button>
         <button mat-button id="link" routerLink="/newForm"  routerLinkActive="active" *ngIf="isGestionnaire()">Nouveau formulaire</button>
     </div>
-    <div id="userName" >
+    <div id="userName">
         {{currentUser.firstName}} {{currentUser.lastName}}
     </div>
-    <div id="settings" >
-            <button button mat-icon-button routerLink="/admin" routerLinkActive="active" *ngIf="isAdmin()" > <mat-icon> settings </mat-icon></button>
+    <div id="settings">
+            <button button mat-icon-button routerLink="/admin" routerLinkActive="active" *ngIf="isAdmin()"> <mat-icon> settings </mat-icon></button>
     </div>
-    <div id="logOut" >
-        <button button mat-icon-button   (click)="logOut()"> <mat-icon> exit_to_app</mat-icon></button>
+    <div id="logOut">
+        <button button mat-icon-button (click)="logOut()"> <mat-icon> exit_to_app</mat-icon></button>
     </div>
     
 </div>
