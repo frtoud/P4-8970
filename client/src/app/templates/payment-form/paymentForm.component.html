@@ -4,7 +4,7 @@
         <form [formGroup]="fg_entite_employe">
         <mat-form-field>
             <input matInput type="text" placeholder="EMPLOYÉ (matricule)"
-            formControlName="matricule">
+            formControlName="matricule" matTooltip="Matricule d'employé à 6 caractères." [matTooltipShowDelay]="1000">
         </mat-form-field>
         <br>
         </form>
