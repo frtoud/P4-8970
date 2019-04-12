@@ -227,8 +227,8 @@
         </ng-container>
 
         <ng-container matColumnDef="totalV">
-            <td mat-footer-cell *matFooterCellDef colspan="6">
-                <strong>TOTAL: {{ totalVentilation | currency }} CAN</strong>
+            <td mat-footer-cell *matFooterCellDef colspan="7">
+                <strong>TOTAL: {{ totalVentilation | currency }} </strong>
             </td>
         </ng-container>
 
@@ -253,7 +253,7 @@
         <p class="error_msg" *ngIf="fg_ventilation_budgetaire.hasError('incomplete')">Une ou plusieur lignes de ventilation sont incomplètes.</p>
         <p class="error_msg" *ngIf="fg_ventilation_budgetaire.hasError('negative')">La ventilation contient des montants négatifs.</p>
 </div>
-
+<div>
 <div id="signatures">
     <div *ngFor="let sig of signatures" >
         <div class="signature" id={{sig.id}}>
@@ -290,4 +290,5 @@
             <input matInput type="text" placeholder="RÉFÉRENCE SAFIRH">
         </mat-form-field>
     </div>
+</div>
 </div>
