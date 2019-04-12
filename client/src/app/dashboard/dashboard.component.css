@@ -25,11 +25,16 @@
 .searchBar {
   background: linear-gradient(#f3f3f3, #acacac);
   color: black;
+  font-size: 14px;
+  height: 40px;
+  width: 100%;
+  /* for centering the elements inside */
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
-  width: 100%;
+  /* reference : */
+  /* https://medium.freecodecamp.org/how-to-center-things-with-style-in-css-dc87b7542689 */
+  /* ctrl f « flexbox method » */
 }
 
 .searchBarDiv-Auteur {
@@ -59,7 +64,7 @@
 }
 
 .searchBarDate, .searchBarField, .searchBarFieldAuteur {
-  display: inline-block;
+  display: inline-block; /* cock ? */
   font-size: inherit;
 }
 .searchBarFieldAuteur {
@@ -72,19 +77,22 @@
   width: 100%;
 }
 
-
-.searchBarFieldAuteur .mat-form-field-infix,
+.searchButton {
+  height: 40px;
+  width: 40px;
+}
+/* .searchBarFieldAuteur .mat-form-field-infix,
 .searchBarField .mat-form-field-infix,
 .searchBarDate .mat-form-field-infix {
   border-top: 0;
-  /* padding-bottom: 8px;
-  padding-top: 8px; */
+  padding-bottom: 8px;
+  padding-top: 8px;
 }
 .searchBarFieldAuteur .mat-form-field-wrapper,
 .searchBarField .mat-form-field-wrapper,
 .searchBarDate .mat-form-field-wrapper {
-  padding-bottom: 10px;
-}
+  padding-bottom: 8px;
+} */
 
 #a-completer-ligne {
   width: 45%;
