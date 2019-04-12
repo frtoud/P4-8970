@@ -25,37 +25,39 @@
 .searchBar {
   background: linear-gradient(#f3f3f3, #acacac);
   color: black;
+  /* display: flex; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 14px;
   width: 100%;
 }
-#center-searchbar {
-  margin-left: 12%;
-  margin-right: 12%;
-  width: 76%;
-}
-
-/* .searchBarDiv {
-  display: inline-block;
-  margin-right: 3%;
+/* #center-searchbar {
+  justify-content: center;
+  float: center;
+  margin-left: 5% auto;
+  margin-right: 5% auto;
+  width: 70%;
 } */
+
 .searchBarDiv-Auteur {
   display: inline-block;
-  margin-right: 3%;
+  margin-right: 1%;
   width: 33%;
 }
 .searchBarDiv-Statut {
   display: inline-block;
-  margin-right: 3%;
+  margin-right: 1%;
   width: 9%;
 }
 .searchBarDiv-Patron {
   display: inline-block;
-  margin-right: 3%;
+  margin-right: 1%;
   width: 18%;
 }
 .searchBarDiv-DateFrom {
   display: inline-block;
-  margin-right: 3%;
+  margin-right: 1%;
   width: 10%;
 }
 .searchBarDiv-DateTo {
