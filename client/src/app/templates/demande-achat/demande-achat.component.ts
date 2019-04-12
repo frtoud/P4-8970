@@ -359,13 +359,18 @@ export class DemandeAchatComponent extends BaseFormComponent implements IDemande
     this.fg_items = new FormGroup({}, (form) => {
       const res: any = {};
       let valid = true;
+      let negative = false;
       let error = false;
       this.items.tableau.forEach(line => {
-        // valid = valid && line.quant === 0 || !(line.ubr === '' || line.unite === '' || line.compte === '');
-        // TODO-kete how to test a line?
+        valid = valid && (line.quant === 0 && line.prixUnit === 0) || !(line.descr === '');
+        negative = negative || (line.quant < 0 || line.prixUnit < 0);
       });
       if (!valid) {
         res.incomplete = true;
+        error = true;
+      }
+      if (negative) {
+        res.negative = true;
         error = true;
       }
       if (error) {
@@ -378,11 +383,17 @@ export class DemandeAchatComponent extends BaseFormComponent implements IDemande
       const res: any = {};
       let valid = true;
       let error = false;
+      let negative = false;
       this.ventilation.tableau.forEach(line => {
         valid = valid && line.montant === 0 || !(line.ubr === '' || line.unite === '' || line.compte === '');
+        negative = negative || (line.montant < 0);
       });
       if (!valid) {
         res.incomplete = true;
+        error = true;
+      }
+      if (negative) {
+        res.negative = true;
         error = true;
       }
       if (error) {
