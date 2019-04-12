@@ -1,7 +1,10 @@
 
-<mat-toolbar color="primary" *ngIf="currentUser" id="toolbar" >
+<div *ngIf="currentUser" class="toolbar" >
     
-    <span id="bar"><img src="assets/img/logo-poly.PNG"></span>
+    <div id="logo">
+        POLYTECHNIQUE MONTRÉAL
+        <img src="assets/img/poly-squares.png" id="poly-squares">
+    </div>
     <div id="navbar-links" >
         <button mat-button id="link" routerLink="/dashboard" routerLinkActive="active">Tableau de bord</button>
         <button mat-button id="link" routerLink="/newForm"  routerLinkActive="active" *ngIf="isGestionnaire()">Nouveau formulaire</button>
@@ -16,5 +19,4 @@
         <button button mat-icon-button   (click)="logOut()"> <mat-icon> exit_to_app</mat-icon></button>
     </div>
     
-    
-</mat-toolbar>
+</div>
