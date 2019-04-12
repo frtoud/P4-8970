@@ -29,9 +29,6 @@
   justify-content: center;
   width: 100%;
 }
-.searchBar.mat-toolbar-single-row {
-  height: 50px !important;
-}
 
 /* .searchBarDiv {
   display: inline-block;
@@ -45,36 +42,44 @@
 .searchBarDiv-Statut {
   display: inline-block;
   margin-right: 3%;
-  width: 6%;
+  width: 9%;
 }
 .searchBarDiv-Patron {
   display: inline-block;
   margin-right: 3%;
-  width: 12%;
 }
 .searchBarDiv-DateFrom {
   display: inline-block;
   margin-right: 3%;
-  width: 12%;
+  width: 8%;
 }
 .searchBarDiv-DateTo {
   display: inline-block;
   margin-right: 3%;
-  width: 12%;
+  width: 8%;
 }
 
 .searchBarDate, .searchBarField, .searchBarFieldAuteur {
   display: inline-block;
   font-size: inherit;
+}
+.searchBarFieldAuteur {
   width: 100%;
 }
+.searchBarField {
+  width: 100%;
+}
+.searchBarDate {
+  width: 100%;
+}
+
 
 .searchBarFieldAuteur .mat-form-field-infix,
 .searchBarField .mat-form-field-infix,
 .searchBarDate .mat-form-field-infix {
   border-top: 0;
-  padding-bottom: 8px;
-  padding-top: 8px;
+  /* padding-bottom: 8px;
+  padding-top: 8px; */
 }
 .searchBarFieldAuteur .mat-form-field-wrapper,
 .searchBarField .mat-form-field-wrapper,
