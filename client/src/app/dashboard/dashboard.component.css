@@ -81,18 +81,6 @@
   height: 40px;
   width: 40px;
 }
-/* .searchBarFieldAuteur .mat-form-field-infix,
-.searchBarField .mat-form-field-infix,
-.searchBarDate .mat-form-field-infix {
-  border-top: 0;
-  padding-bottom: 8px;
-  padding-top: 8px;
-}
-.searchBarFieldAuteur .mat-form-field-wrapper,
-.searchBarField .mat-form-field-wrapper,
-.searchBarDate .mat-form-field-wrapper {
-  padding-bottom: 8px;
-} */
 
 #a-completer-ligne {
   width: 45%;
