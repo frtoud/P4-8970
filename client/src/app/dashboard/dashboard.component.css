@@ -26,8 +26,12 @@
   background: linear-gradient(#f3f3f3, #acacac);
   color: black;
   font-size: 14px;
-  justify-content: center;
   width: 100%;
+}
+#center-searchbar {
+  margin-left: 12%;
+  margin-right: 12%;
+  width: 76%;
 }
 
 /* .searchBarDiv {
@@ -37,7 +41,7 @@
 .searchBarDiv-Auteur {
   display: inline-block;
   margin-right: 3%;
-  width: 24%;
+  width: 33%;
 }
 .searchBarDiv-Statut {
   display: inline-block;
@@ -47,16 +51,17 @@
 .searchBarDiv-Patron {
   display: inline-block;
   margin-right: 3%;
+  width: 18%;
 }
 .searchBarDiv-DateFrom {
   display: inline-block;
   margin-right: 3%;
-  width: 8%;
+  width: 10%;
 }
 .searchBarDiv-DateTo {
   display: inline-block;
-  margin-right: 3%;
-  width: 8%;
+  margin-right: 0;
+  width: 10%;
 }
 
 .searchBarDate, .searchBarField, .searchBarFieldAuteur {
