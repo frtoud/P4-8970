@@ -296,14 +296,14 @@
           <ng-container matColumnDef="unite">
             <th mat-header-cell *matHeaderCellDef> Unité administrative </th>
             <td mat-cell *matCellDef="let element">
-              <input [(ngModel)]="element.unite">
+              <input [(ngModel)]="element.unite" matTooltip="Inscrire l’unité ou les unités budgétaires à imputer." [matTooltipShowDelay]="1000">
             </td>
           </ng-container>
           <ng-container matColumnDef="percent">
             <th mat-header-cell *matHeaderCellDef> % </th>
             <td mat-cell *matCellDef="let element"
                 class="percentile">
-              <input [(ngModel)]="element.percent" type="number">
+              <input [(ngModel)]="element.percent" type="number" matTooltip="Attribuer un % à chaque UBR en vous assurant que le total des % inscrits soit égal à 100." [matTooltipShowDelay]="1000">
             </td>
           </ng-container>
           <ng-container matColumnDef="montant">
