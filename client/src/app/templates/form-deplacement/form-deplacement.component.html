@@ -102,7 +102,9 @@
     <h6>Ventilation budgétaire à débiter (compléter et annexer au formulaire SF-3C)</h6>
 
     <div id="calculatorButton">
-        <button mat-raised-button color="primary" (click)="onRecalcul()">RECALCULER</button>
+        <button mat-raised-button color="primary" (click)="onRecalcul()" 
+        matTooltip="Vide et recalcule tout le tableau de ventilation selon le tableau en annexe.">
+        RECALCULER</button>
          <p>Remaining</p>
     </div>
     <div id=table>
