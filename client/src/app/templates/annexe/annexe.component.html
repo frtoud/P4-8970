@@ -275,7 +275,7 @@
                 </mat-checkbox>
             </td>
             </ng-container>
-            <ng-container matColumnDef="fraisKm" id="fraisKm-cell">
+            <ng-container matColumnDef="fraisKm">
                 <th mat-header-cell *matHeaderCellDef id="fraisKm-colonne"> frais de <br> kilométrage </th>
                 <td mat-cell *matCellDef="let element" >
                     <p class="output">
@@ -308,7 +308,7 @@
                 </td>
             </ng-container>
             <ng-container matColumnDef="fourniture">
-                <th mat-header-cell *matHeaderCellDef id="fourniture-colonne"> fourniture et matériel </th>
+                <th mat-header-cell *matHeaderCellDef id="fourniture-colonne"> fourniture <br> et <br> matériel </th>
                 <td mat-cell *matCellDef="let element" id="fraisRecPlus-cell">
                     <mat-form-field>
                         <input matInput type="number" [(ngModel)]="element.fourniture" (ngModelChange)="updateTotal()" min=0>
@@ -316,7 +316,7 @@
                 </td>
             </ng-container>
             <ng-container matColumnDef="inscription">
-                <th mat-header-cell *matHeaderCellDef id="fourniture-colonne" matTooltip="Indiquer le montant et indiquer le no. de compte correspondant plus haut (soit Québec ou Hors-Québec). Inscription: 80110"> inscription et autre </th>
+                <th mat-header-cell *matHeaderCellDef id="fourniture-colonne" matTooltip="Indiquer le montant et indiquer le no. de compte correspondant plus haut (soit Québec ou Hors-Québec). Inscription: 80110"> inscription <br>et autre </th>
                 <td mat-cell *matCellDef="let element" id="inscription-cell">
                     <mat-form-field>
                         <input matInput type="number" [(ngModel)]="element.inscription" (ngModelChange)="updateTotal()" min=0>
