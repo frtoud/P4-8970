@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-cmd=(dialog --separate-output --checklist "Appuyer sur ESPACE pour sélectionner les programmes à installer. Les programmes présélectionnés sont installés sur votre ordinateur." 22 76 16)
+cmd=(dialog --separate-output --checklist "Appuyer sur ESPACE pour sélectionner les programmes à désinstaller. Les programmes présélectionnés sont installés présentement sur votre ordinateur." 22 76 16)
 ISINSTALLED1=on
 ISINSTALLED2=on
 ISINSTALLED3=on
