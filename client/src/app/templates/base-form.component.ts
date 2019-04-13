@@ -194,9 +194,9 @@ export abstract class BaseFormComponent implements AfterViewInit, AfterContentIn
     // Tache: remplir this.sections avec les sections pour assignation
     abstract setSections();
     // Tache: initialiser les valeurs calculées lors du chargement du formulaire
-    abstract initCalculs();
+    initCalculs() {}
     // Tache: remplir this.controls avec les controleurs du formulaire
-    buildFormGroups() { }
+    abstract buildFormGroups();
     getFormValues() {
       this.sections.forEach(s => {
         const key = 'fg_' + s.id;
