@@ -14,6 +14,7 @@ import { UserService, User } from '../services/users.service';
 import { BaseFormComponent } from '../templates/base-form.component';
 import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
 import { Subscription } from 'rxjs';
+import { FeedbackDialogComponent } from '../feedback-dialog/feedback-dialog.component';
 
 export interface Participant {
   name: string;
@@ -71,6 +72,8 @@ export class AssignationComponent implements OnInit, OnDestroy {
   files: File[] = [
     {name: 'file.txt'}
   ];
+
+  displayProgressSpinner = false;
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
@@ -135,6 +138,14 @@ export class AssignationComponent implements OnInit, OnDestroy {
       });
   }
 
+  openFeedbackDialog(icon: string, message: string, error: boolean): void {
+    this.dialog.open(FeedbackDialogComponent, {
+      width: '300px',
+      data: { icon: icon, error: error, message: message }
+    });
+    this.router.navigate(['/dashboard']);
+  }
+
   loseFocus() {
     this.collaboratorID = null;
     this.formInstance.stopAssignation();
@@ -154,15 +165,17 @@ export class AssignationComponent implements OnInit, OnDestroy {
   }
 
   onSend() {
+    this.displayProgressSpinner = true;
     this.testParticipants();
 
     if (!this.participantInsuffisants) {
       this.instanceService.postInstance(this.formInstance.getInterface(),
       this.fileUploader.attachedFiles, this.usedParticipants, this.currentForm.id, this.currentForm.name).then(res => {
-        window.alert('formulaire envoyé');
-        this.router.navigate(['/dashboard']);
+        this.displayProgressSpinner = false;
+        this.openFeedbackDialog("check_circle", "Formulaire créé avec succès!", false);
       }).catch(err => {
-        window.alert('erreur de création');
+        this.displayProgressSpinner = false;
+        this.openFeedbackDialog("error", "Une erreur est survenue lors de la création!", true);
       });
     }
   }
@@ -183,5 +196,6 @@ export class AssignationComponent implements OnInit, OnDestroy {
     this.participants = this.participants.filter((v) => v._id !== participant._id);
     this.loseFocus();
   }
+  
 }
 

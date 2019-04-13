@@ -61,6 +61,12 @@ export abstract class BaseFormComponent implements AfterViewInit, AfterContentIn
           document.getElementById(sig.id).classList.add('child_disabled');
         }
       }
+
+      let managerOnlyCollec: any = document.getElementsByClassName('managerOnly');
+
+      for (let code of managerOnlyCollec) {
+        code.classList.add('child_disabled');
+      }
     }
 
     public doColoring() {

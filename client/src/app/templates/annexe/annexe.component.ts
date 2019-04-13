@@ -108,6 +108,13 @@ export class AnnexeComponent {
   'fraisKm', 'chambreST', 'fraisRecMoins', 'fraisRecPlus', 'fourniture', 'inscription',
   'qcHqc', 'montant', /*'devise', 'deviseCAN',*/ 'fournitureMateriel', 'plusDeCinq', 'action'];
 
+  tooltipPerDiem = `CAN      US     EURO        CAN               CAN 
+  Déjeuner                  15,00$  15,00$  20,00€      25,00$            15,00$
+  Diner                     20,00$  20,00$  30,00€      35,00$            20,00$
+  Souper                    35,00$  35,00$  40,00€      45,00$            35,00$
+                            ----  ----  ----     -----            ---- 
+  Total                     70,00$  70,00$  90,00€     105,00$            70,00$`;
+
   dSventilation = new MatTableDataSource(this.ventilation);
   setAnnexe(annex: {tableau: IAnnexRow[], accHQC: string, accQC: string }) {
     this.ventilation = annex.tableau;
