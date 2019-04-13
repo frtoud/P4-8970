@@ -43,19 +43,8 @@ do
             sudo yum -y remove gcc-c++
             ;;
         2)
-            cd /usr/local/lib
-            sudo rm -rf node
-            sudo rm -rf node_modules
-            cd ~
-            sudo rm -rf node_modules
             sudo yum -y remove nodejs
-            cd /usr/local/bin
-            sudo rm -rf npm
-            cd /usr/local/share/man/man1/
-            sudo rm -rf node.1
-            cd /usr/local/lib/dtrace
-            sudo rm -rf node.d
-            sudo rm -rf /usr/bin
+
             ;;
         3)
             sudo npm uninstall -g @angular/cli
@@ -67,13 +56,6 @@ do
         5)
             sudo service mongod stop
             sudo yum erase mongo-10gen mongo-10gen-server
-#            sudo yum -y erase $(rpm -qa | grep mongodb-org)
-#            if [ -d "/var/log/mongodb" ]; then
-#                sudo rm -r /var/log/mongodb
-#            fi
-#             if [ -d "/var/lib/mongo" ]; then
-#                sudo rm -r /var/lib/mongo
-#            fi
             ;;
     esac
 done
