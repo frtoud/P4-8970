@@ -119,13 +119,13 @@
       <input matInput placeholder="Numéro de référence"
       formControlName="num_ref">
     </mat-form-field></div>
-    <mat-form-field floatLabel="auto" class="short">
+    <mat-form-field floatLabel="auto" class="short" id="montantAF">
       <mat-label>Montant de l'aide financière</mat-label>
       <input class="monetaire" matInput
       formControlName="montant"  type=number/>
       <mat-error *ngIf="fg_details.get('montant').hasError('negative')">Doit être positif.</mat-error>
     </mat-form-field>
-    <mat-form-field floatLabel="auto" class="medium">
+    <mat-form-field floatLabel="auto" class="medium" id="organismeSubv">
       <input matInput placeholder="Organisme subventionnaire"
       formControlName="subventionnaire">
     </mat-form-field>
