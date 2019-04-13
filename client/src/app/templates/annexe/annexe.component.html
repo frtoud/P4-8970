@@ -254,7 +254,7 @@
             <ng-container matColumnDef="perdiem">
                 <th mat-header-cell *matHeaderCellDef id="perdiem-colonne"> per diem <br> repas </th>
                 <td mat-cell *matCellDef="let element" id="perdiem-cell">
-                    <mat-form-field matTooltip={{tooltipPerDiem}} [matTooltipShowDelay]="1000">
+                    <mat-form-field>
                         <input matInput type="number" [(ngModel)]="element.perdiem" (ngModelChange)="updateTotal()" min=0>
                     </mat-form-field>
                 </td>
@@ -404,5 +404,9 @@
     </table>
 </div>
 
+
+
 </div>
+
+
 </div>

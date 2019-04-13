@@ -236,11 +236,11 @@ input {
 #references div {
     background-color: #CCD4DF;
 }
-/* 
+
 form {
     width: 100%;
 }
- */
+
 #calculatorButton {
     display: flex;
     flex-direction: row;
@@ -251,7 +251,16 @@ form {
 }
 
 
+#precision {
+    width: 90%;
+    text-align: center;
+}
 
+#tableaux-explicatifs
+{
+    width:30%;
+    text-align: center;
+}
 
 @media print{
 
@@ -269,6 +278,9 @@ form {
         
     }
         
+    #tableaux-explicatifs{
+        display: none !important;
+      }
         
         
         

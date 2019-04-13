@@ -237,5 +237,108 @@
 
 <div id="annexe">
     <app-annexe></app-annexe>
+
+    <div id="tableaux-explicatifs" *ngIf="coloring">
+            <mat-expansion-panel > 
+                    <mat-expansion-panel-header style="text-align:center;">
+                            <mat-panel-title style="text-align:center;">
+                                    Précisions 
+                            </mat-panel-title>
+                    </mat-expansion-panel-header>
+            
+                    <mat-card>
+                    <mat-card-title>Précisions pour les montants</mat-card-title>
+                    <mat-card-subtitle>Per Diem Repas</mat-card-subtitle>
+                    <mat-card-content>
+                        <table id="precision">
+                            <tr>
+                              <th>repas</th>
+                              <th>CAN</th> 
+                              <th>USD</th>
+                              <th>EUR</th>
+                              <th>CAN</th>
+                              <th>CAN</th>
+                            </tr>
+                            <tr>
+                              <td>Déjeuner</td>
+                              <td>15,00</td> 
+                              <td>15,00</td>
+                              <td>20,00</td>
+                              <td>25,00</td> 
+                              <td>15,00</td>
+                            </tr>
+                            <tr>
+                              <td>Diner</td>
+                              <td>20,00</td> 
+                              <td>20,00</td>
+                              <td>30,00</td>
+                              <td>35,00</td> 
+                              <td>20,00</td>
+                            </tr>
+                            <tr>
+                                <td>Souper</td>
+                                <td>35,00</td> 
+                                <td>35,00</td>
+                                <td>40,00</td>
+                                <td>45,00</td> 
+                                <td>35,00</td>
+                            </tr>
+                            <tr>
+                                <td>Total</td>
+                                <td>70,00</td> 
+                                <td>70,00</td>
+                                <td>90,00</td>
+                                <td>105,00</td> 
+                                <td>70,00</td>
+                            </tr>
+                          </table>
+                    </mat-card-content>
+                    <br>
+                    <mat-card-subtitle>Frais de Km</mat-card-subtitle>
+                    <mat-card-content>
+                        <table id="precision">
+                            <tr>
+                                <th> nombre de personnes</th>
+                                <th> montant</th>
+                            </tr>
+                            <tr>
+                              <td>2 pers. et moins</td>
+                              <td>0.430$</td> 
+                            
+                        </tr>
+                        <tr>
+                              <td>3 pers. et plus</td>
+                              <td> 0.540$</td> 
+                            </tr>
+                        </table>
+                        <br>
+                        <mat-card-subtitle>Chambre, stationnement, transport</mat-card-subtitle>
+                        <table id="precision">
+                                <tr>
+                                  <th> </th>
+                                  <th>CAN</th> 
+                                  <th>USD</th>
+                                  <th>EUR</th>
+                                </tr>
+                                <tr>
+                                  <td>Pour un coucher chez un parent ou un ami</td>
+                                  <td>25,00</td> 
+                                  <td>25,00</td>
+                                  <td>25,00</td>
+                                </tr>
+                                <tr>
+                                  <td>Frais divers</td>
+                                  <td>6,00</td> 
+                                  <td>6,00</td>
+                                  <td>6,00</td>
+                                </tr>
+                              </table>
+                    </mat-card-content>
+                </mat-card>
+                </mat-expansion-panel>
+        
+            </div>
 </div>
+
+
     
