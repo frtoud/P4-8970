@@ -152,7 +152,6 @@ export class FormDeplacementComponent extends BaseFormComponent implements IDepl
 
   montant = 0;
   ventilationTotal = 0;
-  rowID = 2;
 
   nomDemandeur = '';
   demandeurChecked = false;
@@ -171,10 +170,10 @@ export class FormDeplacementComponent extends BaseFormComponent implements IDepl
   }
 
   onCreate() {
+    const id = BaseFormComponent.getHighestId(this.ventilation.tableau);
     this.ventilation.tableau.push(
-      {id: this.rowID, ubr: '', compte: '', unite: '', montant: 0, code: '', commentaire: '' }
+      {id: id, ubr: '', compte: '', unite: '', montant: 0, code: '', commentaire: '' }
     );
-    this.rowID++;
     this.dSventilation._updateChangeSubscription();
     this.updateTotal();
   }
@@ -208,24 +207,24 @@ export class FormDeplacementComponent extends BaseFormComponent implements IDepl
       {id: 5, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalQC.fourniture, code: '22', commentaire: '' }); }
 
     if (this.annexeComp.ventTotalHQC.perdiem > 0) { this.ventilation.tableau.push(
-      {id: 0, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalHQC.perdiem, code: '20', commentaire: '' }); }
+      {id: 6, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalHQC.perdiem, code: '20', commentaire: '' }); }
     if (this.annexeComp.ventTotalHQC.fraisKm > 0) { this.ventilation.tableau.push(
-      {id: 1, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalHQC.fraisKm, code: '20', commentaire: '' }); }
+      {id: 7, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalHQC.fraisKm, code: '20', commentaire: '' }); }
     if (this.annexeComp.ventTotalHQC.chambreST > 0) { this.ventilation.tableau.push(
-      {id: 2, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalHQC.chambreST, code: '40', commentaire: '' }); }
+      {id: 8, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalHQC.chambreST, code: '40', commentaire: '' }); }
     if (this.annexeComp.ventTotalHQC.fraisRecMoins > 0) { this.ventilation.tableau.push(
-      {id: 3, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalHQC.fraisRecMoins, code: '40', commentaire: '' }); }
+      {id: 9, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalHQC.fraisRecMoins, code: '40', commentaire: '' }); }
     if (this.annexeComp.ventTotalHQC.fraisRecPlus > 0) { this.ventilation.tableau.push(
-      {id: 4, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalHQC.fraisRecPlus, code: '40', commentaire: '' }); }
+      {id: 10, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalHQC.fraisRecPlus, code: '40', commentaire: '' }); }
     if (this.annexeComp.ventTotalHQC.fourniture > 0) { this.ventilation.tableau.push(
-      {id: 5, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalHQC.fourniture, code: '20', commentaire: '' }); }
+      {id: 11, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalHQC.fourniture, code: '20', commentaire: '' }); }
 
     if (this.annexeComp.ventTotalHCA.montant > 0) { this.ventilation.tableau.push(
-      {id: 3, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalHCA.montant, code: '00', commentaire: '' }); }
+      {id: 12, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalHCA.montant, code: '00', commentaire: '' }); }
     if (this.annexeComp.ventTotalHCA.personne > 0) { this.ventilation.tableau.push(
-      {id: 4, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalHCA.personne, code: '00', commentaire: '' }); }
+      {id: 13, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalHCA.personne, code: '00', commentaire: '' }); }
     if (this.annexeComp.ventTotalHCA.fourniture > 0) { this.ventilation.tableau.push(
-      {id: 5, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalHCA.fourniture, code: '00', commentaire: '' }); }
+      {id: 14, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalHCA.fourniture, code: '00', commentaire: '' }); }
 
     this.dSventilation._updateChangeSubscription();
     this.updateTotal();
