@@ -222,6 +222,8 @@
     </table> -->
       
     <div id="tableau-depenses">
+    <p class="error_msg" *ngIf="formcontrol.hasError('incomplete')">Une ou plusieurs lignes de l'annexe sont incomplètes.</p>
+    <p class="error_msg" *ngIf="formcontrol.hasError('negative')">L'annexe contient des montants négatifs.</p>
     <table mat-table [dataSource]="dSventilation" id="ventilation-table">  
             <ng-container matColumnDef="date">
                 <th mat-header-cell *matHeaderCellDef id="date"> date </th>

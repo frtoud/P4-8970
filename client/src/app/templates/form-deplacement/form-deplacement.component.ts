@@ -345,6 +345,31 @@ export class FormDeplacementComponent extends BaseFormComponent implements IDepl
     this.fg_annexe = new FormGroup({
       accQC: new FormControl(this.annexe.accQC),
       accHQC: new FormControl(this.annexe.accHQC),
+    }, (form) => {
+      const res: any = {};
+      let negative = false;
+      let valid = true;
+      let error = false;
+      this.annexe.tableau.forEach(line => {
+        valid = valid && (line.montant === 0 && line.perdiem === 0 && line.fraisKm === 0 && line.chambreST === 0
+         && line.fraisRecMoins === 0 && line.fraisRecPlus === 0 && line.fourniture === 0 && line.inscription === 0)
+         || !(line.date === null || line.description === '' || line.ref === '');
+        negative = negative || (line.montant < 0 || line.perdiem < 0 || line.fraisKm < 0 || line.chambreST < 0
+          || line.fraisRecMoins < 0 || line.fraisRecPlus < 0 || line.fourniture < 0 || line.inscription < 0);
+      });
+      if (!valid) {
+        res.incomplete = true;
+        error = true;
+      }
+      if (negative) {
+        res.negative = true;
+        error = true;
+      }
+      if (error) {
+        return res;
+      } else {
+        return null;
+      }
     });
     this.annexeComp.formcontrol = this.fg_annexe;
 
