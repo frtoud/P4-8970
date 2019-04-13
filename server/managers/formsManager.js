@@ -72,22 +72,8 @@ class FormsManager {
                         form.setStatus("COMPLETED");
                         //Notify author by email
                         form.save().then(updatedForm => {
-                            // res.render('emails/template', 
-                            // { name : updatedForm.auteur.nom,
-                            //   content: T.formCompletion.body + updatedForm.nomFormulaire,
-                            //   title: T.formCompletion.button,
-                            //   link: CONFIG.host + '/edit/' + updatedForm._id + '/valider'}, (err, html) => {
-                            //     this.mailer.sendMail(CONFIG.mailer.from,
-                            //         //email de l'auteur
-                            //         "",
-                            //         'Invitation pour valider un formulaire',
-                            //         'Invitation pour valider un formulaire',
-                            //         html)
-                            //         .then(()=> deferred.resolve(updatedForm))
-                            //         .catch(error => deferred.reject({ status: 400, message: error }));
-                            // });
                             deferred.resolve(updatedForm);
-                            this.getUserEmail(userId).then(email => {
+                            this.getUserEmail(updatedForm.auteur.idAuteur).then(email => {
                                 this.sendNotification({ 
                                     name : updatedForm.auteur.nom, 
                                     content: T.formCompletion.body + updatedForm.nomFormulaire,
@@ -253,7 +239,7 @@ class FormsManager {
                         form.save()
                         .then(cForm => {
                             deferred.resolve(cForm);
-                            this.getUserEmail(userId).then(email => {
+                            this.getUserEmail(cForm.auteur.idAuteur).then(email => {
                                 this.sendNotification({ 
                                     name : cForm.auteur.nom, 
                                     content: cForm.nomFormulaire + T.canceledForm.body + user.firstName + " " + user.lastName,
