@@ -160,6 +160,11 @@ mat-form-field {
     width: 95%;
 }
 
+#tableaux-explicatifs
+{
+    width:30%;
+    text-align: center;
+}
 #ventilation-table mat-form-field {
     width: 75px;
     text-align: left;
@@ -176,10 +181,10 @@ mat-form-field {
     text-align: right;
 }
 
-.mat-tooltip {
-    height: auto !important;
-  }
-
+#precision {
+    width: 90%;
+    text-align: center;
+}
 
 
 @media print{
@@ -198,6 +203,10 @@ mat-form-field {
             }
 
             button {
+                display: none !important;
+              }
+            
+            #tableaux-explicatifs{
                 display: none !important;
               }
 
