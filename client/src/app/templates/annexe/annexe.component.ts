@@ -42,17 +42,14 @@ export class AnnexRowData implements IAnnexRow {
   fraisRecPlus = 0;
   fourniture = 0;
   inscription = 0;
-  qcHqc = 'HQC';
+  qcHqc = 'QC';
   montant = 0; /*
   devise = 'CAN';
   deviseCAN = 0;*/
   fournitureMateriel = false;
   plusDeCinq = false;
 
-  constructor()
-  {
-
-  }
+  constructor() {}
 
   // THIS WAS PHYSICALLY PAINFUL TO WRITE
   public add(other: IAnnexRow) {

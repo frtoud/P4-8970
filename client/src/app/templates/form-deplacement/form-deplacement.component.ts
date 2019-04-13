@@ -142,8 +142,8 @@ export class FormDeplacementComponent extends BaseFormComponent implements IDepl
       { id: 0, date: null, description: '', ref: '',
         perdiem: 0, nbKm: 0, pers: false, fraisKm: 0,
         chambreST: 0, fraisRecMoins: 0, fraisRecPlus: 0,
-        fourniture: 0, inscription: 0, qcHqc: '',
-        montant: 0, fournitureMateriel: false, plusDeCinq: false,}
+        fourniture: 0, inscription: 0, qcHqc: 'QC',
+        montant: 0, fournitureMateriel: false, plusDeCinq: false, }
     ],
   };
 
