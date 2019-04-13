@@ -176,6 +176,9 @@ mat-form-field {
     text-align: right;
 }
 
+.mat-tooltip {
+    height: auto !important;
+  }
 
 
 
