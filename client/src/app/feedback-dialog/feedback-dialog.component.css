@@ -1,0 +1,22 @@
+div.mat-dialog-actions {
+    display: flex;
+    justify-content: space-around;
+}
+
+#feedback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.mat-dialog-actions button {
+    background: linear-gradient(to bottom, #eeeeee 0%,#cccccc 100%);
+}
+
+.error {
+    color: #B81E32;
+}
+
+.done {
+    color: #8DC83D;
+}

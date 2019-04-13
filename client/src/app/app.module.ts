@@ -41,6 +41,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FileUploaderComponent } from './file-uploader/file-uploader.component';
 import { UploadService } from './services/upload.service';
 import { SignatureBlockComponent } from './templates/fields';
+import { FeedbackDialogComponent } from './feedback-dialog/feedback-dialog.component';
 
 const appRoutes: Routes = [
   { path: 'new', component: NouveauFormulaireComponent, canActivate: [AuthGuard] },
@@ -92,6 +93,7 @@ const appRoutes: Routes = [
     EditionComponent,
     FileUploaderComponent,
     SignatureBlockComponent,
+    FeedbackDialogComponent,
   ],
   imports: [
     LayoutModule, MaterialModule,
@@ -116,6 +118,7 @@ const appRoutes: Routes = [
     PaymentFormComponent,
     FormDeplacementComponent,
     AnnexeComponent,
+    FeedbackDialogComponent,
   ],
   providers: [
     DashboardService,
