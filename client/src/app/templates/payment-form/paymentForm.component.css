@@ -20,6 +20,14 @@
     margin: 5px;
 }
 
+#entite_employe input,
+#entite_fournisseur input,
+#beneficiaire input,  
+#demandeur input,
+#fournisseur input {
+    text-align: left;
+}
+
 h6 {
     margin:0;
     padding: 2px 5px;
