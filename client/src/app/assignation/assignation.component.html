@@ -5,6 +5,7 @@
           <h4 id="form-title">{{currentForm.name | uppercase}}</h4>
       </div>
       <ng-template formhost></ng-template>
+      <mat-spinner id ="spinner" *ngIf="displayProgressSpinner"></mat-spinner>
   </div>
   <div class="participants" (click)="loseFocus()">
     <div class="fixed">
