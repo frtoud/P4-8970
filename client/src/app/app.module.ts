@@ -40,6 +40,7 @@ import { TemplateService } from './services/template.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FileUploaderComponent } from './file-uploader/file-uploader.component';
 import { UploadService } from './services/upload.service';
+import { SignatureBlockComponent } from './templates/fields';
 
 const appRoutes: Routes = [
   { path: 'new', component: NouveauFormulaireComponent, canActivate: [AuthGuard] },
@@ -90,6 +91,7 @@ const appRoutes: Routes = [
     StatePipe,
     EditionComponent,
     FileUploaderComponent,
+    SignatureBlockComponent,
   ],
   imports: [
     LayoutModule, MaterialModule,

@@ -26,17 +26,6 @@ div {
   height: 100%
 }
 
-#signature-demandeur {
-  border: 2px solid black;
-  width: max-content;
-  margin-bottom: 5px;
-  padding: 5px 10px;
-}
-
-#signature-demandeur button {
-  margin-left: 60px;
-}
-
 .logo-poly{
   display: inline-block;
 }
@@ -59,26 +48,6 @@ div {
 .total {
   width: 100%;
   min-width: 100px;
-}
-
-#signatures {
-  margin: 5px;
-  display: flex;
-  flex-wrap: wrap;
-  flex: 1 1 2;
-  justify-content: space-between;
-}
-.signature {
-border: 2px solid black;
-margin-bottom: 5px;
-padding: 5px 10px;
-text-align: center;
-flex-direction: row;
-width:480px;
-}
-
-.signature mat-form-field {
-width: 100%;
 }
 
 #commande mat-checkbox {

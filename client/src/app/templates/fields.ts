@@ -1,3 +1,6 @@
+import { Component, Input } from '@angular/core';
+import { AbstractControl } from '@angular/forms';
+
 export interface ISection {
     id: string;
     assigneA: string;
@@ -86,4 +89,34 @@ export class Signature implements ISignature {
   public lockSignature() {
     this.lock = true;
   }
+}
+
+@Component({
+  selector: 'app-sig-block',
+  template: `
+  <div id='signatures'>
+    <div  *ngFor="let sig of signatures" >
+      <div class="signature" id={{sig.id}}>
+        <mat-form-field>
+          <input matInput type="text" placeholder="{{sig.name}}" [disabled]="sig.lock || sig.validated" [(ngModel)]="sig.value">
+          <mat-hint *ngIf="sig.name.length == 0">
+            Le nom et le prénom sont obligatoires!
+          </mat-hint>
+        </mat-form-field>
+        <mat-checkbox [(ngModel)]="sig.check" [disabled]="sig.lock || sig.validated" color="primary">
+            Je confirme et j'accepte la véracité des informations ci-dessus.
+        </mat-checkbox>
+        <br>
+        <button mat-raised-button [disabled]="sig.value.length <= 0 || sig.lock || !sig.check" 
+        (click)="sig.onButtonClick(); controls.updateValueAndValidity()">{{sig.buttonMessage()}}</button>
+      </div>
+    </div>
+  </div>`,
+  styleUrls: ['./signature.css'],
+})
+export class SignatureBlockComponent {
+  @Input()
+  signatures: Signature[];
+  @Input()
+  controls: AbstractControl;
 }

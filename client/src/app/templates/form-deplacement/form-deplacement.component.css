@@ -29,14 +29,6 @@
     max-width: 100% !important;
 }
 
-#signatures {
-    margin: 5px;
-    display: flex;
-    flex-wrap: wrap;
-    flex: 1 1 2;
-    justify-content: space-between;
-}
-
 h6 {
     margin:0;
     padding: 2px 5px;
@@ -46,18 +38,6 @@ h6 {
 
 div {
     font-size: 13px;
-}
-
-.signature {
-    border: 2px solid black;
-    margin-bottom: 5px;
-    padding: 5px 10px;
-    text-align: center;
-    width: 480px;
-}
-
-.signature mat-form-field {
-    width: 100%;
 }
 
 #entite_externe {
