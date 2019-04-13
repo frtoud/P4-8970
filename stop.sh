@@ -5,4 +5,7 @@ fi
 if lsof -Pi :4200 -sTCP:LISTEN -t >/dev/null ; then
     sudo fuser -k 4200/tcp
 fi
+if lsof -Pi :27017 -sTCP:LISTEN -t >/dev/null ; then
+    sudo fuser -k 27017/tcp
+fi
 sudo killall node

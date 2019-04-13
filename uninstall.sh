@@ -55,7 +55,7 @@ do
             ;;
         5)
             sudo service mongod stop
-            sudo yum erase mongo-10gen mongo-10gen-server
+            sudo yum -y erase mongo-10gen mongo-10gen-server
             ;;
     esac
 done
