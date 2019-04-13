@@ -22,15 +22,13 @@ if ! [ -x "$(command -v mongo)" ]; then
     ISINSTALLED5=off
 fi
 
-if ! [ -x "$(command -v make)" ]; then
-    ISINSTALLED6=off
-fi
+
 options=(1 "gcc-c++" $ISINSTALLED1
          2 "Node.js" $ISINSTALLED2
          3 "Angular CLI" $ISINSTALLED3
          4 "Typescript" $ISINSTALLED4
-         5 "MongoDB" $ISINSTALLED5
-         6 "make" $ISINSTALLED6)
+         5 "MongoDB" $ISINSTALLED5)
+
 choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
 cd ../client
@@ -69,16 +67,14 @@ do
             ;;
         5)
             sudo service mongod stop
-            sudo yum -y erase $(rpm -qa | grep mongodb-org)
-            if [ -d "/var/log/mongodb" ]; then
-                sudo rm -r /var/log/mongodb
-            fi
-             if [ -d "/var/lib/mongo" ]; then
-                sudo rm -r /var/lib/mongo
-            fi
-            ;;
-        6)
-            sudo yum -y remove make
+            sudo yum erase mongo-10gen mongo-10gen-server
+#            sudo yum -y erase $(rpm -qa | grep mongodb-org)
+#            if [ -d "/var/log/mongodb" ]; then
+#                sudo rm -r /var/log/mongodb
+#            fi
+#             if [ -d "/var/lib/mongo" ]; then
+#                sudo rm -r /var/lib/mongo
+#            fi
             ;;
     esac
 done
