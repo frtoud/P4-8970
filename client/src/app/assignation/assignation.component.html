@@ -11,7 +11,7 @@
     <div class="fixed">
         <mat-chip-list class="mat-chip-list-stacked" cdkDropList (cdkDropListDropped)="dropParticipant($event)">
           <mat-chip *ngFor="let participant of participants" (click)="getFocus(participant)"
-          [ngClass]="{'assignation_selected': participant._id === collaboratorID}" cdkDrag matTooltip="Sélectionner le participant pour lui assigner des sections de formulaire en cliquant sur celles-ci." [matTooltipShowDelay]="1500">
+          [ngClass]="{'assignation_selected': participant._id === collaboratorID}" cdkDrag matTooltip="Sélectionner le participant pour lui assigner des sections de formulaire en cliquant sur celles-ci. Tenir et glisser pour changer l'ordre de participation." [matTooltipShowDelay]="1500">
             <p>{{participant.firstName}} {{participant.lastName}}</p> 
             <button class="deleteParticipant" mat-mini-fab color="warn" (click)="deleteParticipant(participant)" >
               <p class="delX">x</p>
