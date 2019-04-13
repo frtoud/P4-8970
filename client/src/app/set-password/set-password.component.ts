@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators, FormGroupDirective, NgForm } from '
 import { ErrorStateMatcher } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { FeedbackDialogComponent, FeedbackDialogData } from '../feedback-dialog/feedback-dialog.component';
 
 @Component({
   selector: 'app-set-password',
@@ -19,9 +21,10 @@ export class SetPasswordComponent implements OnInit {
     confirmPassword: new FormControl('')
   }, this.checkPasswords);
   errorMessage: string = null;
+  displayProgressSpinner = false;
 
   constructor(private route: ActivatedRoute, private authService: LoginService, 
-    private router: Router) {
+    private router: Router, public dialog: MatDialog) {
     this.id = this.route.snapshot.paramMap.get('id');
   }
 
@@ -55,14 +58,26 @@ export class SetPasswordComponent implements OnInit {
   }
 
   setPassword(event) {
+    this.displayProgressSpinner = true;
     event.preventDefault;
     this.authService.setNewPassword(this.id, this.passwordForm.controls.password.value)
     .then(() => {
+      this.displayProgressSpinner = false;
       this.errorMessage = null;
-      window.alert("Mot de passe créé avec succès!")
-      this.router.navigateByUrl('/login');
+      this.openDialog("check_circle", "Compte activé avec succès!", false);
     })
-    .catch(err => this.errorMessage = err.error);
+    .catch(err => {
+      this.displayProgressSpinner = false;
+      this.errorMessage = err.error;
+    });
+  }
+
+  openDialog(icon: string, message: string, error: boolean): void {
+    this.dialog.open(FeedbackDialogComponent, {
+      width: '300px',
+      data: { icon: icon, error: error, message: message }
+    });
+    this.router.navigateByUrl('/login');
   }
 
 }

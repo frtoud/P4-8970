@@ -2,11 +2,13 @@ div.assignation_assigned {
     background-color: #e8e8e8;
   }
 div.assignation_selected {
-    background-color: #aedd94;
+    background-color: #d7ebce;
   }
 
   .error_msg {
     color: red;
+    background: white;
+    width: max-content;
   }
 
   .mat-table {
