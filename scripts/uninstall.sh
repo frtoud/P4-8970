@@ -52,10 +52,20 @@ do
             cd ~
             sudo rm -rf node_modules
             sudo yum -y remove nodejs
+            cd /usr/local/bin
+            sudo rm -rf npm
+            cd /usr/local/share/man/man1/
+            sudo rm -rf node.1
+            cd /usr/local/lib/dtrace
+            sudo rm -rf node.d
+            sudo rm -rf /usr/bin
             ;;
         3)
+            sudo npm uninstall -g @angular/cli
+            sudo npm cache clean
             ;;
         4)
+            sudo npm uninstall -g typescript
             ;;
         5)
             sudo service mongod stop
