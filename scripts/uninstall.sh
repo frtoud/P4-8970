@@ -6,22 +6,21 @@ ISINSTALLED3=on
 ISINSTALLED4=on
 ISINSTALLED5=on
 ISINSTALLED6=on
-if ! [ -x "$(command -v gcc-c++)" ]; then
+if  [! -x "$(command -v gcc-c++)" ]; then
     ISINSTALLED1=off
 fi
-if ! [ -x "$(command -v nodejs)" ]; then
+if  [! -x "$(command -v nodejs)" ]; then
     ISINSTALLED2=off
 fi
-if ! [ -x "$(command -v ng)" ]; then
+if  [! -x "$(command -v ng)" ]; then
     ISINSTALLED3=off
 fi
-if ! [ -x "$(command -v tsc)" ]; then
+if [! -x "$(command -v tsc)" ]; then
     ISINSTALLED4=off
 fi
-if ! [ -x "$(command -v mongo)" ]; then
+if  [! -x "$(command -v mongo)" ]; then
     ISINSTALLED5=off
 fi
-
 
 options=(1 "gcc-c++" $ISINSTALLED1
          2 "Node.js" $ISINSTALLED2
