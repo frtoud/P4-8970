@@ -62,14 +62,10 @@ export abstract class BaseFormComponent implements AfterViewInit, AfterContentIn
         }
       }
 
-      let codeCollec: any = document.getElementsByClassName('codeDisable');
-      let t4aCollec: any = document.getElementsByClassName('t4aDisable');
+      let managerOnlyCollec: any = document.getElementsByClassName('managerOnly');
 
-      for (let code of codeCollec) {
+      for (let code of managerOnlyCollec) {
         code.classList.add('child_disabled');
-      }
-      for (let t4a of t4aCollec) {
-        t4a.classList.add('child_disabled');
       }
     }
 

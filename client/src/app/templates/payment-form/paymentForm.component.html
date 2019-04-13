@@ -192,7 +192,7 @@
         
         <ng-container matColumnDef="code">
             <th mat-header-cell *matHeaderCellDef> Code de taxes </th>
-            <td mat-cell *matCellDef="let ventilation" class="code codeDisable">
+            <td mat-cell *matCellDef="let ventilation" class="code managerOnly">
                 <mat-form-field >
                     <input matInput type="number" [(ngModel)]="ventilation.code" (ngModelChange)="fg_ventilation_budgetaire.updateValueAndValidity()">
                 </mat-form-field>
@@ -201,7 +201,7 @@
 
         <ng-container matColumnDef="t4a">
             <th mat-header-cell *matHeaderCellDef> T4A </th>
-            <td mat-cell *matCellDef="let ventilation" class="t4a t4aDisable">
+            <td mat-cell *matCellDef="let ventilation" class="t4a managerOnly">
                 <mat-form-field>
                     <input matInput type="number" [(ngModel)]="ventilation.t4a" (ngModelChange)="fg_ventilation_budgetaire.updateValueAndValidity()">
                 </mat-form-field>
