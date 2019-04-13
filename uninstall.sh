@@ -30,11 +30,11 @@ options=(1 "gcc-c++" $ISINSTALLED1
 
 choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
-cd ../client
+cd ~/projet4/client
 sudo npm uninstall *
-cd ../server
+cd ~/projet4/server
 sudo npm uninstall *
-cd ..
+cd ~/projet4
 sudo npm uninstall *
 for choice in $choices
 do
@@ -64,6 +64,9 @@ if lsof -Pi :8000 -sTCP:LISTEN -t >/dev/null ; then
 fi
 if lsof -Pi :4200 -sTCP:LISTEN -t >/dev/null ; then
     sudo fuser -k 4200/tcp
+fi
+if lsof -Pi :27017 -sTCP:LISTEN -t >/dev/null ; then
+    sudo fuser -k 27017/tcp
 fi
 sudo killall node
 

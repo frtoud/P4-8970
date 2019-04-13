@@ -73,7 +73,8 @@ do
             fi
     esac
 done
-cd ./server/lib
+
+cd ~/projet4/server/lib
 sudo touch keys.js
 sudo cat <<EOF > ./keys.js
 const KEYS = {
@@ -85,19 +86,19 @@ const KEYS = {
 };
 module.exports = KEYS;
 EOF
-cd ../../client/src/app
+cd ~/projet4/client/src/app
 sudo cat <<EOF > ./config.ts
 export class Config {
     public static apiUrl = 'http://localhost:8000';
   }
 EOF
-cd ../../../
+cd ~/projet4
 sudo npm install --save mongodb
-cd ./client
+cd ~/projet4/client
 sudo npm install
-cd ../server
+cd ~/projet4/server
 sudo npm install
-cd ..
+cd ~/projet4
 sudo systemctl enable firewalld
 sudo systemctl start firewalld
 sudo firewall-cmd --zone=public --add-port=8000/tcp --permanent
@@ -105,15 +106,9 @@ sudo firewall-cmd --zone=public --add-port=4200/tcp --permanent
 sudo firewall-cmd --zone=public --add-port=27017/tcp --permanent
 sudo firewall-cmd --reload
 cd /
-if [ -d "data" ]; then
-    sudo mkdir data
-    cd data
-    if [ -d "db" ]; then
-        sudo mkdir db
-    fi
-fi
-cd /
+sudo mkdir data
 sudo chmod -R go+w data
 cd data
+sudo mkdir db
 sudo chmod -R go+w db
 
