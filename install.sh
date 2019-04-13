@@ -11,6 +11,7 @@ ISINSTALLED3=off
 ISINSTALLED4=off
 ISINSTALLED5=off
 ISINSTALLED6=off
+
 if ! [ -x "$(command -v gcc-c++)" ]; then
     ISINSTALLED1=on
 fi
@@ -59,12 +60,10 @@ do
         5)
             cd /
             cd etc/yum.repos.d/
-            if [ ! -f "mongodb-org-4.0.repo" ]; then
-                sudo touch mongodb-org-4.0.repo
-                REPODIR=./mongodb-org-4.0.repo
-                MONGOREPO=$'[mongodb-org-4.0]\nname=MongoDB Repository\nbaseurl=https://repo.mongodb.org/yum/redhat/7/mongodb-org/4.0/x86_64/\ngpgcheck=1\nenabled=1\ngpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc'
-                sudo echo "$MONGOREPO" > "$REPODIR"
-            fi
+            sudo touch mongodb-org-4.0.repo
+            REPODIR=./mongodb-org-4.0.repo
+            MONGOREPO=$'[mongodb-org-4.0]\nname=MongoDB Repository\nbaseurl=https://repo.mongodb.org/yum/redhat/7/mongodb-org/4.0/x86_64/\ngpgcheck=1\nenabled=1\ngpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc'
+            sudo echo "$MONGOREPO" > "$REPODIR"
             sudo yum -y -q -q install mongodb-org
             sudo npm install --silent mongodb
             ;;
@@ -74,7 +73,7 @@ do
             fi
     esac
 done
-cd ~/projet4/server/lib
+cd ./server/lib
 sudo touch keys.js
 sudo cat <<EOF > ./keys.js
 const KEYS = {
@@ -86,7 +85,7 @@ const KEYS = {
 };
 module.exports = KEYS;
 EOF
-cd ~/client/src/app
+cd ../../client/src/app
 sudo cat <<EOF > ./config.ts
 export class Config {
     public static apiUrl = 'http://localhost:8000';
@@ -105,9 +104,6 @@ sudo firewall-cmd --zone=public --add-port=8000/tcp --permanent
 sudo firewall-cmd --zone=public --add-port=4200/tcp --permanent
 sudo firewall-cmd --zone=public --add-port=27017/tcp --permanent
 sudo firewall-cmd --reload
-sudo mongod -bind_ip_all --port 27017 --dbpath /data/db
-sudo node ./db-admin.js &
-sudo fuser -k 27017/tcp
 cd /
 if [ -d "data" ]; then
     sudo mkdir data
