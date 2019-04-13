@@ -250,12 +250,12 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumnsV;"></tr>
         <tr mat-footer-row *matFooterRowDef="['totalV','addVRow']"></tr>
     </table>
-        <p class="error_msg" *ngIf="fg_ventilation_budgetaire.hasError('incomplete')">Une ou plusieur lignes de ventilation sont incomplètes.</p>
+        <p class="error_msg" *ngIf="fg_ventilation_budgetaire.hasError('incomplete')">Une ou plusieurs lignes de ventilation sont incomplètes.</p>
         <p class="error_msg" *ngIf="fg_ventilation_budgetaire.hasError('negative')">La ventilation contient des montants négatifs.</p>
 </div>
 <div>
 <app-sig-block [signatures]="signatures" [controls]="controls"></app-sig-block>
-<div id="references">
+<div id="references" class="managerOnly">
     <p>
         <strong id="ref">(1)</strong> Numéroter les factures et reporter les références à la ligne de ventilation budgétaire appropriée.
         <br> 
