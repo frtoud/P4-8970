@@ -46,6 +46,11 @@ do
             sudo yum -y remove gcc-c++
             ;;
         2)
+            cd /usr/local/lib
+            sudo rm -rf node
+            sudo rm -rf node_modules
+            cd ~
+            sudo rm -rf node_modules
             sudo yum -y remove nodejs
             ;;
         3)
