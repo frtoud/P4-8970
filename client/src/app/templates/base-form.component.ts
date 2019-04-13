@@ -61,6 +61,25 @@ export abstract class BaseFormComponent implements AfterViewInit, AfterContentIn
           document.getElementById(sig.id).classList.add('child_disabled');
         }
       }
+
+      let codeCollec: any = document.getElementsByClassName('codeDisable');
+      let t4aCollec: any = document.getElementsByClassName('t4aDisable');
+
+      for (let code of codeCollec) {
+        code.classList.add('child_disabled');
+      }
+      for (let t4a of t4aCollec) {
+        t4a.classList.add('child_disabled');
+      }
+      // Array.prototype traite la HTMLCollection comme un array pour forEach
+      // Array.prototype.forEach.call(codeCollec, function(code) {
+      //   // code.addClass('child_disabled');
+      //   console.log(typeof(code));
+      // });
+      // Array.prototype.forEach.call(t4aCollec, function(t4a) {
+      //   // t4a.add('child_disabled');
+      //   console.log(typeof(t4a));
+      // });
     }
 
     public doColoring() {
