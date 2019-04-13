@@ -60,6 +60,7 @@ export class NewAccountComponent {
 
   newAccount(event) {
     event.preventDefault;
+    this.errorMessage = undefined;
     let account: Account = {
       firstName : this.firstNameFormControl.value,
       lastName : this.lastNameFormControl.value,
@@ -73,7 +74,10 @@ export class NewAccountComponent {
       this.openDialog();
       this.resetFormControls();
     })
-    .catch(err => this.errorMessage = err.error);
+    .catch(err => {
+      this.displaySpinner = false;
+      this.errorMessage = err.error;
+    });
   }
 
   openDialog(): void {
@@ -94,6 +98,7 @@ export class NewAccountComponent {
     this.emailFormControl.reset();
     this.firstNameFormControl.reset();
     this.typeFormControl.reset();
+    this.errorMessage = undefined;
   }
 
 }
