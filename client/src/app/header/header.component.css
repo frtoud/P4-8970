@@ -17,11 +17,11 @@
   background-color: #222222;
 }
 
-.fill-space{
+.fill-space {
   flex: 1 1 auto;
 }
 
-#navbar-links{
+#navbar-links {
   flex: 1 1 auto;
   width: 100px;
   margin:20px;
@@ -29,7 +29,7 @@
   color:white
 }
 
-#bar{
+#bar {
   color: #acacac;
   font-size: 18px;
 
@@ -42,16 +42,16 @@
   max-height: 10px;
 }
 
-.active{
+.active {
   color: #41AAE6 !important;
 }
 
-#link{
+#link {
   margin: 20px;
   color:white
 }
 
-#toolbar{
+#toolbar {
   top: 0;
 }
 
@@ -65,100 +65,8 @@ body {
   margin-right: 0.8%;
 }
 
-@media print{
-  #toolbar{
+@media print {
+  #toolbar {
     visibility: hidden;
   }
-  
 }
-
-
-
-
-
-
-/* .header-container {
-  height: 100%;
-}
-
-.header {
-  width: 100%;
-}
-
-.toolbar{
-  height: 60px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  background-color: #222222;
-  top: 0;
-  z-index: 1;
-}
-
-.fill-space{
-  flex: 1 1 auto;
-}
-
-#logo {
-  color: #acacac;
-  font-size: 18px;
-
-  display: flex;
-  flex-direction: row;
-
-  margin-left: 1.5%;
-  width: 25%;
-  white-space: nowrap;
-}
-#poly-squares {
-  margin-top: 6px;
-  margin-left: 15px;
-  height: 10px;
-  width: 69px;
-}
-
-#navbar-links {
-  display: flex;
-  flex-direction: row;
-  float: right;
-  color:white;
-
-  width: 17%;
-}
-#userName {
-  color:white;
-  font-size: 15px;
-  font-weight: lighter;
-
-  width: 17%;
-}
-#settings {
-  color:white;
-}
-#logOut {
-  color:white;
-}
-
-.active{
-  color: #41AAE6 !important;
-}
-
-#link{
-  margin: 5%;
-  color:white;
-}
-
-body {
-  margin: 0;
-}
-
-@media print{
-  .toolbar{
-    visibility: hidden;
-  }
-  
-} */
-
-
-
-
