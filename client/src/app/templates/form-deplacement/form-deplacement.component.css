@@ -230,11 +230,11 @@ input {
 #references div {
     background-color: #CCD4DF;
 }
-
+/* 
 form {
     width: 100%;
 }
-
+ */
 #calculatorButton {
     display: flex;
     flex-direction: row;
