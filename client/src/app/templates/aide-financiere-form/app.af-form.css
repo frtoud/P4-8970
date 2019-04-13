@@ -132,6 +132,13 @@ mat-radio-group {
   width: 100px;
 }
 
+#demandeur input,
+#beneficiaire input,
+#montantAF input,
+#organismeSubv input {
+  text-align: left;
+}
+
 #ventilation table {
   width: 100%;
 }

@@ -29,6 +29,12 @@
     max-width: 100% !important;
 }
 
+#entite_externe input,
+#endroit input,
+#but input {
+    text-align: left;
+}
+
 h6 {
     margin:0;
     padding: 2px 5px;
@@ -230,11 +236,11 @@ input {
 #references div {
     background-color: #CCD4DF;
 }
-/* 
+
 form {
     width: 100%;
 }
- */
+
 #calculatorButton {
     display: flex;
     flex-direction: row;
@@ -245,7 +251,16 @@ form {
 }
 
 
+#precision {
+    width: 90%;
+    text-align: center;
+}
 
+#tableaux-explicatifs
+{
+    width:30%;
+    text-align: center;
+}
 
 @media print{
 
@@ -263,6 +278,9 @@ form {
         
     }
         
+    #tableaux-explicatifs{
+        display: none !important;
+      }
         
         
         

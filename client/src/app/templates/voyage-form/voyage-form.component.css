@@ -23,6 +23,14 @@
     margin: 5px;
 }
 
+#entite-externe input,
+#beneficiaire input,
+#fournisseur input,
+#endroit input,
+#but_deplacement input {
+    text-align: left;
+}
+
 h6 {
     margin:0;
     padding: 2px 5px;

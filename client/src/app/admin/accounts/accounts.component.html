@@ -5,9 +5,15 @@
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef>  </th>
         <td mat-cell *matCellDef="let element">
-            <i class="material-icons" [routerLink]="[getEditAccountRoute(element._id)]" routerLinkActive="active">edit</i>
+            <i class="material-icons" [routerLink]="[getEditAccountRoute(element._id)]" routerLinkActive="active"
+              matTooltip="Modifier l'utilisateur" [matTooltipShowDelay]="1500">
+              edit
+            </i>
             <i class="material-icons" 
-            (click)="openConfirmationDialog(element._id, element.firstName, element.lastName)">close</i>
+              (click)="openConfirmationDialog(element._id, element.firstName, element.lastName)"
+              matTooltip="Supprimer l'utilisateur" [matTooltipShowDelay]="1500">
+              close
+            </i>
         </td>
       </ng-container>
     
