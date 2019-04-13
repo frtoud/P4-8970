@@ -6,5 +6,5 @@ export class Config {
     /**
      * The base API URL.
      */
-    public static apiUrl = 'http://localhost:8000';
+    public static apiUrl = 'http://formulaires.info.polymtl.ca:8000';
   }
