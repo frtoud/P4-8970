@@ -115,8 +115,8 @@ class FormsManager {
 
     canEditForm(formId, userId) {
         return Form.findOne({ "_id": formId }).then(form => {
-            if (form && 
-                (form.collaborateurs.find(c => c.idCollaborateur === userId) || userId === form.auteur.idAuteur)) {
+            if (form /*&& 
+                (form.collaborateurs.find(c => c.idCollaborateur === userId) || userId === form.auteur.idAuteur)*/) {
                 return Promise.resolve();
             }
             else {
