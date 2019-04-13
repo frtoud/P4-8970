@@ -59,16 +59,17 @@ do
         5)
             cd /
             cd etc/yum.repos.d/
-            sudo touch mongodb-org-4.0.repo
-            REPODIR=./mongodb-org-4.0.repo
-            MONGOREPO=$'[mongodb-org-4.0]\nname=MongoDB Repository\nbaseurl=https://repo.mongodb.org/yum/redhat/7/mongodb-org/4.0/x86_64/\ngpgcheck=1\nenabled=1\ngpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc'
-            echo "$MONGOREPO" > "$REPODIR"
+            if [ ! -f "mongodb-org-4.0.repo" ]; then
+                sudo touch mongodb-org-4.0.repo
+                REPODIR=./mongodb-org-4.0.repo
+                MONGOREPO=$'[mongodb-org-4.0]\nname=MongoDB Repository\nbaseurl=https://repo.mongodb.org/yum/redhat/7/mongodb-org/4.0/x86_64/\ngpgcheck=1\nenabled=1\ngpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc'
+                sudo echo "$MONGOREPO" > "$REPODIR"
+            fi
             sudo yum -y -q -q install mongodb-org
             sudo npm install --silent mongodb
-            sudo systemctl enable mongod
             ;;
          6)
-            if ! [ -x "$(command -v make)" ]; then
+            if [ !  -x "$(command -v make)" ]; then
                 sudo yum -y -q install make
             fi
     esac
@@ -85,13 +86,13 @@ const KEYS = {
 };
 module.exports = KEYS;
 EOF
-cd ~/projet4/client/src/app
+cd ~/client/src/app
 sudo cat <<EOF > ./config.ts
 export class Config {
     public static apiUrl = 'http://localhost:8000';
   }
 EOF
-cd ~/projet4
+cd ../../../
 sudo npm install --save mongodb
 cd ./client
 sudo npm install
@@ -110,10 +111,13 @@ sudo fuser -k 27017/tcp
 cd /
 if [ -d "data" ]; then
     sudo mkdir data
-    sudo chmod -R go+w data
     cd data
     if [ -d "db" ]; then
         sudo mkdir db
-        sudo chmod -R go+w db
     fi
 fi
+cd /
+sudo chmod -R go+w data
+cd data
+sudo chmod -R go+w db
+

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-cmd=(dialog --separate-output --checklist "Appuyer sur ESPACE pour sélectionner les programmes à désinstaller. Les programmes présélectionnés sont installés présentement sur votre ordinateur." 22 76 16)
+cmd=(dialog --separate-output --checklist "Appuyer sur ESPACE pour sélectionner les programmes à installer. Les programmes présélectionnés sont installés sur votre ordinateur." 22 76 16)
 ISINSTALLED1=on
 ISINSTALLED2=on
 ISINSTALLED3=on
@@ -33,7 +33,11 @@ options=(1 "gcc-c++" $ISINSTALLED1
          6 "make" $ISINSTALLED6)
 choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
-cd node_modules
+cd ../client
+sudo npm uninstall *
+cd ../server
+sudo npm uninstall *
+cd ..
 sudo npm uninstall *
 for choice in $choices
 do
@@ -51,8 +55,12 @@ do
         5)
             sudo service mongod stop
             sudo yum -y erase $(rpm -qa | grep mongodb-org)
-            sudo rm -r /var/log/mongodb
-            sudo rm -r /var/lib/mongo
+            if [ -d "/var/log/mongodb" ]; then
+                sudo rm -r /var/log/mongodb
+            fi
+             if [ -d "/var/lib/mongo" ]; then
+                sudo rm -r /var/lib/mongo
+            fi
             ;;
         6)
             sudo yum -y remove make
