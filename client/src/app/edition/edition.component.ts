@@ -122,7 +122,7 @@ export class EditionComponent implements OnInit {
     this.instanceService.patchInstance(this.formId, this.formInstance.collaborateurID,
     newData, this.fileUploader.attachedFiles).then(res => {
       this.displayProgressSpinner = false;
-      this.openDialog("check_circle", "Formulaire créé avec succès!", false);
+      this.openDialog("check_circle", "Modifications soumises avec succès!", false);
     }).catch(err => {
       this.displayProgressSpinner = false;
       this.openDialog("error", "Une erreur est survenue!", true);
