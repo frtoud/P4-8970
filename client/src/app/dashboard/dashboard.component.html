@@ -54,7 +54,7 @@
   <button mat-icon-button (click)="search()" class="searchButton">
     <i class="material-icons">search</i>
   </button>
-  <button mat-icon-button (click)="desactivateSearch()" class="searchButton">
+  <button mat-icon-button (click)="desactivateSearch()" class="searchButton" matTooltip="Réinitialiser la recherche" [matTooltipShowDelay]="1500">
     <i class="material-icons">backspace</i>
   </button>
 </div>
@@ -65,7 +65,7 @@
     <div *ngIf="!loadingForms && !searchActivated && aCompleterCards.length != 0" id="cards-container">
       À compléter ({{aCompleterCards.length}})
       <div class="toggleViewDiv">
-        <button mat-icon-button (click)="toggleVueListe()" class="toggleViewButton">
+        <button mat-icon-button (click)="toggleVueListe()" class="toggleViewButton" matTooltip="Mode Liste" [matTooltipShowDelay]="1500">
           <i class="material-icons">view_list</i>
         </button>
       </div>
@@ -194,7 +194,7 @@
     <div *ngIf="!loadingForms && !searchActivated && aCompleterCards.length == 0">
       À compléter ({{aCompleterCards.length}})
       <div class="toggleViewDiv">
-        <button mat-icon-button (click)="toggleVueListe()" class="toggleViewButton">
+        <button mat-icon-button (click)="toggleVueListe()" class="toggleViewButton" matTooltip="Mode Liste" [matTooltipShowDelay]="1500">
           <i class="material-icons">view_list</i>
         </button>
       </div>
@@ -208,7 +208,7 @@
     <div *ngIf="loadingForms">
       À compléter
       <div class="toggleViewDiv">
-        <button mat-icon-button (click)="toggleVueListe()" class="toggleViewButton">
+        <button mat-icon-button (click)="toggleVueListe()" class="toggleViewButton" matTooltip="Mode Liste" [matTooltipShowDelay]="1500">
           <i class="material-icons">view_module</i>
         </button>
       </div>
@@ -366,7 +366,7 @@
     <div *ngIf="!loadingForms && searchActivated && displayedCards.length != 0" id="cards-container">
       Résultats de la recherche ({{displayedCards.length}})
       <div class="toggleViewDiv">
-        <button mat-icon-button (click)="toggleVueListe()" class="toggleViewButton">
+        <button mat-icon-button (click)="toggleVueListe()" class="toggleViewButton" matTooltip="Mode Liste" [matTooltipShowDelay]="1500">
           <i class="material-icons">view_list</i>
         </button>
       </div>
@@ -491,7 +491,7 @@
     <div *ngIf="!loadingForms && searchActivated && displayedCards.length == 0">
       Résultats de la recherche ({{displayedCards.length}})
       <div class="toggleViewDiv">
-        <button mat-icon-button (click)="toggleVueListe()" class="toggleViewButton">
+        <button mat-icon-button (click)="toggleVueListe()" class="toggleViewButton" matTooltip="Mode Liste" [matTooltipShowDelay]="1500">
           <i class="material-icons">view_list</i>
         </button>
       </div>
@@ -512,7 +512,7 @@
     <!---------------------DÉBUT liste A completer ------------------------->
     <div *ngIf="!loadingForms && !searchActivated && aCompleterCards.length != 0">
       <div class="toggleViewDiv">
-        <button mat-icon-button (click)="toggleVueCarte()" class="toggleViewButton">
+        <button mat-icon-button (click)="toggleVueCarte()" class="toggleViewButton" matTooltip="Mode Carte" [matTooltipShowDelay]="1500">
           <i class="material-icons">view_module</i>
         </button>
       </div>
@@ -603,7 +603,7 @@
     <div *ngIf="!loadingForms && !searchActivated && aCompleterCards.length == 0">
       À compléter ({{aCompleterCards.length}})
       <div class="toggleViewDiv">
-        <button mat-icon-button (click)="toggleVueCarte()" class="toggleViewButton">
+        <button mat-icon-button (click)="toggleVueCarte()" class="toggleViewButton" matTooltip="Mode Carte" [matTooltipShowDelay]="1500">
           <i class="material-icons">view_module</i>
         </button>
       </div>
@@ -619,7 +619,7 @@
     <div *ngIf="loadingForms">
       À compléter
       <div class="toggleViewDiv">
-        <button mat-icon-button (click)="toggleVueCarte()" class="toggleViewButton">
+        <button mat-icon-button (click)="toggleVueCarte()" class="toggleViewButton" matTooltip="Mode Carte" [matTooltipShowDelay]="1500">
           <i class="material-icons">view_module</i>
         </button>
       </div>
@@ -734,7 +734,7 @@
     <div *ngIf="!loadingForms && searchActivated && displayedCards.length != 0">
       Résultats de la recherche ({{displayedCards.length}})
       <div class="toggleViewDiv">
-        <button mat-icon-button (click)="toggleVueCarte()" class="toggleViewButton">
+        <button mat-icon-button (click)="toggleVueCarte()" class="toggleViewButton" matTooltip="Mode Carte" [matTooltipShowDelay]="1500">
           <i class="material-icons">view_module</i>
         </button>
       </div>
@@ -820,7 +820,7 @@
     <div *ngIf="!loadingForms && searchActivated && displayedCards.length == 0">
       Résultats de la recherche ({{displayedCards.length}})
       <div class="toggleViewDiv">
-        <button mat-icon-button (click)="toggleVueCarte()" class="toggleViewButton">
+        <button mat-icon-button (click)="toggleVueCarte()" class="toggleViewButton" matTooltip="Mode Carte" [matTooltipShowDelay]="1500">
           <i class="material-icons">view_module</i>
         </button>
       </div>

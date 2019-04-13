@@ -170,7 +170,7 @@
 }
 
 .inProgress .mat-progress-bar-fill::after {
-  background-color: #ffff00;
+  background-color: #fffa72;
 }
   
 .canceled .mat-progress-bar-fill::after {
@@ -215,7 +215,7 @@
   padding-left: 4px;
   text-align: left;
   width: 100%;
-  background-color: #ffff00;
+  background-color: #fffa72;
 }
 .collaborateurWaiting {
   padding-left: 4px;
@@ -319,7 +319,7 @@
 .selectCollaborateurEdition {
   text-align: center;
   width: 100%;
-  background-color: #ffff00;
+  background-color: #fffa72;
 }
 
 .selectCollaborateurWaiting {
