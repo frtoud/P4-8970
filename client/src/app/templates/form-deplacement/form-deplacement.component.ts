@@ -68,6 +68,9 @@ export interface IDeplacementForm {
     assigneA: string;
 
     tableau: IAnnexRow[];
+
+    accQC: string,
+    accHQC: string,
   };
 }
 
@@ -145,6 +148,9 @@ export class FormDeplacementComponent extends BaseFormComponent implements IDepl
         fourniture: 0, inscription: 0, qcHqc: 'QC',
         montant: 0, fournitureMateriel: false, plusDeCinq: false, }
     ],
+
+    accQC: '',
+    accHQC: '',
   };
 
   private dureeDeplacement = 0;
@@ -194,37 +200,44 @@ export class FormDeplacementComponent extends BaseFormComponent implements IDepl
 
     // My head, it burns
     if (this.annexeComp.ventTotalQC.perdiem > 0) { this.ventilation.tableau.push(
-      {id: 0, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalQC.perdiem, code: '22', commentaire: '' }); }
+      {id: 0, ubr: '', compte: '30101', unite: '', montant: this.annexeComp.ventTotalQC.perdiem, code: '22', commentaire: '' }); }
     if (this.annexeComp.ventTotalQC.fraisKm > 0) { this.ventilation.tableau.push(
-      {id: 1, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalQC.fraisKm, code: '22', commentaire: '' }); }
+      {id: 1, ubr: '', compte: '30107', unite: '', montant: this.annexeComp.ventTotalQC.fraisKm, code: '22', commentaire: '' }); }
     if (this.annexeComp.ventTotalQC.chambreST > 0) { this.ventilation.tableau.push(
-      {id: 2, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalQC.chambreST, code: '44', commentaire: '' }); }
+      {id: 2, ubr: '', compte: '30113', unite: '', montant: this.annexeComp.ventTotalQC.chambreST, code: '44', commentaire: '' }); }
     if (this.annexeComp.ventTotalQC.fraisRecMoins > 0) { this.ventilation.tableau.push(
-      {id: 3, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalQC.fraisRecMoins, code: '44', commentaire: '' }); }
+      {id: 3, ubr: '', compte: '30201', unite: '', montant: this.annexeComp.ventTotalQC.fraisRecMoins, code: '44', commentaire: '' }); }
     if (this.annexeComp.ventTotalQC.fraisRecPlus > 0) { this.ventilation.tableau.push(
-      {id: 4, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalQC.fraisRecPlus, code: '44', commentaire: '' }); }
+      {id: 4, ubr: '', compte: '30203', unite: '', montant: this.annexeComp.ventTotalQC.fraisRecPlus, code: '44', commentaire: '' }); }
     if (this.annexeComp.ventTotalQC.fourniture > 0) { this.ventilation.tableau.push(
-      {id: 5, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalQC.fourniture, code: '22', commentaire: '' }); }
+      {id: 5, ubr: '', compte: '40303', unite: '', montant: this.annexeComp.ventTotalQC.fourniture, code: '22', commentaire: '' }); }
 
     if (this.annexeComp.ventTotalHQC.perdiem > 0) { this.ventilation.tableau.push(
-      {id: 6, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalHQC.perdiem, code: '20', commentaire: '' }); }
+      {id: 6, ubr: '', compte: '30104', unite: '', montant: this.annexeComp.ventTotalHQC.perdiem, code: '20', commentaire: '' }); }
     if (this.annexeComp.ventTotalHQC.fraisKm > 0) { this.ventilation.tableau.push(
-      {id: 7, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalHQC.fraisKm, code: '20', commentaire: '' }); }
+      {id: 7, ubr: '', compte: '30110', unite: '', montant: this.annexeComp.ventTotalHQC.fraisKm, code: '20', commentaire: '' }); }
     if (this.annexeComp.ventTotalHQC.chambreST > 0) { this.ventilation.tableau.push(
-      {id: 8, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalHQC.chambreST, code: '40', commentaire: '' }); }
+      {id: 8, ubr: '', compte: '30116', unite: '', montant: this.annexeComp.ventTotalHQC.chambreST, code: '40', commentaire: '' }); }
     if (this.annexeComp.ventTotalHQC.fraisRecMoins > 0) { this.ventilation.tableau.push(
-      {id: 9, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalHQC.fraisRecMoins, code: '40', commentaire: '' }); }
+      {id: 9, ubr: '', compte: '30206', unite: '', montant: this.annexeComp.ventTotalHQC.fraisRecMoins, code: '40', commentaire: '' }); }
     if (this.annexeComp.ventTotalHQC.fraisRecPlus > 0) { this.ventilation.tableau.push(
-      {id: 10, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalHQC.fraisRecPlus, code: '40', commentaire: '' }); }
+      {id: 10, ubr: '', compte: '30204', unite: '', montant: this.annexeComp.ventTotalHQC.fraisRecPlus, code: '40', commentaire: '' }); }
     if (this.annexeComp.ventTotalHQC.fourniture > 0) { this.ventilation.tableau.push(
-      {id: 11, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalHQC.fourniture, code: '20', commentaire: '' }); }
+      {id: 11, ubr: '', compte: '40328', unite: '', montant: this.annexeComp.ventTotalHQC.fourniture, code: '20', commentaire: '' }); }
 
     if (this.annexeComp.ventTotalHCA.montant > 0) { this.ventilation.tableau.push(
-      {id: 12, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalHCA.montant, code: '00', commentaire: '' }); }
+      {id: 12, ubr: '', compte: '30119', unite: '', montant: this.annexeComp.ventTotalHCA.montant, code: '00', commentaire: '' }); }
     if (this.annexeComp.ventTotalHCA.personne > 0) { this.ventilation.tableau.push(
-      {id: 13, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalHCA.personne, code: '00', commentaire: '' }); }
+      {id: 13, ubr: '', compte: '30205', unite: '', montant: this.annexeComp.ventTotalHCA.personne, code: '00', commentaire: '' }); }
     if (this.annexeComp.ventTotalHCA.fourniture > 0) { this.ventilation.tableau.push(
-      {id: 14, ubr: '', compte: '', unite: '', montant: this.annexeComp.ventTotalHCA.fourniture, code: '00', commentaire: '' }); }
+      {id: 14, ubr: '', compte: '40329', unite: '', montant: this.annexeComp.ventTotalHCA.fourniture, code: '00', commentaire: '' }); }
+
+    if (this.annexeComp.ventTotalQC.inscription > 0 && this.fg_annexe.value.accQC !== '') { this.ventilation.tableau.push(
+      {id: 15, ubr: '', compte: this.fg_annexe.value.accQC, unite: '',
+      montant: this.annexeComp.ventTotalQC.inscription, code: '00', commentaire: '' }); }
+    if (this.annexeComp.ventTotalHQC.inscription > 0 && this.fg_annexe.value.accHQC !== '') { this.ventilation.tableau.push(
+      {id: 16, ubr: '', compte: this.fg_annexe.value.accHQC, unite: '',
+      montant: this.annexeComp.ventTotalHQC.inscription, code: '00', commentaire: '' }); }
 
     this.dSventilation._updateChangeSubscription();
     this.updateTotal();
@@ -256,7 +269,7 @@ export class FormDeplacementComponent extends BaseFormComponent implements IDepl
 
     setSections(): void {
       // Sent to annex by reference
-      this.annexeComp.setVentilation(this.annexe.tableau);
+      this.annexeComp.setAnnexe(this.annexe);
 
       this.sections = [
       this.entite_externe, this.ventilation,
@@ -325,8 +338,15 @@ export class FormDeplacementComponent extends BaseFormComponent implements IDepl
       } else {
         return null;
       }
+    }, (form) => {
+      return this.ventilationTotal !== this.annexeComp.totalDuRapport ?
+      { difference: this.annexeComp.totalDuRapport - this.ventilationTotal } : null;
     }]);
-    this.fg_annexe = new FormGroup({});
+    this.fg_annexe = new FormGroup({
+      accQC: new FormControl(this.annexe.accQC),
+      accHQC: new FormControl(this.annexe.accHQC),
+    });
+    this.annexeComp.formcontrol = this.fg_annexe;
 
     // Fill the control array
     while (this.controls.length !== 0) { this.controls.controls.pop(); }

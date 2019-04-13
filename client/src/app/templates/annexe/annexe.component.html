@@ -16,6 +16,7 @@
 
 
 <div id="tables">
+    <form [formGroup]="formcontrol">
     <table id="tableau-totaux">
         <tbody>
             <!-- rangée 1 -->
@@ -102,9 +103,12 @@
                 </td>
 
                 <td id="cellule-code-avantVide2">
+                        <mat-form-field>
+                                <input matInput type="number" placeholder="Compte" matTooltip="Précisez numéro de compte (Québec)"
+                                 formControlName="accQC" min=0>
+                        </mat-form-field>
                 </td>
-                <td>
-                    <!-- vide 2 -->
+                <td><!-- vide 2 -->
                 </td>
 
                 <td></td>
@@ -192,9 +196,12 @@
                     40328
                 </td>
 
-                <td id="cellule-code-avantVide2"></td>
-                <td>
-                    <!-- vide 2 -->
+                <td id="cellule-code-avantVide2">
+                        <mat-form-field matTooltip="Précisez numéro de compte (Hors Québec)">
+                                <input matInput type="number" placeholder="Compte" formControlName="accHQC" min=0>
+                        </mat-form-field>
+                </td>
+                <td><!-- vide 2 -->
                 </td>
 
                 <td></td>
@@ -209,6 +216,7 @@
         </tbody>
     </table>
 
+    </form>
         <!-- <tr mat-header-row *matHeaderRowDef="displayedColumnsTotaux"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumnsTotaux;"></tr>
     </table> -->
@@ -306,7 +314,7 @@
                 </td>
             </ng-container>
             <ng-container matColumnDef="inscription">
-                <th mat-header-cell *matHeaderCellDef id="fourniture-colonne"> inscription et autre </th>
+                <th mat-header-cell *matHeaderCellDef id="fourniture-colonne" matTooltip="Indiquer le montant et indiquer le no. de compte correspondant plus haut (soit Québec ou Hors-Québec). Inscription: 80110"> inscription et autre </th>
                 <td mat-cell *matCellDef="let element" id="inscription-cell">
                     <mat-form-field>
                         <input matInput type="number" [(ngModel)]="element.inscription" (ngModelChange)="updateTotal()" min=0>

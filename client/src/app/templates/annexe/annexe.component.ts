@@ -4,6 +4,7 @@ import { MatTableModule } from '@angular/material/table';
 import { DataSource } from '@angular/cdk/table';
 import {ScrollDispatchModule} from '@angular/cdk/scrolling';
 import { BaseFormComponent } from '../base-form.component';
+import { AbstractControl, FormGroup } from '@angular/forms';
 
 export interface IAnnexRow {
   id: number;
@@ -88,7 +89,13 @@ export class AnnexRowData implements IAnnexRow {
 })
 export class AnnexeComponent {
 
+  annexe = {
+    tableau: [],
+    accHQC: '',
+    accQC: '',
+  };
 
+  formcontrol: AbstractControl = new FormGroup({});
   constructor() { }
 
   ventTotalQC: AnnexRowData = new AnnexRowData();
@@ -96,15 +103,16 @@ export class AnnexeComponent {
   ventTotalHCA = { montant: 0, fourniture: 0, personne: 0};
 
   totalDuRapport = 0;
-  ventilation :IAnnexRow[];
+  ventilation: IAnnexRow[];
   displayedColumns: string[] = ['date', 'description', 'ref', 'perdiem', 'nbKm', 'pers',
   'fraisKm', 'chambreST', 'fraisRecMoins', 'fraisRecPlus', 'fourniture', 'inscription',
   'qcHqc', 'montant', /*'devise', 'deviseCAN',*/ 'fournitureMateriel', 'plusDeCinq', 'action'];
 
   dSventilation = new MatTableDataSource(this.ventilation);
-  setVentilation(table: IAnnexRow[]) {
-    this.ventilation = table;
+  setAnnexe(annex: {tableau: IAnnexRow[], accHQC: string, accQC: string }) {
+    this.ventilation = annex.tableau;
     this.dSventilation = new MatTableDataSource(this.ventilation);
+    this.updateTotal();
   }
 
   updateTotal() {
@@ -134,6 +142,7 @@ export class AnnexeComponent {
     });
     this.totalDuRapport = this.ventTotalQC.getTotal() + this.ventTotalHQC.getTotal()
     + this.ventTotalHCA.fourniture + this.ventTotalHCA.montant + this.ventTotalHCA.personne;
+    this.formcontrol.updateValueAndValidity();
   }
 
   onCreate() {
