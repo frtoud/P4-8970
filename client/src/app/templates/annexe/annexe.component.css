@@ -1,3 +1,5 @@
+@import url("../base-form.css");
+
 #form-header {
     display: flex;
     flex-direction: row;
@@ -56,8 +58,8 @@
     min-width: 6%;
 }
 
-#cellule-monetaire-avantVide2 mat-form-field {
-    width: 20px;
+#cellule-code-avantVide2 mat-form-field {
+    max-width: 60px;
     text-align: center;
 }
 
@@ -66,7 +68,7 @@
     border-left: 2px solid black;
     border-right: 1px solid black;
     border-bottom: 2px solid black;
-    padding: 10px 0px 10px 0px;
+    /*padding: 10px 0px 10px 0px;*/
     font-size: 0.9em;
     text-align: center;
 }
@@ -143,10 +145,6 @@ h4 {
 
 div {
     font-size: 13px;
-}
-
-mat-form-field {
-    
 }
 
 

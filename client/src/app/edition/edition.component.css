@@ -62,7 +62,7 @@
     width: 100%;
   }
   button:disabled {
-    color: gray;
+    color: gray !important;
   }
 
   #invalider {

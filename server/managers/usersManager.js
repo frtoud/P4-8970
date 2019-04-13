@@ -225,7 +225,7 @@ class UsersManager {
     authenticateUser(user) {
         const deferred = Q.defer();
         Users.findOne({ "email" : user.email }).then((finalUser) => {
-            if (!finalUser) {
+            if (!finalUser || !finalUser.hash) {
                 deferred.reject({ err: true, status: 404, message: "Utilisateur invalide." });
             }
             else {

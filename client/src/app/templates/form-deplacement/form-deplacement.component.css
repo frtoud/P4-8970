@@ -29,6 +29,12 @@
     max-width: 100% !important;
 }
 
+#entite_externe input,
+#endroit input,
+#but input {
+    text-align: left;
+}
+
 h6 {
     margin:0;
     padding: 2px 5px;

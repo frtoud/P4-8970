@@ -2,26 +2,26 @@
     <h6>ENTITÉ EXTERNE</h6>
     <div id="entite_employe">
         <form [formGroup]="fg_entite_employe">
-    <mat-form-field matTooltip="Matricule d'employé à 6 caractères." [matTooltipShowDelay]="1000">
-        <span matPrefix>P &nbsp;</span>
-        <input matInput type="text" placeholder="EMPLOYÉ (matricule)"
-        formControlName="matricule" id="employe-matricule">
-    </mat-form-field>
-</form>
-    <br>
+            <mat-form-field matTooltip="Matricule d'employé à 6 caractères." [matTooltipShowDelay]="1000">
+                <span matPrefix>P &nbsp;</span>
+                <input matInput type="text" placeholder="EMPLOYÉ (matricule)"
+                formControlName="matricule" id="employe-matricule">
+            </mat-form-field>
+        </form>
+        <br>
     </div>
     <div id="entite_fournisseur">
         <form [formGroup]="fg_entite_fournisseur">
-    <mat-form-field>
-        <span matPrefix>F &nbsp;</span>
-        <input matInput type="text" placeholder="FOURNISSEUR (numéro)"
-        formControlName="numero">
-    </mat-form-field> 
-    <mat-form-field id="entite-adresse">
-        <input matInput type="text" placeholder="Code adresse"
-        formControlName="adresse" >
-    </mat-form-field>
-</form>
+            <mat-form-field>
+                <span matPrefix>F &nbsp;</span>
+                <input matInput type="text" placeholder="FOURNISSEUR (numéro)"
+                formControlName="numero">
+            </mat-form-field> 
+            <mat-form-field id="entite-adresse">
+                <input matInput type="text" placeholder="Code adresse"
+                formControlName="adresse" >
+            </mat-form-field>
+        </form>
     </div>
 </div>
 
@@ -33,42 +33,42 @@
           <input matInput type="text" placeholder="NOM DE L'EMPLOYÉ"
           formControlName="nom">
       </mat-form-field>
-</form>
+    </form>
   </div>
 </div>
 
 <div id="fournisseur">
     <form [formGroup]="fg_fournisseur">
-  <mat-form-field>
-      <input matInput type="text" placeholder="ADRESSE DE L'EMPLOYÉ ou DU FOURNISSEUR"
-      formControlName="adresse">
-  </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="ADRESSE DE L'EMPLOYÉ ou DU FOURNISSEUR"
+            formControlName="adresse">
+        </mat-form-field>
 
-  <mat-form-field>
-      <input matInput type="text" placeholder="TÉLÉPHONE"
-      formControlName="telephone">
-  </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="TÉLÉPHONE"
+            formControlName="telephone">
+        </mat-form-field>
 
-  <mat-form-field>
-      <input matInput type="text" placeholder="FAX (Optionnel)"
-      formControlName="fax">
-  </mat-form-field>
-  <br>
-  <mat-form-field>
-      <input matInput type="text" placeholder="VILLE"
-      formControlName="ville">
-  </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="FAX (Optionnel)"
+            formControlName="fax">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput type="text" placeholder="VILLE"
+            formControlName="ville">
+        </mat-form-field>
 
-  <mat-form-field>
-      <input matInput type="text" placeholder="PROVINCE"
-      formControlName="province">
-  </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="PROVINCE"
+            formControlName="province">
+        </mat-form-field>
 
-  <mat-form-field>
-      <input matInput type="text" placeholder="CODE POSTAL"
-      formControlName="postal">
-  </mat-form-field>
-</form>
+        <mat-form-field>
+            <input matInput type="text" placeholder="CODE POSTAL"
+            formControlName="postal">
+        </mat-form-field>
+    </form>
 </div>
 
 
@@ -309,7 +309,7 @@
 
   <app-sig-block [signatures]="signatures" [controls]="controls"></app-sig-block>
 
-<div id="references">
+<div id="references" class="managerOnly">
   <p>
       <strong>*</strong> Joindre les pièces justificatives
   </p>

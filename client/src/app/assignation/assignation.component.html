@@ -28,10 +28,11 @@
     <mat-grid-list cols="2" rowHeight="40px">
       <mat-grid-tile [colspan]="tiles[0].cols" [rowspan]="tiles[0].rows">
         <button id="envoyer" mat-raised-button (click)="onSend()" color="primary" matTooltip="Envoyer le formulaire aux personnes assignées." [matTooltipShowDelay]="1500"
-        [disabled]="participantInsuffisants">ENVOYER</button>
+        [disabled]="displayProgressSpinner || participantInsuffisants">ENVOYER</button>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="tiles[1].cols" [rowspan]="tiles[1].rows">
-        <button id="annuler" mat-raised-button color="primary" (click)="onReturn()" >ANNULER</button>
+        <button id="annuler" mat-raised-button color="primary" (click)="onReturn()" 
+        [disabled]="displayProgressSpinner">ANNULER</button>
       </mat-grid-tile>
     </mat-grid-list>
     

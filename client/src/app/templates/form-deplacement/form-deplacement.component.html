@@ -105,7 +105,8 @@
         <button mat-raised-button color="primary" (click)="onRecalcul()" 
         matTooltip="Vide et recalcule tout le tableau de ventilation selon le tableau en annexe.">
         RECALCULER</button>
-         <p>Remaining</p>
+         <p *ngIf="this.ventilationTotal === 0">Remplir l'annexe ci-dessous pour automatiquement calculer ce tableau.</p>
+         <p class="error_msg" *ngIf="this.fg_ventilation.hasError('difference')">Différence avec le tableau de l'annexe: {{this.fg_ventilation.getError('difference') | currency}}</p>
     </div>
     <div id=table>
             <table mat-table [dataSource]="dSventilation" id="ventilation-table">  
@@ -222,7 +223,7 @@
 
 <app-sig-block [signatures]="signatures" [controls]="controls"></app-sig-block>
 
-<div id="references">
+<div id="references" class="managerOnly">
         <p>
             <strong>*</strong> Joindre les pièces justificatives
         </p>

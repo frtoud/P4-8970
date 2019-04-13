@@ -15,10 +15,7 @@ export class FileUploaderComponent {
 
   @Input() state: string;
   isActive = true;
-  constructor(private uploadService: UploadService) {
-    
-
-  }
+  constructor(private uploadService: UploadService) {}
 
   upload(event) {
     event.preventDefault;
